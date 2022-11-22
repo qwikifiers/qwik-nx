@@ -1,0 +1,11 @@
+export const qwikVersion = '0.14.0';
+export const qwikCityVersion = '0.0.124';
+export const qwikEslintPluginVersion = '0.14.0';
+export const eslintVersion = '8.28.0';
+export const tsEslintVersion = '5.43.0';
+export const prettierVersion = '2.7.1';
+export const viteVersion = '3.2.4';
+export const viteTsconfigPathsVersion = '3.5.0';
+export const typescriptVersion = '4.9.3';
+export const nodeFetchVersion = '3.3.0';
+export const typesEslint = '8.4.10';

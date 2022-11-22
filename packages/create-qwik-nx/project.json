@@ -1,0 +1,76 @@
+{
+  "name": "create-qwik-nx",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/create-qwik-nx",
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "packages/create-qwik-nx/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/packages/create-qwik-nx"]
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/create-qwik-nx",
+        "tsConfig": "packages/create-qwik-nx/tsconfig.lib.json",
+        "main": "packages/create-qwik-nx/bin/create-qwik-nx.ts",
+        "updateBuildableProjectDepsInPackageJson": false,
+        "assets": [
+          {
+            "input": "packages/create-qwik-nx",
+            "glob": "**/files/**",
+            "output": "/"
+          },
+          {
+            "input": "packages/create-qwik-nx",
+            "glob": "**/files/**/.gitkeep",
+            "output": "/"
+          },
+          {
+            "input": "packages/create-qwik-nx",
+            "glob": "**/*.json",
+            "ignore": ["**/tsconfig*.json", "project.json", ".eslintrc.json"],
+            "output": "/"
+          },
+          {
+            "input": "packages/create-qwik-nx",
+            "glob": "**/*.js",
+            "ignore": ["**/jest.config.js"],
+            "output": "/"
+          },
+          {
+            "input": "packages/create-qwik-nx",
+            "glob": "**/*.d.ts",
+            "output": "/"
+          },
+          {
+            "input": "",
+            "glob": "LICENSE",
+            "output": "/"
+          }
+        ]
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/create-qwik-nx/**/*.ts",
+          "packages/create-qwik-nx/**/*.spec.ts",
+          "packages/create-qwik-nx/**/*_spec.ts",
+          "packages/create-qwik-nx/**/*.spec.tsx",
+          "packages/create-qwik-nx/**/*.spec.js",
+          "packages/create-qwik-nx/**/*.spec.jsx",
+          "packages/create-qwik-nx/**/*.d.ts"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "implicitDependencies": ["qwik-nx"]
+}

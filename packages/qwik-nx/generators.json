@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "qwik-nx",
+  "version": "0.0.1",
+  "generators": {
+    "application": {
+      "factory": "./src/generators/application/generator",
+      "schema": "./src/generators/application/schema.json",
+      "description": "Qwik application generator",
+      "aliases": [
+        "app"
+      ]
+    },
+    "init": {
+      "factory": "./src/generators/init/init",
+      "schema": "./src/generators/init/schema.json",
+      "description": "qwik init plugin"
+    },
+    "route": {
+      "factory": "./src/generators/route/generator",
+      "schema": "./src/generators/route/schema.json",
+      "description": "Adding a Qwik City route"
+    },
+    "component": {
+      "factory": "./src/generators/component/generator",
+      "schema": "./src/generators/component/schema.json",
+      "description": "Generating a Qwik component"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "add-nx-to-qwik",
+  "version": "0.0.1",
+  "private": false,
+  "description": "Make qwik build even faster by adding Nx to it",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qwikifiers/qwik-nx.git",
+    "directory": "packages/add-nx-to-qwik"
+  },
+  "keywords": [
+    "Monorepo",
+    "React",
+    "Web",
+    "Node",
+    "Nest",
+    "Lerna",
+    "Yarn",
+    "CLI"
+  ],
+  "bin": {
+    "add-nx-to-qwik": "./src/tbd.js"
+  },
+  "author": "Shai Reznik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qwikifiers/qwik-nx/issues"
+  },
+  "homepage": "https://github.com/qwikifiers/qwik-nx",
+  "dependencies": {
+    "enquirer": "~2.3.6",
+    "ignore": "^5.0.4",
+    "nx": "file:../nx",
+    "yargs-parser": "21.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

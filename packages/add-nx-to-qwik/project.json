@@ -1,0 +1,72 @@
+{
+  "name": "add-nx-to-qwik",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/add-nx-to-qwik/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/add-nx-to-qwik/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/packages/add-nx-to-qwik"],
+      "options": {
+        "jestConfig": "packages/add-nx-to-qwik/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "build-base": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "build/packages/add-nx-to-qwik",
+        "tsConfig": "packages/add-nx-to-qwik/tsconfig.lib.json",
+        "packageJson": "packages/add-nx-to-qwik/package.json",
+        "main": "packages/add-nx-to-qwik/src/index.ts",
+        "updateBuildableProjectDepsInPackageJson": false,
+        "assets": [
+          "packages/add-nx-to-qwik/*.md",
+          {
+            "input": "",
+            "glob": "LICENSE",
+            "output": "/"
+          }
+        ]
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/build/packages/add-nx-to-qwik"],
+      "options": {
+        "commands": [
+          {
+            "command": "node ./scripts/chmod build/packages/add-nx-to-qwik/src/add-nx-to-qwik.js"
+          },
+          {
+            "command": "node ./scripts/copy-readme.js add-nx-to-qwik"
+          }
+        ],
+        "parallel": false
+      }
+    },
+    "test-against-repo": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "nx build add-nx-to-qwik",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "export JS_SCRIPT=$PWD/dist/packages/add-nx-to-qwik/src/add-nx-to-qwik.js && cd {args.repo} && echo $PWD && node $JS_SCRIPT",
+            "forwardAllArgs": false
+          }
+        ],
+        "parallel": false
+      }
+    }
+  }
+}

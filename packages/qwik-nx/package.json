@@ -1,0 +1,23 @@
+{
+  "name": "qwik-nx",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "license": "MIT",
+  "author": "Shai Reznik",
+  "description": "Nx plugin for qwik",
+  "homepage": "https://github.com/qwikifiers/qwik-nx",
+  "keywords": [
+    "qwik",
+    "nx",
+    "nx-plugin"
+  ],
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/qwikifiers/qwik-nx"
+  },
+  "bugs": {
+    "url": "https://github.com/qwikifiers/qwik-nx/issues"
+  },
+  "generators": "./generators.json",
+  "executors": "./executors.json"
+}
