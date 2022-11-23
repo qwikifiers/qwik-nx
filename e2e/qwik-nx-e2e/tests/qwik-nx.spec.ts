@@ -25,7 +25,7 @@ describe('qwik-nx e2e', () => {
 
   it('should create qwik-nx', async () => {
     const project = uniq('qwik-nx');
-    await runNxCommandAsync(`generate qwik-nx:qwik-nx ${project}`);
+    await runNxCommandAsync(`generate qwik-nx:app ${project}`);
     const result = await runNxCommandAsync(`build ${project}`);
     expect(result.stdout).toContain('Executor ran');
   }, 120000);
@@ -34,7 +34,7 @@ describe('qwik-nx e2e', () => {
     it('should create src in the specified directory', async () => {
       const project = uniq('qwik-nx');
       await runNxCommandAsync(
-        `generate qwik-nx:qwik-nx ${project} --directory subdir`
+        `generate qwik-nx:app ${project} --directory subdir`
       );
       expect(() =>
         checkFilesExist(`libs/subdir/${project}/src/index.ts`)
@@ -47,7 +47,7 @@ describe('qwik-nx e2e', () => {
       const projectName = uniq('qwik-nx');
       ensureNxProject('qwik-nx', 'dist/packages/qwik-nx');
       await runNxCommandAsync(
-        `generate qwik-nx:qwik-nx ${projectName} --tags e2etag,e2ePackage`
+        `generate qwik-nx:app ${projectName} --tags e2etag,e2ePackage`
       );
       const project = readJson(`libs/${projectName}/project.json`);
       expect(project.tags).toEqual(['e2etag', 'e2ePackage']);

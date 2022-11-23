@@ -1,6 +1,6 @@
 {
   "name": "add-nx-to-qwik",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "private": false,
   "description": "Make qwik build even faster by adding Nx to it",
   "repository": {

@@ -18,7 +18,7 @@
   "bin": {
     "create-qwik-nx": "./bin/tbd.js"
   },
-  "author": "Victor Savkin",
+  "author": "Shai Reznik",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/qwikifiers/qwik-nx/issues"

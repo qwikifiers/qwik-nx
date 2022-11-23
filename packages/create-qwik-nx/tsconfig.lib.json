@@ -13,5 +13,5 @@
     "**/*_test.ts",
     "jest.config.ts"
   ],
-  "include": ["**/*.ts", "package.json"]
+  "include": ["**/*.ts", "package.json", "bin/tbd.חs"]
 }

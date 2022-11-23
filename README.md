@@ -8,9 +8,15 @@ npm install -D qwik-nx
 
 ## Usage
 
+### Generating an Application
 ```
 nx generate qwik-nx:app
-
 ```
 
-TBD
+## ROADMAP:
+
+* [ ] Complete generators for Route, Component and more
+* [ ] Complete `add-nx-to-qwik` and `create-qwik-nx`
+* [ ] Writing missing tests
+* [ ] Move package.json scripts to project.json targets
+* [ ] more...

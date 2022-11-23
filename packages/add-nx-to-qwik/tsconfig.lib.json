@@ -9,5 +9,5 @@
     "sourceMap": false
   },
   "exclude": ["**/*.spec.ts", "jest.config.ts"],
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "src/tbd.js"]
 }

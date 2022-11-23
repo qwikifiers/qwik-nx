@@ -37,7 +37,7 @@ function normalizeOptions(tree: Tree, options: ComponentGeneratorSchema): Normal
   };
 }
 
-function addFiles(tree: Tree, options: NormalizedSchema) {
+function createComponentFiles(tree: Tree, options: NormalizedSchema) {
     const templateOptions = {
       ...options,
       ...names(options.name),
@@ -64,6 +64,6 @@ export default async function (tree: Tree, options: ComponentGeneratorSchema) {
       tags: normalizedOptions.parsedTags,
     }
   );
-  addFiles(tree, normalizedOptions);
+  createComponentFiles(tree, normalizedOptions);
   await formatFiles(tree);
 }
