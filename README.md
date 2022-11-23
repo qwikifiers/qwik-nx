@@ -19,4 +19,6 @@ nx generate qwik-nx:app
 * [ ] Complete `add-nx-to-qwik` and `create-qwik-nx`
 * [ ] Writing missing tests
 * [ ] Move package.json scripts to project.json targets
+* [ ] Add commitizen
+* [ ] Add CI process for releases
 * [ ] more...
