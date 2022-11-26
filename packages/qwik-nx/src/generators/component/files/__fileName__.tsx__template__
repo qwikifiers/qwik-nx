@@ -1,0 +1,12 @@
+import { component$ } from '@builder.io/qwik';
+
+interface <%= className %>Props {
+
+}
+
+const <%= className %> = component$((props: <%= className %>Props)=>{
+
+  return <>
+
+  </>;
+});

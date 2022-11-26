@@ -47,23 +47,8 @@ function createComponentFiles(tree: Tree, options: NormalizedSchema) {
     generateFiles(tree, path.join(__dirname, 'files'), options.projectRoot, templateOptions);
 }
 
-export default async function (tree: Tree, options: ComponentGeneratorSchema) {
+export default async function componentGenerator(tree: Tree, options: ComponentGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
-  addProjectConfiguration(
-    tree,
-    normalizedOptions.projectName,
-    {
-      root: normalizedOptions.projectRoot,
-      projectType: 'library',
-      sourceRoot: `${normalizedOptions.projectRoot}/src`,
-      targets: {
-        build: {
-          executor: "qwik-nx:build",
-        },
-      },
-      tags: normalizedOptions.parsedTags,
-    }
-  );
   createComponentFiles(tree, normalizedOptions);
   await formatFiles(tree);
 }

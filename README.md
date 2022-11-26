@@ -8,9 +8,14 @@ npm install -D qwik-nx
 
 ## Usage
 
-### Generating an Application
+### Generating an application
 ```
 nx generate qwik-nx:app
+```
+
+### Generating a component
+```
+nx generate qwik-nx:component
 ```
 
 ## ROADMAP:
