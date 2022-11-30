@@ -1,5 +1,8 @@
 export interface ComponentGeneratorSchema {
     name: string;
-    tags?: string;
+    project: string;
     directory?: string;
+    style?: 'none' | 'css' | 'scss' | 'styl' | 'less';
+    skipTests?: boolean;
+    flat?: boolean;
 }

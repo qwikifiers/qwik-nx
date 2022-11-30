@@ -9,3 +9,6 @@ export const viteTsconfigPathsVersion = '3.5.0';
 export const typescriptVersion = '4.9.3';
 export const nodeFetchVersion = '3.3.0';
 export const typesEslint = '8.4.10';
+export const sassVersion = '1.56.1';
+export const lessVersion = '4.1.3';
+export const stylusVersion = '0.59.0';
