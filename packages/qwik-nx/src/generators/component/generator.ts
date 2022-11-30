@@ -1,5 +1,4 @@
 import {
-  addProjectConfiguration,
   formatFiles,
   generateFiles,
   getProjects,
