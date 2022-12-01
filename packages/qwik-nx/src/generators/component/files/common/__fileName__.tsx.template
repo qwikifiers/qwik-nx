@@ -1,0 +1,17 @@
+import { component$<%= hasStyles ? ', useStylesScoped$' : '' %> } from '@builder.io/qwik';
+<% if(hasStyles) { %>
+import styles from './<%- fileName %>.<%- style %>?inline';
+<% } %>
+
+interface <%= className %>Props {
+
+}
+
+const <%= className %> = component$((props: <%= className %>Props)=>{
+  <% if(hasStyles) { %>
+  useStylesScoped$(styles);
+  <% } %>
+  return <>
+
+  </>;
+});

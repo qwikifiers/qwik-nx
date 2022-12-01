@@ -1,0 +1,18 @@
+import { defineConfig, mergeConfig, UserConfigExport } from 'vite';
+import { qwikVite } from '@builder.io/qwik/optimizer';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import base from './<%= offsetFromRoot %>/vite.base';
+
+export default defineConfig(() => {
+  const overrides: UserConfigExport = {
+    plugins: [qwikVite(), tsconfigPaths()],
+    root: '<%= projectRoot %>',
+    mode: 'lib',
+    build: {
+      lib: {
+        entry: './src/index.ts',
+      },
+    },
+  };
+  return mergeConfig(base, overrides);
+});
