@@ -24,6 +24,22 @@
         "review",
         "ideas"
       ]
+    },
+    {
+      "login": "dmitry-stepanenko",
+      "name": "Dmitriy Stepanenko",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33101123?v=4",
+      "profile": "https://github.com/dmitry-stepanenko",
+      "contributions": [
+        "code",
+        "test",
+        "bug",
+        "doc",
+        "ideas",
+        "maintenance",
+        "projectManagement",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
