@@ -13,12 +13,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Check Authentication with Registry
-      env:
-        NODE_AUTH_TOKEN: ${{ inputs.npm_token }}
-      shell: bash
-      run: npm whoami
-
     - name: Version
       env:
         NODE_AUTH_TOKEN: ${{ inputs.npm_token }}
