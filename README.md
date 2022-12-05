@@ -56,3 +56,56 @@ nx generate qwik-nx:component
 - [ ] Write missing tests
 - [ ] Move package.json scripts to project.json targets
 - [ ] more...
+
+## Contributing
+
+Want to contribute? Yayy! 🎉
+
+Please read and follow our [Contributing Guidelines](CONTRIBUTING.md) to learn what are the right steps to take before contributing your time, effort and code.
+
+Thanks 🙏
+
+<br/>
+
+## Code Of Conduct
+
+Be kind to each other and please read our [code of conduct](CODE_OF_CONDUCT.md).
+
+<br/>
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://hirez.io/?utm_source=github&utm_medium=link&utm_campaign=qwik-nx"><img src="https://avatars1.githubusercontent.com/u/1430726?v=4?s=100" width="100px;" alt="Shai Reznik"/><br /><sub><b>Shai Reznik</b></sub></a><br /><a href="https://github.com/qwikifiers/qwik-nx/commits?author=shairez" title="Code">💻</a> <a href="https://github.com/qwikifiers/qwik-nx/commits?author=shairez" title="Tests">⚠️</a> <a href="#infra-shairez" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/qwikifiers/qwik-nx/commits?author=shairez" title="Documentation">📖</a> <a href="#maintenance-shairez" title="Maintenance">🚧</a> <a href="https://github.com/qwikifiers/qwik-nx/pulls?q=is%3Apr+reviewed-by%3Ashairez" title="Reviewed Pull Requests">👀</a> <a href="#ideas-shairez" title="Ideas, Planning, & Feedback">🤔</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+<br/>
+
+## Related Links
+
+- [qwik-nx Discord](https://discord.gg/g6CYVAcDxf)
+- [Qwik Docs](https://qwik.builder.io/)
+- [nx](https://nx.dev/)
+- [Qwik Discord](https://qwik.builder.io/chat)
+- [Qwik GitHub](https://github.com/BuilderIO/qwik)
+- [@QwikDev](https://twitter.com/QwikDev)
+
+## License
+
+MIT
