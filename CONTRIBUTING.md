@@ -58,7 +58,7 @@ git checkout -b my-fix-branch master
 
 ### ▶ 4. Make sure you add / modify tests
 
-Run `npm run test` to make sure there aren't any errors
+Run `pnpm run test` to make sure there aren't any errors
 
 <br/>
 
@@ -67,7 +67,7 @@ Run `npm run test` to make sure there aren't any errors
 Instead of `git commit` use the following command:
 
 ```shell
-npm run commit
+pnpm run commit
 ```
 
 It will then ask you a bunch of questions.
