@@ -18,7 +18,7 @@ import * as path from 'path';
 import { addViteBase } from '../../utils/add-vite-base';
 import { vitestVersion } from '../../utils/versions';
 import { LibraryGeneratorSchema } from './schema';
-import componentGenerator from './../component/generator'
+import componentGenerator from './../component/generator';
 
 interface NormalizedSchema extends LibraryGeneratorSchema {
   projectName: string;
@@ -28,12 +28,19 @@ interface NormalizedSchema extends LibraryGeneratorSchema {
   offsetFromRoot: string;
 }
 
-function normalizeOptions(tree: Tree, schema: LibraryGeneratorSchema): NormalizedSchema {
+function normalizeOptions(
+  tree: Tree,
+  schema: LibraryGeneratorSchema
+): NormalizedSchema {
   const name = names(schema.name).fileName;
-  const projectDirectory = schema.directory ? `${names(schema.directory).fileName}/${name}` : name;
+  const projectDirectory = schema.directory
+    ? `${names(schema.directory).fileName}/${name}`
+    : name;
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
   const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
-  const parsedTags = schema.tags ? schema.tags.split(',').map((s) => s.trim()) : [];
+  const parsedTags = schema.tags
+    ? schema.tags.split(',').map((s) => s.trim())
+    : [];
 
   return {
     ...schema,
@@ -49,16 +56,20 @@ export default async function (tree: Tree, schema: LibraryGeneratorSchema) {
   const options = normalizeOptions(tree, schema);
   const tasks: GeneratorCallback[] = [];
 
-  addLibrary(tree,options);
+  addLibrary(tree, options);
 
   const configuration = readProjectConfiguration(tree, options.projectName);
 
   if (options.linter === Linter.EsLint) {
-    configuration.targets.lint.options.lintFilePatterns = [`${options.projectRoot}/**/*.{ts,tsx,js,jsx}`];
+    configuration.targets.lint.options.lintFilePatterns = [
+      `${options.projectRoot}/**/*.{ts,tsx,js,jsx}`,
+    ];
   }
 
   if (options.unitTestRunner === 'vitest') {
-    tasks.push(addDependenciesToPackageJson( tree, { vitest: vitestVersion, }, {} ))
+    tasks.push(
+      addDependenciesToPackageJson(tree, { vitest: vitestVersion }, {})
+    );
     configuration.targets['test'] = {
       executor: 'nx:run-commands',
       options: {
@@ -68,7 +79,7 @@ export default async function (tree: Tree, schema: LibraryGeneratorSchema) {
   }
 
   updateProjectConfiguration(tree, options.projectName, configuration);
-  
+
   addViteBase(tree);
   if (!options.skipFormat) {
     await formatFiles(tree);
@@ -81,7 +92,7 @@ function addLibrary(tree: Tree, options: NormalizedSchema) {
     ...options,
     unitTestRunner: 'none',
     skipBabelrc: true,
-    skipFormat: true
+    skipFormat: true,
   });
   tree.delete(`${options.projectRoot}/src/lib/${options.name}.ts`);
 
@@ -92,12 +103,17 @@ function addLibrary(tree: Tree, options: NormalizedSchema) {
     hasUnitTests: options.unitTestRunner === 'vitest',
     rootTsConfigPath: getRelativePathToRootTsConfig(tree, options.projectRoot),
   };
-  generateFiles(tree, path.join(__dirname, 'files'), options.projectRoot, templateOptions);
+  generateFiles(
+    tree,
+    path.join(__dirname, 'files'),
+    options.projectRoot,
+    templateOptions
+  );
   componentGenerator(tree, {
-    name: options.name, 
+    name: options.name,
     skipTests: options.unitTestRunner !== 'vitest',
     style: options.style,
     project: options.projectName,
-    flat: true
-  })
+    flat: true,
+  });
 }

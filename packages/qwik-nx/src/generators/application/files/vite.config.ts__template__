@@ -1,15 +1,37 @@
-import { defineConfig } from 'vite';
+<% if(setupVitest) { %>
+/// <reference types="vitest" />
+<% } %>
 import { qwikVite } from '@builder.io/qwik/optimizer';
 import { qwikCity } from '@builder.io/qwik-city/vite';
+import { mergeConfig, defineConfig, UserConfigExport } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
+import base from './<%= offsetFromRoot %>vite.base';
+
 export default defineConfig(() => {
-  return {
+  const overrides: UserConfigExport = {
     plugins: [qwikCity(), qwikVite(), tsconfigPaths()],
     preview: {
       headers: {
         'Cache-Control': 'public, max-age=600',
       },
     },
+    server: {
+      open: true
+    },
+    <% if(setupVitest) { %>
+    test: {
+      globals: true,
+      cache: {
+        dir: '<%= offsetFromRoot %>node_modules/.vitest',
+      },
+      environment: 'node',
+      include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+      coverage: {
+        reportsDirectory: '<%= offsetFromRoot %>coverage/<%= appProjectRoot %>'
+      }
+    },
+    <% } %>
   };
+  return mergeConfig(base, overrides);
 });

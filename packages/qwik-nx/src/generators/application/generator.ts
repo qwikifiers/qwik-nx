@@ -2,74 +2,105 @@ import {
   addProjectConfiguration,
   formatFiles,
   generateFiles,
-  getWorkspaceLayout,
+  GeneratorCallback,
+  joinPathFragments,
   names,
-  offsetFromRoot,
+  readProjectConfiguration,
   Tree,
+  updateProjectConfiguration,
 } from '@nrwl/devkit';
-import * as path from 'path';
-import qwikInitGenerator from '../init/init';
+import { NormalizedSchema, normalizeOptions } from './utils/normalize-options';
+import { viteConfigurationGenerator } from '@nrwl/vite';
 import { QwikAppGeneratorSchema } from './schema';
-
-interface NormalizedSchema extends QwikAppGeneratorSchema {
-  projectName: string;
-  projectRoot: string;
-  projectDirectory: string;
-  parsedTags: string[];
-}
-
-function normalizeOptions(
-  tree: Tree,
-  options: QwikAppGeneratorSchema
-): NormalizedSchema {
-  const name = names(options.name).fileName;
-  const projectDirectory = options.directory
-    ? `${names(options.directory).fileName}/${name}`
-    : name;
-  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
-  const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
-  const parsedTags = options.tags
-    ? options.tags.split(',').map((s) => s.trim())
-    : [];
-
-  return {
-    ...options,
-    projectName,
-    projectRoot,
-    projectDirectory,
-    parsedTags,
-  };
-}
+import { addViteBase } from '../../utils/add-vite-base';
+import { Linter } from '@nrwl/linter';
+import { addStyledModuleDependencies } from '../../utils/add-styled-dependencies';
+import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
+import { configureEslint } from '../../utils/configure-eslint';
+import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
 
 function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
     ...options,
     ...names(options.name),
-    offsetFromRoot: offsetFromRoot(options.projectRoot),
     template: '',
   };
   generateFiles(
     tree,
-    path.join(__dirname, 'files'),
-    options.projectRoot,
+    joinPathFragments(__dirname, 'files'),
+    options.appProjectRoot,
     templateOptions
   );
 }
 
+async function configureVite(
+  tree: Tree,
+  options: NormalizedSchema
+): Promise<GeneratorCallback> {
+  const tsConfigPath = joinPathFragments(
+    options.appProjectRoot,
+    'tsconfig.json'
+  );
+  const tsConfig = tree.read(tsConfigPath);
+  const includeVitest = options.unitTestRunner === 'vitest';
+
+  const callback = await viteConfigurationGenerator(tree, {
+    project: options.projectName,
+    newProject: false,
+    includeVitest,
+    includeLib: false,
+    uiFramework: 'none',
+    inSourceTests: false,
+  });
+
+  // overwrite tsconfig back after "viteConfigurationGenerator"
+  tree.write(tsConfigPath, tsConfig);
+
+  if (includeVitest) {
+    const projectConfig = readProjectConfiguration(tree, options.projectName);
+    const testTarget = projectConfig.targets['test'];
+    testTarget.outputs = ['{workspaceRoot}/coverage/{projectRoot}'];
+    updateProjectConfiguration(tree, options.projectName, projectConfig);
+  }
+
+  addViteBase(tree);
+
+  return callback;
+}
+
 export default async function (tree: Tree, options: QwikAppGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
+  const tasks: GeneratorCallback[] = [];
+
   addProjectConfiguration(tree, normalizedOptions.projectName, {
-    root: normalizedOptions.projectRoot,
-    projectType: 'library',
-    sourceRoot: `${normalizedOptions.projectRoot}/src`,
-    targets: {
-      build: {
-        executor: 'qwik-nx:build',
-      },
-    },
+    root: normalizedOptions.appProjectRoot,
+    name: normalizedOptions.projectName,
+    projectType: 'application',
+    sourceRoot: `${normalizedOptions.appProjectRoot}/src`,
+    // TODO: revisit later, now "viteConfigurationGenerator" will fail if there's no build target specified
+    targets: { build: { options: {} } },
     tags: normalizedOptions.parsedTags,
   });
-  await qwikInitGenerator(tree, { ...options, skipFormat: false });
+
   addFiles(tree, normalizedOptions);
-  await formatFiles(tree);
+
+  tasks.push(await configureVite(tree, normalizedOptions));
+
+  if (normalizedOptions.linter === Linter.EsLint) {
+    tasks.push(configureEslint(tree, normalizedOptions.projectName, true));
+  }
+
+  if (normalizedOptions.style !== 'none') {
+    tasks.push(
+      addStyledModuleDependencies(tree, normalizedOptions.styleExtension)
+    );
+  }
+
+  tasks.push(addCommonQwikDependencies(tree));
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
+
+  return runTasksInSerial(...tasks);
 }
