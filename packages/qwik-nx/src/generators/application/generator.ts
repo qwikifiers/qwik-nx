@@ -12,7 +12,6 @@ import {
 import { NormalizedSchema, normalizeOptions } from './utils/normalize-options';
 import { viteConfigurationGenerator } from '@nrwl/vite';
 import { QwikAppGeneratorSchema } from './schema';
-import { addViteBase } from '../../utils/add-vite-base';
 import { Linter } from '@nrwl/linter';
 import { addStyledModuleDependencies } from '../../utils/add-styled-dependencies';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
@@ -52,6 +51,7 @@ async function configureVite(
     uiFramework: 'none',
     inSourceTests: false,
   });
+  tree.delete(joinPathFragments(options.appProjectRoot, 'index.html'));
 
   // overwrite tsconfig back after "viteConfigurationGenerator"
   tree.write(tsConfigPath, tsConfig);
@@ -62,8 +62,6 @@ async function configureVite(
     testTarget.outputs = ['{workspaceRoot}/coverage/{projectRoot}'];
     updateProjectConfiguration(tree, options.projectName, projectConfig);
   }
-
-  addViteBase(tree);
 
   return callback;
 }

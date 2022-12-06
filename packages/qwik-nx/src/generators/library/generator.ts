@@ -14,7 +14,6 @@ import { Linter } from '@nrwl/linter';
 import { libraryGenerator } from '@nrwl/workspace/generators';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 import { getRelativePathToRootTsConfig } from '@nrwl/workspace/src/utilities/typescript';
-import { addViteBase } from '../../utils/add-vite-base';
 import { LibraryGeneratorSchema } from './schema';
 import componentGenerator from './../component/generator';
 import { configureEslint } from '../../utils/configure-eslint';
@@ -129,8 +128,6 @@ async function configureVite(tree: Tree, options: NormalizedSchema) {
 
   // overwrite tsconfig back after "viteConfigurationGenerator"
   tree.write(tsConfigPath, tsConfig);
-
-  addViteBase(tree);
 
   if (options.setupVitest) {
     const projectConfig = readProjectConfiguration(tree, options.projectName);
