@@ -19,5 +19,8 @@
     "url": "https://github.com/qwikifiers/qwik-nx/issues"
   },
   "generators": "./generators.json",
-  "executors": "./executors.json"
+  "executors": "./executors.json",
+  "dependencies": {
+    "@nrwl/vite": "~15.3.0"
+  }
 }
