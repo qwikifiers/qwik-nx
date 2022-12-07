@@ -71,8 +71,7 @@
     "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
-        "access": "public",
-        "distFolderPath": "packages/qwik-nx"
+        "access": "public"
       }
     },
     "push-to-github": {
