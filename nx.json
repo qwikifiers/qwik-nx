@@ -13,6 +13,9 @@
     "build": {
       "dependsOn": ["^build"]
     },
+    "version": {
+      "dependsOn": ["build"]
+    },
     "lint": {
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     },
