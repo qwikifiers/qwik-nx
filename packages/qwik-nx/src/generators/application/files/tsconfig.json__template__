@@ -1,4 +1,5 @@
 {
+  "extends": "<%= rootTsConfigPath %>",
   "compilerOptions": {
     "allowJs": true,
     "target": "ES2017",
@@ -6,7 +7,7 @@
     "lib": ["es2020", "DOM", "WebWorker", "DOM.Iterable"],
     "jsx": "react-jsx",
     "jsxImportSource": "@builder.io/qwik",
-    "strict": true,
+    "strict": <%= strict %>,
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -15,11 +16,17 @@
     "isolatedModules": true,
     "outDir": "tmp",
     "noEmit": true,
-    "types": ["node", "vite/client"],
-    "paths": {
-      "~/*": ["./src/*"]
-    }
+    "types": ["node", "vite/client"]
   },
-  "files": ["./.eslintrc.cjs"],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    <% if(setupVitest) { %>
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    <% } %>
+    }
+  ],
   "include": ["src"]
 }

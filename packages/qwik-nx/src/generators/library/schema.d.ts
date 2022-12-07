@@ -10,6 +10,5 @@ export interface LibraryGeneratorSchema {
   linter?: Linter;
   importPath?: string;
   strict?: boolean;
-  setParserOptionsProject?: boolean;
   standaloneConfig?: boolean;
 }

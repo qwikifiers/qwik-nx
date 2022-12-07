@@ -3,11 +3,7 @@ import { component$<%= hasStyles ? ', useStylesScoped$' : '' %> } from '@builder
 import styles from './<%- fileName %>.<%- style %>?inline';
 <% } %>
 
-interface <%= className %>Props {
-
-}
-
-const <%= className %> = component$((props: <%= className %>Props)=>{
+export const <%= className %> = component$(()=>{
   <% if(hasStyles) { %>
   useStylesScoped$(styles);
   <% } %>
