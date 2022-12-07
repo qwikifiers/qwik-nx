@@ -27,14 +27,15 @@ function getDirectory(host: Tree, options: ComponentGeneratorSchema) {
         ? 'app'
         : 'lib';
   }
-  return options.flat ? baseDir : joinPathFragments(baseDir, names(options.name).fileName);
+  return options.flat
+    ? baseDir
+    : joinPathFragments(baseDir, names(options.name).fileName);
 }
 
 function normalizeOptions(
   host: Tree,
   options: ComponentGeneratorSchema
 ): NormalizedSchema {
-
   const project = getProjects(host).get(options.project);
 
   if (!project) {
@@ -59,30 +60,48 @@ function normalizeOptions(
 function createComponentFiles(tree: Tree, options: NormalizedSchema) {
   const libNames = names(options.name);
   const hasStyles = options.style && options.style !== 'none';
-    const templateOptions = {
-      ...options,
-      ...libNames,
-      hasStyles
-    };
+  const templateOptions = {
+    ...options,
+    ...libNames,
+    hasStyles,
+  };
 
-    const componentDir = joinPathFragments(
-      options.projectRoot,
-      options.directory
+  const componentDir = joinPathFragments(
+    options.projectRoot,
+    options.directory
+  );
+
+  generateFiles(
+    tree,
+    joinPathFragments(__dirname, 'files/common'),
+    componentDir,
+    templateOptions
+  );
+  if (hasStyles) {
+    generateFiles(
+      tree,
+      joinPathFragments(__dirname, 'files/styles'),
+      componentDir,
+      templateOptions
     );
-
-    generateFiles(tree, joinPathFragments(__dirname, 'files/common'), componentDir, templateOptions);
-    if (hasStyles) {
-      generateFiles(tree, joinPathFragments(__dirname, 'files/styles'), componentDir, templateOptions);
-    }
-    if (!options.skipTests) {
-      generateFiles(tree, joinPathFragments(__dirname, 'files/tests'), componentDir, templateOptions);
-    }
+  }
+  if (!options.skipTests) {
+    generateFiles(
+      tree,
+      joinPathFragments(__dirname, 'files/tests'),
+      componentDir,
+      templateOptions
+    );
+  }
 }
 
-export default async function componentGenerator(tree: Tree, options: ComponentGeneratorSchema) {
+export default async function componentGenerator(
+  tree: Tree,
+  options: ComponentGeneratorSchema
+) {
   const normalizedOptions = normalizeOptions(tree, options);
   createComponentFiles(tree, normalizedOptions);
   await formatFiles(tree);
 
-  return addStyledModuleDependencies(tree, normalizedOptions.style)
+  return addStyledModuleDependencies(tree, normalizedOptions.style);
 }

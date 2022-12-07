@@ -1,9 +1,9 @@
 import {
-  addDependenciesToPackageJson,
   formatFiles,
   generateFiles,
   GeneratorCallback,
   getWorkspaceLayout,
+  joinPathFragments,
   names,
   offsetFromRoot,
   readProjectConfiguration,
@@ -14,11 +14,11 @@ import { Linter } from '@nrwl/linter';
 import { libraryGenerator } from '@nrwl/workspace/generators';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 import { getRelativePathToRootTsConfig } from '@nrwl/workspace/src/utilities/typescript';
-import * as path from 'path';
-import { addViteBase } from '../../utils/add-vite-base';
-import { vitestVersion } from '../../utils/versions';
 import { LibraryGeneratorSchema } from './schema';
-import componentGenerator from './../component/generator'
+import componentGenerator from './../component/generator';
+import { configureEslint } from '../../utils/configure-eslint';
+import { viteConfigurationGenerator } from '@nrwl/vite';
+import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
 
 interface NormalizedSchema extends LibraryGeneratorSchema {
   projectName: string;
@@ -26,14 +26,22 @@ interface NormalizedSchema extends LibraryGeneratorSchema {
   projectDirectory: string;
   parsedTags: string[];
   offsetFromRoot: string;
+  setupVitest: boolean;
 }
 
-function normalizeOptions(tree: Tree, schema: LibraryGeneratorSchema): NormalizedSchema {
+function normalizeOptions(
+  tree: Tree,
+  schema: LibraryGeneratorSchema
+): NormalizedSchema {
   const name = names(schema.name).fileName;
-  const projectDirectory = schema.directory ? `${names(schema.directory).fileName}/${name}` : name;
+  const projectDirectory = schema.directory
+    ? `${names(schema.directory).fileName}/${name}`
+    : name;
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
   const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
-  const parsedTags = schema.tags ? schema.tags.split(',').map((s) => s.trim()) : [];
+  const parsedTags = schema.tags
+    ? schema.tags.split(',').map((s) => s.trim())
+    : [];
 
   return {
     ...schema,
@@ -41,6 +49,7 @@ function normalizeOptions(tree: Tree, schema: LibraryGeneratorSchema): Normalize
     projectRoot,
     projectDirectory,
     parsedTags,
+    setupVitest: schema.unitTestRunner === 'vitest',
     offsetFromRoot: offsetFromRoot(projectRoot),
   };
 }
@@ -49,39 +58,37 @@ export default async function (tree: Tree, schema: LibraryGeneratorSchema) {
   const options = normalizeOptions(tree, schema);
   const tasks: GeneratorCallback[] = [];
 
-  addLibrary(tree,options);
+  tasks.push(await addLibrary(tree, options));
 
-  const configuration = readProjectConfiguration(tree, options.projectName);
+  tasks.push(await configureVite(tree, options));
 
   if (options.linter === Linter.EsLint) {
-    configuration.targets.lint.options.lintFilePatterns = [`${options.projectRoot}/**/*.{ts,tsx,js,jsx}`];
+    tasks.push(configureEslint(tree, options.projectName, true));
   }
 
-  if (options.unitTestRunner === 'vitest') {
-    tasks.push(addDependenciesToPackageJson( tree, { vitest: vitestVersion, }, {} ))
-    configuration.targets['test'] = {
-      executor: 'nx:run-commands',
-      options: {
-        command: `vitest -c ${options.projectRoot}/vite.config.ts --run`,
-      },
-    };
-  }
+  tasks.push(addCommonQwikDependencies(tree));
 
-  updateProjectConfiguration(tree, options.projectName, configuration);
-  
-  addViteBase(tree);
   if (!options.skipFormat) {
     await formatFiles(tree);
   }
   return runTasksInSerial(...tasks);
 }
 
-function addLibrary(tree: Tree, options: NormalizedSchema) {
+async function addLibrary(
+  tree: Tree,
+  options: NormalizedSchema
+): Promise<GeneratorCallback> {
   libraryGenerator(tree, {
-    ...options,
+    name: options.name,
+    directory: options.directory,
+    tags: options.tags,
+    linter: Linter.None,
+    importPath: options.importPath,
+    strict: options.strict,
+    standaloneConfig: options.standaloneConfig,
     unitTestRunner: 'none',
     skipBabelrc: true,
-    skipFormat: true
+    skipFormat: true,
   });
   tree.delete(`${options.projectRoot}/src/lib/${options.name}.ts`);
 
@@ -89,15 +96,45 @@ function addLibrary(tree: Tree, options: NormalizedSchema) {
     ...options,
     ...names(options.name),
     strict: !!options.strict,
-    hasUnitTests: options.unitTestRunner === 'vitest',
     rootTsConfigPath: getRelativePathToRootTsConfig(tree, options.projectRoot),
   };
-  generateFiles(tree, path.join(__dirname, 'files'), options.projectRoot, templateOptions);
-  componentGenerator(tree, {
-    name: options.name, 
+  generateFiles(
+    tree,
+    joinPathFragments(__dirname, 'files'),
+    options.projectRoot,
+    templateOptions
+  );
+  const callback = await componentGenerator(tree, {
+    name: options.name,
     skipTests: options.unitTestRunner !== 'vitest',
     style: options.style,
     project: options.projectName,
-    flat: true
-  })
+    flat: true,
+  });
+
+  return callback;
+}
+
+async function configureVite(tree: Tree, options: NormalizedSchema) {
+  const tsConfigPath = joinPathFragments(options.projectRoot, 'tsconfig.json');
+  const tsConfig = tree.read(tsConfigPath);
+
+  const callback = await viteConfigurationGenerator(tree, {
+    project: options.projectName,
+    uiFramework: 'none',
+    includeLib: true,
+    includeVitest: options.setupVitest,
+  });
+
+  // overwrite tsconfig back after "viteConfigurationGenerator"
+  tree.write(tsConfigPath, tsConfig);
+
+  if (options.setupVitest) {
+    const projectConfig = readProjectConfiguration(tree, options.projectName);
+    const testTarget = projectConfig.targets['test'];
+    testTarget.outputs = ['{workspaceRoot}/coverage/{projectRoot}'];
+    updateProjectConfiguration(tree, options.projectName, projectConfig);
+  }
+
+  return callback;
 }
