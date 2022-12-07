@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.2.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.1.0...qwik-nx-0.2.0) (2022-12-07)
+
+
+### Features
+
+* application & library generator updates ([#5](https://github.com/qwikifiers/qwik-nx/issues/5)) ([5c6b7b9](https://github.com/qwikifiers/qwik-nx/commit/5c6b7b92a5f5525baa0a3467f6b31a19ff155af9))
+
+
+
 # 0.1.0 (2022-12-05)
 
 
