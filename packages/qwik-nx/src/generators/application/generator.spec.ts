@@ -6,7 +6,14 @@ import { QwikAppGeneratorSchema } from './schema';
 
 describe('qwik-nx generator', () => {
   let appTree: Tree;
-  const options: QwikAppGeneratorSchema = { name: 'test' };
+  const options: QwikAppGeneratorSchema = {
+    name: 'test',
+    style: 'css',
+    linter: 'none',
+    skipFormat: false,
+    unitTestRunner: 'none',
+    strict: false
+  };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace();
