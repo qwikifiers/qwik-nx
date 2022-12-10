@@ -14,12 +14,14 @@ import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-ser
 import * as path from 'path';
 import { getRelativePathToRootTsConfig } from '@nrwl/workspace/src/utilities/typescript';
 import { NormalizedSchema } from '../application/utils/normalize-options';
-import { configureVite } from '../application/generator';
+import { addFiles, configureVite } from '../application/generator';
+import { Linter } from '@nrwl/linter';
+import { configureEslint } from '../../utils/configure-eslint';
+import { addStyledModuleDependencies } from '../../utils/add-styled-dependencies';
 
 // In order to reuse the files in the application generator,
 // appProjectRoot = projectRoot
 interface PresetNormalizedSchema extends NormalizedSchema {
-  fileSrc: string;
   projectDirectory: string;
 }
 
@@ -35,14 +37,12 @@ function normalizeOptions(
     ? options.tags.split(',').map((s) => s.trim())
     : [];
   const styleExtension = options.style !== 'none' ? options.style : null;
-  const fileSrc = '../application/files';
 
   options.strict = options.strict ?? true;
   options.unitTestRunner = options.unitTestRunner ?? 'vitest';
 
   return {
     ...options,
-    fileSrc,
     projectDirectory,
     projectName,
     appProjectRoot: projectRoot,
@@ -52,22 +52,6 @@ function normalizeOptions(
     setupVitest: options.unitTestRunner === 'vitest',
     styleExtension,
   };
-}
-
-function addFiles(tree: Tree, options: PresetNormalizedSchema) {
-  const projectRoot = options.appProjectRoot;
-  const templateOptions = {
-    ...options,
-    ...names(options.name),
-    offsetFromRoot: offsetFromRoot(projectRoot),
-    template: '',
-  };
-  generateFiles(
-    tree,
-    path.join(__dirname, options.fileSrc),
-    projectRoot,
-    templateOptions
-  );
 }
 
 export default async function (

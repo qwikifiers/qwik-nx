@@ -18,7 +18,7 @@ import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-ser
 import { configureEslint } from '../../utils/configure-eslint';
 import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
 
-function addFiles(tree: Tree, options: NormalizedSchema) {
+export function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
     ...options,
     ...names(options.name),
