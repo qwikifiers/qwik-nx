@@ -2,11 +2,18 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 
 import generator from './generator';
-import { PresetGeneratorSchema } from './schema';
+import { QwikWorkspacePresetGeneratorSchema } from './schema';
 
 describe('preset generator', () => {
   let appTree: Tree;
-  const options: PresetGeneratorSchema = { name: 'test' };
+  const options: QwikWorkspacePresetGeneratorSchema = {
+    name: 'test',
+    style: 'css',
+    linter: 'none',
+    skipFormat: false,
+    unitTestRunner: 'none',
+    strict: false,
+  };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace();

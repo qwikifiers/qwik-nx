@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
-  "$id": "QwikNx",
+  "$id": "QwikNxPreset",
   "title": "",
   "type": "object",
   "properties": {

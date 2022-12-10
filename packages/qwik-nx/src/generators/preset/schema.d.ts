@@ -1,4 +1,4 @@
-export interface QwikPresetGeneratorSchema {
+export interface QwikWorkspacePresetGeneratorSchema {
   name: string;
   tags?: string;
   directory?: string;

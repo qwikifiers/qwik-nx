@@ -32,7 +32,7 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
-async function configureVite(
+export async function configureVite(
   tree: Tree,
   options: NormalizedSchema
 ): Promise<GeneratorCallback> {
