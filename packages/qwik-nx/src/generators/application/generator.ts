@@ -18,7 +18,7 @@ import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-ser
 import { configureEslint } from '../../utils/configure-eslint';
 import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
 
-export function addFiles(tree: Tree, options: NormalizedSchema) {
+function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
     ...options,
     ...names(options.name),
@@ -32,7 +32,7 @@ export function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
-export async function configureVite(
+async function configureVite(
   tree: Tree,
   options: NormalizedSchema
 ): Promise<GeneratorCallback> {
