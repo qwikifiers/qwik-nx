@@ -138,7 +138,7 @@ After your pull request is merged, you can safely delete your branch and pull th
 
 <br/>
 
-## 9. Publishing to a local registry
+## ▶ 9. Publishing to a local registry
 
 To test if your changes will actually work once the changes are published,
 it can be useful to publish to a local registry.
