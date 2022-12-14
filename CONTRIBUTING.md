@@ -138,6 +138,16 @@ After your pull request is merged, you can safely delete your branch and pull th
 
 <br/>
 
+## 9. Publishing to a local registry
+
+To test if your changes will actually work once the changes are published,
+it can be useful to publish to a local registry.
+
+- Run `npm i -g verdaccio` in Terminal 1 (keep it running)
+- Run `verdaccio
+- Run `npm adduser --registry http://localhost:4873` in Terminal 2 (real credentials are not required, you just need to be logged in. You can use your own login details.
+- Run `npm publish [package] --registry=http://localhost:4783`
+
 ### ▶ 10. That's it! Thank you for your contribution! 🙏💓
 
 [commit-message-format]: https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#
