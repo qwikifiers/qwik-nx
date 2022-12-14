@@ -5,7 +5,7 @@
   "title": "",
   "type": "object",
   "properties": {
-    "name": {
+    "qwikAppName": {
       "type": "string",
       "description": "",
       "$default": {
@@ -19,11 +19,7 @@
       "description": "Add tags to the project (used for linting)",
       "alias": "t"
     },
-    "directory": {
-      "type": "string",
-      "description": "A directory where the project is placed"
-    },
-    "style": {
+    "qwikAppStyle": {
       "description": "The file extension to be used for style files.",
       "type": "string",
       "default": "css",
@@ -57,11 +53,6 @@
       "type": "string",
       "enum": ["eslint", "none"],
       "default": "eslint"
-    },
-    "skipFormat": {
-      "description": "Skip formatting files.",
-      "type": "boolean",
-      "default": false
     },
     "unitTestRunner": {
       "type": "string",
