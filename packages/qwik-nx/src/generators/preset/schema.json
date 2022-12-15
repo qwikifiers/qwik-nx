@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "QwikNxPreset",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "qwikAppName": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use?"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Add tags to the project (used for linting)",
+      "alias": "t"
+    },
+    "qwikAppStyle": {
+      "description": "The file extension to be used for style files.",
+      "type": "string",
+      "default": "css",
+      "alias": "s",
+      "x-prompt": {
+        "message": "Which stylesheet format would you like to use?",
+        "type": "list",
+        "items": [
+          {
+            "value": "css",
+            "label": "CSS"
+          },
+          {
+            "value": "scss",
+            "label": "SASS(.scss)       [ http://sass-lang.com                     ]"
+          },
+          {
+            "value": "styl",
+            "label": "Stylus(.styl)     [ http://stylus-lang.com                   ]"
+          },
+          {
+            "value": "less",
+            "label": "LESS              [ http://lesscss.org                       ]"
+          }
+        ],
+        "default": "css"
+      }
+    },
+    "linter": {
+      "description": "The tool to use for running lint checks.",
+      "type": "string",
+      "enum": ["eslint", "none"],
+      "default": "eslint"
+    },
+    "unitTestRunner": {
+      "type": "string",
+      "enum": ["vitest", "none"],
+      "description": "Test runner to use for unit tests.",
+      "default": "vitest"
+    },
+    "strict": {
+      "type": "boolean",
+      "description": "Creates an application with strict mode and strict type checking.",
+      "default": true
+    }
+  },
+  "required": ["name"]
+}

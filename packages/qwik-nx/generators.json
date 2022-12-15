@@ -29,6 +29,11 @@
       "schema": "./src/generators/library/schema.json",
       "description": "library generator",
       "aliases": ["lib"]
+    },
+    "preset": {
+      "factory": "./src/generators/preset/generator",
+      "schema": "./src/generators/preset/schema.json",
+      "description": "preset generator"
     }
   }
 }
