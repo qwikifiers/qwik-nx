@@ -18,7 +18,7 @@
   <img src='https://img.shields.io/badge/License-MIT-green.svg' alt='MIT'>
   </a>
   <a href='#contributors'>
-  <img src='https://img.shields.io/badge/all_contributors-2-green.svg?style=flat-square' alt='All Contributors'>
+  <img src='https://img.shields.io/badge/all_contributors-3-green.svg?style=flat-square' alt='All Contributors'>
   </a>
 
 </div>
