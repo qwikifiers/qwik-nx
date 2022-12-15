@@ -40,6 +40,21 @@
         "projectManagement",
         "review"
       ]
+    },
+    {
+      "login": "reemardelarosa",
+      "name": "John Reemar Dela Rosa",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4918140?v=4",
+      "profile": "https://github.com/reemardelarosa",
+      "contributions": [
+        "code",
+        "test",
+        "bug",
+        "doc",
+        "ideas",
+        "maintenance",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
