@@ -1,20 +1,26 @@
-<% if(setupVitest) { %>
-/// <reference types="vitest" />
-<% } %>
+<% if(setupVitest) { %> /// <reference types="vitest" /> <% } %>
 import { qwikVite } from '@builder.io/qwik/optimizer';
 import { qwikCity } from '@builder.io/qwik-city/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  plugins: [qwikCity(), qwikVite(), tsconfigPaths()],
+  plugins: [
+    qwikCity(), 
+    qwikVite({
+			client: {
+				outDir: '<%= offsetFromRoot %>dist/<%= projectRoot %>/client',
+			},
+			ssr: {
+				outDir: '<%= offsetFromRoot %>dist/<%= projectRoot %>/server',
+			},
+		}),
+    tsconfigPaths()
+  ],
   preview: {
     headers: {
       'Cache-Control': 'public, max-age=600',
     },
-  },
-  server: {
-    open: true
   },
   <% if(setupVitest) { %> test: {
     globals: true,
@@ -24,7 +30,7 @@ export default defineConfig({
     environment: 'node',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     coverage: {
-      reportsDirectory: '<%= offsetFromRoot %>coverage/<%= appProjectRoot %>'
+      reportsDirectory: '<%= offsetFromRoot %>coverage/<%= projectRoot %>'
     }
   }
   <% } %>

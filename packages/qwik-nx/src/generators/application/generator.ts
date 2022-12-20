@@ -5,9 +5,7 @@ import {
   GeneratorCallback,
   joinPathFragments,
   names,
-  readProjectConfiguration,
   Tree,
-  updateProjectConfiguration,
 } from '@nrwl/devkit';
 import { NormalizedSchema, normalizeOptions } from './utils/normalize-options';
 import { viteConfigurationGenerator } from '@nrwl/vite';
@@ -17,6 +15,7 @@ import { addStyledModuleDependencies } from '../../utils/add-styled-dependencies
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 import { configureEslint } from '../../utils/configure-eslint';
 import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
+import { updateQwikApplicationProjectParams } from './utils/update-qwik-application-project-params';
 
 function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
@@ -27,7 +26,7 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   generateFiles(
     tree,
     joinPathFragments(__dirname, 'files'),
-    options.appProjectRoot,
+    options.projectRoot,
     templateOptions
   );
 }
@@ -36,10 +35,7 @@ async function configureVite(
   tree: Tree,
   options: NormalizedSchema
 ): Promise<GeneratorCallback> {
-  const tsConfigPath = joinPathFragments(
-    options.appProjectRoot,
-    'tsconfig.json'
-  );
+  const tsConfigPath = joinPathFragments(options.projectRoot, 'tsconfig.json');
   const tsConfig = tree.read(tsConfigPath);
   const includeVitest = options.unitTestRunner === 'vitest';
 
@@ -51,17 +47,12 @@ async function configureVite(
     uiFramework: 'none',
     inSourceTests: false,
   });
-  tree.delete(joinPathFragments(options.appProjectRoot, 'index.html'));
+  tree.delete(joinPathFragments(options.projectRoot, 'index.html'));
 
   // overwrite tsconfig back after "viteConfigurationGenerator"
   tree.write(tsConfigPath, tsConfig);
 
-  if (includeVitest) {
-    const projectConfig = readProjectConfiguration(tree, options.projectName);
-    const testTarget = projectConfig.targets['test'];
-    testTarget.outputs = ['{workspaceRoot}/coverage/{projectRoot}'];
-    updateProjectConfiguration(tree, options.projectName, projectConfig);
-  }
+  updateQwikApplicationProjectParams(tree, options);
 
   return callback;
 }
@@ -71,12 +62,12 @@ export default async function (tree: Tree, options: QwikAppGeneratorSchema) {
   const tasks: GeneratorCallback[] = [];
 
   addProjectConfiguration(tree, normalizedOptions.projectName, {
-    root: normalizedOptions.appProjectRoot,
+    root: normalizedOptions.projectRoot,
     name: normalizedOptions.projectName,
     projectType: 'application',
-    sourceRoot: `${normalizedOptions.appProjectRoot}/src`,
-    // TODO: revisit later, now "viteConfigurationGenerator" will fail if there's no build target specified
-    targets: { build: { options: {} } },
+    sourceRoot: `${normalizedOptions.projectRoot}/src`,
+    // TODO: revisit later, @nrwl/vite configuration will throw if no relevant targets found
+    targets: { build: { executor: '@nrwl/webpack:webpack', options: {} } },
     tags: normalizedOptions.parsedTags,
   });
 

@@ -10,7 +10,7 @@ import { getRelativePathToRootTsConfig } from '@nrwl/workspace/src/utilities/typ
 
 export interface NormalizedSchema extends QwikAppGeneratorSchema {
   projectName: string;
-  appProjectRoot: string;
+  projectRoot: string;
   offsetFromRoot: string;
   rootTsConfigPath: string;
   setupVitest: boolean;
@@ -36,7 +36,7 @@ export const normalizeOptions = (
   const appProjectName = normalizeProjectName(options);
 
   const { appsDir } = getWorkspaceLayout(host);
-  const appProjectRoot = normalizePath(`${appsDir}/${appDirectory}`);
+  const projectRoot = normalizePath(`${appsDir}/${appDirectory}`);
 
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
@@ -50,9 +50,9 @@ export const normalizeOptions = (
   return {
     ...options,
     projectName: appProjectName,
-    appProjectRoot,
-    offsetFromRoot: offsetFromRoot(appProjectRoot),
-    rootTsConfigPath: getRelativePathToRootTsConfig(host, appProjectRoot),
+    projectRoot,
+    offsetFromRoot: offsetFromRoot(projectRoot),
+    rootTsConfigPath: getRelativePathToRootTsConfig(host, projectRoot),
     styleExtension,
     setupVitest: options.unitTestRunner === 'vitest',
     parsedTags,
