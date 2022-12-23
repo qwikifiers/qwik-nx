@@ -1,9 +1,9 @@
 {
   "extends": [
-    "<%= offsetFromRoot %>.eslintrc.json",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:qwik/recommended"
+    "plugin:qwik/recommended",
+    "<%= offsetFromRoot %>.eslintrc.json",
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

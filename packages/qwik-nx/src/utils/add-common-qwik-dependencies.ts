@@ -4,6 +4,7 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import {
+  nodeFetchVersion,
   qwikCityVersion,
   qwikVersion,
   viteTsconfigPathsVersion,
@@ -19,6 +20,7 @@ export function addCommonQwikDependencies(host: Tree): GeneratorCallback {
       '@builder.io/qwik-city': qwikCityVersion,
       vite: viteVersion,
       'vite-tsconfig-paths': viteTsconfigPathsVersion,
+      'node-fetch': nodeFetchVersion,
       // TODO: dependencies below should be setup correctly by Nx's generator, so not needed to provide them here?
       // "@types/eslint": typesEslint,
       // '@types/node': 'latest',
@@ -26,7 +28,6 @@ export function addCommonQwikDependencies(host: Tree): GeneratorCallback {
       // "@typescript-eslint/parser": tsEslintVersion,
       // "eslint": eslintVersion,
       // "eslint-plugin-qwik": qwikEslintPluginVersion,
-      // "node-fetch": nodeFetchVersion,
       // "prettier": prettierVersion,
       // "typescript": typescriptVersion,
     }

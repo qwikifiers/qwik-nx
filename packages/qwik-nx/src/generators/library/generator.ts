@@ -128,13 +128,18 @@ async function configureVite(tree: Tree, options: NormalizedSchema) {
 
   // overwrite tsconfig back after "viteConfigurationGenerator"
   tree.write(tsConfigPath, tsConfig);
+  const projectConfig = readProjectConfiguration(tree, options.projectName);
+
+  projectConfig.targets[
+    'build'
+  ].options.configFile = `${options.projectRoot}/vite.config.ts`;
 
   if (options.setupVitest) {
-    const projectConfig = readProjectConfiguration(tree, options.projectName);
     const testTarget = projectConfig.targets['test'];
     testTarget.outputs = ['{workspaceRoot}/coverage/{projectRoot}'];
-    updateProjectConfiguration(tree, options.projectName, projectConfig);
   }
+
+  updateProjectConfiguration(tree, options.projectName, projectConfig);
 
   return callback;
 }
