@@ -146,7 +146,8 @@ it can be useful to publish to a local registry.
 - Run `npm i -g verdaccio` in Terminal 1 (keep it running)
 - Run `verdaccio
 - Run `npm adduser --registry http://localhost:4873` in Terminal 2 (real credentials are not required, you just need to be logged in. You can use your own login details.
-- Run `npm publish [package] --registry=http://localhost:4783`
+- Run `nx publish [package] --registry=http://localhost:4873`
+- Run `nx publish qwik-nx --registry=http://localhost:4873`
 
 ### ▶ 10. That's it! Thank you for your contribution! 🙏💓
 

@@ -32,7 +32,7 @@ export async function setupTailwindGenerator(
     tree.exists(joinPathFragments(project.root, 'tailwind.config.js'))
   ) {
     logger.info(
-      `Skipping setup since there are existing PostCSS or Tailwind configuration files. For manual setup instructions, see https://nx.dev/guides/using-tailwind-css-in-react.`
+      `Skipping setup since there are existing PostCSS or Tailwind configuration files. For manual setup instructions, see https://qwik.builder.io/integrations/integration/tailwind/.`
     );
     return;
   }

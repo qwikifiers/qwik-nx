@@ -55,6 +55,13 @@ nx generate qwik-nx:lib
 nx generate qwik-nx:component
 ```
 
+### Setting Tailwind CSS
+
+```
+nx generate qwik-nx:setup-tailwind
+nx g setup-tailwind
+```
+
 ## ROADMAP:
 
 - [ ] Complete generators for Route, Component and more

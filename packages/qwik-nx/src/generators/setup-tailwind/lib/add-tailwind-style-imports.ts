@@ -8,7 +8,12 @@ import {
 
 import { SetupTailwindOptions } from '../schema';
 
-const knownLocations = ['src/global.css'];
+const knownLocations = [
+  'src/global.css',
+  'src/global.scss',
+  'src/global.styl',
+  'src/global.less',
+];
 
 export function addTailwindStyleImports(
   tree: Tree,
@@ -29,13 +34,11 @@ export function addTailwindStyleImports(
   } else {
     logger.warn(
       stripIndents`
-        Could not find stylesheet to update. Add the following imports to your stylesheet (e.g. styles.css):
+        Could not find stylesheet to update. Add the following imports to your stylesheet (e.g. global.css):
 
           @tailwind components;
           @tailwind base;
-          @tailwind utilities;
-
-        See our guide for more details: https://nx.dev/guides/using-tailwind-css-in-react`
+          @tailwind utilities;`
     );
   }
 }

@@ -11,14 +11,10 @@ import update from './setup-tailwind';
 describe('setup-tailwind', () => {
   it.each`
     stylesPath
-    ${`src/styles.css`}
-    ${`src/styles.scss`}
-    ${`src/styles.less`}
-    ${`src/styles.styl`}
-    ${`pages/styles.css`}
-    ${`pages/styles.scss`}
-    ${`pages/styles.less`}
-    ${`pages/styles.styl`}
+    ${`src/global.css`}
+    ${`src/global.scss`}
+    ${`src/global.less`}
+    ${`src/global.styl`}
   `('should update stylesheet', async ({ stylesPath }) => {
     const tree = createTreeWithEmptyV1Workspace();
     addProjectConfiguration(tree, 'example', {
@@ -83,7 +79,7 @@ describe('setup-tailwind', () => {
       sourceRoot: 'apps/example/src',
       targets: {},
     });
-    tree.write(`apps/example/src/styles.css`, ``);
+    tree.write(`apps/example/src/global.css`, ``);
     tree.write('apps/example/postcss.config.js', '// existing');
 
     await update(tree, { project: 'example' });
