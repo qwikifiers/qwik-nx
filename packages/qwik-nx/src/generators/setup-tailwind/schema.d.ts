@@ -1,5 +1,6 @@
-export interface SetupTailwindGeneratorSchema {
-  name: string;
-  tags?: string;
-  directory?: string;
+export interface SetupTailwindOptions {
+  project: string;
+  buildTarget?: string;
+  skipFormat?: boolean;
+  skipPackageJson?: boolean;
 }

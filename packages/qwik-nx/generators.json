@@ -12,7 +12,7 @@
     "init": {
       "factory": "./src/generators/init/init",
       "schema": "./src/generators/init/schema.json",
-      "description": "qwik init plugin"
+      "description": "Initialize the qwik-nx plugin"
     },
     "route": {
       "factory": "./src/generators/route/generator",
@@ -27,18 +27,18 @@
     "library": {
       "factory": "./src/generators/library/generator",
       "schema": "./src/generators/library/schema.json",
-      "description": "library generator",
+      "description": "Create a Qwik Library",
       "aliases": ["lib"]
     },
     "preset": {
       "factory": "./src/generators/preset/generator",
       "schema": "./src/generators/preset/schema.json",
-      "description": "preset generator"
+      "description": "Create a Qwik Workspace Preset"
     },
     "setup-tailwind": {
-      "factory": "./src/generators/setup-tailwind/generator",
+      "factory": "./src/generators/setup-tailwind/setup-tailwind",
       "schema": "./src/generators/setup-tailwind/schema.json",
-      "description": "setup-tailwind generator"
+      "description": "Set up Tailwind configuration for a project."
     }
   }
 }
