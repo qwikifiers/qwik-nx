@@ -7,28 +7,31 @@
       "factory": "./src/generators/application/generator",
       "schema": "./src/generators/application/schema.json",
       "description": "Qwik application generator",
-      "aliases": ["app"]
+      "aliases": ["app", "a"]
     },
     "init": {
       "factory": "./src/generators/init/init",
       "schema": "./src/generators/init/schema.json",
-      "description": "Initialize the qwik-nx plugin"
+      "description": "Initialize the qwik-nx plugin",
+      "aliases": ["i"]
     },
     "route": {
       "factory": "./src/generators/route/generator",
       "schema": "./src/generators/route/schema.json",
-      "description": "Adding a Qwik City route"
+      "description": "Adding a Qwik City route",
+      "aliases": ["r"]
     },
     "component": {
       "factory": "./src/generators/component/generator",
       "schema": "./src/generators/component/schema.json",
-      "description": "Generating a Qwik component"
+      "description": "Generating a Qwik component",
+      "aliases": ["cmp", "c"]
     },
     "library": {
       "factory": "./src/generators/library/generator",
       "schema": "./src/generators/library/schema.json",
       "description": "Create a Qwik Library",
-      "aliases": ["lib"]
+      "aliases": ["lib", "l"]
     },
     "preset": {
       "factory": "./src/generators/preset/generator",
@@ -38,7 +41,8 @@
     "setup-tailwind": {
       "factory": "./src/generators/setup-tailwind/setup-tailwind",
       "schema": "./src/generators/setup-tailwind/schema.json",
-      "description": "Set up Tailwind configuration for a project."
+      "description": "Set up Tailwind configuration for a project.",
+      "aliases": ["tailwind", "tw", "t"]
     }
   }
 }

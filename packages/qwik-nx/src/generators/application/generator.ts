@@ -1,3 +1,4 @@
+import { SetupTailwindOptions } from './../setup-tailwind/schema.d';
 import {
   addProjectConfiguration,
   formatFiles,
@@ -16,6 +17,7 @@ import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-ser
 import { configureEslint } from '../../utils/configure-eslint';
 import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
 import { updateQwikApplicationProjectParams } from './utils/update-qwik-application-project-params';
+import setupTailwindGenerator from '../setup-tailwind/setup-tailwind';
 
 function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
@@ -89,6 +91,13 @@ export default async function (tree: Tree, options: QwikAppGeneratorSchema) {
 
   if (!options.skipFormat) {
     await formatFiles(tree);
+  }
+
+  if (options.tailwind) {
+    const twOptions: SetupTailwindOptions = {
+      project: options.name,
+    };
+    await setupTailwindGenerator(tree, twOptions);
   }
 
   return runTasksInSerial(...tasks);
