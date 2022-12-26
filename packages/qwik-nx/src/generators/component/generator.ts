@@ -24,7 +24,7 @@ function getDirectory(host: Tree, options: ComponentGeneratorSchema) {
   } else {
     baseDir =
       workspace.get(options.project).projectType === 'application'
-        ? 'app'
+        ? 'components'
         : 'lib';
   }
   return options.flat
