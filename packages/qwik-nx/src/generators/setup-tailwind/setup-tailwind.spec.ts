@@ -1,7 +1,6 @@
 import {
   addProjectConfiguration,
   readJson,
-  readProjectConfiguration,
   stripIndents,
   writeJson,
 } from '@nrwl/devkit';
