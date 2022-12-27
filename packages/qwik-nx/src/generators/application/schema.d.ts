@@ -6,6 +6,7 @@ export interface QwikAppGeneratorSchema {
   style: 'css' | 'scss' | 'styl' | 'less' | 'none';
   linter: 'eslint' | 'none';
   skipFormat: boolean;
+  tailwind?: boolean;
   unitTestRunner: 'vitest' | 'none';
   strict: boolean;
   // router: 'qwik-city' | 'none'; // TODO: add setup w/o qwik-city

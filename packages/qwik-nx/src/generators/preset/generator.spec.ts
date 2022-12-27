@@ -8,6 +8,8 @@ describe('preset generator', () => {
   let appTree: Tree;
   const options: QwikWorkspacePresetGeneratorSchema = {
     name: 'test',
+    qwikAppName: 'test',
+    qwikAppStyle: 'css',
     style: 'css',
     linter: 'none',
     skipFormat: false,

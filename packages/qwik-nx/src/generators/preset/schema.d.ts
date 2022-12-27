@@ -1,4 +1,5 @@
-export interface QwikWorkspacePresetGeneratorSchema {
+export interface QwikWorkspacePresetGeneratorSchema
+  extends QwikAppGeneratorSchema {
   name: string;
   qwikAppName: string;
   tags?: string;
@@ -8,6 +9,7 @@ export interface QwikWorkspacePresetGeneratorSchema {
   qwikAppStyle: 'css' | 'scss' | 'styl' | 'less' | 'none';
   linter: 'eslint' | 'none';
   skipFormat: boolean;
+  tailwind?: boolean;
   unitTestRunner: 'vitest' | 'none';
   strict: boolean;
 }

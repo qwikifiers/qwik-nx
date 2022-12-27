@@ -12,6 +12,10 @@ export const viteVersion = '4.0.1';
 export const viteTsconfigPathsVersion = '4.0.3';
 export const vitestVersion = '0.25.8';
 
+export const autoprefixerVersion = '10.4.11';
+export const postcssVersion = '8.4.16';
+export const tailwindcssVersion = '3.1.8';
+
 // other
 export const eslintVersion = '8.28.0';
 export const tsEslintVersion = '5.43.0';
