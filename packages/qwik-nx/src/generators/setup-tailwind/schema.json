@@ -23,11 +23,6 @@
       "x-dropdown": "projects",
       "x-prompt": "What project would you like to add the Tailwind CSS setup?"
     },
-    "buildTarget": {
-      "type": "string",
-      "description": "The name of the target used to build the project. This option is not needed in most cases.",
-      "default": "build"
-    },
     "skipFormat": {
       "type": "boolean",
       "description": "Skips formatting the workspace after the generator completes."
