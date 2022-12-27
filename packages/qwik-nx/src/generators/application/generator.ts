@@ -95,7 +95,7 @@ export default async function (tree: Tree, options: QwikAppGeneratorSchema) {
 
   if (options.tailwind) {
     const twOptions: SetupTailwindOptions = {
-      project: options.name,
+      project: normalizedOptions.name,
     };
     await setupTailwindGenerator(tree, twOptions);
   }
