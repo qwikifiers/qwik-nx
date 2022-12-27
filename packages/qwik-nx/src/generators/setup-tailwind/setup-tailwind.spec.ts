@@ -45,18 +45,19 @@ describe('setup-tailwind', () => {
       sourceRoot: 'apps/example/src',
       targets: {
         build: {
-          executor: '@nrwl/webpack:webpack',
-          options: {},
+          executor: '@nrwl/vite:build',
+          options: {
+            outputPath: 'dist/apps/example',
+            configFile: 'apps/example/vite.config.ts',
+          },
         },
       },
     });
-    tree.write(`apps/example/src/styles.css`, ``);
+    tree.write(`apps/example/src/global.css`, ``);
     writeJson(tree, 'package.json', {
-      dependencies: {
-        react: '999.9.9',
-      },
       devDependencies: {
-        '@types/react': '999.9.9',
+        '@builder.io/qwik': '999.9.9',
+        '@builder.io/qwik-cty': '999.9.9',
       },
     });
 
@@ -66,10 +67,6 @@ describe('setup-tailwind', () => {
 
     expect(tree.exists(`apps/example/postcss.config.js`)).toBeTruthy();
     expect(tree.exists(`apps/example/tailwind.config.js`)).toBeTruthy();
-    expect(
-      readProjectConfiguration(tree, 'example').targets.build.options
-        .postcssConfig
-    ).toEqual('apps/example/postcss.config.js');
   });
 
   it('should skip update if postcss configuration already exists', async () => {
@@ -96,7 +93,7 @@ describe('setup-tailwind', () => {
       sourceRoot: 'apps/example/src',
       targets: {},
     });
-    tree.write(`apps/example/src/styles.css`, ``);
+    tree.write(`apps/example/src/global.css`, ``);
     tree.write('apps/example/tailwind.config.js', '// existing');
 
     await update(tree, { project: 'example' });
@@ -113,13 +110,11 @@ describe('setup-tailwind', () => {
       sourceRoot: 'apps/example/src',
       targets: {},
     });
-    tree.write(`apps/example/src/styles.css`, ``);
+    tree.write(`apps/example/src/global.css`, ``);
     writeJson(tree, 'package.json', {
-      dependencies: {
-        react: '999.9.9',
-      },
       devDependencies: {
-        '@types/react': '999.9.9',
+        '@builder.io/qwik': '999.9.9',
+        '@builder.io/qwik-cty': '999.9.9',
       },
     });
 
@@ -128,11 +123,10 @@ describe('setup-tailwind', () => {
     });
 
     expect(readJson(tree, 'package.json')).toEqual({
-      dependencies: {
-        react: '999.9.9',
-      },
+      dependencies: {},
       devDependencies: {
-        '@types/react': '999.9.9',
+        '@builder.io/qwik': '999.9.9',
+        '@builder.io/qwik-cty': '999.9.9',
         autoprefixer: expect.any(String),
         postcss: expect.any(String),
         tailwindcss: expect.any(String),
@@ -147,13 +141,11 @@ describe('setup-tailwind', () => {
       sourceRoot: 'apps/example/src',
       targets: {},
     });
-    tree.write(`apps/example/src/styles.css`, ``);
+    tree.write(`apps/example/src/global.css`, ``);
     writeJson(tree, 'package.json', {
-      dependencies: {
-        react: '999.9.9',
-      },
       devDependencies: {
-        '@types/react': '999.9.9',
+        '@builder.io/qwik': '999.9.9',
+        '@builder.io/qwik-cty': '999.9.9',
       },
     });
 
@@ -163,11 +155,9 @@ describe('setup-tailwind', () => {
     });
 
     expect(readJson(tree, 'package.json')).toEqual({
-      dependencies: {
-        react: '999.9.9',
-      },
       devDependencies: {
-        '@types/react': '999.9.9',
+        '@builder.io/qwik': '999.9.9',
+        '@builder.io/qwik-cty': '999.9.9',
       },
     });
   });
