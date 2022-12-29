@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.4.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.3.1...qwik-nx-0.4.0) (2022-12-29)
+
+
+### Bug Fixes
+
+* **component/generator.ts:** fix folder location for generated qwik component ([#24](https://github.com/qwikifiers/qwik-nx/issues/24)) ([43d4dec](https://github.com/qwikifiers/qwik-nx/commit/43d4decc36050f0329a84bc864f79f80e789fc2b))
+
+
+### Features
+
+* **tailwind:** add setup-tailwind generator ([#22](https://github.com/qwikifiers/qwik-nx/issues/22)) ([d88397f](https://github.com/qwikifiers/qwik-nx/commit/d88397f68e38d9e506ec044b9c1812f6dd7ef40f))
+
+
+
 ## [0.3.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.3.0...qwik-nx-0.3.1) (2022-12-23)
 
 
