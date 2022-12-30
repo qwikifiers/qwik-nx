@@ -73,6 +73,11 @@
       "type": "boolean",
       "description": "Creates an application with strict mode and strict type checking.",
       "default": true
+    },
+    "tailwind": {
+      "description": "Setup Tailwind",
+      "type": "boolean",
+      "default": false
     }
   },
   "required": ["name"]
