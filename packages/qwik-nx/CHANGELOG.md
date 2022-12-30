@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.4.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.4.0...qwik-nx-0.4.1) (2022-12-30)
+
+
+### Bug Fixes
+
+* expose "tailwind" option in application generator ([#28](https://github.com/qwikifiers/qwik-nx/issues/28)) ([967f86d](https://github.com/qwikifiers/qwik-nx/commit/967f86dcd4135fa736fd2c97eae3a472b70078be))
+
+
+
 # [0.4.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.3.1...qwik-nx-0.4.0) (2022-12-29)
 
 
