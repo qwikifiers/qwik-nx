@@ -21,6 +21,6 @@
   "generators": "./generators.json",
   "executors": "./executors.json",
   "dependencies": {
-    "@nrwl/vite": "~15.4.0"
+    "@nrwl/vite": "~15.5.0"
   }
 }

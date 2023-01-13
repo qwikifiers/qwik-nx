@@ -1,4 +1,3 @@
-<% if(setupVitest) { %> /// <reference types="vitest" /> <% } %>
 import { qwikVite } from '@builder.io/qwik/optimizer';
 import { qwikCity } from '@builder.io/qwik-city/vite';
 import { defineConfig } from 'vite';
@@ -17,6 +16,12 @@ export default defineConfig({
 		}),
     tsconfigPaths()
   ],
+  server: {
+    fs: {
+      // Allow serving files from the project root
+      allow: ['<%= offsetFromRoot %>'],
+    },
+  },
   preview: {
     headers: {
       'Cache-Control': 'public, max-age=600',
@@ -28,10 +33,7 @@ export default defineConfig({
       dir: '<%= offsetFromRoot %>node_modules/.vitest',
     },
     environment: 'node',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    coverage: {
-      reportsDirectory: '<%= offsetFromRoot %>coverage/<%= projectRoot %>'
-    }
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}']
   }
   <% } %>
 });

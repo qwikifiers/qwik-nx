@@ -18,7 +18,8 @@
     "incremental": true,
     "isolatedModules": true,
     "outDir": "tmp",
-    "noEmit": true
+    "noEmit": true,
+    "types": ["node", "vite/client"<% if(setupVitest) { %> , "vitest" <% } %>]
   },
   "files": [],
   "include": [],

@@ -1,8 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "<%= offsetFromRoot %>dist/out-tsc",
-    "types": ["node", "vite/client"]
+    "outDir": "<%= offsetFromRoot %>dist/out-tsc"
   },
   "files": [
   ],

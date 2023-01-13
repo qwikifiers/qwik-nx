@@ -1,5 +1,3 @@
-<%= setupVitest ? '/// <reference types="vitest" />' : '' %>
-
 import { qwikVite } from '@builder.io/qwik/optimizer';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vite';

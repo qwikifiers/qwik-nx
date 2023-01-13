@@ -1,8 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
-    "types": ["node", "vite/client"]
+    "outDir": "../../dist/out-tsc"
   },
   "files": [],
   "exclude": [],
