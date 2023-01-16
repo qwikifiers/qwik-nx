@@ -17,8 +17,9 @@ import { getRelativePathToRootTsConfig } from '@nrwl/workspace/src/utilities/typ
 import { LibraryGeneratorSchema } from './schema';
 import componentGenerator from './../component/generator';
 import { configureEslint } from '../../utils/configure-eslint';
-import { viteConfigurationGenerator } from '@nrwl/vite';
+import { initGenerator } from '@nrwl/vite';
 import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
+import { getQwikLibProjectTargets } from './utils/get-qwik-lib-project-params';
 
 interface NormalizedSchema extends LibraryGeneratorSchema {
   projectName: string;
@@ -116,27 +117,21 @@ async function addLibrary(
 }
 
 async function configureVite(tree: Tree, options: NormalizedSchema) {
-  const tsConfigPath = joinPathFragments(options.projectRoot, 'tsconfig.json');
-  const tsConfig = tree.read(tsConfigPath);
-
-  const callback = await viteConfigurationGenerator(tree, {
-    project: options.projectName,
+  const callback = await initGenerator(tree, {
     uiFramework: 'none',
     includeLib: true,
-    includeVitest: options.setupVitest,
   });
 
-  // overwrite tsconfig back after "viteConfigurationGenerator"
-  tree.write(tsConfigPath, tsConfig);
   const projectConfig = readProjectConfiguration(tree, options.projectName);
 
-  projectConfig.targets[
-    'build'
-  ].options.configFile = `${options.projectRoot}/vite.config.ts`;
+  const targets = getQwikLibProjectTargets(options);
+
+  projectConfig.targets['build'] = targets.build;
 
   if (options.setupVitest) {
-    const testTarget = projectConfig.targets['test'];
-    testTarget.outputs = ['{workspaceRoot}/coverage/{projectRoot}'];
+    projectConfig.targets['test'] = targets.test;
+  } else {
+    tree.delete(`${options.projectRoot}/tsconfig.spec.json`);
   }
 
   updateProjectConfiguration(tree, options.projectName, projectConfig);

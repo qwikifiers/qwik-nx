@@ -1,14 +1,14 @@
 // qwik packages
-export const qwikVersion = '0.16.1';
+export const qwikVersion = '0.16.2';
 export const qwikCityVersion = '0.0.128';
-export const qwikEslintPluginVersion = '0.16.1';
+export const qwikEslintPluginVersion = '0.16.2';
 
 // css preprocessors
 export const sassVersion = '1.56.1';
 export const lessVersion = '4.1.3';
 export const stylusVersion = '0.59.0';
 
-export const viteVersion = '4.0.1';
+export const viteVersion = '4.0.4';
 export const viteTsconfigPathsVersion = '4.0.3';
 export const vitestVersion = '0.25.8';
 
