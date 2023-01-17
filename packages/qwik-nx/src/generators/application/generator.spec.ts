@@ -12,7 +12,7 @@ describe('qwik-nx generator', () => {
     linter: 'none',
     skipFormat: false,
     unitTestRunner: 'none',
-    strict: false
+    strict: false,
   };
 
   beforeEach(() => {

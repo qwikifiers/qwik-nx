@@ -20,7 +20,7 @@ import {
 import enquirer = require('enquirer');
 import yargsParser = require('yargs-parser');
 
-import packageJson from '../package.json'; 
+import packageJson from '../package.json';
 
 const nxVersion = packageJson.version;
 const tsVersion = 'TYPESCRIPT_VERSION'; // This gets replaced with the typescript version in the root package.json during build

@@ -1,4 +1,3 @@
-import { SetupTailwindOptions } from './../setup-tailwind/schema.d';
 import {
   addProjectConfiguration,
   formatFiles,
@@ -8,16 +7,18 @@ import {
   names,
   Tree,
 } from '@nrwl/devkit';
-import { NormalizedSchema, normalizeOptions } from './utils/normalize-options';
-import { initGenerator } from '@nrwl/vite';
-import { QwikAppGeneratorSchema } from './schema';
 import { Linter } from '@nrwl/linter';
-import { addStyledModuleDependencies } from '../../utils/add-styled-dependencies';
+import { initGenerator } from '@nrwl/vite';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
-import { configureEslint } from '../../utils/configure-eslint';
 import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
-import { getQwikApplicationProjectTargets } from './utils/get-qwik-application-project-params';
+import { addStyledModuleDependencies } from '../../utils/add-styled-dependencies';
+import { configureEslint } from '../../utils/configure-eslint';
 import setupTailwindGenerator from '../setup-tailwind/setup-tailwind';
+import { SetupTailwindOptions } from './../setup-tailwind/schema.d';
+import { addE2eProject } from './lib/add-e2e-project';
+import { NormalizedSchema, QwikAppGeneratorSchema } from './schema';
+import { getQwikApplicationProjectTargets } from './utils/get-qwik-application-project-params';
+import { normalizeOptions } from './utils/normalize-options';
 
 function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
@@ -72,6 +73,9 @@ export default async function (tree: Tree, options: QwikAppGeneratorSchema) {
   }
 
   tasks.push(addCommonQwikDependencies(tree));
+
+  const e2eProjectTask = await addE2eProject(tree, normalizedOptions);
+  tasks.push(e2eProjectTask);
 
   if (!options.skipFormat) {
     await formatFiles(tree);

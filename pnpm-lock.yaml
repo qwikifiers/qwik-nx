@@ -1290,7 +1290,6 @@ packages:
       }
     dependencies:
       nx: 15.5.0_lwc5ciab46qbgcufzept4zyhgi
-    dev: false
 
   /@nrwl/cli/15.5.0_lwc5ciab46qbgcufzept4zyhgi:
     resolution:
@@ -1303,6 +1302,7 @@ packages:
       - '@swc-node/register'
       - '@swc/core'
       - debug
+    dev: true
 
   /@nrwl/cypress/15.5.0_vuk7qbzmltcf3pu57zzcs3f77i:
     resolution:
@@ -6755,7 +6755,7 @@ packages:
       '@swc/core':
         optional: true
     dependencies:
-      '@nrwl/cli': 15.5.0_lwc5ciab46qbgcufzept4zyhgi
+      '@nrwl/cli': 15.5.0
       '@nrwl/tao': 15.5.0_lwc5ciab46qbgcufzept4zyhgi
       '@parcel/watcher': 2.0.4
       '@swc-node/register': 1.5.4_a6ehxei6k73t2xc6ggukxhgzve

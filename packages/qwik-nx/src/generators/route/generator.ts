@@ -17,7 +17,10 @@ interface NormalizedSchema extends RouteGeneratorSchema {
   parsedTags: string[];
 }
 
-function normalizeOptions(tree: Tree, options: RouteGeneratorSchema): NormalizedSchema {
+function normalizeOptions(
+  tree: Tree,
+  options: RouteGeneratorSchema
+): NormalizedSchema {
   const name = names(options.name).fileName;
   const projectDirectory = options.directory
     ? `${names(options.directory).fileName}/${name}`
@@ -38,32 +41,33 @@ function normalizeOptions(tree: Tree, options: RouteGeneratorSchema): Normalized
 }
 
 function addFiles(tree: Tree, options: NormalizedSchema) {
-    const templateOptions = {
-      ...options,
-      ...names(options.name),
-      offsetFromRoot: offsetFromRoot(options.projectRoot),
-      template: ''
-    };
-    generateFiles(tree, path.join(__dirname, 'files'), options.projectRoot, templateOptions);
+  const templateOptions = {
+    ...options,
+    ...names(options.name),
+    offsetFromRoot: offsetFromRoot(options.projectRoot),
+    template: '',
+  };
+  generateFiles(
+    tree,
+    path.join(__dirname, 'files'),
+    options.projectRoot,
+    templateOptions
+  );
 }
 
 export default async function (tree: Tree, options: RouteGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
-  addProjectConfiguration(
-    tree,
-    normalizedOptions.projectName,
-    {
-      root: normalizedOptions.projectRoot,
-      projectType: 'library',
-      sourceRoot: `${normalizedOptions.projectRoot}/src`,
-      targets: {
-        build: {
-          executor: "qwik-nx:build",
-        },
+  addProjectConfiguration(tree, normalizedOptions.projectName, {
+    root: normalizedOptions.projectRoot,
+    projectType: 'library',
+    sourceRoot: `${normalizedOptions.projectRoot}/src`,
+    targets: {
+      build: {
+        executor: 'qwik-nx:build',
       },
-      tags: normalizedOptions.parsedTags,
-    }
-  );
+    },
+    tags: normalizedOptions.parsedTags,
+  });
   addFiles(tree, normalizedOptions);
   await formatFiles(tree);
 }

@@ -301,7 +301,6 @@ function printFinalMessage(pmc: PackageManagerCommands) {
       `- Run "${pmc.exec} nx run-many --target=build" to run the build script for every project in the monorepo.`,
       `- Run it again to replay the cached computation.`,
       `- Run "${pmc.exec} nx graph" to see the structure of the monorepo.`,
-    
     ],
   });
 }
