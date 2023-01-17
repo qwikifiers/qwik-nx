@@ -9,6 +9,6 @@ export interface QwikAppGeneratorSchema {
   tailwind?: boolean;
   unitTestRunner: 'vitest' | 'none';
   strict: boolean;
+  e2eTestRunner: 'playwright' | 'cypress' | 'none';
   // router: 'qwik-city' | 'none'; // TODO: add setup w/o qwik-city
-  // e2eTestRunner: "cypress" | "none"; // TODO: wait until this PR is merged https://github.com/nrwl/nx/pull/13474
 }

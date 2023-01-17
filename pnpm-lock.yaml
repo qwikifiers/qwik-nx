@@ -8,6 +8,7 @@ importers:
       '@commitlint/config-conventional': ^17.3.0
       '@jscutlery/semver': ^2.29.0
       '@nrwl/cli': 15.5.0
+      '@nrwl/cypress': 15.5.0
       '@nrwl/devkit': 15.5.0
       '@nrwl/eslint-plugin-nx': 15.5.0
       '@nrwl/jest': 15.5.0
@@ -16,6 +17,7 @@ importers:
       '@nrwl/nx-plugin': 15.5.0
       '@nrwl/vite': 15.5.0
       '@nrwl/workspace': 15.5.0
+      '@nxkit/playwright': 2.0.1
       '@swc-node/register': ^1.4.2
       '@swc/cli': ~0.1.55
       '@swc/core': ^1.2.173
@@ -51,6 +53,7 @@ importers:
       '@commitlint/config-conventional': 17.3.0
       '@jscutlery/semver': 2.29.0_@nrwl+devkit@15.5.0
       '@nrwl/cli': 15.5.0_lwc5ciab46qbgcufzept4zyhgi
+      '@nrwl/cypress': 15.5.0_vuk7qbzmltcf3pu57zzcs3f77i
       '@nrwl/devkit': 15.5.0_nx@15.5.0+typescript@4.8.4
       '@nrwl/eslint-plugin-nx': 15.5.0_mrwir6w7qz4htgg5gtkpthjjty
       '@nrwl/jest': 15.5.0_owu63ecoeqroh5izxh5scpyhb4
@@ -59,6 +62,7 @@ importers:
       '@nrwl/nx-plugin': 15.5.0_q6pahozekoborn52cz2unfes2a
       '@nrwl/vite': 15.5.0_vuk7qbzmltcf3pu57zzcs3f77i
       '@nrwl/workspace': 15.5.0_5yonbsjlpewldw7hu6fyirxww4
+      '@nxkit/playwright': 2.0.1
       '@swc-node/register': 1.5.4_a6ehxei6k73t2xc6ggukxhgzve
       '@swc/cli': 0.1.57_@swc+core@1.3.19
       '@swc/core': 1.3.19
@@ -1286,6 +1290,7 @@ packages:
       }
     dependencies:
       nx: 15.5.0_lwc5ciab46qbgcufzept4zyhgi
+    dev: false
 
   /@nrwl/cli/15.5.0_lwc5ciab46qbgcufzept4zyhgi:
     resolution:
@@ -1298,6 +1303,33 @@ packages:
       - '@swc-node/register'
       - '@swc/core'
       - debug
+
+  /@nrwl/cypress/15.5.0_vuk7qbzmltcf3pu57zzcs3f77i:
+    resolution:
+      {
+        integrity: sha512-5l7UkzER0RfM6cAJdHR8zsa8yu06P6IGiEb7KdQe3VipHAOuJCCtsYI0NZkQ+rzQ/4BL7vLzGzfXJHJvLa2Adg==,
+      }
+    peerDependencies:
+      cypress: '>= 3 < 13'
+    peerDependenciesMeta:
+      cypress:
+        optional: true
+    dependencies:
+      '@nrwl/devkit': 15.5.0_nx@15.5.0+typescript@4.8.4
+      '@nrwl/linter': 15.5.0_vv6sztv4acagieihfmcdqry7xi
+      '@nrwl/workspace': 15.5.0_5yonbsjlpewldw7hu6fyirxww4
+      '@phenomnomnominal/tsquery': 4.1.1_typescript@4.8.4
+      chalk: 4.1.0
+      dotenv: 10.0.0
+      semver: 7.3.4
+    transitivePeerDependencies:
+      - '@swc-node/register'
+      - '@swc/core'
+      - debug
+      - eslint
+      - nx
+      - prettier
+      - typescript
     dev: true
 
   /@nrwl/devkit/15.2.3_nx@15.5.0+typescript@4.8.4:
@@ -1736,6 +1768,15 @@ packages:
       - debug
       - eslint
       - typescript
+    dev: true
+
+  /@nxkit/playwright/2.0.1:
+    resolution:
+      {
+        integrity: sha512-Za9dilLqiKwrnSHY9qo9a8GFUeAXtzoswf+WM/O3qwdLgXL9PCWaLkYb5ozui3uve5GgaRlVLiWcAGsx7WNPzw==,
+      }
+    peerDependencies:
+      '@playwright/test': ^1.25.2
     dev: true
 
   /@parcel/watcher/2.0.4:
@@ -6714,7 +6755,7 @@ packages:
       '@swc/core':
         optional: true
     dependencies:
-      '@nrwl/cli': 15.5.0
+      '@nrwl/cli': 15.5.0_lwc5ciab46qbgcufzept4zyhgi
       '@nrwl/tao': 15.5.0_lwc5ciab46qbgcufzept4zyhgi
       '@parcel/watcher': 2.0.4
       '@swc-node/register': 1.5.4_a6ehxei6k73t2xc6ggukxhgzve
