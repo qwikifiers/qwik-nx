@@ -3,6 +3,7 @@ import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 
 import generator from './generator';
 import { QwikWorkspacePresetGeneratorSchema } from './schema';
+import { Linter } from '@nrwl/linter';
 
 describe('preset generator', () => {
   let appTree: Tree;
@@ -11,8 +12,9 @@ describe('preset generator', () => {
     qwikAppName: 'test',
     qwikAppStyle: 'css',
     style: 'css',
-    linter: 'none',
+    linter: Linter.None,
     skipFormat: false,
+    e2eTestRunner: 'playwright',
     unitTestRunner: 'none',
     strict: false,
   };
