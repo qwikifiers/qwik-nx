@@ -1,4 +1,4 @@
-import { addDependenciesToPackageJson, Tree } from '@nrwl/devkit';
+import { addDependenciesToPackageJson, formatFiles, Tree } from '@nrwl/devkit';
 import {
   eslintVersion,
   nodeFetchVersion,
@@ -13,6 +13,7 @@ import {
   viteVersion,
 } from '../../utils/versions';
 import { InitGeneratorSchema } from './schema';
+import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 
 function updateDependencies(host: Tree) {
   return addDependenciesToPackageJson(
@@ -41,5 +42,9 @@ export default async function qwikInitGenerator(
   options: InitGeneratorSchema
 ) {
   const installTask = updateDependencies(tree);
-  await installTask();
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
+  return runTasksInSerial(installTask);
 }

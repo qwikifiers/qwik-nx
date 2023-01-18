@@ -85,7 +85,7 @@ export default async function (tree: Tree, options: QwikAppGeneratorSchema) {
     const twOptions: SetupTailwindOptions = {
       project: normalizedOptions.name,
     };
-    await setupTailwindGenerator(tree, twOptions);
+    tasks.push(await setupTailwindGenerator(tree, twOptions));
   }
 
   return runTasksInSerial(...tasks);

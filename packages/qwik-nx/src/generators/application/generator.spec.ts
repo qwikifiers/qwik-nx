@@ -5,6 +5,9 @@ import generator from './generator';
 import { QwikAppGeneratorSchema } from './schema';
 import { Linter } from '@nrwl/linter';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const devkit = require('@nrwl/devkit');
+
 describe('qwik-nx generator', () => {
   let appTree: Tree;
   const defaultOptions: QwikAppGeneratorSchema = {
@@ -17,8 +20,10 @@ describe('qwik-nx generator', () => {
     e2eTestRunner: 'none',
   };
 
+  jest.spyOn(devkit, 'ensurePackage').mockReturnValue(Promise.resolve());
+
   beforeEach(() => {
-    appTree = createTreeWithEmptyWorkspace();
+    appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
   });
 
   it('should run successfully', async () => {
@@ -33,8 +38,9 @@ describe('qwik-nx generator', () => {
         ...defaultOptions,
         e2eTestRunner: 'none',
       });
-      const config = readProjectConfiguration(appTree, 'myapp-e2e');
-      expect(config).not.toBeDefined();
+      expect(() => readProjectConfiguration(appTree, 'myapp-e2e')).toThrowError(
+        `Cannot find configuration for 'myapp-e2e'`
+      );
     });
 
     it('--e2eTestRunner playwright', async () => {
