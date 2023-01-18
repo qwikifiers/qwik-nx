@@ -69,6 +69,12 @@
       "description": "Setup Tailwind",
       "type": "boolean",
       "default": false
+    },
+    "e2eTestRunner": {
+      "type": "string",
+      "enum": ["playwright", "cypress", "none"],
+      "description": "Test runner to use for end to end (E2E) tests.",
+      "default": "playwright"
     }
   },
   "required": ["name"]

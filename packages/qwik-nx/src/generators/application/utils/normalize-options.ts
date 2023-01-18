@@ -1,4 +1,3 @@
-import { QwikAppGeneratorSchema } from '../schema';
 import {
   getWorkspaceLayout,
   names,
@@ -7,16 +6,7 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import { getRelativePathToRootTsConfig } from '@nrwl/workspace/src/utilities/typescript';
-
-export interface NormalizedSchema extends QwikAppGeneratorSchema {
-  projectName: string;
-  projectRoot: string;
-  offsetFromRoot: string;
-  rootTsConfigPath: string;
-  setupVitest: boolean;
-  parsedTags: string[];
-  styleExtension: Exclude<QwikAppGeneratorSchema['style'], 'none'> | null;
-}
+import { NormalizedSchema, QwikAppGeneratorSchema } from '../schema';
 
 function normalizeDirectory(options: QwikAppGeneratorSchema) {
   return options.directory
@@ -47,6 +37,8 @@ export const normalizeOptions = (
 
   const styleExtension = options.style !== 'none' ? options.style : null;
 
+  const e2eProjectName = `${names(options.name).fileName}-e2e`;
+
   return {
     ...options,
     projectName: appProjectName,
@@ -56,5 +48,6 @@ export const normalizeOptions = (
     styleExtension,
     setupVitest: options.unitTestRunner === 'vitest',
     parsedTags,
+    e2eProjectName,
   };
 };

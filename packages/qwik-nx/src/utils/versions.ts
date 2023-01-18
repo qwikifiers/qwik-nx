@@ -16,6 +16,9 @@ export const autoprefixerVersion = '10.4.11';
 export const postcssVersion = '8.4.16';
 export const tailwindcssVersion = '3.1.8';
 
+// nxkit packages
+export const nxKitVersion = '^2.0.1';
+
 // other
 export const eslintVersion = '8.28.0';
 export const tsEslintVersion = '5.43.0';

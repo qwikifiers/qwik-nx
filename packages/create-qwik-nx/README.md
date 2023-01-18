@@ -10,4 +10,3 @@ Nx is a next generation build system with first class monorepo support and power
 ## What is It?
 
 It's a command to create a Qwik application inside of an Nx workspace.
-
