@@ -2,6 +2,21 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.5.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.4.2...qwik-nx-0.5.0) (2023-01-20)
+
+
+### Bug Fixes
+
+* run all installation commands in serial ([#43](https://github.com/qwikifiers/qwik-nx/issues/43)) ([ddc0c03](https://github.com/qwikifiers/qwik-nx/commit/ddc0c0321c6282e9666d00d91a0a7e811c28485a))
+
+
+### Features
+
+* nx 15.5 and corresponding updates ([#38](https://github.com/qwikifiers/qwik-nx/issues/38)) ([2cbc28f](https://github.com/qwikifiers/qwik-nx/commit/2cbc28f855692c57129e4eddaf42af72228fdb43))
+* **qwik-nx:** add e2e project ([#40](https://github.com/qwikifiers/qwik-nx/issues/40)) ([0258626](https://github.com/qwikifiers/qwik-nx/commit/0258626e74b420f8807b3788bc70fa09c98edc4c)), closes [#9](https://github.com/qwikifiers/qwik-nx/issues/9)
+
+
+
 ## [0.4.2](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.4.1...qwik-nx-0.4.2) (2023-01-04)
 
 
