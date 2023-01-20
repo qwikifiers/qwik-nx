@@ -2,7 +2,7 @@
   "name": "create-qwik-nx",
   "version": "0.0.0",
   "private": false,
-  "description": "This package is used to create a brand-new nx workspace with a single Qwik application configured to work in an Nx environment",
+  "description": "This package is used to create a brand-new nx workspace with the qwik-nx plugin added",
   "repository": {
     "type": "git",
     "url": "https://github.com/qwikifiers/qwik-nx.git",
@@ -16,7 +16,7 @@
     "CLI"
   ],
   "bin": {
-    "create-qwik-nx": "./bin/tbd.js"
+    "create-qwik-nx": "./bin/create-qwik-nx.js"
   },
   "author": "Shai Reznik",
   "license": "MIT",
@@ -24,14 +24,7 @@
     "url": "https://github.com/qwikifiers/qwik-nx/issues"
   },
   "homepage": "https://github.com/qwikifiers/qwik-nx",
-  "dependencies": {
-    "@nrwl/devkit": "15.2.1",
-    "enquirer": "~2.3.6",
-    "fs-extra": "^10.1.0",
-    "nx": "15.2.1",
-    "tmp": "~0.2.1",
-    "yargs-parser": "21.1.1"
-  },
+  "dependencies": {},
   "publishConfig": {
     "access": "public"
   }

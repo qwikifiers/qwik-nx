@@ -4,21 +4,13 @@
   "sourceRoot": "packages/create-qwik-nx",
   "projectType": "library",
   "targets": {
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "options": {
-        "jestConfig": "packages/create-qwik-nx/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "outputs": ["{workspaceRoot}/coverage/packages/create-qwik-nx"]
-    },
     "build": {
       "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/create-qwik-nx",
-        "tsConfig": "packages/create-qwik-nx/tsconfig.lib.json",
         "main": "packages/create-qwik-nx/bin/create-qwik-nx.ts",
-        "updateBuildableProjectDepsInPackageJson": false,
+        "tsConfig": "packages/create-qwik-nx/tsconfig.lib.json",
         "assets": [
           {
             "input": "packages/create-qwik-nx",
@@ -53,8 +45,7 @@
             "output": "/"
           }
         ]
-      },
-      "outputs": ["{options.outputPath}"]
+      }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -70,7 +61,35 @@
         ]
       },
       "outputs": ["{options.outputFile}"]
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {}
+    },
+    "version-publish": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "noVerify": true,
+        "push": true,
+        "postTargets": [
+          "create-qwik-nx:publish",
+          "create-qwik-nx:push-to-github"
+        ]
+      }
+    },
+    "publish": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "access": "public"
+      }
+    },
+    "push-to-github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "${tag}",
+        "notes": "${notes}"
+      }
     }
   },
-  "implicitDependencies": ["qwik-nx"]
+  "implicitDependencies": []
 }
