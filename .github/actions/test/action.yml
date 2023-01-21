@@ -12,11 +12,11 @@ runs:
 
     - name: Lint
       shell: bash
-      run: pnpx nx affected:lint --base=last-release --exclude="add-nx-to-qwik,create-qwik-nx"
+      run: pnpx nx affected:lint --base=last-release --exclude="add-nx-to-qwik"
 
     - name: Build
       shell: bash
-      run: pnpx nx affected:build --base=last-release --exclude="add-nx-to-qwik,create-qwik-nx"
+      run: pnpx nx affected:build --base=last-release --exclude="add-nx-to-qwik"
 
     # - name: Test
     #   shell: bash
