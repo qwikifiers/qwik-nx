@@ -91,5 +91,5 @@
       }
     }
   },
-  "implicitDependencies": ["qwik-nx"]
+  "implicitDependencies": []
 }
