@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.1](https://github.com/qwikifiers/qwik-nx/compare/create-qwik-nx-0.1.0...create-qwik-nx-0.1.1) (2023-01-21)
+
+
+### Bug Fixes
+
+* **create-qwik-nx:** remove dep ([5d8840d](https://github.com/qwikifiers/qwik-nx/commit/5d8840d5acbae119478e7d11e70a43431c0ce076))
+
+
+
 # 0.1.0 (2023-01-20)
 
 
