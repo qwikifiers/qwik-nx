@@ -1,5 +1,6 @@
 export interface RouteGeneratorSchema {
   name: string;
-  tags?: string;
+  project: string;
+  addLayout?: boolean;
   directory?: string;
 }

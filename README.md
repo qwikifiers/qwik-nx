@@ -55,6 +55,12 @@ nx generate qwik-nx:lib
 nx generate qwik-nx:component
 ```
 
+### Generating a route
+
+```
+nx generate qwik-nx:route
+```
+
 ### Setting up Tailwind CSS
 
 ```

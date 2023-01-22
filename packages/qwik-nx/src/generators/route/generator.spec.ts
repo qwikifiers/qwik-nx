@@ -1,20 +1,40 @@
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { Tree, readProjectConfiguration } from '@nrwl/devkit';
+import { Tree } from '@nrwl/devkit';
 
-import generator from './generator';
+import { routeGenerator } from './generator';
 import { RouteGeneratorSchema } from './schema';
+import appGenerator from '../application/generator';
 
 describe('route generator', () => {
-  let appTree: Tree;
-  const options: RouteGeneratorSchema = { name: 'test' };
+  function setup() {
+    const appTree = createTreeWithEmptyWorkspace();
+    appGenerator(appTree, { name: 'testApp' });
 
-  beforeEach(() => {
-    appTree = createTreeWithEmptyWorkspace();
+    const routeOptions: RouteGeneratorSchema = {
+      name: 'fake-route',
+      project: 'test-app',
+    };
+
+    return {
+      appTree,
+      routeOptions,
+    };
+  }
+
+  it('should generate the route index.tsx in the right location', async () => {
+    const { appTree, routeOptions } = setup();
+    await routeGenerator(appTree, routeOptions);
+    expect(
+      appTree.exists('test-app/src/routes/fake-route/index.tsx')
+    ).toBeTruthy();
   });
 
-  it('should run successfully', async () => {
-    await generator(appTree, options);
-    const config = readProjectConfiguration(appTree, 'test');
-    expect(config).toBeDefined();
+  it('should generate layout.tsx if selected', async () => {
+    const { appTree, routeOptions } = setup();
+    routeOptions.addLayout = true;
+    await routeGenerator(appTree, routeOptions);
+    expect(
+      appTree.exists('test-app/src/routes/fake-route/layout.tsx')
+    ).toBeTruthy();
   });
 });
