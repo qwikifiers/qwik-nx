@@ -70,7 +70,7 @@
       "options": {
         "noVerify": true,
         "push": true,
-        "postTargets": ["qwik-nx:publish", "qwik-nx:push-to-github"]
+        "postTargets": ["qwik-nx:push-to-github"]
       }
     },
     "publish": {
