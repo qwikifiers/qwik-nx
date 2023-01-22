@@ -5,24 +5,34 @@
   "title": "",
   "type": "object",
   "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "alias": "p",
+      "$default": {
+        "$source": "projectName"
+      },
+      "x-prompt": "What is the name of the project for this route?",
+      "x-priority": "important"
+    },
     "name": {
       "type": "string",
-      "description": "",
+      "description": "The name of the route",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use?"
+      "x-prompt": "What name would you like to use?",
+      "x-priority": "important"
     },
-    "tags": {
-      "type": "string",
-      "description": "Add tags to the project (used for linting)",
-      "alias": "t"
+    "addLayout": {
+      "type": "boolean",
+      "default": false
     },
     "directory": {
       "type": "string",
       "description": "A directory where the project is placed"
     }
   },
-  "required": ["name"]
+  "required": ["name", "project"]
 }

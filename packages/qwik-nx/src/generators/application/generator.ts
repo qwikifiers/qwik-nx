@@ -34,7 +34,10 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
-export default async function (tree: Tree, options: QwikAppGeneratorSchema) {
+export async function appGenerator(
+  tree: Tree,
+  options: QwikAppGeneratorSchema
+) {
   const normalizedOptions = normalizeOptions(tree, options);
   const tasks: GeneratorCallback[] = [];
 
@@ -90,3 +93,5 @@ export default async function (tree: Tree, options: QwikAppGeneratorSchema) {
 
   return runTasksInSerial(...tasks);
 }
+
+export default appGenerator;

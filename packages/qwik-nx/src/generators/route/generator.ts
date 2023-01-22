@@ -1,8 +1,8 @@
 import {
-  addProjectConfiguration,
   formatFiles,
   generateFiles,
-  getWorkspaceLayout,
+  getProjects,
+  logger,
   names,
   offsetFromRoot,
   Tree,
@@ -11,10 +11,21 @@ import * as path from 'path';
 import { RouteGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends RouteGeneratorSchema {
-  projectName: string;
-  projectRoot: string;
-  projectDirectory: string;
-  parsedTags: string[];
+  routeName: string;
+  projectSourceRoot: string;
+  routeDirectory: string;
+}
+
+export default routeGenerator;
+
+export async function routeGenerator(
+  tree: Tree,
+  options: RouteGeneratorSchema
+) {
+  const normalizedOptions = normalizeOptions(tree, options);
+
+  addFiles(tree, normalizedOptions);
+  await formatFiles(tree);
 }
 
 function normalizeOptions(
@@ -22,21 +33,26 @@ function normalizeOptions(
   options: RouteGeneratorSchema
 ): NormalizedSchema {
   const name = names(options.name).fileName;
-  const projectDirectory = options.directory
+  const project = getProjects(tree).get(options.project);
+  const projectSourceRoot = project.sourceRoot;
+
+  if (!project) {
+    logger.error(
+      `Cannot find the ${options.project} project. Please double check the project name.`
+    );
+    throw new Error();
+  }
+
+  const routeDirectory = options.directory
     ? `${names(options.directory).fileName}/${name}`
     : name;
-  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
-  const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
-  const parsedTags = options.tags
-    ? options.tags.split(',').map((s) => s.trim())
-    : [];
+  const routeName = name;
 
   return {
     ...options,
-    projectName,
-    projectRoot,
-    projectDirectory,
-    parsedTags,
+    routeName,
+    projectSourceRoot,
+    routeDirectory,
   };
 }
 
@@ -44,30 +60,25 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
     ...options,
     ...names(options.name),
-    offsetFromRoot: offsetFromRoot(options.projectRoot),
+    routeName: names(options.name).fileName,
+    offsetFromRoot: offsetFromRoot(options.projectSourceRoot),
     template: '',
   };
-  generateFiles(
-    tree,
-    path.join(__dirname, 'files'),
-    options.projectRoot,
-    templateOptions
-  );
-}
 
-export default async function (tree: Tree, options: RouteGeneratorSchema) {
-  const normalizedOptions = normalizeOptions(tree, options);
-  addProjectConfiguration(tree, normalizedOptions.projectName, {
-    root: normalizedOptions.projectRoot,
-    projectType: 'library',
-    sourceRoot: `${normalizedOptions.projectRoot}/src`,
-    targets: {
-      build: {
-        executor: 'qwik-nx:build',
-      },
-    },
-    tags: normalizedOptions.parsedTags,
-  });
-  addFiles(tree, normalizedOptions);
-  await formatFiles(tree);
+  const routesFolder = `${options.projectSourceRoot}/routes`;
+
+  generateFilesByType('route');
+
+  if (options.addLayout) {
+    generateFilesByType('layout');
+  }
+
+  function generateFilesByType(fileType: 'route' | 'layout') {
+    generateFiles(
+      tree,
+      path.join(__dirname, `files/${fileType}`),
+      routesFolder,
+      templateOptions
+    );
+  }
 }

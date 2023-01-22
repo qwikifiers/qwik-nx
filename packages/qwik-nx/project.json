@@ -12,7 +12,12 @@
         "main": "packages/qwik-nx/src/index.ts",
         "tsConfig": "packages/qwik-nx/tsconfig.lib.json",
         "assets": [
-          "packages/qwik-nx/*.md",
+          "README.md",
+          {
+            "input": "./assets",
+            "glob": "qwik-nx.png",
+            "output": "./assets"
+          },
           {
             "input": "./packages/qwik-nx/src",
             "glob": "**/!(*.ts)",
