@@ -18,9 +18,9 @@ runs:
       shell: bash
       run: pnpx nx affected:build --base=last-release --exclude="add-nx-to-qwik"
 
-    # - name: Test
-    #   shell: bash
-    #   run: npx nx affected --target=test --base=last-release
+    - name: Test
+      shell: bash
+      run: npx nx affected --target=test --base=last-release
 
     # - name: E2E Tests
     #   shell: bash
