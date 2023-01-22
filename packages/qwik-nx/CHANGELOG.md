@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.5.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.5.0...qwik-nx-0.5.1) (2023-01-22)
+
+
+### Bug Fixes
+
+* **qwik-nx:** got route generator to work ([#45](https://github.com/qwikifiers/qwik-nx/issues/45)) ([8ab1d5e](https://github.com/qwikifiers/qwik-nx/commit/8ab1d5eb3ab4a0c4b140b6c3e8509d3db0f57b25))
+
+
+
 # [0.5.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.4.2...qwik-nx-0.5.0) (2023-01-20)
 
 
