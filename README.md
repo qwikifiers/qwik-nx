@@ -67,6 +67,15 @@ nx generate qwik-nx:route
 nx generate qwik-nx:setup-tailwind
 ```
 
+## qwik-nx & Nx Compatibility Chart
+
+| qwik-nx version | Nx version |
+| --------------- | ---------- |
+| ~0.6.0          | >=15.6.0   |
+| ~0.5.0          | ~15.5.0    |
+| ~0.4.0          | ~15.4.0    |
+| <=0.4.0         | ^15.0.0    |
+
 ## ROADMAP:
 
 - [ ] Complete generators for Route, Component and more
