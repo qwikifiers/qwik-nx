@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.6.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.5.1...qwik-nx-0.6.0) (2023-01-24)
+
+
+### Features
+
+* use @nrwl/vite:preview-server executor ([#47](https://github.com/qwikifiers/qwik-nx/issues/47)) ([9c7426b](https://github.com/qwikifiers/qwik-nx/commit/9c7426b8de1103b2c7240a8ff2335cb7ead7e4d1))
+
+
+
 ## [0.5.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.5.0...qwik-nx-0.5.1) (2023-01-22)
 
 
