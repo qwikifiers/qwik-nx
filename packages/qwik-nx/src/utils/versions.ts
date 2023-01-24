@@ -19,6 +19,10 @@ export const tailwindcssVersion = '3.1.8';
 // nxkit packages
 export const nxKitVersion = '^2.0.1';
 
+// cloudflare-pages integration
+export const wranglerVersion = 'latest';
+export const nxCloudflareWrangler = '^2.0.0';
+
 // other
 export const eslintVersion = '8.28.0';
 export const tsEslintVersion = '5.43.0';

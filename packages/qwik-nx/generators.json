@@ -49,6 +49,11 @@
       "factory": "./src/generators/e2e-project/generator",
       "schema": "./src/generators/e2e-project/schema.json",
       "description": "Create an E2E app for a Qwik app"
+    },
+    "cloudflare-pages-integration": {
+      "factory": "./src/generators/integrations/cloudflare-pages-integration/generator",
+      "schema": "./src/generators/integrations/cloudflare-pages-integration/schema.json",
+      "description": "Qwik City Cloudflare Pages adaptor allows you to connect Qwik City to Cloudflare Pages"
     }
   }
 }
