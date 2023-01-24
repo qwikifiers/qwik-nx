@@ -78,10 +78,9 @@ nx generate qwik-nx:setup-tailwind
 
 ## ROADMAP:
 
-- [ ] Complete generators for Route, Component and more
-- [ ] Complete `add-nx-to-qwik` and `create-qwik-nx`
+- [ ] Complete `add-nx-to-qwik`
 - [ ] Write missing tests
-- [ ] Move package.json scripts to project.json targets
+- [ ] implement more package.json scripts to project.json targets
 - [ ] more...
 
 ## Contributing
