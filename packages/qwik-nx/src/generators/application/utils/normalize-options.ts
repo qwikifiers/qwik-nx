@@ -37,8 +37,6 @@ export const normalizeOptions = (
 
   const styleExtension = options.style !== 'none' ? options.style : null;
 
-  const e2eProjectName = `${names(options.name).fileName}-e2e`;
-
   return {
     ...options,
     projectName: appProjectName,
@@ -48,6 +46,5 @@ export const normalizeOptions = (
     styleExtension,
     setupVitest: options.unitTestRunner === 'vitest',
     parsedTags,
-    e2eProjectName,
   };
 };

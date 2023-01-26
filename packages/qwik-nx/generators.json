@@ -44,6 +44,11 @@
       "schema": "./src/generators/setup-tailwind/schema.json",
       "description": "Set up Tailwind configuration for a project.",
       "aliases": ["tailwind", "tw", "t"]
+    },
+    "e2e-project": {
+      "factory": "./src/generators/e2e-project/generator",
+      "schema": "./src/generators/e2e-project/schema.json",
+      "description": "Create an E2E app for a Qwik app"
     }
   }
 }
