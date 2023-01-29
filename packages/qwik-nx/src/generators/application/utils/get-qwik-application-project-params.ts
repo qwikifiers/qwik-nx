@@ -56,6 +56,7 @@ function getPreviewTarget(
     executor: '@nrwl/vite:preview-server',
     options: {
       buildTarget: `${params.projectName}:build-ssr`,
+      ssr: null,
     },
     dependsOn: ['build'],
   };
