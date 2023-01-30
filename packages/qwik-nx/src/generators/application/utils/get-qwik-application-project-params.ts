@@ -53,11 +53,12 @@ function getPreviewTarget(
   params: UpdateQwikAppConfigurationParams
 ): TargetConfiguration {
   return {
-    executor: '@nrwl/vite:preview-server',
+    executor: 'nx:run-commands',
     options: {
-      buildTarget: `${params.projectName}:build-ssr`,
+      command: 'vite preview',
+      cwd: `${params.projectRoot}`,
     },
-    dependsOn: ['build'],
+    dependsOn: ['build-ssr'],
   };
 }
 function getTestTarget(
