@@ -83,6 +83,10 @@ nx generate qwik-nx:setup-tailwind
 - [ ] implement more package.json scripts to project.json targets
 - [ ] more...
 
+## Special Considerations for Qwik Pre-Releases and Qwik Core Contributors
+
+Due to an issue in `nrwl/nx`, contributors to Qwik core must take extra steps until [nrwl/nx devkit PR](https://github.com/nrwl/nx/pull/14682) is merged. If you are using the `qwik` or `qwik-city` main branch via the builds, or local build, you will need to downgrade to a the current release of Qwik (or compatible verison), before executing qwik-nx generator commands. After executing changes, reinstall the main or local build.
+
 ## Contributing
 
 Want to contribute? Yayy! 🎉
