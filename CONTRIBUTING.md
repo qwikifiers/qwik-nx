@@ -141,11 +141,17 @@ After your pull request is merged, you can safely delete your branch and pull th
 ## ▶ 9. Publishing to a local registry
 
 To test if your changes will actually work once the changes are published,
-it can be useful to publish to a local registry.
+it can be useful to publish locally to *Verdaccio*, a lightweight Node.js private proxy registry.
 
+**In Terminal 1, Install and launch Verdaccio**
 - Run `npm i -g verdaccio` in Terminal 1 (keep it running)
-- Run `verdaccio
-- Run `npm adduser --registry http://localhost:4873` in Terminal 2 (real credentials are not required, you just need to be logged in. You can use your own login details.
+- Run `verdaccio`
+
+**In Terminal 2, Add a user and execute Nx commands to populate the local Verdaccio repository**
+- Run `npm adduser --registry http://localhost:4873 --auth-type=legacy`
+  
+  *(real credentials are not required, you just need to be logged in. You can use your own login details.)*
+
 - Run `nx publish [package] --registry=http://localhost:4873`
 - Run `nx publish qwik-nx --registry=http://localhost:4873`
 
