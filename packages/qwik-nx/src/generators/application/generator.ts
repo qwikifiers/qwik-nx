@@ -15,10 +15,10 @@ import { addStyledModuleDependencies } from '../../utils/add-styled-dependencies
 import { configureEslint } from '../../utils/configure-eslint';
 import setupTailwindGenerator from '../setup-tailwind/setup-tailwind';
 import { SetupTailwindOptions } from './../setup-tailwind/schema.d';
-import { addE2eProject } from './lib/add-e2e-project';
 import { NormalizedSchema, QwikAppGeneratorSchema } from './schema';
 import { getQwikApplicationProjectTargets } from './utils/get-qwik-application-project-params';
 import { normalizeOptions } from './utils/normalize-options';
+import { addE2eProject } from '../e2e-project/generator';
 
 function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
@@ -77,8 +77,15 @@ export async function appGenerator(
 
   tasks.push(addCommonQwikDependencies(tree));
 
-  const e2eProjectTask = await addE2eProject(tree, normalizedOptions);
-  tasks.push(e2eProjectTask);
+  if (normalizedOptions.e2eTestRunner !== 'none') {
+    const e2eProjectTask = await addE2eProject(tree, {
+      project: normalizedOptions.projectName,
+      directory: normalizedOptions.directory,
+      e2eTestRunner: normalizedOptions.e2eTestRunner,
+      skipFormat: true,
+    });
+    tasks.push(e2eProjectTask);
+  }
 
   if (!options.skipFormat) {
     await formatFiles(tree);

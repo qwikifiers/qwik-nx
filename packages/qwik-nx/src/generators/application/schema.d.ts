@@ -22,5 +22,4 @@ export interface NormalizedSchema extends QwikAppGeneratorSchema {
   setupVitest: boolean;
   parsedTags: string[];
   styleExtension: Exclude<QwikAppGeneratorSchema['style'], 'none'> | null;
-  e2eProjectName: string;
 }
