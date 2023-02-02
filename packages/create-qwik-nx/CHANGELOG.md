@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.2](https://github.com/qwikifiers/qwik-nx/compare/create-qwik-nx-0.1.1...create-qwik-nx-0.1.2) (2023-02-02)
+
+
+### Bug Fixes
+
+* **create-qwik-nx:** add shebang line ([#49](https://github.com/qwikifiers/qwik-nx/issues/49)) ([afeb4f9](https://github.com/qwikifiers/qwik-nx/commit/afeb4f941a5e0740770f6e481042eef798989978))
+
+
+
 ## [0.1.1](https://github.com/qwikifiers/qwik-nx/compare/create-qwik-nx-0.1.0...create-qwik-nx-0.1.1) (2023-01-21)
 
 
