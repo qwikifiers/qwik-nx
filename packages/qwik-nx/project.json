@@ -70,16 +70,10 @@
       "options": {
         "noVerify": true,
         "push": true,
-        "postTargets": ["qwik-nx:push-to-github"]
+        "postTargets": ["qwik-nx:publish", "qwik-nx:push-to-github"]
       }
     },
     "publish": {
-      "executor": "ngx-deploy-npm:deploy",
-      "options": {
-        "access": "public"
-      }
-    },
-    "publish-with-lib": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
         "access": "public"
