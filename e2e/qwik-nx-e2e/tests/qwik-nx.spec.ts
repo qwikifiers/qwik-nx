@@ -1,10 +1,15 @@
 import {
   checkFilesExist,
   ensureNxProject,
-  readJson,
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
+
+import {
+  runCommandUntil,
+  promisifiedTreeKill,
+  killPort,
+} from '@qwikifiers/e2e/utils';
 
 describe('qwik-nx e2e', () => {
   // Setting up individual workspaces per
@@ -23,34 +28,41 @@ describe('qwik-nx e2e', () => {
     runNxCommandAsync('reset');
   });
 
-  it('should create qwik-nx', async () => {
-    const project = uniq('qwik-nx');
-    await runNxCommandAsync(`generate qwik-nx:app ${project}`);
-    const result = await runNxCommandAsync(`build ${project}`);
-    expect(result.stdout).toContain('Executor ran');
-  }, 120000);
-
-  describe('--directory', () => {
-    it('should create src in the specified directory', async () => {
-      const project = uniq('qwik-nx');
+  describe('Basic behavior', () => {
+    let project: string;
+    beforeAll(async () => {
+      project = uniq('qwik-nx');
       await runNxCommandAsync(
-        `generate qwik-nx:app ${project} --directory subdir`
+        `generate qwik-nx:app ${project} --no-interactive`
+      );
+    }, 200000);
+    it('should create qwik-nx', async () => {
+      const result = await runNxCommandAsync(`build-ssr ${project}`);
+      expect(result.stdout).toContain(
+        `Successfully ran target build-ssr for project ${project}`
       );
       expect(() =>
-        checkFilesExist(`libs/subdir/${project}/src/index.ts`)
+        checkFilesExist(`dist/apps/${project}/client/q-manifest.json`)
       ).not.toThrow();
-    }, 120000);
-  });
+      expect(() =>
+        checkFilesExist(`dist/apps/${project}/server/entry.preview.mjs`)
+      ).not.toThrow();
+    }, 200000);
 
-  describe('--tags', () => {
-    it('should add tags to the project', async () => {
-      const projectName = uniq('qwik-nx');
-      ensureNxProject('qwik-nx', 'dist/packages/qwik-nx');
-      await runNxCommandAsync(
-        `generate qwik-nx:app ${projectName} --tags e2etag,e2ePackage`
+    it('should serve application in dev mode with custom port', async () => {
+      const port = 4212;
+      const p = await runCommandUntil(
+        `run ${project}:serve --port=${port}`,
+        (output) => {
+          return output.includes('Local:') && output.includes(`:${port}`);
+        }
       );
-      const project = readJson(`libs/${projectName}/project.json`);
-      expect(project.tags).toEqual(['e2etag', 'e2ePackage']);
-    }, 120000);
+      try {
+        await promisifiedTreeKill(p.pid, 'SIGKILL');
+        await killPort(port);
+      } catch {
+        // ignore
+      }
+    }, 200000);
   });
 });

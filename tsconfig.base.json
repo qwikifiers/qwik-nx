@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "qwik-nx": ["packages/qwik-nx/src/index.ts"]
+      "qwik-nx": ["packages/qwik-nx/src/index.ts"],
+      "@qwikifiers/e2e/utils": ["e2e/utils"]
     }
   },
   "exclude": ["node_modules", "tmp"]
