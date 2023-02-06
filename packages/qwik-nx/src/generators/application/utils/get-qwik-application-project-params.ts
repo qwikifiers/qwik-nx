@@ -15,6 +15,7 @@ export function getQwikApplicationProjectTargets(
     preview: getPreviewTarget(params),
     test: getTestTarget(params),
     serve: getServeTarget(params),
+    serveDebug: getServeDebugTarget(params),
   };
 }
 
@@ -66,7 +67,7 @@ function getTestTarget(
 ): TargetConfiguration {
   return {
     executor: '@nrwl/vite:test',
-    outputs: [`${params.offsetFromRoot}/coverage/${params.projectRoot}`],
+    outputs: [`${params.offsetFromRoot}coverage/${params.projectRoot}`],
     options: {
       passWithNoTests: true,
       reportsDirectory: `${params.offsetFromRoot}coverage/${params.projectRoot}`,
@@ -93,6 +94,18 @@ function getServeTarget(
         buildTarget: `${params.projectName}:build:production`,
         hmr: false,
       },
+    },
+  };
+}
+
+function getServeDebugTarget(
+  params: UpdateQwikAppConfigurationParams
+): TargetConfiguration {
+  return {
+    executor: 'nx:run-commands',
+    options: {
+      command: `node --inspect-brk ${params.offsetFromRoot}/node_modules/vite/bin/vite.js --mode ssr --force`,
+      cwd: params.projectRoot,
     },
   };
 }
