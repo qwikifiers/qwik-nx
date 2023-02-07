@@ -20,7 +20,7 @@ interface NormalizedOptions {
   projectConfig: ProjectConfiguration;
 }
 
-export default async function (
+export async function cloudflarePagesIntegrationGenerator(
   tree: Tree,
   options: CloudflarePagesIntegrationGeneratorSchema
 ) {
@@ -129,3 +129,5 @@ function addCloudflarePagesDependencies(tree: Tree): GeneratorCallback {
     }
   );
 }
+
+export default cloudflarePagesIntegrationGenerator;
