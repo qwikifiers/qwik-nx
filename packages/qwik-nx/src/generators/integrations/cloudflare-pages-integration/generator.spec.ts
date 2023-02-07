@@ -6,7 +6,7 @@ import {
   updateProjectConfiguration,
 } from '@nrwl/devkit';
 
-import generator from './generator';
+import { cloudflarePagesIntegrationGenerator } from './generator';
 import applicationGenerator from './../../application/generator';
 import { CloudflarePagesIntegrationGeneratorSchema } from './schema';
 import { Linter } from '@nrwl/linter';
@@ -33,7 +33,7 @@ describe('cloudflare-pages-integration generator', () => {
   });
 
   it('should add required targets', async () => {
-    await generator(appTree, options);
+    await cloudflarePagesIntegrationGenerator(appTree, options);
     const config = readProjectConfiguration(appTree, projectName);
     expect(
       config.targets['build-ssr'].configurations['cloudflare-pages']
@@ -63,7 +63,7 @@ describe('cloudflare-pages-integration generator', () => {
   });
 
   it('should add required dependencies', async () => {
-    await generator(appTree, options);
+    await cloudflarePagesIntegrationGenerator(appTree, options);
     const { devDependencies } = readJson(appTree, 'package.json');
     expect(devDependencies['wrangler']).toBeDefined();
     expect(devDependencies['@k11r/nx-cloudflare-wrangler']).toBeDefined();
@@ -75,7 +75,9 @@ describe('cloudflare-pages-integration generator', () => {
       config.targets['deploy'] = { executor: 'nx:noop' };
       updateProjectConfiguration(appTree, projectName, config);
 
-      expect(generator(appTree, options)).rejects.toThrow(
+      expect(
+        cloudflarePagesIntegrationGenerator(appTree, options)
+      ).rejects.toThrow(
         `"deploy" target has already been configured for ${options.project}`
       );
     });
@@ -84,7 +86,9 @@ describe('cloudflare-pages-integration generator', () => {
       config.projectType = 'library';
       updateProjectConfiguration(appTree, projectName, config);
 
-      expect(generator(appTree, options)).rejects.toThrow(
+      expect(
+        cloudflarePagesIntegrationGenerator(appTree, options)
+      ).rejects.toThrow(
         'Cannot setup cloudflare integration for the given project.'
       );
     });
@@ -94,7 +98,9 @@ describe('cloudflare-pages-integration generator', () => {
       delete config.targets['build-ssr'];
       updateProjectConfiguration(appTree, projectName, config);
 
-      expect(generator(appTree, options)).rejects.toThrow(
+      expect(
+        cloudflarePagesIntegrationGenerator(appTree, options)
+      ).rejects.toThrow(
         'Cannot setup cloudflare integration for the given project.'
       );
     });

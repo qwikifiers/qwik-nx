@@ -11,7 +11,7 @@ import {
   killPort,
 } from '@qwikifiers/e2e/utils';
 
-describe('qwik-nx e2e', () => {
+describe('appGenerator e2e', () => {
   // Setting up individual workspaces per
   // test can cause e2e runs to take a long time.
   // For this reason, we recommend each suite only
@@ -22,10 +22,10 @@ describe('qwik-nx e2e', () => {
     ensureNxProject('qwik-nx', 'dist/packages/qwik-nx');
   });
 
-  afterAll(() => {
+  afterAll(async () => {
     // `nx reset` kills the daemon, and performs
     // some work which can help clean up e2e leftovers
-    runNxCommandAsync('reset');
+    await runNxCommandAsync('reset');
   });
 
   describe('Basic behavior', () => {
@@ -36,6 +36,7 @@ describe('qwik-nx e2e', () => {
         `generate qwik-nx:app ${project} --no-interactive`
       );
     }, 200000);
+
     it('should create qwik-nx', async () => {
       const result = await runNxCommandAsync(`build-ssr ${project}`);
       expect(result.stdout).toContain(
@@ -53,6 +54,22 @@ describe('qwik-nx e2e', () => {
       const port = 4212;
       const p = await runCommandUntil(
         `run ${project}:serve --port=${port}`,
+        (output) => {
+          return output.includes('Local:') && output.includes(`:${port}`);
+        }
+      );
+      try {
+        await promisifiedTreeKill(p.pid, 'SIGKILL');
+        await killPort(port);
+      } catch {
+        // ignore
+      }
+    }, 200000);
+
+    it('should serve application in preview mode with custom port', async () => {
+      const port = 4232;
+      const p = await runCommandUntil(
+        `run ${project}:preview --port=${port}`,
         (output) => {
           return output.includes('Local:') && output.includes(`:${port}`);
         }

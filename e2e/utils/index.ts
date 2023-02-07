@@ -34,9 +34,10 @@ export const promisifiedTreeKill: (
 ) => Promise<void> = promisify(treeKill);
 
 export function getNxVersion(): string {
-  const version = readJsonFile(
+  const { dependencies } = readJsonFile(
     join(workspaceRoot, `./dist/packages/qwik-nx/package.json`)
-  ).peerDependencies.nx;
+  );
+  const version = dependencies['@nrwl/vite'];
   if (!version) {
     throw new Error('Could not retrieve Nx version');
   }
@@ -215,44 +216,6 @@ function stripConsoleColors(log: string): string {
 export function expectTestsPass(v: { stdout: string; stderr: string }) {
   expect(v.stderr).toContain('Ran all test suites');
   expect(v.stderr).not.toContain('fail');
-}
-
-export function createFile(f: string, content: string = ''): void {
-  const path = tmpProjPath(f);
-  createFileSync(path);
-  if (content) {
-    updateFile(f, content);
-  }
-}
-
-export function updateFile(
-  f: string,
-  content: string | ((content: string) => string)
-): void {
-  ensureDirSync(path.dirname(tmpProjPath(f)));
-  if (typeof content === 'string') {
-    writeFileSync(tmpProjPath(f), content);
-  } else {
-    writeFileSync(
-      tmpProjPath(f),
-      content(readFileSync(tmpProjPath(f)).toString())
-    );
-  }
-}
-
-export function renameFile(f: string, newPath: string): void {
-  ensureDirSync(path.dirname(tmpProjPath(newPath)));
-  renameSync(tmpProjPath(f), tmpProjPath(newPath));
-}
-
-export function updateJson<T extends object = any, U extends object = T>(
-  f: string,
-  updater: (value: T) => U
-) {
-  updateFile(f, (s) => {
-    const json = JSON.parse(s);
-    return JSON.stringify(updater(json), null, 2);
-  });
 }
 
 export function checkFilesDoNotExist(...expectedFiles: string[]) {

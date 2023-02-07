@@ -95,7 +95,7 @@ function createComponentFiles(tree: Tree, options: NormalizedSchema) {
   }
 }
 
-export default async function componentGenerator(
+export async function componentGenerator(
   tree: Tree,
   options: ComponentGeneratorSchema
 ) {
@@ -105,3 +105,5 @@ export default async function componentGenerator(
 
   return addStyledModuleDependencies(tree, normalizedOptions.style);
 }
+
+export default componentGenerator;

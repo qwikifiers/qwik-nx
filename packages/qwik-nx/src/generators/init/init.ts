@@ -37,7 +37,7 @@ function updateDependencies(host: Tree) {
   );
 }
 
-export default async function qwikInitGenerator(
+export async function qwikInitGenerator(
   tree: Tree,
   options: InitGeneratorSchema
 ) {
@@ -48,3 +48,5 @@ export default async function qwikInitGenerator(
   }
   return runTasksInSerial(installTask);
 }
+
+export default qwikInitGenerator;

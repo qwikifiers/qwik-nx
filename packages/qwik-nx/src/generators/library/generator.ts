@@ -11,7 +11,7 @@ import {
   updateProjectConfiguration,
 } from '@nrwl/devkit';
 import { Linter } from '@nrwl/linter';
-import { libraryGenerator } from '@nrwl/workspace/generators';
+import { libraryGenerator as nxLibraryGenerator } from '@nrwl/workspace/generators';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 import { getRelativePathToRootTsConfig } from '@nrwl/workspace/src/utilities/typescript';
 import { LibraryGeneratorSchema } from './schema';
@@ -55,7 +55,10 @@ function normalizeOptions(
   };
 }
 
-export default async function (tree: Tree, schema: LibraryGeneratorSchema) {
+export async function libraryGenerator(
+  tree: Tree,
+  schema: LibraryGeneratorSchema
+) {
   const options = normalizeOptions(tree, schema);
   const tasks: GeneratorCallback[] = [];
 
@@ -79,7 +82,7 @@ async function addLibrary(
   tree: Tree,
   options: NormalizedSchema
 ): Promise<GeneratorCallback> {
-  libraryGenerator(tree, {
+  nxLibraryGenerator(tree, {
     name: options.name,
     directory: options.directory,
     tags: options.tags,
@@ -138,3 +141,5 @@ async function configureVite(tree: Tree, options: NormalizedSchema) {
 
   return callback;
 }
+
+export default libraryGenerator;

@@ -8,7 +8,8 @@
       "executor": "@nrwl/nx-plugin:e2e",
       "options": {
         "target": "qwik-nx:build",
-        "jestConfig": "e2e/qwik-nx-e2e/jest.config.ts"
+        "jestConfig": "e2e/qwik-nx-e2e/jest.config.ts",
+        "maxWorkers": 1
       }
     }
   },
