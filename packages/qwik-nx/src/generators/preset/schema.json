@@ -8,10 +8,6 @@
     "qwikAppName": {
       "type": "string",
       "description": "",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
       "x-prompt": "App Name"
     },
     "tags": {
