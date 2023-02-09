@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "cli": "nx",
+  "title": "Micro Frontends Dev Server",
+  "description": "Serve a host application along with its known remotes.",
+  "type": "object",
+  "properties": {
+    "skipRemotes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of remote applications to not automatically serve. This can be useful for multi-repository micro frontend setups where the host application uses a remote application from an external repository."
+    },
+    "remotesConfigPath": {
+      "type": "string",
+      "description": "Path where the configuration JSON file can be found.",
+      "x-completion-type": "directory"
+    }
+  },
+  "required": []
+}
