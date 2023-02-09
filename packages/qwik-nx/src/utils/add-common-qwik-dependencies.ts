@@ -7,6 +7,7 @@ import {
   nodeFetchVersion,
   qwikCityVersion,
   qwikVersion,
+  undiciVersion,
   viteTsconfigPathsVersion,
   viteVersion,
 } from './versions';
@@ -21,6 +22,7 @@ export function addCommonQwikDependencies(host: Tree): GeneratorCallback {
       vite: viteVersion,
       'vite-tsconfig-paths': viteTsconfigPathsVersion,
       'node-fetch': nodeFetchVersion,
+      undici: undiciVersion,
       // TODO: dependencies below should be setup correctly by Nx's generator, so not needed to provide them here?
       // "@types/eslint": typesEslint,
       // '@types/node': 'latest',

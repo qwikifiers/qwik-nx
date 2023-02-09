@@ -35,10 +35,9 @@ describe('appGenerator e2e', () => {
     it("qwik-nx's package.json should contain only expected dependencies", async () => {
       const packageJson = readJson('node_modules/qwik-nx/package.json');
 
-      expect(packageJson.dependencies).toEqual({
-        '@nrwl/vite': '15.6.1',
-      });
+      expect(packageJson.dependencies).toBeUndefined();
       expect(packageJson.peerDependencies).toEqual({
+        '@nrwl/vite': '^15.6.0',
         '@builder.io/qwik': '^0.16.0',
         '@playwright/test': '^1.30.0',
         undici: '^5.18.0',
