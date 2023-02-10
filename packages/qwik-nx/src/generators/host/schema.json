@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
-  "$id": "QwikNx",
+  "$id": "Host",
   "title": "",
   "type": "object",
   "properties": {
@@ -85,15 +85,16 @@
       "description": "Test runner to use for end to end (E2E) tests.",
       "default": "playwright"
     },
-    "devServerPort": {
+    "port": {
       "type": "number",
-      "description": "The port for the dev server of the app.",
+      "description": "The port for the dev and preview servers of the app (they're the same by default in MF setup).",
       "default": 4200
     },
-    "previewServerPort": {
-      "type": "number",
-      "description": "The port for the preview server of the app.",
-      "default": 4300
+    "remotes": {
+      "type": "array",
+      "description": "A list of remote application names that the host application should consume.",
+      "default": [],
+      "x-priority": "important"
     }
   },
   "required": ["name"]

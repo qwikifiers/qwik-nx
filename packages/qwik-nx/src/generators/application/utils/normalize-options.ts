@@ -18,10 +18,9 @@ function normalizeProjectName(options: QwikAppGeneratorSchema) {
   return normalizeDirectory(options).replace(new RegExp('/', 'g'), '-');
 }
 
-export const normalizeOptions = (
-  host: Tree,
-  options: QwikAppGeneratorSchema
-): NormalizedSchema => {
+export function normalizeOptions<
+  T extends QwikAppGeneratorSchema = QwikAppGeneratorSchema
+>(host: Tree, options: T): NormalizedSchema {
   const appDirectory = normalizeDirectory(options);
   const appProjectName = normalizeProjectName(options);
 
@@ -47,4 +46,4 @@ export const normalizeOptions = (
     setupVitest: options.unitTestRunner === 'vitest',
     parsedTags,
   };
-};
+}

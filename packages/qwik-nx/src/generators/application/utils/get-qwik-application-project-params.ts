@@ -4,6 +4,8 @@ export interface UpdateQwikAppConfigurationParams {
   projectName: string;
   projectRoot: string;
   offsetFromRoot: string;
+  devServerPort: number;
+  previewServerPort: number;
 }
 
 export function getQwikApplicationProjectTargets(
@@ -74,7 +76,7 @@ function getPreviewTarget(
   return {
     executor: 'nx:run-commands',
     options: {
-      command: 'vite preview',
+      command: `vite preview --port=${params.previewServerPort}`,
       cwd: `${params.projectRoot}`,
     },
     dependsOn: ['build'],
@@ -101,6 +103,7 @@ function getServeTarget(
     options: {
       buildTarget: `${params.projectName}:build.client`,
       mode: 'ssr',
+      port: params.devServerPort,
     },
   };
 }

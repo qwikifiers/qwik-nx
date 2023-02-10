@@ -18,7 +18,7 @@ importers:
       '@nrwl/nx-plugin': 15.6.2
       '@nrwl/vite': 15.6.2
       '@nrwl/workspace': 15.6.2
-      '@nxkit/playwright': 2.0.1
+      '@nxkit/playwright': ^2.1.1
       '@swc-node/register': ^1.4.2
       '@swc/cli': ~0.1.55
       '@swc/core': ^1.2.173
@@ -44,6 +44,7 @@ importers:
       jest-environment-jsdom: 28.1.1
       jsonc-eslint-parser: ^2.1.0
       kill-port: 2.0.1
+      lodash-es: 4.17.21
       ngx-deploy-npm: ^4.3.11
       nx: 15.6.2
       prettier: ^2.8.0
@@ -57,6 +58,7 @@ importers:
       vite: 4.1.1
     dependencies:
       '@swc/helpers': 0.4.14
+      lodash-es: 4.17.21
       tslib: 2.4.1
     devDependencies:
       '@builder.io/qwik': 0.17.4_undici@5.18.0
@@ -74,7 +76,7 @@ importers:
       '@nrwl/nx-plugin': 15.6.2_cfl57idbelzg6agxm4el4p2zpi
       '@nrwl/vite': 15.6.2_n7eykaug4yhc7o3zjllrds4u5y
       '@nrwl/workspace': 15.6.2_5yonbsjlpewldw7hu6fyirxww4
-      '@nxkit/playwright': 2.0.1_@playwright+test@1.30.0
+      '@nxkit/playwright': 2.1.1_@playwright+test@1.30.0
       '@swc-node/register': 1.5.4_a6ehxei6k73t2xc6ggukxhgzve
       '@swc/cli': 0.1.57_@swc+core@1.3.19
       '@swc/core': 1.3.19
@@ -7926,6 +7928,13 @@ packages:
     dependencies:
       p-locate: 5.0.0
     dev: true
+
+  /lodash-es/4.17.21:
+    resolution:
+      {
+        integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==,
+      }
+    dev: false
 
   /lodash.camelcase/4.3.0:
     resolution:

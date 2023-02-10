@@ -1,0 +1,39 @@
+import {
+  SSRStream,
+  SSRStreamBlock,
+  component$,
+} from '@builder.io/qwik';
+import { useLocation } from '@builder.io/qwik-city';
+import { loadRemoteContent } from 'qwik-nx/micro-frontends';
+
+import remotesConfigRaw from '../../config/remotes.json?raw'
+
+
+export interface RemoteMfeProps {
+  remote: string;
+}
+
+export const RemoteMfe = component$(({ remote }: RemoteMfeProps) => {
+  const loc = useLocation();
+  const remotesConfig = JSON.parse(remotesConfigRaw);
+  return (
+    <SSRStreamBlock>
+      <SSRStream>
+        {async (stream) => {
+          const queryParamsObj = Object.fromEntries(loc.query.entries());
+          const searchParams = new URLSearchParams({
+            ...queryParamsObj,
+            ...loc.params,
+          }).toString();
+
+          const url = `${remotesConfig[remote]}?${searchParams}`;
+          const init: RequestInit = {
+            headers: { accept: 'text/html' },
+          };
+
+          await loadRemoteContent(stream, url, init);
+        }}
+      </SSRStream>
+    </SSRStreamBlock>
+  );
+});

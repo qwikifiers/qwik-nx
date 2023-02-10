@@ -14,3 +14,7 @@ export { routeGenerator } from './route/generator';
 export type { RouteGeneratorSchema } from './route/schema';
 export { setupTailwindGenerator } from './setup-tailwind/setup-tailwind';
 export type { SetupTailwindOptions } from './setup-tailwind/schema';
+export { remoteGenerator } from './remote/generator';
+export { type RemoteGeneratorSchema } from './remote/schema';
+export { hostGenerator } from './host/generator';
+export { type HostGeneratorSchema } from './host/schema';
