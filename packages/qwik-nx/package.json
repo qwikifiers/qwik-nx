@@ -21,10 +21,8 @@
   },
   "generators": "./generators.json",
   "executors": "./executors.json",
-  "dependencies": {
-    "@nrwl/vite": "^15.6.0"
-  },
   "peerDependencies": {
+    "@nrwl/vite": "^15.6.0",
     "@builder.io/qwik": "^0.16.0",
     "vite": "^4.0.0",
     "vitest": "^0.25.0",
