@@ -12,7 +12,7 @@
   },
   "private": true,
   "devDependencies": {
-    "@builder.io/qwik": "0.17.4",
+    "@builder.io/qwik": "0.17.5",
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-angular": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
