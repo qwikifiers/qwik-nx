@@ -2,18 +2,7 @@
 
 import { runNxCommandAsync, uniq, tmpProjPath } from '@nrwl/nx-plugin/testing';
 import { ChildProcess, exec, execSync } from 'child_process';
-import {
-  createFileSync,
-  ensureDirSync,
-  readdirSync,
-  readFileSync,
-  removeSync,
-  renameSync,
-  statSync,
-  writeFileSync,
-} from 'fs-extra';
-import * as path from 'path';
-import { join } from 'path';
+import { readdirSync, readFileSync, removeSync, statSync } from 'fs-extra';
 import { check as portCheck } from 'tcp-port-used';
 import { promisify } from 'util';
 import * as chalk from 'chalk';
@@ -22,8 +11,6 @@ import {
   detectPackageManager,
   getPackageManagerCommand,
 } from 'nx/src/utils/package-manager';
-import { readJsonFile } from 'nx/src/utils/fileutils';
-import { workspaceRoot } from 'nx/src/utils/workspace-root';
 
 const kill = require('kill-port');
 export const isWindows = require('is-windows');
@@ -33,21 +20,10 @@ export const promisifiedTreeKill: (
   signal: string
 ) => Promise<void> = promisify(treeKill);
 
-export function getNxVersion(): string {
-  const { dependencies } = readJsonFile(
-    join(workspaceRoot, `./dist/packages/qwik-nx/package.json`)
-  );
-  const version = dependencies['@nrwl/vite'];
-  if (!version) {
-    throw new Error('Could not retrieve Nx version');
-  }
-  return version;
-}
-
 function getAdditionalPackageManagerCommands() {
   const pm = detectPackageManager();
   const [npmMajorVersion] = execSync(`npm -v`).toString().split('.');
-  const publishedVersion = getNxVersion();
+  const publishedVersion = execSync('npm view nx version');
   if (pm === 'npm') {
     return {
       createWorkspace: `npx ${
