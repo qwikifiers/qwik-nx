@@ -25,9 +25,10 @@ export async function cloudflarePagesIntegrationGenerator(
   options: CloudflarePagesIntegrationGeneratorSchema
 ) {
   const config = readProjectConfiguration(tree, options.project);
-  config.targets ??= {};
-
-  if (config.projectType !== 'application' || !config.targets['build-ssr']) {
+  if (
+    config.projectType !== 'application' ||
+    config.targets?.['build']?.executor !== 'qwik-nx:build'
+  ) {
     throw new Error(
       'Cannot setup cloudflare integration for the given project.'
     );
@@ -39,7 +40,8 @@ export async function cloudflarePagesIntegrationGenerator(
   }
 
   const normalizedOptions = normalizeOptions(config);
-  (config.targets['build-ssr'].configurations ??= {})['cloudflare-pages'] =
+  (config.targets['build']?.configurations ?? {})['cloudflare-pages'] = {};
+  (config.targets['build.ssr'].configurations ??= {})['cloudflare-pages'] =
     getBuildSSRTargetCloudflareConfiguration(normalizedOptions);
   config.targets['deploy'] = getDeployTarget(normalizedOptions);
   config.targets['preview-cloudflare-pages'] =
@@ -93,7 +95,7 @@ function getIntermediateDependsOnTarget(
   return {
     executor: 'nx:run-commands',
     options: {
-      command: `npx nx run ${options.projectConfig.name}:build-ssr:cloudflare-pages`,
+      command: `npx nx run ${options.projectConfig.name}:build:cloudflare-pages`,
     },
   };
 }
