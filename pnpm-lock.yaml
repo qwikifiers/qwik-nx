@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 importers:
   .:
     specifiers:
-      '@builder.io/qwik': 0.17.4
+      '@builder.io/qwik': 0.17.5
       '@commitlint/cli': ^17.3.0
       '@commitlint/config-angular': ^17.3.0
       '@commitlint/config-conventional': ^17.3.0
@@ -55,7 +55,7 @@ importers:
       '@swc/helpers': 0.4.14
       tslib: 2.4.1
     devDependencies:
-      '@builder.io/qwik': 0.17.4_undici@5.18.0
+      '@builder.io/qwik': 0.17.5_undici@5.18.0
       '@commitlint/cli': 17.3.0_@swc+core@1.3.19
       '@commitlint/config-angular': 17.3.0
       '@commitlint/config-conventional': 17.3.0
@@ -1689,10 +1689,10 @@ packages:
       }
     dev: true
 
-  /@builder.io/qwik/0.17.4_undici@5.18.0:
+  /@builder.io/qwik/0.17.5_undici@5.18.0:
     resolution:
       {
-        integrity: sha512-f/qYBczshaDabtjlcpyupIpiyxi8PS/YCMSs+pIBoKlqbpVRsTZBdE5MP2hJ1HO5YAPu2+0T8qmB5IFucmXX7g==,
+        integrity: sha512-eckU4GHo98hVgGfFIh72LZo2e3aj4eIvM2zDvJ+7gW1sQheiUGX70zUrKYTC4/+k6wsYp82ItwoyhJhL3SqpbQ==,
       }
     engines: { node: '>=16.8.0' }
     hasBin: true
