@@ -6,6 +6,7 @@ import {
   joinPathFragments,
   names,
   offsetFromRoot,
+  output,
   ProjectConfiguration,
   readProjectConfiguration,
   TargetConfiguration,
@@ -29,6 +30,10 @@ export async function cloudflarePagesIntegrationGenerator(
     config.projectType !== 'application' ||
     config.targets?.['build']?.executor !== 'qwik-nx:build'
   ) {
+    console.error(
+      'Project contains invalid configuration. ' +
+        'If you encounter this error within a Qwik project, make sure you have run necessary Nx migrations for qwik-nx plugin.'
+    );
     throw new Error(
       'Cannot setup cloudflare integration for the given project.'
     );
@@ -46,7 +51,7 @@ export async function cloudflarePagesIntegrationGenerator(
   config.targets['deploy'] = getDeployTarget(normalizedOptions);
   config.targets['preview-cloudflare-pages'] =
     getCloudflarePreviewTarget(normalizedOptions);
-  config.targets['build-ssr-cloudflare-pages'] =
+  config.targets['build-cloudflare-pages'] =
     getIntermediateDependsOnTarget(normalizedOptions);
 
   updateProjectConfiguration(tree, options.project, config);
@@ -72,7 +77,7 @@ function getDeployTarget(options: NormalizedOptions): TargetConfiguration {
     options: {
       dist: `dist/${options.projectConfig.root}/client`,
     },
-    dependsOn: ['build-ssr-cloudflare-pages'],
+    dependsOn: ['build-cloudflare-pages'],
   };
 }
 
@@ -84,7 +89,7 @@ function getCloudflarePreviewTarget(
     options: {
       dist: `dist/${options.projectConfig.root}/client`,
     },
-    dependsOn: ['build-ssr-cloudflare-pages'],
+    dependsOn: ['build-cloudflare-pages'],
   };
 }
 

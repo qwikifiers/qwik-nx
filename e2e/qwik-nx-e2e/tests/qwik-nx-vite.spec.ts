@@ -106,9 +106,9 @@ describe('qwikNxVite plugin e2e', () => {
     }, 200000);
 
     it('should be able to successfully build the application', async () => {
-      const result = await runNxCommandAsync(`build-ssr ${project}`);
+      const result = await runNxCommandAsync(`build ${project}`);
       expect(result.stdout).toContain(
-        `Successfully ran target build-ssr for project ${project}`
+        `Successfully ran target build for project ${project}`
       );
       expect(() =>
         checkFilesExist(`dist/apps/${project}/client/q-manifest.json`)

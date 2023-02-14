@@ -37,6 +37,11 @@
             "input": "./packages/qwik-nx",
             "glob": "executors.json",
             "output": "."
+          },
+          {
+            "input": "./packages/qwik-nx",
+            "glob": "migrations.json",
+            "output": "."
           }
         ]
       }
@@ -49,7 +54,8 @@
           "packages/qwik-nx/**/*.ts",
           "packages/qwik-nx/generators.json",
           "packages/qwik-nx/executors.json",
-          "packages/qwik-nx/package.json"
+          "packages/qwik-nx/package.json",
+          "packages/qwik-nx/migrations.json"
         ]
       }
     },

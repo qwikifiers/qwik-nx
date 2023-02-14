@@ -36,7 +36,7 @@ describe('cloudflare-pages-integration generator', () => {
     await cloudflarePagesIntegrationGenerator(appTree, options);
     const config = readProjectConfiguration(appTree, projectName);
     expect(
-      config.targets!['build-ssr'].configurations!['cloudflare-pages']
+      config.targets!['build.ssr'].configurations!['cloudflare-pages']
     ).toEqual({
       configFile: `apps/${projectName}/adaptors/cloudflare-pages/vite.config.ts`,
     });
@@ -45,19 +45,19 @@ describe('cloudflare-pages-integration generator', () => {
       options: {
         dist: `dist/apps/${projectName}/client`,
       },
-      dependsOn: ['build-ssr-cloudflare-pages'],
+      dependsOn: ['build-cloudflare-pages'],
     });
     expect(config.targets!['preview-cloudflare-pages']).toEqual({
       executor: '@k11r/nx-cloudflare-wrangler:serve-page',
       options: {
         dist: `dist/apps/${projectName}/client`,
       },
-      dependsOn: ['build-ssr-cloudflare-pages'],
+      dependsOn: ['build-cloudflare-pages'],
     });
-    expect(config.targets!['build-ssr-cloudflare-pages']).toEqual({
+    expect(config.targets!['build-cloudflare-pages']).toEqual({
       executor: 'nx:run-commands',
       options: {
-        command: `npx nx run ${projectName}:build-ssr:cloudflare-pages`,
+        command: `npx nx run ${projectName}:build:cloudflare-pages`,
       },
     });
   });
@@ -95,10 +95,10 @@ describe('cloudflare-pages-integration generator', () => {
 
     it('project does not have Qwik\'s "build-ssr" target', async () => {
       const config = readProjectConfiguration(appTree, projectName);
-      delete config.targets!['build-ssr'];
+      config.targets!.build.executor = 'changed';
       updateProjectConfiguration(appTree, projectName, config);
 
-      expect(
+      await expect(
         cloudflarePagesIntegrationGenerator(appTree, options)
       ).rejects.toThrow(
         'Cannot setup cloudflare integration for the given project.'
