@@ -71,6 +71,7 @@
       "options": {
         "noVerify": true,
         "push": true,
+        "releaseAs": "patch",
         "postTargets": [
           "create-qwik-nx:publish",
           "create-qwik-nx:push-to-github"
