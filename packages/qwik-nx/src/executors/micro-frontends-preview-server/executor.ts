@@ -1,6 +1,4 @@
 import { ExecutorContext } from '@nrwl/devkit';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { vitePreviewServerExecutor } from '@nrwl/vite/executors';
 import { runRemotes } from '../utils/run-remotes';
 import { MicroFrontendsPreviewServerExecutorSchema } from './schema';

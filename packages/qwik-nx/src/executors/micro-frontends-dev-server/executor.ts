@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { viteDevServerExecutor } from '@nrwl/vite/executors';
 import { ExecutorContext } from '@nrwl/devkit';
 import { runRemotes } from '../utils/run-remotes';

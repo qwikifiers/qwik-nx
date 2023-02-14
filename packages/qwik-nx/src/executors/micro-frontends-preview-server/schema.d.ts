@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { VitePreviewServerExecutorOptions } from '@nrwl/vite/executors';
 
 // VitePreviewServerExecutorOptions are expected to be passed into the executor,
