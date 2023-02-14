@@ -23,7 +23,7 @@
   "executors": "./executors.json",
   "peerDependencies": {
     "@nrwl/vite": "~15.6.0",
-    "@builder.io/qwik": "^0.16.0",
+    "@builder.io/qwik": "^0.17.0",
     "vite": "^4.0.0",
     "vitest": "^0.25.0",
     "@playwright/test": "^1.30.0",
