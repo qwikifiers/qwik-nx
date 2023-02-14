@@ -19,7 +19,12 @@ export function configureEslint(
     cfg.root,
     '.eslintrc.json'
   );
-  const existingLibEslintConfig = tree.read(existingLibEslintConfigPath);
+
+  let existingLibEslintConfig: Buffer | undefined;
+
+  if (tree.exists(existingLibEslintConfigPath)) {
+    existingLibEslintConfig = tree.read(existingLibEslintConfigPath);
+  }
 
   lintProjectGenerator(tree, {
     project: project,
@@ -34,7 +39,10 @@ export function configureEslint(
 
   const viteConfigFileName = 'vite.config.ts';
   const eslintIgnorePath = './.eslintignore';
-  const eslintIgnore = tree.read(eslintIgnorePath)?.toString() ?? '';
+  let eslintIgnore = '';
+  if (tree.exists(eslintIgnorePath)) {
+    eslintIgnore = tree.read(eslintIgnorePath)?.toString() ?? '';
+  }
   if (!eslintIgnore.includes(viteConfigFileName)) {
     tree.write(
       eslintIgnorePath,
