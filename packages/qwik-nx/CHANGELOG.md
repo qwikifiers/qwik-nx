@@ -2,6 +2,26 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.10.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.9.0...qwik-nx-0.10.0) (2023-02-14)
+
+
+### Bug Fixes
+
+* **qwik-nx:** added missing path import statement for tailwind template ([#71](https://github.com/qwikifiers/qwik-nx/issues/71)) ([b2a102a](https://github.com/qwikifiers/qwik-nx/commit/b2a102af93cd4a28380e240d421513960d5e226f))
+* **qwik-nx:** check for file existance before reading it ([#80](https://github.com/qwikifiers/qwik-nx/issues/80)) ([e3cbe8a](https://github.com/qwikifiers/qwik-nx/commit/e3cbe8ab8cbfc2454f0aeb2050d509a75b86fb55))
+* **qwik-nx:** fix the name of the required name prop of preset generator ([#79](https://github.com/qwikifiers/qwik-nx/issues/79)) ([f815de6](https://github.com/qwikifiers/qwik-nx/commit/f815de6068ab60330c090ec10b8e954bedadf109))
+* **qwik-nx:** update nxkit to v2.1.1 ([#76](https://github.com/qwikifiers/qwik-nx/issues/76)) ([2e1f4f6](https://github.com/qwikifiers/qwik-nx/commit/2e1f4f6b02a9ea0f912772e1b61e08da0983a0cd))
+* **qwik-nx:** use approximate version for @nrwl/vite package ([#81](https://github.com/qwikifiers/qwik-nx/issues/81)) ([a5b6b36](https://github.com/qwikifiers/qwik-nx/commit/a5b6b368b953fd18a606f44a679f26de419d2640))
+
+
+### Features
+
+* **qwik-nx:** add projects filter for qwikNxVite plugin ([#72](https://github.com/qwikifiers/qwik-nx/issues/72)) ([979e76c](https://github.com/qwikifiers/qwik-nx/commit/979e76c27c0a282e6c00619e8555711ddd1c8187))
+* **qwik-nx:** bump qwik peer dependency version to 0.17 ([#82](https://github.com/qwikifiers/qwik-nx/issues/82)) ([f63c143](https://github.com/qwikifiers/qwik-nx/commit/f63c1435b0024d55267f816b221025e68139c4d4))
+* **qwik-nx:** bump up versions of the dependencies ([#74](https://github.com/qwikifiers/qwik-nx/issues/74)) ([d81ecdc](https://github.com/qwikifiers/qwik-nx/commit/d81ecdcf809f69542e27064ac486e179f67d2817))
+
+
+
 # [0.9.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.8.0...qwik-nx-0.9.0) (2023-02-08)
 
 
