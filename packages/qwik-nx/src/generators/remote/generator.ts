@@ -6,6 +6,7 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
+import { addMicroFrontendBetaWarning } from '../../utils/mf-beta-warning';
 import appGenerator from '../application/generator';
 import { QwikAppGeneratorSchema } from '../application/schema';
 import { normalizeOptions } from '../application/utils/normalize-options';
@@ -15,6 +16,7 @@ export async function remoteGenerator(
   tree: Tree,
   options: RemoteGeneratorSchema
 ) {
+  addMicroFrontendBetaWarning();
   const tasks: GeneratorCallback[] = [];
 
   const appGeneratorSchema: QwikAppGeneratorSchema = {
@@ -26,15 +28,47 @@ export async function remoteGenerator(
   const initTask = await appGenerator(tree, appGeneratorSchema);
   tasks.push(initTask);
 
+  const normalizedSchema = normalizeOptions(tree, appGeneratorSchema);
+  // TODO: switch to empty preset once available
+  tree.delete(
+    joinPathFragments(normalizedSchema.projectRoot, 'src/routes/flower')
+  );
+  tree.delete(
+    joinPathFragments(
+      normalizedSchema.projectRoot,
+      'src/components/header/header.css'
+    )
+  );
+  tree.delete(
+    joinPathFragments(
+      normalizedSchema.projectRoot,
+      'src/components/header/header.tsx'
+    )
+  );
+  tree.delete(
+    joinPathFragments(
+      normalizedSchema.projectRoot,
+      'src/components/icons/qwik.tsx'
+    )
+  );
+  tree.delete(
+    joinPathFragments(
+      normalizedSchema.projectRoot,
+      'src/components/router-head/router-head.tsx'
+    )
+  );
+
   generateFiles(
     tree,
     joinPathFragments(__dirname, 'files'),
-    normalizeOptions(tree, appGeneratorSchema).projectRoot,
-    {}
+    normalizedSchema.projectRoot,
+    {
+      name: normalizedSchema.projectName,
+    }
   );
 
   if (!options.skipFormat) {
-    formatFiles(tree);
+    await formatFiles(tree);
   }
   return runTasksInSerial(...tasks);
 }

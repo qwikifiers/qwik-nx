@@ -10,13 +10,15 @@ import {
   promisifiedTreeKill,
   killPort,
   stripConsoleColors,
+  killPorts,
 } from '@qwikifiers/e2e/utils';
 
 export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
   describe(`Basic behavior with ${generator} generator`, () => {
     let project: string;
 
-    beforeAll(() => {
+    beforeAll(async () => {
+      await killPorts(4212);
       ensureNxProject('qwik-nx', 'dist/packages/qwik-nx');
     });
 

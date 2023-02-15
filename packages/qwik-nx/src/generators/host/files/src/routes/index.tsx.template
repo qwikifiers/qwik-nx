@@ -7,7 +7,15 @@ import { RemoteMfe } from '../components/remote-mfe/remote-mfe';
 export default component$(() => {
 	return (
 		<main>
- 			<% remotes.forEach(function(r) { %> <RemoteMfe remote="<%= r %>" /> <% }); %>
+			<h1>
+				"<%= name %>" works! <span class="lightning">⚡️</span>
+			</h1>
+			<a class="mindblow" href="/about/">Navigate to /about</a>
+
+			<% remotes.forEach(function(r) { -%> 
+				<RemoteMfe remote="<%= r %>" /> 
+			<% }); -%>
+
 		</main>
 	);
 });

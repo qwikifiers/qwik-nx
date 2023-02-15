@@ -15,6 +15,6 @@ export interface QwikWorkspacePresetGeneratorSchema
   unitTestRunner: 'vitest' | 'none';
   strict: boolean;
   e2eTestRunner: 'playwright' | 'cypress' | 'none';
-  devServerPort: number;
-  previewServerPort: number;
+  devServerPort?: number;
+  previewServerPort?: number;
 }

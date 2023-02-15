@@ -1,8 +1,7 @@
-import { ExecutorContext } from '@nrwl/devkit';
+import { ExecutorContext, output } from '@nrwl/devkit';
 import { exec } from 'child_process';
 import { join, resolve } from 'path';
 import * as chalk from 'chalk';
-import { output } from '@nrwl/workspace';
 
 export interface RunRemotesOptions {
   skipRemotes?: string[];
@@ -48,9 +47,9 @@ export async function runRemotes(
           process.stdout.write(addColorAndPrefix(data, remote, index));
           // eslint-disable-next-line no-control-regex
           const raw = data.replace(/\u001b[^m]*?m/g, ''); // removing colors
-          if (raw.includes('Local:')) {
+          if (raw.includes('Network:')) {
             // TODO
-            // The message "Local:  https://host:port" allows to determine when the remote is ready to be
+            // The message "Network:  https://host:port" allows to determine when the remote is ready to be
             // consumed by the Host.
             resolve();
           }

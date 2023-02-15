@@ -5,6 +5,7 @@ import {
   joinPathFragments,
   readProjectConfiguration,
   Tree,
+  updateProjectConfiguration,
 } from '@nrwl/devkit';
 import { HostGeneratorSchema, NormalizedSchema } from './schema';
 import { appGenerator } from './../application/generator';
@@ -12,12 +13,21 @@ import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-ser
 import remoteGenerator from '../remote/generator';
 import { normalizeOptions } from '../application/utils/normalize-options';
 import { join } from 'path';
+import { addMicroFrontendBetaWarning } from '../../utils/mf-beta-warning';
 
 function addFiles(
   tree: Tree,
   schema: NormalizedSchema,
   remotes: { name: string; port: number }[]
 ) {
+  // TODO: switch to empty preset once available
+  tree.delete(
+    joinPathFragments(schema.projectRoot, 'src/routes/flower/index.tsx')
+  );
+  tree.delete(
+    joinPathFragments(schema.projectRoot, 'src/routes/flower/flower.css')
+  );
+
   generateFiles(
     tree,
     joinPathFragments(__dirname, 'files'),
@@ -40,9 +50,11 @@ function addFiles(
   const projectConfig = readProjectConfiguration(tree, schema.projectName);
   projectConfig.targets['serve'].executor =
     'qwik-nx:micro-frontends-dev-server';
+  updateProjectConfiguration(tree, schema.projectName, projectConfig);
 }
 
 export async function hostGenerator(tree: Tree, options: HostGeneratorSchema) {
+  addMicroFrontendBetaWarning();
   const tasks: GeneratorCallback[] = [];
 
   const normalizedSchema = normalizeOptions(tree, {
@@ -83,7 +95,7 @@ export async function hostGenerator(tree: Tree, options: HostGeneratorSchema) {
   addFiles(tree, normalizedSchema, remotesWithPorts);
 
   if (!options.skipFormat) {
-    formatFiles(tree);
+    await formatFiles(tree);
   }
   return runTasksInSerial(...tasks);
 }

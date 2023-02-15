@@ -21,7 +21,8 @@
     },
     "directory": {
       "type": "string",
-      "description": "A directory where the project is placed"
+      "description": "A directory where the project is placed",
+      "x-priority": "important"
     },
     "style": {
       "description": "The file extension to be used for style files.",
@@ -93,7 +94,6 @@
     "remotes": {
       "type": "array",
       "description": "A list of remote application names that the host application should consume.",
-      "default": [],
       "x-priority": "important"
     }
   },

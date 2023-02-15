@@ -11,8 +11,8 @@ export interface QwikAppGeneratorSchema {
   unitTestRunner?: 'vitest' | 'none';
   strict?: boolean;
   e2eTestRunner?: 'playwright' | 'cypress' | 'none';
-  devServerPort: number;
-  previewServerPort: number;
+  devServerPort?: number;
+  previewServerPort?: number;
   // router: 'qwik-city' | 'none'; // TODO: add setup w/o qwik-city
 }
 
