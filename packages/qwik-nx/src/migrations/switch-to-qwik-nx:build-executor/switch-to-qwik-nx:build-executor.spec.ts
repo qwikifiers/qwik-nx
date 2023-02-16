@@ -121,7 +121,7 @@ function getSampleProjectJson() {
         build: {
           executor: 'qwik-nx:build',
           options: {
-            sequence: ['myapp:build.client', 'myapp:build.ssr'],
+            runSequence: ['myapp:build.client', 'myapp:build.ssr'],
             outputPath: 'dist/apps/myapp',
           },
         },
@@ -247,20 +247,9 @@ function getSampleProjectJson() {
         },
         serve: {
           executor: '@nrwl/vite:dev-server',
-          defaultConfiguration: 'development',
           options: {
             buildTarget: 'myapp:build',
             mode: 'ssr',
-          },
-          configurations: {
-            development: {
-              buildTarget: 'myapp:build:development',
-              hmr: true,
-            },
-            production: {
-              buildTarget: 'myapp:build:production',
-              hmr: false,
-            },
           },
         },
         serveDebug: {
@@ -311,7 +300,7 @@ function getSampleProjectJson() {
         build: {
           executor: 'qwik-nx:build',
           options: {
-            sequence: ['myapp:build.client', 'myapp:build.ssr'],
+            runSequence: ['myapp:build.client', 'myapp:build.ssr'],
             outputPath: 'dist/apps/myapp',
           },
           configurations: {
@@ -361,20 +350,9 @@ function getSampleProjectJson() {
         },
         serve: {
           executor: '@nrwl/vite:dev-server',
-          defaultConfiguration: 'development',
           options: {
             buildTarget: 'myapp:build.client',
             mode: 'ssr',
-          },
-          configurations: {
-            development: {
-              buildTarget: 'myapp:build.client:development',
-              hmr: true,
-            },
-            production: {
-              buildTarget: 'myapp:build.client:production',
-              hmr: false,
-            },
           },
         },
         'serve.debug': {

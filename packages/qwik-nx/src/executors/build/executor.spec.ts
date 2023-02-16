@@ -30,7 +30,7 @@ describe('Build Executor', () => {
     } as ExecutorContext;
 
     const options: BuildExecutorSchema = {
-      sequence: ['my-app:target1:development', 'my-app:target2'],
+      runSequence: ['my-app:target1:development', 'my-app:target2'],
     };
     const iterable = executor(options, context);
     await iterable.next();

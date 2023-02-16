@@ -1,6 +1,7 @@
 import {
   getProjects,
   ProjectConfiguration,
+  TargetConfiguration,
   Tree,
   updateProjectConfiguration,
 } from '@nrwl/devkit';
@@ -13,6 +14,8 @@ export default function update(host: Tree) {
       // rename targets
       config.targets['build.client'] = config.targets['build'];
       config.targets['build.ssr'] = config.targets['build-ssr'];
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       delete config.targets['build-ssr'];
       if (config.targets['serveDebug']) {
         config.targets['serve.debug'] = config.targets['serveDebug'];
@@ -23,7 +26,7 @@ export default function update(host: Tree) {
       config.targets.build = {
         executor: 'qwik-nx:build',
         options: {
-          sequence: [`${name}:build.client`, `${name}:build.ssr`],
+          runSequence: [`${name}:build.client`, `${name}:build.ssr`],
           outputPath:
             config.targets['build.client'].options['outputPath'] ??
             `dist/${config.root}`,
@@ -39,15 +42,17 @@ export default function update(host: Tree) {
           'buildTarget'
         ]
           ?.split(':')
-          .map((part) => (part === 'build' ? 'build.client' : part))
+          .map((part: string) => (part === 'build' ? 'build.client' : part))
           .join(':');
-        Object.keys(serveTarget.configurations).forEach((configurationName) => {
-          const cfg = serveTarget.configurations[configurationName];
-          cfg.buildTarget = cfg.buildTarget
-            ?.split(':')
-            .map((part) => (part === 'build' ? 'build.client' : part))
-            .join(':');
-        });
+        Object.keys(serveTarget.configurations ?? {}).forEach(
+          (configurationName) => {
+            const cfg = serveTarget.configurations![configurationName];
+            cfg.buildTarget = cfg.buildTarget
+              ?.split(':')
+              .map((part: string) => (part === 'build' ? 'build.client' : part))
+              .join(':');
+          }
+        );
       }
 
       // update dependsOn
@@ -76,8 +81,10 @@ export default function update(host: Tree) {
   });
 }
 
-function isQwikNxProject(config: ProjectConfiguration): boolean {
-  if (config.targets['build']?.executor !== '@nrwl/vite:build') {
+function isQwikNxProject(
+  config: ProjectConfiguration
+): config is OldQwikNxConfiguration {
+  if (config.targets?.['build']?.executor !== '@nrwl/vite:build') {
     return false;
   }
   if (config.targets['build-ssr']?.executor !== '@nrwl/vite:build') {
@@ -88,3 +95,7 @@ function isQwikNxProject(config: ProjectConfiguration): boolean {
   }
   return true;
 }
+
+type OldQwikNxConfiguration = ProjectConfiguration & {
+  targets: Record<'build' | 'build-ssr' | 'preview', TargetConfiguration>;
+};

@@ -6,7 +6,7 @@
   "description": "",
   "type": "object",
   "properties": {
-    "sequence": {
+    "runSequence": {
       "description": "An array of targets to be executed in a sequence",
       "type": "array",
       "items": {
@@ -15,5 +15,5 @@
       }
     }
   },
-  "required": ["sequence"]
+  "required": ["runSequence"]
 }

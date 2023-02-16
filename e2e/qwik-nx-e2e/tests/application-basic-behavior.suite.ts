@@ -9,6 +9,7 @@ import {
   runCommandUntil,
   promisifiedTreeKill,
   killPort,
+  stripConsoleColors,
 } from '@qwikifiers/e2e/utils';
 
 export function testApplicationBasicBehavior(generator: 'app' | 'preset') {

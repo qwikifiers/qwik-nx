@@ -1,3 +1,3 @@
 export interface BuildExecutorSchema {
-  sequence: string[];
+  runSequence: string[];
 }

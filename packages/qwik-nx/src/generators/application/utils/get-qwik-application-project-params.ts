@@ -26,7 +26,7 @@ function getBuildTarget(
   return {
     executor: 'qwik-nx:build',
     options: {
-      sequence: [
+      runSequence: [
         `${params.projectName}:build.client`,
         `${params.projectName}:build.ssr`,
       ],
@@ -98,20 +98,9 @@ function getServeTarget(
 ): TargetConfiguration {
   return {
     executor: '@nrwl/vite:dev-server',
-    defaultConfiguration: 'development',
     options: {
-      buildTarget: `${params.projectName}:build.client`, // TODO?
+      buildTarget: `${params.projectName}:build.client`,
       mode: 'ssr',
-    },
-    configurations: {
-      development: {
-        buildTarget: `${params.projectName}:build.client:development`,
-        hmr: true,
-      },
-      production: {
-        buildTarget: `${params.projectName}:build.client:production`,
-        hmr: false,
-      },
     },
   };
 }

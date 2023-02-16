@@ -12,8 +12,8 @@ export default async function* runBuildExecutor(
   options: BuildExecutorSchema,
   context: ExecutorContext
 ) {
-  const configs = options.sequence.map((target) => {
-    const cfg = parseTargetString(target, context.projectGraph);
+  const configs = options.runSequence.map((target) => {
+    const cfg = parseTargetString(target, context.projectGraph!);
     cfg.configuration ??= context.configurationName;
     return cfg;
   });
