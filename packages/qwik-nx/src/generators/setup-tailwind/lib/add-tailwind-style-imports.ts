@@ -6,8 +6,6 @@ import {
   Tree,
 } from '@nrwl/devkit';
 
-import { SetupTailwindOptions } from '../schema';
-
 const knownLocations = [
   'src/global.css',
   'src/global.scss',
@@ -17,8 +15,7 @@ const knownLocations = [
 
 export function addTailwindStyleImports(
   tree: Tree,
-  project: ProjectConfiguration,
-  _options: SetupTailwindOptions
+  project: ProjectConfiguration
 ) {
   const candidates = knownLocations.map((x) =>
     joinPathFragments(project.root, x)
@@ -26,11 +23,12 @@ export function addTailwindStyleImports(
   const stylesPath = candidates.find((x) => tree.exists(x));
 
   if (stylesPath) {
-    const content = tree.read(stylesPath).toString();
-    tree.write(
-      stylesPath,
-      `@tailwind components;\n@tailwind base;\n@tailwind utilities;\n${content}`
-    );
+    const content = tree.read(stylesPath)?.toString();
+    content &&
+      tree.write(
+        stylesPath,
+        `@tailwind components;\n@tailwind base;\n@tailwind utilities;\n${content}`
+      );
   } else {
     logger.warn(
       stripIndents`

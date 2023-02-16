@@ -44,7 +44,7 @@ async function addNxToMonorepo() {
 
   let targetDefaults: string[];
   let cacheableOperations: string[];
-  let scriptOutputs = {};
+  const scriptOutputs = {};
   let useCloud: boolean;
 
   if (parsedArgs.yes !== true) {

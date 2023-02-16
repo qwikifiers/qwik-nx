@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strict": true,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
@@ -8,6 +9,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "isolatedModules": true,
     "target": "es2015",
     "module": "esnext",
     "lib": ["es2017", "dom"],

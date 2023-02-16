@@ -8,7 +8,7 @@ export interface UpdateQwikAppConfigurationParams {
 
 export function getQwikApplicationProjectTargets(
   params: UpdateQwikAppConfigurationParams
-) {
+): Record<string, TargetConfiguration> {
   return {
     build: getBuildTarget(params),
     'build-ssr': getBuildSsrTarget(params),

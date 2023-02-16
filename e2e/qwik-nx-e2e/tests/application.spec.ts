@@ -59,7 +59,7 @@ describe('appGenerator e2e', () => {
         }
       );
       try {
-        await promisifiedTreeKill(p.pid, 'SIGKILL');
+        await promisifiedTreeKill(p.pid!, 'SIGKILL');
         await killPort(port);
       } catch {
         // ignore
@@ -75,7 +75,7 @@ describe('appGenerator e2e', () => {
         }
       );
       try {
-        await promisifiedTreeKill(p.pid, 'SIGKILL');
+        await promisifiedTreeKill(p.pid!, 'SIGKILL');
         await killPort(port);
       } catch {
         // ignore

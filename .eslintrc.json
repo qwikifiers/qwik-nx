@@ -1,7 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx"],
+  "plugins": ["@nrwl/nx", "eslint-plugin-unused-imports"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -24,7 +24,24 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "unused-imports/no-unused-imports": "error",
+        "no-duplicate-imports": "error",
+        "unused-imports/no-unused-vars": "error",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "enum",
+            "format": ["PascalCase"]
+          },
+          {
+            "selector": "enumMember",
+            "format": ["PascalCase"]
+          }
+        ]
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
@@ -36,7 +53,9 @@
       "env": {
         "jest": true
       },
-      "rules": {}
+      "rules": {
+        "no-restricted-globals": ["error", "fdescribe", "fit"]
+      }
     },
     {
       "files": "*.json",

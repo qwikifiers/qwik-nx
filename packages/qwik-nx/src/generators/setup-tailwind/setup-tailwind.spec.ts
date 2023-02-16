@@ -27,7 +27,7 @@ describe('setup-tailwind', () => {
       project: 'example',
     });
 
-    expect(tree.read(`apps/example/${stylesPath}`).toString()).toEqual(
+    expect(tree.read(`apps/example/${stylesPath}`)?.toString()).toEqual(
       stripIndents`
         @tailwind components;
         @tailwind base;
@@ -80,7 +80,7 @@ describe('setup-tailwind', () => {
 
     await update(tree, { project: 'example' });
 
-    expect(tree.read('apps/example/postcss.config.js').toString()).toEqual(
+    expect(tree.read('apps/example/postcss.config.js')?.toString()).toEqual(
       '// existing'
     );
   });
@@ -97,7 +97,7 @@ describe('setup-tailwind', () => {
 
     await update(tree, { project: 'example' });
 
-    expect(tree.read('apps/example/tailwind.config.js').toString()).toEqual(
+    expect(tree.read('apps/example/tailwind.config.js')?.toString()).toEqual(
       '// existing'
     );
   });

@@ -36,25 +36,25 @@ describe('cloudflare-pages-integration generator', () => {
     await cloudflarePagesIntegrationGenerator(appTree, options);
     const config = readProjectConfiguration(appTree, projectName);
     expect(
-      config.targets['build-ssr'].configurations['cloudflare-pages']
+      config.targets!['build-ssr'].configurations!['cloudflare-pages']
     ).toEqual({
       configFile: `apps/${projectName}/adaptors/cloudflare-pages/vite.config.ts`,
     });
-    expect(config.targets['deploy']).toEqual({
+    expect(config.targets!['deploy']).toEqual({
       executor: '@k11r/nx-cloudflare-wrangler:deploy-page',
       options: {
         dist: `dist/apps/${projectName}/client`,
       },
       dependsOn: ['build-ssr-cloudflare-pages'],
     });
-    expect(config.targets['preview-cloudflare-pages']).toEqual({
+    expect(config.targets!['preview-cloudflare-pages']).toEqual({
       executor: '@k11r/nx-cloudflare-wrangler:serve-page',
       options: {
         dist: `dist/apps/${projectName}/client`,
       },
       dependsOn: ['build-ssr-cloudflare-pages'],
     });
-    expect(config.targets['build-ssr-cloudflare-pages']).toEqual({
+    expect(config.targets!['build-ssr-cloudflare-pages']).toEqual({
       executor: 'nx:run-commands',
       options: {
         command: `npx nx run ${projectName}:build-ssr:cloudflare-pages`,
@@ -72,7 +72,7 @@ describe('cloudflare-pages-integration generator', () => {
   describe('should throw if project configuration does not meet the expectations', () => {
     it('deploy target is already defined', async () => {
       const config = readProjectConfiguration(appTree, projectName);
-      config.targets['deploy'] = { executor: 'nx:noop' };
+      config.targets!['deploy'] = { executor: 'nx:noop' };
       updateProjectConfiguration(appTree, projectName, config);
 
       expect(
@@ -95,7 +95,7 @@ describe('cloudflare-pages-integration generator', () => {
 
     it('project does not have Qwik\'s "build-ssr" target', async () => {
       const config = readProjectConfiguration(appTree, projectName);
-      delete config.targets['build-ssr'];
+      delete config.targets!['build-ssr'];
       updateProjectConfiguration(appTree, projectName, config);
 
       expect(

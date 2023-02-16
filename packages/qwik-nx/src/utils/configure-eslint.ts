@@ -20,7 +20,7 @@ export function configureEslint(
     '.eslintrc.json'
   );
 
-  let existingLibEslintConfig: Buffer | undefined;
+  let existingLibEslintConfig: Buffer | null | undefined;
 
   if (tree.exists(existingLibEslintConfigPath)) {
     existingLibEslintConfig = tree.read(existingLibEslintConfigPath);

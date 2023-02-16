@@ -1,5 +1,6 @@
-import type { GeneratorCallback, Tree } from '@nrwl/devkit';
 import {
+  GeneratorCallback,
+  Tree,
   addDependenciesToPackageJson,
   formatFiles,
   generateFiles,
@@ -19,7 +20,7 @@ import { addTailwindStyleImports } from './lib/add-tailwind-style-imports';
 export async function setupTailwindGenerator(
   tree: Tree,
   options: SetupTailwindOptions
-) {
+): Promise<GeneratorCallback> {
   const tasks: GeneratorCallback[] = [];
   const project = readProjectConfiguration(tree, options.project);
 
@@ -30,14 +31,14 @@ export async function setupTailwindGenerator(
     logger.info(
       `Skipping setup since there are existing PostCSS or Tailwind configuration files. For manual setup instructions, see https://qwik.builder.io/integrations/integration/tailwind/.`
     );
-    return;
+    return () => void 0;
   }
 
   generateFiles(tree, joinPathFragments(__dirname, './files'), project.root, {
     tmpl: '',
   });
 
-  addTailwindStyleImports(tree, project, options);
+  addTailwindStyleImports(tree, project);
 
   if (!options.skipPackageJson) {
     tasks.push(
