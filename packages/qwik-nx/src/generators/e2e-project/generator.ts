@@ -27,6 +27,8 @@ export async function addE2eProject(
   if (options.e2eTestRunner === 'playwright') {
     return addPlaywright(tree, normalizedOptions);
   }
+
+  return () => void 0;
 }
 
 async function addCypress(tree: Tree, options: NormalizedSchema) {

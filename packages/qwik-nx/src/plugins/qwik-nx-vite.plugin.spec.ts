@@ -77,9 +77,11 @@ describe('qwik-nx-vite plugin', () => {
     .mockReturnValue(workspaceConfig1);
   jest.spyOn(fs, 'readFileSync').mockReturnValue(tsConfigString1);
 
-  const getDecoratedPaths = async (options?: QwikNxVitePluginOptions) => {
+  const getDecoratedPaths = async (
+    options?: QwikNxVitePluginOptions
+  ): Promise<string[]> => {
     const plugin = qwikNxVite(options);
-    const vendorRoots = [];
+    const vendorRoots: string[] = [];
     const qwikViteMock = {
       name: 'vite-plugin-qwik',
       api: {

@@ -20,27 +20,31 @@ export const promisifiedTreeKill: (
   signal: string
 ) => Promise<void> = promisify(treeKill);
 
-function getAdditionalPackageManagerCommands() {
+function getAdditionalPackageManagerCommands(): {
+  createWorkspace: string;
+  runNx: string;
+} {
   const pm = detectPackageManager();
   const [npmMajorVersion] = execSync(`npm -v`).toString().split('.');
   const publishedVersion = execSync('npm view nx version');
-  if (pm === 'npm') {
-    return {
-      createWorkspace: `npx ${
-        +npmMajorVersion >= 7 ? '--yes' : ''
-      } create-nx-workspace@${publishedVersion}`,
-      runNx: `npx nx`,
-    };
-  } else if (pm === 'yarn') {
-    return {
-      createWorkspace: `yarn global add create-nx-workspace@${publishedVersion} && create-nx-workspace`,
-      runNx: `yarn nx`,
-    };
-  } else if (pm === 'pnpm') {
-    return {
-      createWorkspace: `pnpm dlx create-nx-workspace@${publishedVersion}`,
-      runNx: `pnpm exec nx`,
-    };
+  switch (pm) {
+    case 'npm':
+      return {
+        createWorkspace: `npx ${
+          +npmMajorVersion >= 7 ? '--yes' : ''
+        } create-nx-workspace@${publishedVersion}`,
+        runNx: `npx nx`,
+      };
+    case 'yarn':
+      return {
+        createWorkspace: `yarn global add create-nx-workspace@${publishedVersion} && create-nx-workspace`,
+        runNx: `yarn nx`,
+      };
+    case 'pnpm':
+      return {
+        createWorkspace: `pnpm dlx create-nx-workspace@${publishedVersion}`,
+        runNx: `pnpm exec nx`,
+      };
   }
 }
 
@@ -149,7 +153,7 @@ export function runCommandUntil(
     let output = '';
     let complete = false;
 
-    function checkCriteria(c) {
+    function checkCriteria(c: any) {
       output += c.toString();
       if (criteria(stripConsoleColors(output)) && !complete) {
         complete = true;

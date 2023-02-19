@@ -25,6 +25,8 @@ export async function cloudflarePagesIntegrationGenerator(
   options: CloudflarePagesIntegrationGeneratorSchema
 ) {
   const config = readProjectConfiguration(tree, options.project);
+  config.targets ??= {};
+
   if (config.projectType !== 'application' || !config.targets['build-ssr']) {
     throw new Error(
       'Cannot setup cloudflare integration for the given project.'
@@ -107,7 +109,7 @@ function normalizeOptions(
 
 function addFiles(tree: Tree, options: NormalizedOptions): void {
   const templateOptions = {
-    ...names(options.projectConfig.name),
+    ...names(options.projectConfig.name!),
     projectRoot: options.projectConfig.root,
     offsetFromRoot: options.offsetFromRoot,
   };

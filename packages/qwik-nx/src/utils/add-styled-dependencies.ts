@@ -12,9 +12,9 @@ type PackageDependencies = Record<
 
 export function addStyledModuleDependencies(
   host: Tree,
-  styledModule: string
+  styledModule: string | undefined
 ): GeneratorCallback {
-  const extraDependencies = STYLE_DEPENDENCIES.get(styledModule);
+  const extraDependencies = STYLE_DEPENDENCIES.get(styledModule!);
 
   if (extraDependencies) {
     return addDependenciesToPackageJson(
@@ -23,8 +23,7 @@ export function addStyledModuleDependencies(
       extraDependencies.devDependencies
     );
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    return () => {};
+    return () => void 0;
   }
 }
 

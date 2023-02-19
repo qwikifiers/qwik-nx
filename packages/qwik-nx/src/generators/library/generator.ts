@@ -129,6 +129,8 @@ async function configureVite(tree: Tree, options: NormalizedSchema) {
 
   const targets = getQwikLibProjectTargets(options);
 
+  projectConfig.targets ??= {};
+
   projectConfig.targets['build'] = targets.build;
 
   if (options.setupVitest) {

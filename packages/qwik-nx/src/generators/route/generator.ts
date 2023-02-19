@@ -2,6 +2,7 @@ import {
   formatFiles,
   generateFiles,
   getProjects,
+  joinPathFragments,
   logger,
   names,
   offsetFromRoot,
@@ -34,7 +35,6 @@ function normalizeOptions(
 ): NormalizedSchema {
   const name = names(options.name).fileName;
   const project = getProjects(tree).get(options.project);
-  const projectSourceRoot = project.sourceRoot;
 
   if (!project) {
     logger.error(
@@ -51,7 +51,8 @@ function normalizeOptions(
   return {
     ...options,
     routeName,
-    projectSourceRoot,
+    projectSourceRoot:
+      project.sourceRoot ?? joinPathFragments(project.root, 'src'),
     routeDirectory,
   };
 }

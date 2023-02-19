@@ -1,6 +1,7 @@
 import {
   formatFiles,
   generateFiles,
+  GeneratorCallback,
   getProjects,
   joinPathFragments,
   logger,
@@ -23,7 +24,7 @@ function getDirectory(host: Tree, options: ComponentGeneratorSchema) {
     baseDir = options.directory;
   } else {
     baseDir =
-      workspace.get(options.project).projectType === 'application'
+      workspace.get(options.project)!.projectType === 'application'
         ? 'components'
         : 'lib';
   }
@@ -45,7 +46,8 @@ function normalizeOptions(
     throw new Error();
   }
 
-  const { sourceRoot: projectRoot } = project;
+  const projectRoot =
+    project.sourceRoot ?? joinPathFragments(project.root, 'src');
 
   const directory = getDirectory(host, options);
 
@@ -98,7 +100,7 @@ function createComponentFiles(tree: Tree, options: NormalizedSchema) {
 export async function componentGenerator(
   tree: Tree,
   options: ComponentGeneratorSchema
-) {
+): Promise<GeneratorCallback> {
   const normalizedOptions = normalizeOptions(tree, options);
   createComponentFiles(tree, normalizedOptions);
   await formatFiles(tree);

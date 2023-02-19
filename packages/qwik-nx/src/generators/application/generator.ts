@@ -5,6 +5,7 @@ import {
   GeneratorCallback,
   joinPathFragments,
   names,
+  TargetConfiguration,
   Tree,
 } from '@nrwl/devkit';
 import { Linter } from '@nrwl/linter';
@@ -41,7 +42,8 @@ export async function appGenerator(
   const normalizedOptions = normalizeOptions(tree, options);
   const tasks: GeneratorCallback[] = [];
 
-  const targets = getQwikApplicationProjectTargets(normalizedOptions);
+  const targets: Record<string, TargetConfiguration> =
+    getQwikApplicationProjectTargets(normalizedOptions);
 
   if (!normalizedOptions.setupVitest) {
     delete targets['test'];
@@ -69,7 +71,7 @@ export async function appGenerator(
     tasks.push(configureEslint(tree, normalizedOptions.projectName, true));
   }
 
-  if (normalizedOptions.style !== 'none') {
+  if (normalizedOptions.styleExtension) {
     tasks.push(
       addStyledModuleDependencies(tree, normalizedOptions.styleExtension)
     );
@@ -77,7 +79,10 @@ export async function appGenerator(
 
   tasks.push(addCommonQwikDependencies(tree));
 
-  if (normalizedOptions.e2eTestRunner !== 'none') {
+  if (
+    normalizedOptions.e2eTestRunner &&
+    normalizedOptions.e2eTestRunner !== 'none'
+  ) {
     const e2eProjectTask = await addE2eProject(tree, {
       project: normalizedOptions.projectName,
       directory: normalizedOptions.directory,

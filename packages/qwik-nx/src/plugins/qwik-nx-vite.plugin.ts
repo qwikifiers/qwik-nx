@@ -75,7 +75,7 @@ function getVendorRoots(options?: QwikNxVitePluginOptions): string[] {
   }
 
   projects = projects.filter((p) =>
-    decoratedPaths.some((path) => path.startsWith(p.sourceRoot))
+    decoratedPaths.some((path) => path.startsWith(p.sourceRoot!))
   );
 
   if (options?.debug) {
@@ -85,7 +85,7 @@ function getVendorRoots(options?: QwikNxVitePluginOptions): string[] {
     );
   }
 
-  return projects.map((p) => p.sourceRoot).map((p) => join(workspaceRoot, p));
+  return projects.map((p) => p.sourceRoot).map((p) => join(workspaceRoot, p!));
 }
 
 function filterProjects(
@@ -104,7 +104,7 @@ function filterProjects(
   }
   if (typeof filterConfig?.customFilter === 'function') {
     projects = projects.filter((p) => {
-      const matches = filterConfig.customFilter(p);
+      const matches = filterConfig.customFilter!(p);
       return exclusive ? !matches : matches;
     });
   }
@@ -119,12 +119,13 @@ function filterProjectsByName(
   if (Array.isArray(options)) {
     const optionsSet = new Set(options);
     return projects.filter((p) => {
-      const matches = optionsSet.has(p.name);
+      const matches = optionsSet.has(p.name!);
       return exclusive ? !matches : matches;
     });
   } else if (options instanceof RegExp) {
-    return filterByRegex(projects, options, exclusive, (p) => p.name);
+    return filterByRegex(projects, options, exclusive, (p) => p.name!);
   }
+  return projects;
 }
 
 function filterProjectsByPath(
@@ -133,8 +134,9 @@ function filterProjectsByPath(
   exclusive: boolean
 ): ProjectConfiguration[] {
   if (options instanceof RegExp) {
-    return filterByRegex(projects, options, exclusive, (p) => p.sourceRoot);
+    return filterByRegex(projects, options, exclusive, (p) => p.sourceRoot!);
   }
+  return projects;
 }
 
 function filterByRegex(
@@ -153,6 +155,7 @@ function filterByRegex(
       return exclusive ? !matches : matches;
     });
   }
+  return projects;
 }
 
 function filterProjectsByTags(
@@ -162,11 +165,11 @@ function filterProjectsByTags(
 ): ProjectConfiguration[] {
   if (exclusive) {
     return projects.filter((p) => {
-      return tags.every((t) => !p.tags.includes(t));
+      return tags.every((t) => !p.tags?.includes(t));
     });
   } else {
     return projects.filter((p) => {
-      return tags.every((t) => p.tags.includes(t));
+      return tags.every((t) => p.tags?.includes(t));
     });
   }
 }
