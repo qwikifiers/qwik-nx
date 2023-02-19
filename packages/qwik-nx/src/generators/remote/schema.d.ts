@@ -10,4 +10,5 @@ export interface RemoteGeneratorSchema {
   strict?: boolean;
   e2eTestRunner?: 'playwright' | 'cypress' | 'none';
   port?: number;
+  host?: string;
 }

@@ -115,4 +115,9 @@ describe('Micro-frontends e2e', () => {
   }, 200000);
 
   // TODO: check for the preview to be working
+
+  it('should be able to add a new remote to the existing setup', () => {
+    // TODO
+  });
+  
 });

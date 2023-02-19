@@ -67,6 +67,10 @@ export async function remoteGenerator(
     }
   );
 
+  if (options.host) {
+    // TODO: should update host
+  }
+
   if (!options.skipFormat) {
     await formatFiles(tree);
   }

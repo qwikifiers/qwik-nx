@@ -2,7 +2,8 @@
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
   "$id": "Host",
-  "title": "",
+  "title": "Generate Micro Frontends Setup for Qwik Host App",
+  "description": "Create Micro Frontends configuration files for given Qwik Host Application.",
   "type": "object",
   "properties": {
     "name": {
