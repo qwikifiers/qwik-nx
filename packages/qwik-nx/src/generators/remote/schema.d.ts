@@ -12,3 +12,8 @@ export interface RemoteGeneratorSchema {
   port?: number;
   host?: string;
 }
+
+export interface NormalizedSchema extends RemoteGeneratorSchema {
+  projectRoot: string;
+  projectName: string;
+}

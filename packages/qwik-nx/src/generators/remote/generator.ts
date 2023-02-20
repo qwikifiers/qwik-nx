@@ -3,6 +3,9 @@ import {
   generateFiles,
   GeneratorCallback,
   joinPathFragments,
+  logger,
+  readJson,
+  readProjectConfiguration,
   Tree,
 } from '@nrwl/devkit';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
@@ -10,7 +13,7 @@ import { addMicroFrontendBetaWarning } from '../../utils/mf-beta-warning';
 import appGenerator from '../application/generator';
 import { QwikAppGeneratorSchema } from '../application/schema';
 import { normalizeOptions } from '../application/utils/normalize-options';
-import { RemoteGeneratorSchema } from './schema';
+import { NormalizedSchema, RemoteGeneratorSchema } from './schema';
 
 export async function remoteGenerator(
   tree: Tree,
@@ -28,7 +31,10 @@ export async function remoteGenerator(
   const initTask = await appGenerator(tree, appGeneratorSchema);
   tasks.push(initTask);
 
-  const normalizedSchema = normalizeOptions(tree, appGeneratorSchema);
+  const normalizedSchema: NormalizedSchema = normalizeOptions(
+    tree,
+    appGeneratorSchema
+  );
   // TODO: switch to empty preset once available
   tree.delete(
     joinPathFragments(normalizedSchema.projectRoot, 'src/routes/flower')
@@ -68,7 +74,7 @@ export async function remoteGenerator(
   );
 
   if (options.host) {
-    // TODO: should update host
+    updateHostWithRemoteConfig(tree, options.host, normalizedSchema);
   }
 
   if (!options.skipFormat) {
@@ -78,3 +84,26 @@ export async function remoteGenerator(
 }
 
 export default remoteGenerator;
+
+function updateHostWithRemoteConfig(
+  tree: Tree,
+  hostProjectName: string,
+  schema: NormalizedSchema
+) {
+  const hostConfig = readProjectConfiguration(tree, hostProjectName);
+  const remoteConfigPath = joinPathFragments(
+    hostConfig.root,
+    'src/config/remotes.json'
+  );
+
+  if (tree.exists(remoteConfigPath)) {
+    const config = readJson(tree, remoteConfigPath);
+    config[schema.projectName] = `http://localhost:${schema.port ?? 4200}`;
+
+    tree.write(remoteConfigPath, JSON.stringify(config));
+  } else {
+    logger.warn(
+      `Could not find remote config at ${remoteConfigPath}. Did you generate this project with "qwik-nx:host"?`
+    );
+  }
+}

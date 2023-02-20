@@ -48,7 +48,7 @@ function addFiles(
   );
 
   const projectConfig = readProjectConfiguration(tree, schema.projectName);
-  projectConfig.targets['serve'].executor =
+  projectConfig.targets!['serve'].executor =
     'qwik-nx:micro-frontends-dev-server';
   updateProjectConfiguration(tree, schema.projectName, projectConfig);
 }
@@ -75,7 +75,7 @@ export async function hostGenerator(tree: Tree, options: HostGeneratorSchema) {
   }[] = [];
 
   if (options.remotes) {
-    let port = options.port + 1;
+    let port = (options.port ?? 4200) + 1;
     for (const remote of options.remotes) {
       remotesWithPorts.push({
         name: remote,

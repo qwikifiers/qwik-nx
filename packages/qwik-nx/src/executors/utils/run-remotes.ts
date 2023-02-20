@@ -13,7 +13,7 @@ export async function runRemotes(
   options: RunRemotesOptions,
   context: ExecutorContext
 ) {
-  const p = context.projectsConfigurations.projects[context.projectName];
+  const p = context.projectsConfigurations!.projects[context.projectName!];
 
   const configPath =
     options.remoteConfigPath ?? join(p.root, DEFAULT_REMOTES_CONFIG_PATH);
@@ -43,7 +43,7 @@ export async function runRemotes(
         process.on('exit', processExitListener);
         process.on('SIGTERM', processExitListener);
 
-        child.stdout.on('data', (data: string) => {
+        child.stdout!.on('data', (data: string) => {
           process.stdout.write(addColorAndPrefix(data, remote, index));
           // eslint-disable-next-line no-control-regex
           const raw = data.replace(/\u001b[^m]*?m/g, ''); // removing colors
@@ -54,7 +54,7 @@ export async function runRemotes(
             resolve();
           }
         });
-        child.stderr.on('data', (err) => {
+        child.stderr!.on('data', (err) => {
           process.stderr.write(addColorAndPrefix(err, remote, index));
         });
         child.on('exit', () => {
@@ -65,7 +65,7 @@ export async function runRemotes(
 
   await Promise.all(remotePromises);
   const isDevServer =
-    context.target.executor === 'qwik-nx:micro-frontends-dev-server';
+    context.target!.executor === 'qwik-nx:micro-frontends-dev-server';
 
   output.success({
     title: 'Preliminary actions completed',
