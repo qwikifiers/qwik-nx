@@ -35,9 +35,7 @@ describe('cloudflare-pages-integration generator', () => {
   it('should add required targets', async () => {
     await cloudflarePagesIntegrationGenerator(appTree, options);
     const config = readProjectConfiguration(appTree, projectName);
-    expect(
-      config.targets!['build-ssr'].configurations!['cloudflare-pages']
-    ).toEqual({
+    expect(config.targets!['build.ssr'].configurations!['production']).toEqual({
       configFile: `apps/${projectName}/adaptors/cloudflare-pages/vite.config.ts`,
     });
     expect(config.targets!['deploy']).toEqual({
@@ -45,19 +43,64 @@ describe('cloudflare-pages-integration generator', () => {
       options: {
         dist: `dist/apps/${projectName}/client`,
       },
-      dependsOn: ['build-ssr-cloudflare-pages'],
+      dependsOn: ['build-cloudflare'],
     });
-    expect(config.targets!['preview-cloudflare-pages']).toEqual({
+    expect(config.targets!['preview-cloudflare']).toEqual({
       executor: '@k11r/nx-cloudflare-wrangler:serve-page',
       options: {
         dist: `dist/apps/${projectName}/client`,
       },
-      dependsOn: ['build-ssr-cloudflare-pages'],
+      dependsOn: ['build-cloudflare'],
     });
-    expect(config.targets!['build-ssr-cloudflare-pages']).toEqual({
+    expect(config.targets!['build-cloudflare']).toEqual({
       executor: 'nx:run-commands',
       options: {
-        command: `npx nx run ${projectName}:build-ssr:cloudflare-pages`,
+        command: `npx nx run ${projectName}:build:production`,
+      },
+    });
+  });
+
+  it('should use other target name if deploy target is already defined', async () => {
+    const configBefore = readProjectConfiguration(appTree, projectName);
+    configBefore.targets!['deploy'] = { executor: 'nx:noop' };
+    updateProjectConfiguration(appTree, projectName, configBefore);
+
+    await cloudflarePagesIntegrationGenerator(appTree, options);
+
+    const config = readProjectConfiguration(appTree, projectName);
+    expect(config.targets!['build.ssr'].configurations!['production']).toEqual({
+      configFile: `apps/${projectName}/adaptors/cloudflare-pages/vite.config.ts`,
+    });
+    expect(config.targets!['deploy']).toEqual({ executor: 'nx:noop' });
+    expect(config.targets!['deploy.cloudflare'].executor).toEqual(
+      '@k11r/nx-cloudflare-wrangler:deploy-page'
+    );
+  });
+
+  it('should use the name of the integration if configuration name "production" is already defined', async () => {
+    const configBefore = readProjectConfiguration(appTree, projectName);
+    configBefore.targets!['build.ssr'].configurations!['production'] = {};
+    updateProjectConfiguration(appTree, projectName, configBefore);
+
+    await cloudflarePagesIntegrationGenerator(appTree, options);
+
+    const config = readProjectConfiguration(appTree, projectName);
+    expect(
+      config.targets!['build'].configurations!['production']
+    ).toBeUndefined();
+    expect(config.targets!['build.ssr'].configurations!['production']).toEqual(
+      {}
+    );
+    expect(config.targets!['build.ssr'].configurations!['cloudflare']).toEqual({
+      configFile: `apps/${projectName}/adaptors/cloudflare-pages/vite.config.ts`,
+    });
+    expect(config.targets!['deploy'].executor).toEqual(
+      '@k11r/nx-cloudflare-wrangler:deploy-page'
+    );
+    expect(config.targets!['build-cloudflare']).toEqual({
+      executor: 'nx:run-commands',
+      options: {
+        command: `npx nx run ${projectName}:build:cloudflare`,
       },
     });
   });
@@ -70,17 +113,6 @@ describe('cloudflare-pages-integration generator', () => {
   });
 
   describe('should throw if project configuration does not meet the expectations', () => {
-    it('deploy target is already defined', async () => {
-      const config = readProjectConfiguration(appTree, projectName);
-      config.targets!['deploy'] = { executor: 'nx:noop' };
-      updateProjectConfiguration(appTree, projectName, config);
-
-      expect(
-        cloudflarePagesIntegrationGenerator(appTree, options)
-      ).rejects.toThrow(
-        `"deploy" target has already been configured for ${options.project}`
-      );
-    });
     it('project is not an application', async () => {
       const config = readProjectConfiguration(appTree, projectName);
       config.projectType = 'library';
@@ -95,14 +127,12 @@ describe('cloudflare-pages-integration generator', () => {
 
     it('project does not have Qwik\'s "build-ssr" target', async () => {
       const config = readProjectConfiguration(appTree, projectName);
-      delete config.targets!['build-ssr'];
+      config.targets!.build.executor = 'nx:run-commands';
       updateProjectConfiguration(appTree, projectName, config);
 
-      expect(
+      await expect(
         cloudflarePagesIntegrationGenerator(appTree, options)
-      ).rejects.toThrow(
-        'Cannot setup cloudflare integration for the given project.'
-      );
+      ).rejects.toThrow('Project contains invalid configuration.');
     });
   });
 });

@@ -9,6 +9,7 @@ import {
   runCommandUntil,
   promisifiedTreeKill,
   killPort,
+  stripConsoleColors,
 } from '@qwikifiers/e2e/utils';
 
 export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
@@ -35,9 +36,18 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
     });
 
     it('should create qwik-nx', async () => {
-      const result = await runNxCommandAsync(`build-ssr ${project}`);
+      const result = await runNxCommandAsync(`build ${project}`);
+      expect(stripConsoleColors(result.stdout.replace(/\n|\s/g, ''))).toContain(
+        [
+          'Targets to be executed:',
+          `${project}:build.client`,
+          `${project}:build.ssr`,
+        ]
+          .join('')
+          .replace(/\n|\s/g, '')
+      );
       expect(result.stdout).toContain(
-        `Successfully ran target build-ssr for project ${project}`
+        `Successfully ran target build for project ${project}`
       );
       expect(() =>
         checkFilesExist(`dist/apps/${project}/client/q-manifest.json`)
@@ -45,6 +55,25 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
       expect(() =>
         checkFilesExist(`dist/apps/${project}/server/entry.preview.mjs`)
       ).not.toThrow();
+    }, 200000);
+
+    it('should run build with a specified configuration', async () => {
+      // TODO: cloudflare pages or custom configurations should also be tested
+      const result = await runNxCommandAsync(
+        `build ${project} --configuration=preview`
+      );
+      expect(stripConsoleColors(result.stdout.replace(/\n|\s/g, ''))).toContain(
+        [
+          'Targets to be executed:',
+          `${project}:build.client:preview`,
+          `${project}:build.ssr:preview`,
+        ]
+          .join('')
+          .replace(/\n|\s/g, '')
+      );
+      expect(result.stdout).toContain(
+        `Successfully ran target build for project ${project}`
+      );
     }, 200000);
 
     it('should serve application in dev mode with custom port', async () => {

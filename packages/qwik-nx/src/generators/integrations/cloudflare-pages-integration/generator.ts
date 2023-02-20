@@ -12,6 +12,10 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nrwl/devkit';
+import {
+  getIntegrationConfigurationName,
+  IntegrationName,
+} from '../../../utils/integration-configuration-name';
 import { nxCloudflareWrangler, wranglerVersion } from '../../../utils/versions';
 import { CloudflarePagesIntegrationGeneratorSchema } from './schema';
 
@@ -25,27 +29,37 @@ export async function cloudflarePagesIntegrationGenerator(
   options: CloudflarePagesIntegrationGeneratorSchema
 ) {
   const config = readProjectConfiguration(tree, options.project);
-  config.targets ??= {};
-
-  if (config.projectType !== 'application' || !config.targets['build-ssr']) {
+  if (config.projectType !== 'application') {
     throw new Error(
       'Cannot setup cloudflare integration for the given project.'
     );
   }
-  if (config.targets['deploy']) {
+  if (config.targets?.['build']?.executor !== 'qwik-nx:build') {
     throw new Error(
-      `"deploy" target has already been configured for ${options.project}`
+      'Project contains invalid configuration. ' +
+        'If you encounter this error within a Qwik project, make sure you have run necessary Nx migrations for qwik-nx plugin.'
     );
   }
 
+  const configurationName = getIntegrationConfigurationName(
+    IntegrationName.Cloudflare,
+    config
+  );
+  const deployTargetName = config.targets['deploy']
+    ? 'deploy.cloudflare'
+    : 'deploy';
+
   const normalizedOptions = normalizeOptions(config);
-  (config.targets['build-ssr'].configurations ??= {})['cloudflare-pages'] =
+  (config.targets['build']?.configurations ?? {})[configurationName] = {};
+  (config.targets['build.ssr'].configurations ??= {})[configurationName] =
     getBuildSSRTargetCloudflareConfiguration(normalizedOptions);
-  config.targets['deploy'] = getDeployTarget(normalizedOptions);
-  config.targets['preview-cloudflare-pages'] =
+  config.targets[deployTargetName] = getDeployTarget(normalizedOptions);
+  config.targets['preview-cloudflare'] =
     getCloudflarePreviewTarget(normalizedOptions);
-  config.targets['build-ssr-cloudflare-pages'] =
-    getIntermediateDependsOnTarget(normalizedOptions);
+  config.targets['build-cloudflare'] = getIntermediateDependsOnTarget(
+    normalizedOptions,
+    configurationName
+  );
 
   updateProjectConfiguration(tree, options.project, config);
 
@@ -70,7 +84,7 @@ function getDeployTarget(options: NormalizedOptions): TargetConfiguration {
     options: {
       dist: `dist/${options.projectConfig.root}/client`,
     },
-    dependsOn: ['build-ssr-cloudflare-pages'],
+    dependsOn: ['build-cloudflare'],
   };
 }
 
@@ -82,18 +96,19 @@ function getCloudflarePreviewTarget(
     options: {
       dist: `dist/${options.projectConfig.root}/client`,
     },
-    dependsOn: ['build-ssr-cloudflare-pages'],
+    dependsOn: ['build-cloudflare'],
   };
 }
 
 /** Currently it's not possible to depend on a target with a specific configuration, that's why intermediate one is required */
 function getIntermediateDependsOnTarget(
-  options: NormalizedOptions
+  options: NormalizedOptions,
+  configurationName: string
 ): TargetConfiguration {
   return {
     executor: 'nx:run-commands',
     options: {
-      command: `npx nx run ${options.projectConfig.name}:build-ssr:cloudflare-pages`,
+      command: `npx nx run ${options.projectConfig.name}:build:${configurationName}`,
     },
   };
 }

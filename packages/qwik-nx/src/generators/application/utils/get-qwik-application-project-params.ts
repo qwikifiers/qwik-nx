@@ -11,15 +11,34 @@ export function getQwikApplicationProjectTargets(
 ): Record<string, TargetConfiguration> {
   return {
     build: getBuildTarget(params),
-    'build-ssr': getBuildSsrTarget(params),
+    'build.client': getBuildClientTarget(params),
+    'build.ssr': getBuildSsrTarget(params),
     preview: getPreviewTarget(params),
     test: getTestTarget(params),
     serve: getServeTarget(params),
-    serveDebug: getServeDebugTarget(params),
+    'serve.debug': getServeDebugTarget(params),
   };
 }
 
 function getBuildTarget(
+  params: UpdateQwikAppConfigurationParams
+): TargetConfiguration {
+  return {
+    executor: 'qwik-nx:build',
+    options: {
+      runSequence: [
+        `${params.projectName}:build.client`,
+        `${params.projectName}:build.ssr`,
+      ],
+      outputPath: `dist/${params.projectRoot}`,
+    },
+    configurations: {
+      preview: {},
+    },
+  };
+}
+
+function getBuildClientTarget(
   params: UpdateQwikAppConfigurationParams
 ): TargetConfiguration {
   return {
@@ -46,7 +65,6 @@ function getBuildSsrTarget(
         mode: 'production',
       },
     },
-    dependsOn: ['build'],
   };
 }
 
@@ -59,7 +77,7 @@ function getPreviewTarget(
       command: 'vite preview',
       cwd: `${params.projectRoot}`,
     },
-    dependsOn: ['build-ssr'],
+    dependsOn: ['build'],
   };
 }
 function getTestTarget(
@@ -80,20 +98,9 @@ function getServeTarget(
 ): TargetConfiguration {
   return {
     executor: '@nrwl/vite:dev-server',
-    defaultConfiguration: 'development',
     options: {
-      buildTarget: `${params.projectName}:build`,
+      buildTarget: `${params.projectName}:build.client`,
       mode: 'ssr',
-    },
-    configurations: {
-      development: {
-        buildTarget: `${params.projectName}:build:development`,
-        hmr: true,
-      },
-      production: {
-        buildTarget: `${params.projectName}:build:production`,
-        hmr: false,
-      },
     },
   };
 }
@@ -104,7 +111,7 @@ function getServeDebugTarget(
   return {
     executor: 'nx:run-commands',
     options: {
-      command: `node --inspect-brk ${params.offsetFromRoot}/node_modules/vite/bin/vite.js --mode ssr --force`,
+      command: `node --inspect-brk ${params.offsetFromRoot}node_modules/vite/bin/vite.js --mode ssr --force`,
       cwd: params.projectRoot,
     },
   };

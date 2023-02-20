@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "cli": "nx",
+  "title": "Build executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "runSequence": {
+      "description": "An array of targets to be executed in a sequence",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "x-completion-type": "projectTarget"
+      }
+    }
+  },
+  "required": ["runSequence"]
+}

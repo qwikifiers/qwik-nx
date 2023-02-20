@@ -28,5 +28,8 @@
     "vitest": "^0.25.0",
     "@playwright/test": "^1.30.0",
     "undici": "^5.18.0"
+  },
+  "nx-migrations": {
+    "migrations": "./migrations.json"
   }
 }
