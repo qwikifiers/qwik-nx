@@ -4,7 +4,7 @@ import {
   stripIndents,
   writeJson,
 } from '@nrwl/devkit';
-import { createTreeWithEmptyV1Workspace } from '@nrwl/devkit/testing';
+import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import update from './setup-tailwind';
 
 describe('setup-tailwind', () => {
@@ -15,7 +15,7 @@ describe('setup-tailwind', () => {
     ${`src/global.less`}
     ${`src/global.styl`}
   `('should update stylesheet', async ({ stylesPath }) => {
-    const tree = createTreeWithEmptyV1Workspace();
+    const tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
     addProjectConfiguration(tree, 'example', {
       root: 'apps/example',
       sourceRoot: 'apps/example/src',
@@ -38,7 +38,7 @@ describe('setup-tailwind', () => {
   });
 
   it('should add postcss and tailwind config files', async () => {
-    const tree = createTreeWithEmptyV1Workspace();
+    const tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
     addProjectConfiguration(tree, 'example', {
       root: 'apps/example',
       sourceRoot: 'apps/example/src',
@@ -69,7 +69,7 @@ describe('setup-tailwind', () => {
   });
 
   it('should skip update if postcss configuration already exists', async () => {
-    const tree = createTreeWithEmptyV1Workspace();
+    const tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
     addProjectConfiguration(tree, 'example', {
       root: 'apps/example',
       sourceRoot: 'apps/example/src',
@@ -86,7 +86,7 @@ describe('setup-tailwind', () => {
   });
 
   it('should skip update if tailwind configuration already exists', async () => {
-    const tree = createTreeWithEmptyV1Workspace();
+    const tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
     addProjectConfiguration(tree, 'example', {
       root: 'apps/example',
       sourceRoot: 'apps/example/src',
@@ -103,7 +103,7 @@ describe('setup-tailwind', () => {
   });
 
   it('should install packages', async () => {
-    const tree = createTreeWithEmptyV1Workspace();
+    const tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
     addProjectConfiguration(tree, 'example', {
       root: 'apps/example',
       sourceRoot: 'apps/example/src',
@@ -134,7 +134,7 @@ describe('setup-tailwind', () => {
   });
 
   it('should support skipping package install', async () => {
-    const tree = createTreeWithEmptyV1Workspace();
+    const tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
     addProjectConfiguration(tree, 'example', {
       root: 'apps/example',
       sourceRoot: 'apps/example/src',
