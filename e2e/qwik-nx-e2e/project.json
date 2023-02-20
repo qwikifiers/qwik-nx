@@ -11,6 +11,13 @@
         "jestConfig": "e2e/qwik-nx-e2e/jest.config.ts",
         "maxWorkers": 1
       }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["e2e/qwik-nx-e2e/**/*.ts"]
+      }
     }
   },
   "tags": [],
