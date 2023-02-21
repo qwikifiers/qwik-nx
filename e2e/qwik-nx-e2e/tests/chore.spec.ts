@@ -30,20 +30,18 @@ describe('appGenerator e2e', () => {
   });
 
   describe("qwik-nx's compiled package.json", () => {
-    let project: string;
-
     it("qwik-nx's package.json should contain only expected dependencies", async () => {
       const packageJson = readJson('node_modules/qwik-nx/package.json');
 
       expect(packageJson.dependencies).toBeUndefined();
       expect(packageJson.peerDependencies).toEqual({
-        '@nrwl/vite': '~15.6.0',
+        '@nrwl/vite': '~15.7.2',
         '@builder.io/qwik': '^0.17.0',
         '@playwright/test': '^1.30.0',
         undici: '^5.18.0',
         vite: '^4.0.0',
         vitest: '^0.25.0',
-        tslib: '2.4.1',
+        tslib: '^2.3.0',
       });
     }, 200000);
   });
