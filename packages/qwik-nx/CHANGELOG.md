@@ -2,6 +2,17 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.10.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.10.0...qwik-nx-0.10.1) (2023-02-21)
+
+
+### Features
+
+* make the repo stricter ([#83](https://github.com/qwikifiers/qwik-nx/issues/83)) ([f0e4d5d](https://github.com/qwikifiers/qwik-nx/commit/f0e4d5d9674346629798ed16022f4525a8105456))
+* **qwik-nx:** build executor ([#78](https://github.com/qwikifiers/qwik-nx/issues/78)) ([aecae61](https://github.com/qwikifiers/qwik-nx/commit/aecae611d4b543e7c85be58a83e3be50d7fdfd3b))
+* **qwik-nx:** use @nrwl/vite:preview-server executor ([#87](https://github.com/qwikifiers/qwik-nx/issues/87)) ([3b88796](https://github.com/qwikifiers/qwik-nx/commit/3b8879636273605bbaaa689eb7c45740c5bd55de))
+
+
+
 # [0.10.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.9.0...qwik-nx-0.10.0) (2023-02-14)
 
 
