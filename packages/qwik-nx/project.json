@@ -84,6 +84,11 @@
       "executor": "ngx-deploy-npm:deploy",
       "options": {
         "access": "public"
+      },
+      "configurations": {
+        "local": {
+          "registry": "http://localhost:4873"
+        }
       }
     },
     "push-to-github": {

@@ -77,16 +77,14 @@ function getPreviewTarget(
   params: UpdateQwikAppConfigurationParams
 ): TargetConfiguration {
   return {
-    executor: 'nx:run-commands',
+    executor: '@nrwl/vite:preview-server',
     options: {
-      command: `vite preview --port=${
-        params.previewServerPort ?? DEFAULT_PREVIEW_SERVER_PORT
-      }`,
-      cwd: `${params.projectRoot}`,
+      buildTarget: `${params.projectName}:build`,
+      port: params.previewServerPort ?? DEFAULT_PREVIEW_SERVER_PORT,
     },
-    dependsOn: ['build'],
   };
 }
+
 function getTestTarget(
   params: UpdateQwikAppConfigurationParams
 ): TargetConfiguration {

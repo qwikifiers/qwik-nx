@@ -27,15 +27,21 @@ export default async function* runBuildExecutor(
   });
 
   for (const target of configs) {
-    const step = await runExecutor(target, {}, context);
+    try {
+      const step = await runExecutor(target, {}, context);
 
-    for await (const result of step) {
-      if (!result.success) {
-        return result;
+      for await (const result of step) {
+        if (!result.success) {
+          yield { success: false };
+          return;
+        }
       }
-      yield {
-        success: true,
-      };
+    } catch (error) {
+      console.error(error);
+      yield { success: false };
+      return;
     }
   }
+
+  yield { success: true };
 }
