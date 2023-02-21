@@ -1,10 +1,10 @@
 {
   "generators": {
-    "switch-to-qwik-nx:build-executor": {
+    "switch-to-qwik-nx-build-executor": {
       "version": "0.11.0",
-      "description": "switch-to-qwik-nx:build-executor",
+      "description": "switch-to-qwik-nx-build-executor",
       "cli": "nx",
-      "implementation": "./src/migrations/switch-to-qwik-nx:build-executor/switch-to-qwik-nx:build-executor"
+      "implementation": "./src/migrations/switch-to-qwik-nx-build-executor/switch-to-qwik-nx-build-executor"
     }
   }
 }
