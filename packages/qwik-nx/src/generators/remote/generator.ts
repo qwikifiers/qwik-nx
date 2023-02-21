@@ -11,9 +11,12 @@ import {
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 import { addMicroFrontendBetaWarning } from '../../utils/mf-beta-warning';
 import appGenerator from '../application/generator';
-import { QwikAppGeneratorSchema } from '../application/schema';
+import {
+  NormalizedSchema,
+  QwikAppGeneratorSchema,
+} from '../application/schema';
 import { normalizeOptions } from '../application/utils/normalize-options';
-import { NormalizedSchema, RemoteGeneratorSchema } from './schema';
+import { RemoteGeneratorSchema } from './schema';
 
 export async function remoteGenerator(
   tree: Tree,
@@ -31,47 +34,9 @@ export async function remoteGenerator(
   const initTask = await appGenerator(tree, appGeneratorSchema);
   tasks.push(initTask);
 
-  const normalizedSchema: NormalizedSchema = normalizeOptions(
-    tree,
-    appGeneratorSchema
-  );
-  // TODO: switch to empty preset once available
-  tree.delete(
-    joinPathFragments(normalizedSchema.projectRoot, 'src/routes/flower')
-  );
-  tree.delete(
-    joinPathFragments(
-      normalizedSchema.projectRoot,
-      'src/components/header/header.css'
-    )
-  );
-  tree.delete(
-    joinPathFragments(
-      normalizedSchema.projectRoot,
-      'src/components/header/header.tsx'
-    )
-  );
-  tree.delete(
-    joinPathFragments(
-      normalizedSchema.projectRoot,
-      'src/components/icons/qwik.tsx'
-    )
-  );
-  tree.delete(
-    joinPathFragments(
-      normalizedSchema.projectRoot,
-      'src/components/router-head/router-head.tsx'
-    )
-  );
+  const normalizedSchema = normalizeOptions(tree, appGeneratorSchema);
 
-  generateFiles(
-    tree,
-    joinPathFragments(__dirname, 'files'),
-    normalizedSchema.projectRoot,
-    {
-      name: normalizedSchema.projectName,
-    }
-  );
+  updateFiles(tree, normalizedSchema);
 
   if (options.host) {
     updateHostWithRemoteConfig(tree, options.host, normalizedSchema);
@@ -98,7 +63,7 @@ function updateHostWithRemoteConfig(
 
   if (tree.exists(remoteConfigPath)) {
     const config = readJson(tree, remoteConfigPath);
-    config[schema.projectName] = `http://localhost:${schema.port ?? 4200}`;
+    config[schema.projectName] = `http://localhost:${schema.devServerPort}`;
 
     tree.write(remoteConfigPath, JSON.stringify(config));
   } else {
@@ -106,4 +71,33 @@ function updateHostWithRemoteConfig(
       `Could not find remote config at ${remoteConfigPath}. Did you generate this project with "qwik-nx:host"?`
     );
   }
+}
+
+function updateFiles(tree: Tree, schema: NormalizedSchema) {
+  // TODO: switch to empty preset once available
+  tree.delete(joinPathFragments(schema.projectRoot, 'src/routes/flower'));
+  tree.delete(
+    joinPathFragments(schema.projectRoot, 'src/components/header/header.css')
+  );
+  tree.delete(
+    joinPathFragments(schema.projectRoot, 'src/components/header/header.tsx')
+  );
+  tree.delete(
+    joinPathFragments(schema.projectRoot, 'src/components/icons/qwik.tsx')
+  );
+  tree.delete(
+    joinPathFragments(
+      schema.projectRoot,
+      'src/components/router-head/router-head.tsx'
+    )
+  );
+
+  generateFiles(
+    tree,
+    joinPathFragments(__dirname, 'files'),
+    schema.projectRoot,
+    {
+      name: schema.projectName,
+    }
+  );
 }

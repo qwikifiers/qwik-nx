@@ -9,7 +9,7 @@ export async function* microFrontendsPreviewServer(
   context: ExecutorContext
 ) {
   addMicroFrontendBetaWarning();
-  await runRemotes({ skipRemotes: options.skipRemotes }, context);
+  await runRemotes(options, context);
 
   return yield* vitePreviewServerExecutor(options, context);
 }

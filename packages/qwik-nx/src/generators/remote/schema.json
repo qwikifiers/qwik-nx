@@ -3,7 +3,7 @@
   "cli": "nx",
   "$id": "Remote",
   "title": "Generate Micro Frontends Setup for Qwik Remote App",
-  "description": "Create Micro Frontends configuration files for given Qwik Remote Application.",
+  "description": "Create Micro Frontends configuration files for the Qwik Application.",
   "type": "object",
   "properties": {
     "name": {

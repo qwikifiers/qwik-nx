@@ -1,8 +1,5 @@
 import { TargetConfiguration } from '@nrwl/devkit';
 
-const DEFAULT_DEV_SERVER_PORT = 4200;
-const DEFAULT_PREVIEW_SERVER_PORT = 4300;
-
 export interface UpdateQwikAppConfigurationParams {
   projectName: string;
   projectRoot: string;
@@ -80,7 +77,7 @@ function getPreviewTarget(
     executor: '@nrwl/vite:preview-server',
     options: {
       buildTarget: `${params.projectName}:build`,
-      port: params.previewServerPort ?? DEFAULT_PREVIEW_SERVER_PORT,
+      port: params.previewServerPort,
     },
   };
 }
@@ -106,7 +103,7 @@ function getServeTarget(
     options: {
       buildTarget: `${params.projectName}:build.client`,
       mode: 'ssr',
-      port: params.devServerPort ?? DEFAULT_DEV_SERVER_PORT,
+      port: params.devServerPort,
     },
   };
 }

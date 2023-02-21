@@ -3,7 +3,7 @@
   "cli": "nx",
   "$id": "Host",
   "title": "Generate Micro Frontends Setup for Qwik Host App",
-  "description": "Create Micro Frontends configuration files for given Qwik Host Application.",
+  "description": "Create Micro Frontends configuration files for the Qwik Application.",
   "type": "object",
   "properties": {
     "name": {

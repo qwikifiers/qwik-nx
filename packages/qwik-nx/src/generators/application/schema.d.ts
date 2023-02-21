@@ -17,6 +17,8 @@ export interface QwikAppGeneratorSchema {
 }
 
 export interface NormalizedSchema extends QwikAppGeneratorSchema {
+  devServerPort: number;
+  previewServerPort: number;
   projectName: string;
   projectRoot: string;
   offsetFromRoot: string;

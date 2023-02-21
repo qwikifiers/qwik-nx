@@ -1,0 +1,835 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`host generator should run successfully 1`] = `
+"import { qwikVite } from '@builder.io/qwik/optimizer';
+import { qwikCity } from '@builder.io/qwik-city/vite';
+import { defineConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { qwikNxVite } from 'qwik-nx/plugins';
+
+export default defineConfig({
+  plugins: [
+    qwikNxVite(),
+    qwikCity(), 
+    qwikVite({
+			client: {
+				outDir: '../../dist/apps/myhostapp/client',
+			},
+			ssr: {
+				outDir: '../../dist/apps/myhostapp/server',
+			},
+		}),
+    tsconfigPaths({ root: '../../' })
+  ],
+  server: {
+    fs: {
+      // Allow serving files from the project root
+      allow: ['../../'],
+    },
+  },
+  preview: {
+    headers: {
+      'Cache-Control': 'public, max-age=600',
+    },
+  },
+   test: {
+    globals: true,
+    cache: {
+      dir: '../../node_modules/.vitest',
+    },
+    environment: 'node',
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}']
+  }
+  
+});
+"
+`;
+
+exports[`host generator should run successfully 2`] = `
+"/**
+ * WHAT IS THIS FILE?
+ *
+ * SSR entry point, in all cases the application is render outside the browser, this
+ * entry point will be the common one.
+ *
+ * - Server (express, cloudflare...)
+ * - npm run start
+ * - npm run preview
+ * - npm run build
+ *
+ */
+import { renderToStream, RenderToStreamOptions } from '@builder.io/qwik/server';
+import { manifest } from '@qwik-client-manifest';
+import Root from './root';
+
+export default function (opts: RenderToStreamOptions) {
+  return renderToStream(<Root />, {
+    manifest,
+    ...opts,
+    // Use container attributes to set attributes on the html tag.
+    containerAttributes: {
+      lang: 'en-us',
+      ...opts.containerAttributes,
+    },
+    prefetchStrategy: {
+      implementation: {
+        linkInsert: null,
+        workerFetchInsert: null,
+        prefetchEvent: 'always',
+      },
+    },
+    qwikLoader: {
+      include: 'always',
+    },
+    streaming: {
+      inOrder: {
+        strategy: 'auto',
+        maximunInitialChunk: 0,
+        maximunChunk: 0,
+      },
+    },
+  });
+}
+"
+`;
+
+exports[`host generator should run successfully 3`] = `
+"{
+  \\"name\\": \\"myhostapp\\",
+  \\"$schema\\": \\"../../node_modules/nx/schemas/project-schema.json\\",
+  \\"projectType\\": \\"application\\",
+  \\"sourceRoot\\": \\"apps/myhostapp/src\\",
+  \\"targets\\": {
+    \\"build\\": {
+      \\"executor\\": \\"qwik-nx:build\\",
+      \\"options\\": {
+        \\"runSequence\\": [
+          \\"myhostapp:build.client\\",
+          \\"myhostapp:build.ssr\\"
+        ],
+        \\"outputPath\\": \\"dist/apps/myhostapp\\"
+      },
+      \\"configurations\\": {
+        \\"preview\\": {}
+      }
+    },
+    \\"build.client\\": {
+      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"options\\": {
+        \\"outputPath\\": \\"dist/apps/myhostapp\\",
+        \\"configFile\\": \\"apps/myhostapp/vite.config.ts\\"
+      }
+    },
+    \\"build.ssr\\": {
+      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"defaultConfiguration\\": \\"preview\\",
+      \\"options\\": {
+        \\"outputPath\\": \\"dist/apps/myhostapp\\"
+      },
+      \\"configurations\\": {
+        \\"preview\\": {
+          \\"ssr\\": \\"src/entry.preview.tsx\\",
+          \\"mode\\": \\"production\\"
+        }
+      }
+    },
+    \\"preview\\": {
+      \\"executor\\": \\"qwik-nx:micro-frontends-preview-server\\",
+      \\"options\\": {
+        \\"buildTarget\\": \\"myhostapp:build\\",
+        \\"port\\": 4300
+      }
+    },
+    \\"test\\": {
+      \\"executor\\": \\"@nrwl/vite:test\\",
+      \\"outputs\\": [
+        \\"../../coverage/apps/myhostapp\\"
+      ],
+      \\"options\\": {
+        \\"passWithNoTests\\": true,
+        \\"reportsDirectory\\": \\"../../coverage/apps/myhostapp\\"
+      }
+    },
+    \\"serve\\": {
+      \\"executor\\": \\"qwik-nx:micro-frontends-dev-server\\",
+      \\"options\\": {
+        \\"buildTarget\\": \\"myhostapp:build.client\\",
+        \\"mode\\": \\"ssr\\",
+        \\"port\\": 4200
+      }
+    },
+    \\"serve.debug\\": {
+      \\"executor\\": \\"nx:run-commands\\",
+      \\"options\\": {
+        \\"command\\": \\"node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force\\",
+        \\"cwd\\": \\"apps/myhostapp\\"
+      }
+    }
+  },
+  \\"tags\\": []
+}
+"
+`;
+
+exports[`host generator should run successfully 4`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/.prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/public/favicon.svg",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/public/manifest.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/components/header/header.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/components/header/header.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/components/icons/qwik.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/components/router-head/router-head.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/entry.dev.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/entry.preview.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/entry.ssr.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/global.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/routes/flower/flower.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/routes/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/routes/layout.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/routes/service-worker.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/tsconfig.app.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/.prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/public/favicon.svg",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/public/manifest.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/src/components/header/header.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/src/entry.dev.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/src/entry.preview.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/src/entry.ssr.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/src/global.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/src/routes/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/src/routes/layout.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/src/routes/service-worker.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/tsconfig.app.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/src/components/.gitkeep",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/src/routes/about/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/.prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/public/favicon.svg",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/public/manifest.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/src/components/header/header.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/src/entry.dev.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/src/entry.preview.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/src/entry.ssr.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/src/global.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/src/routes/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/src/routes/layout.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/src/routes/service-worker.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/tsconfig.app.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/src/components/.gitkeep",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/src/routes/about/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/components/remote-mfe/remote-mfe.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/routes/about/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/config/remotes.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`host generator should run successfully 5`] = `
+"import { qwikVite } from '@builder.io/qwik/optimizer';
+import { qwikCity } from '@builder.io/qwik-city/vite';
+import { defineConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { qwikNxVite } from 'qwik-nx/plugins';
+
+export default defineConfig({
+  plugins: [
+    qwikNxVite(),
+    qwikCity(), 
+    qwikVite({
+			client: {
+				outDir: '../../dist/apps/remote1/client',
+			},
+			ssr: {
+				outDir: '../../dist/apps/remote1/server',
+			},
+		}),
+    tsconfigPaths({ root: '../../' })
+  ],
+  server: {
+    fs: {
+      // Allow serving files from the project root
+      allow: ['../../'],
+    },
+  },
+  preview: {
+    headers: {
+      'Cache-Control': 'public, max-age=600',
+    },
+  },
+   test: {
+    globals: true,
+    cache: {
+      dir: '../../node_modules/.vitest',
+    },
+    environment: 'node',
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}']
+  }
+  
+});
+"
+`;
+
+exports[`host generator should run successfully 6`] = `
+"/**
+ * WHAT IS THIS FILE?
+ *
+ * SSR entry point, in all cases the application is render outside the browser, this
+ * entry point will be the common one.
+ *
+ * - Server (express, cloudflare...)
+ * - npm run start
+ * - npm run preview
+ * - npm run build
+ *
+ */
+import { renderToStream, RenderToStreamOptions } from '@builder.io/qwik/server';
+import { manifest } from '@qwik-client-manifest';
+import Root from './root';
+
+export default function (opts: RenderToStreamOptions) {
+  return renderToStream(<Root />, {
+    manifest,
+    ...opts,
+    // Use container attributes to set attributes on the html tag.
+    containerAttributes: {
+      lang: 'en-us',
+      ...opts.containerAttributes,
+    },
+    base: (opts) => {
+      // removing query params from url and unifying to the form \\"http://localhost:5001/build/\\"
+      return new URL(opts.serverData!.url).origin + '/build/';
+    },
+    prefetchStrategy: {
+      implementation: {
+        linkInsert: null,
+        workerFetchInsert: null,
+        prefetchEvent: 'always',
+      },
+    },
+    containerTagName: 'div',
+    qwikLoader: {
+      include: 'never',
+    },
+  });
+}
+"
+`;
+
+exports[`host generator should run successfully 7`] = `
+"{
+  \\"name\\": \\"remote1\\",
+  \\"$schema\\": \\"../../node_modules/nx/schemas/project-schema.json\\",
+  \\"projectType\\": \\"application\\",
+  \\"sourceRoot\\": \\"apps/remote1/src\\",
+  \\"targets\\": {
+    \\"build\\": {
+      \\"executor\\": \\"qwik-nx:build\\",
+      \\"options\\": {
+        \\"runSequence\\": [
+          \\"remote1:build.client\\",
+          \\"remote1:build.ssr\\"
+        ],
+        \\"outputPath\\": \\"dist/apps/remote1\\"
+      },
+      \\"configurations\\": {
+        \\"preview\\": {}
+      }
+    },
+    \\"build.client\\": {
+      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"options\\": {
+        \\"outputPath\\": \\"dist/apps/remote1\\",
+        \\"configFile\\": \\"apps/remote1/vite.config.ts\\"
+      }
+    },
+    \\"build.ssr\\": {
+      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"defaultConfiguration\\": \\"preview\\",
+      \\"options\\": {
+        \\"outputPath\\": \\"dist/apps/remote1\\"
+      },
+      \\"configurations\\": {
+        \\"preview\\": {
+          \\"ssr\\": \\"src/entry.preview.tsx\\",
+          \\"mode\\": \\"production\\"
+        }
+      }
+    },
+    \\"preview\\": {
+      \\"executor\\": \\"@nrwl/vite:preview-server\\",
+      \\"options\\": {
+        \\"buildTarget\\": \\"remote1:build\\",
+        \\"port\\": 4201
+      }
+    },
+    \\"test\\": {
+      \\"executor\\": \\"@nrwl/vite:test\\",
+      \\"outputs\\": [
+        \\"../../coverage/apps/remote1\\"
+      ],
+      \\"options\\": {
+        \\"passWithNoTests\\": true,
+        \\"reportsDirectory\\": \\"../../coverage/apps/remote1\\"
+      }
+    },
+    \\"serve\\": {
+      \\"executor\\": \\"@nrwl/vite:dev-server\\",
+      \\"options\\": {
+        \\"buildTarget\\": \\"remote1:build.client\\",
+        \\"mode\\": \\"ssr\\",
+        \\"port\\": 4201
+      }
+    },
+    \\"serve.debug\\": {
+      \\"executor\\": \\"nx:run-commands\\",
+      \\"options\\": {
+        \\"command\\": \\"node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force\\",
+        \\"cwd\\": \\"apps/remote1\\"
+      }
+    }
+  },
+  \\"tags\\": []
+}
+"
+`;
+
+exports[`host generator should run successfully 8`] = `
+"import { qwikVite } from '@builder.io/qwik/optimizer';
+import { qwikCity } from '@builder.io/qwik-city/vite';
+import { defineConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { qwikNxVite } from 'qwik-nx/plugins';
+
+export default defineConfig({
+  plugins: [
+    qwikNxVite(),
+    qwikCity(), 
+    qwikVite({
+			client: {
+				outDir: '../../dist/apps/remote2/client',
+			},
+			ssr: {
+				outDir: '../../dist/apps/remote2/server',
+			},
+		}),
+    tsconfigPaths({ root: '../../' })
+  ],
+  server: {
+    fs: {
+      // Allow serving files from the project root
+      allow: ['../../'],
+    },
+  },
+  preview: {
+    headers: {
+      'Cache-Control': 'public, max-age=600',
+    },
+  },
+   test: {
+    globals: true,
+    cache: {
+      dir: '../../node_modules/.vitest',
+    },
+    environment: 'node',
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}']
+  }
+  
+});
+"
+`;
+
+exports[`host generator should run successfully 9`] = `
+"/**
+ * WHAT IS THIS FILE?
+ *
+ * SSR entry point, in all cases the application is render outside the browser, this
+ * entry point will be the common one.
+ *
+ * - Server (express, cloudflare...)
+ * - npm run start
+ * - npm run preview
+ * - npm run build
+ *
+ */
+import { renderToStream, RenderToStreamOptions } from '@builder.io/qwik/server';
+import { manifest } from '@qwik-client-manifest';
+import Root from './root';
+
+export default function (opts: RenderToStreamOptions) {
+  return renderToStream(<Root />, {
+    manifest,
+    ...opts,
+    // Use container attributes to set attributes on the html tag.
+    containerAttributes: {
+      lang: 'en-us',
+      ...opts.containerAttributes,
+    },
+    base: (opts) => {
+      // removing query params from url and unifying to the form \\"http://localhost:5001/build/\\"
+      return new URL(opts.serverData!.url).origin + '/build/';
+    },
+    prefetchStrategy: {
+      implementation: {
+        linkInsert: null,
+        workerFetchInsert: null,
+        prefetchEvent: 'always',
+      },
+    },
+    containerTagName: 'div',
+    qwikLoader: {
+      include: 'never',
+    },
+  });
+}
+"
+`;
+
+exports[`host generator should run successfully 10`] = `
+"{
+  \\"name\\": \\"remote2\\",
+  \\"$schema\\": \\"../../node_modules/nx/schemas/project-schema.json\\",
+  \\"projectType\\": \\"application\\",
+  \\"sourceRoot\\": \\"apps/remote2/src\\",
+  \\"targets\\": {
+    \\"build\\": {
+      \\"executor\\": \\"qwik-nx:build\\",
+      \\"options\\": {
+        \\"runSequence\\": [
+          \\"remote2:build.client\\",
+          \\"remote2:build.ssr\\"
+        ],
+        \\"outputPath\\": \\"dist/apps/remote2\\"
+      },
+      \\"configurations\\": {
+        \\"preview\\": {}
+      }
+    },
+    \\"build.client\\": {
+      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"options\\": {
+        \\"outputPath\\": \\"dist/apps/remote2\\",
+        \\"configFile\\": \\"apps/remote2/vite.config.ts\\"
+      }
+    },
+    \\"build.ssr\\": {
+      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"defaultConfiguration\\": \\"preview\\",
+      \\"options\\": {
+        \\"outputPath\\": \\"dist/apps/remote2\\"
+      },
+      \\"configurations\\": {
+        \\"preview\\": {
+          \\"ssr\\": \\"src/entry.preview.tsx\\",
+          \\"mode\\": \\"production\\"
+        }
+      }
+    },
+    \\"preview\\": {
+      \\"executor\\": \\"@nrwl/vite:preview-server\\",
+      \\"options\\": {
+        \\"buildTarget\\": \\"remote2:build\\",
+        \\"port\\": 4202
+      }
+    },
+    \\"test\\": {
+      \\"executor\\": \\"@nrwl/vite:test\\",
+      \\"outputs\\": [
+        \\"../../coverage/apps/remote2\\"
+      ],
+      \\"options\\": {
+        \\"passWithNoTests\\": true,
+        \\"reportsDirectory\\": \\"../../coverage/apps/remote2\\"
+      }
+    },
+    \\"serve\\": {
+      \\"executor\\": \\"@nrwl/vite:dev-server\\",
+      \\"options\\": {
+        \\"buildTarget\\": \\"remote2:build.client\\",
+        \\"mode\\": \\"ssr\\",
+        \\"port\\": 4202
+      }
+    },
+    \\"serve.debug\\": {
+      \\"executor\\": \\"nx:run-commands\\",
+      \\"options\\": {
+        \\"command\\": \\"node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force\\",
+        \\"cwd\\": \\"apps/remote2\\"
+      }
+    }
+  },
+  \\"tags\\": []
+}
+"
+`;

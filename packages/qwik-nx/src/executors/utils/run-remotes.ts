@@ -67,14 +67,20 @@ export async function runRemotes(
   const isDevServer =
     context.target!.executor === 'qwik-nx:micro-frontends-dev-server';
 
+  let skippedRemoteMessage: string | null = null;
+  if (options.skipRemotes?.length) {
+    skippedRemoteMessage = `Skipped targets: ${options.skipRemotes.join(', ')}`;
+  }
+
   output.success({
     title: 'Preliminary actions completed',
     bodyLines: [
       `Successfully instantiated "${context.targetName}" targets of ${context.projectName}'s remotes.`,
+      skippedRemoteMessage,
       `Starting the ${context.projectName}'s ${
         isDevServer ? 'dev' : 'preview'
       } server..`,
-    ],
+    ].filter((v): v is string => !!v),
   });
 }
 

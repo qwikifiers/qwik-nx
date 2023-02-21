@@ -58,12 +58,12 @@
     "host": {
       "factory": "./src/generators/host/generator",
       "schema": "./src/generators/host/schema.json",
-      "description": "host generator"
+      "description": "Generate a host Qwik application for the micro frontend setup"
     },
     "remote": {
       "factory": "./src/generators/remote/generator",
       "schema": "./src/generators/remote/schema.json",
-      "description": "remote generator"
+      "description": "Generate a remote Qwik application for the micro frontend setup"
     }
   }
 }

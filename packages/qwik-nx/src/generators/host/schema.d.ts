@@ -14,8 +14,3 @@ export interface HostGeneratorSchema {
   port?: number;
   remotes?: string[];
 }
-
-export interface NormalizedSchema extends Schema {
-  projectRoot: string;
-  projectName: string;
-}

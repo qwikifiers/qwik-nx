@@ -7,13 +7,14 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nrwl/devkit';
-import { HostGeneratorSchema, NormalizedSchema } from './schema';
+import { HostGeneratorSchema } from './schema';
 import { appGenerator } from './../application/generator';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 import remoteGenerator from '../remote/generator';
 import { normalizeOptions } from '../application/utils/normalize-options';
 import { join } from 'path';
 import { addMicroFrontendBetaWarning } from '../../utils/mf-beta-warning';
+import { NormalizedSchema } from '../application/schema';
 
 function addFiles(
   tree: Tree,
@@ -50,6 +51,8 @@ function addFiles(
   const projectConfig = readProjectConfiguration(tree, schema.projectName);
   projectConfig.targets!['serve'].executor =
     'qwik-nx:micro-frontends-dev-server';
+  projectConfig.targets!['preview'].executor =
+    'qwik-nx:micro-frontends-preview-server';
   updateProjectConfiguration(tree, schema.projectName, projectConfig);
 }
 
@@ -75,7 +78,7 @@ export async function hostGenerator(tree: Tree, options: HostGeneratorSchema) {
   }[] = [];
 
   if (options.remotes) {
-    let port = (options.port ?? 4200) + 1;
+    let port = normalizedSchema.devServerPort + 1;
     for (const remote of options.remotes) {
       remotesWithPorts.push({
         name: remote,

@@ -8,7 +8,7 @@ describe('component generator', () => {
   const projectName = 'dummy-lib';
 
   beforeEach(() => {
-    appTree = createTreeWithEmptyWorkspace();
+    appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
     createLib(appTree, projectName);
   });
 

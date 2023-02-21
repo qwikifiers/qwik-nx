@@ -21,7 +21,7 @@ describe('Micro-frontends e2e', () => {
   beforeAll(async () => {
     await killPorts(...PORTS);
     ensureNxProject('qwik-nx', 'dist/packages/qwik-nx');
-  });
+  }, 10000);
 
   beforeAll(async () => {
     project = uniq('qwik-nx');
@@ -30,7 +30,7 @@ describe('Micro-frontends e2e', () => {
     await runNxCommandAsync(
       `generate qwik-nx:host ${project} --remotes=${remote1},${remote2} --no-interactive `
     );
-  }, 200000);
+  }, 240000);
 
   afterAll(async () => {
     await runNxCommandAsync('reset');
@@ -72,10 +72,58 @@ describe('Micro-frontends e2e', () => {
   }, 200000);
 
   it('should serve host and remotes in dev mode', async () => {
-    await runHostAndRemotes(project, remote1, remote2);
+    const result = await runHostAndRemotes(project, remote1, remote2);
+
+    expect(result.invokedRemote1).toBeTruthy();
+    expect(result.invokedRemote2).toBeTruthy();
+    expect(result.showedAllRemotesInvokedInfo).toBeTruthy();
+    expect(result.invokedHost).toBeTruthy();
   }, 200000);
 
-  // TODO: check for the preview to be working
+  it('should be able to skip specified remotes in dev mode', async () => {
+    const result = await runHostAndRemotes(
+      project,
+      remote1,
+      remote2,
+      undefined,
+      true
+    );
+
+    expect(result.invokedRemote1).toBeFalsy();
+    expect(result.invokedRemote2).toBeTruthy();
+    expect(result.showedAllRemotesInvokedInfo).toBeTruthy();
+    expect(result.invokedHost).toBeTruthy();
+  }, 200000);
+
+  it('should serve host and remotes in preview mode', async () => {
+    const result = await previewHostAndRemotes(project, remote1, remote2);
+
+    expect(result.builtRemote1).toBeTruthy();
+    expect(result.builtRemote2).toBeTruthy();
+    expect(result.builtHost).toBeTruthy();
+    expect(result.invokedRemote1).toBeTruthy();
+    expect(result.invokedRemote2).toBeTruthy();
+    expect(result.showedAllRemotesInvokedInfo).toBeTruthy();
+    expect(result.invokedHost).toBeTruthy();
+  }, 200000);
+
+  it('should be able to skip specified remotes in preview mode', async () => {
+    const result = await previewHostAndRemotes(
+      project,
+      remote1,
+      remote2,
+      undefined,
+      true
+    );
+
+    expect(result.builtRemote1).toBeFalsy();
+    expect(result.builtRemote2).toBeTruthy();
+    expect(result.builtHost).toBeTruthy();
+    expect(result.invokedRemote1).toBeFalsy();
+    expect(result.invokedRemote2).toBeTruthy();
+    expect(result.showedAllRemotesInvokedInfo).toBeTruthy();
+    expect(result.invokedHost).toBeTruthy();
+  }, 200000);
 
   it('should be able to add a new remote to the existing setup', async () => {
     const remote3 = uniq('qwik-nx');
@@ -90,58 +138,75 @@ describe('Micro-frontends e2e', () => {
       checkFilesExist(`dist/apps/${remote3}/server/entry.preview.mjs`)
     ).not.toThrow();
 
-    await runHostAndRemotes(project, remote1, remote2, remote3);
+    const runResult = await runHostAndRemotes(
+      project,
+      remote1,
+      remote2,
+      remote3
+    );
+
+    expect(runResult.invokedRemote1).toBeTruthy();
+    expect(runResult.invokedRemote2).toBeTruthy();
+    expect(runResult.invokedRemote3).toBeTruthy();
+    expect(runResult.showedAllRemotesInvokedInfo).toBeTruthy();
+    expect(runResult.invokedHost).toBeTruthy();
   }, 200000);
 });
 
 async function runHostAndRemotes(
-  project: string,
+  hostName: string,
   remote1: string,
   remote2: string,
-  remote3?: string
+  remote3?: string,
+  skipFirst = false
 ) {
   let invokedRemote1 = false;
   let invokedRemote2 = false;
   let invokedRemote3 = false;
   let showedAllRemotesInvokedInfo = false;
   let invokedHost = false;
-  const p = await runCommandUntil(`run ${project}:serve`, (output) => {
-    invokedHost ||= stripConsoleColors(output).includes(
-      `Local:   http://localhost:4200/`
-    );
-    invokedRemote1 ||= stripConsoleColors(output).includes(
-      `${remote1.toUpperCase()}   ➜  Local:   http://localhost:4201/`
-    );
-    invokedRemote2 ||= stripConsoleColors(output).includes(
-      `${remote2.toUpperCase()}   ➜  Local:   http://localhost:4202/`
-    );
-    invokedRemote3 ||=
-      !!remote3 &&
-      stripConsoleColors(output).includes(
-        `${remote3.toUpperCase()}   ➜  Local:   http://localhost:4203/`
-      );
-    showedAllRemotesInvokedInfo ||= stripConsoleColors(
-      output.replace(/\n|\s/g, '')
-    ).includes(
-      [
-        'Preliminary actions completed',
-        `Successfully instantiated "serve" targets of ${project}'s remotes.`,
-        `Starting the ${project}'s dev server..`,
-      ]
-        .join('')
-        .replace(/\n|\s/g, '')
-    );
 
-    return invokedHost;
-  });
-
-  expect(invokedRemote1).toBeTruthy();
-  expect(invokedRemote2).toBeTruthy();
-  if (remote3) {
-    expect(invokedRemote3).toBeTruthy();
+  let serveHostOptions = '';
+  if (skipFirst) {
+    serveHostOptions = `--skipRemotes=${remote1}`;
   }
-  expect(showedAllRemotesInvokedInfo).toBeTruthy();
-  expect(invokedHost).toBeTruthy();
+  const p = await runCommandUntil(
+    `run ${hostName}:serve ${serveHostOptions}`,
+    (output) => {
+      const includesInvokeMessage = (
+        remote: string,
+        port: number,
+        includePrefix = true
+      ) => {
+        const prefix = includePrefix ? `${remote.toUpperCase()}   ➜  ` : '';
+        const stripped = stripConsoleColors(output);
+        // both resolved ip and "localhost" can be printed
+        const ip = `${prefix}Local:   http://127.0.0.1:${port}/`;
+        const localhost = `${prefix}Local:   http://localhost:${port}/`;
+        return stripped.includes(ip) || stripped.includes(localhost);
+      };
+      invokedHost ||= includesInvokeMessage(hostName, 4200, false);
+      invokedRemote1 ||= includesInvokeMessage(remote1, 4201);
+      invokedRemote2 ||= includesInvokeMessage(remote2, 4202);
+      invokedRemote3 ||= !!remote3 && includesInvokeMessage(remote3, 4203);
+
+      showedAllRemotesInvokedInfo ||= stripConsoleColors(
+        output.replace(/\n|\s/g, '')
+      ).includes(
+        [
+          'Preliminary actions completed',
+          `Successfully instantiated "serve" targets of ${hostName}'s remotes.`,
+          skipFirst ? `Skipped targets: ${remote1}` : null,
+          `Starting the ${hostName}'s dev server..`,
+        ]
+          .filter(Boolean)
+          .join('')
+          .replace(/\n|\s/g, '')
+      );
+
+      return invokedHost;
+    }
+  );
 
   try {
     await promisifiedTreeKill(p.pid!, 'SIGKILL');
@@ -149,4 +214,119 @@ async function runHostAndRemotes(
   } catch {
     // ignore
   }
+
+  return {
+    invokedRemote1,
+    invokedRemote2,
+    invokedRemote3,
+    showedAllRemotesInvokedInfo,
+    invokedHost,
+  };
+}
+
+async function previewHostAndRemotes(
+  hostName: string,
+  remote1: string,
+  remote2: string,
+  remote3?: string,
+  skipFirst = false
+) {
+  let invokedRemote1 = false;
+  let invokedRemote2 = false;
+  let invokedRemote3 = false;
+  let invokedHost = false;
+  let builtRemote1 = false;
+  let builtRemote2 = false;
+  let builtRemote3 = false;
+  let builtHost = false;
+  let showedAllRemotesInvokedInfo = false;
+
+  let previewHostOptions = '';
+  if (skipFirst) {
+    previewHostOptions = `--skipRemotes=${remote1}`;
+  }
+
+  const p = await runCommandUntil(
+    `run ${hostName}:preview ${previewHostOptions}`,
+    (output) => {
+      const includesBuiltMessage = (remote: string) => {
+        // checking for the presence of ssr build output message to determine whether project has been built
+        return stripConsoleColors(output).includes(
+          `${remote.toUpperCase()} ../../dist/apps/${remote}/server/entry.preview.mjs`
+        );
+      };
+
+      const includesInvokeMessage = (
+        remote: string,
+        port: number,
+        includePrefix = true
+      ) => {
+        const prefix = includePrefix ? `${remote.toUpperCase()}   ➜  ` : '';
+        const stripped = stripConsoleColors(output);
+        // both resolved ip and "localhost" can be printed
+        const ip = `${prefix}Local:   http://127.0.0.1:${port}/`;
+        const localhost = `${prefix}Local:   http://localhost:${port}/`;
+        return stripped.includes(ip) || stripped.includes(localhost);
+      };
+
+      // build output
+      builtHost ||= stripConsoleColors(output).includes(
+        `../../dist/apps/${hostName}/server/entry.preview.mjs`
+      );
+      builtRemote1 ||= includesBuiltMessage(remote1);
+      builtRemote2 ||= includesBuiltMessage(remote2);
+      builtRemote3 ||= !!remote3 && includesBuiltMessage(remote3);
+
+      // serve output
+      invokedHost ||= includesInvokeMessage(hostName, 4200, false);
+      invokedRemote1 ||= includesInvokeMessage(remote1, 4201);
+      invokedRemote2 ||= includesInvokeMessage(remote2, 4202);
+      invokedRemote3 ||= !!remote3 && includesInvokeMessage(remote3, 4203);
+
+      showedAllRemotesInvokedInfo ||= stripConsoleColors(
+        output.replace(/\n|\s/g, '')
+      ).includes(
+        [
+          'Preliminary actions completed',
+          `Successfully instantiated "preview" targets of ${hostName}'s remotes.`,
+          skipFirst ? `Skipped targets: ${remote1}` : null,
+          `Starting the ${hostName}'s preview server..`,
+        ]
+          .filter(Boolean)
+          .join('')
+          .replace(/\n|\s/g, '')
+      );
+
+      return invokedHost;
+    }
+  );
+
+  try {
+    await promisifiedTreeKill(p.pid!, 'SIGKILL');
+    await killPorts(...PORTS);
+  } catch {
+    // ignore
+  }
+
+  const hasBuildOutputs = (projectName: string): boolean => {
+    try {
+      checkFilesExist(`dist/apps/${projectName}/client/q-manifest.json`);
+      checkFilesExist(`dist/apps/${projectName}/server/entry.preview.mjs`);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  return {
+    invokedRemote1,
+    invokedRemote2,
+    invokedRemote3,
+    showedAllRemotesInvokedInfo,
+    invokedHost,
+    builtRemote1: builtRemote1 && hasBuildOutputs(remote1),
+    builtRemote2: builtRemote2 && hasBuildOutputs(remote2),
+    builtRemote3: remote3 && builtRemote3 && hasBuildOutputs(remote3),
+    builtHost: builtHost && hasBuildOutputs(hostName),
+  };
 }

@@ -6,7 +6,7 @@ import appGenerator from '../application/generator';
 
 describe('route generator', () => {
   function setup() {
-    const appTree = createTreeWithEmptyWorkspace();
+    const appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
     appGenerator(appTree, { name: 'testApp' });
 
     const routeOptions: RouteGeneratorSchema = {
@@ -24,7 +24,7 @@ describe('route generator', () => {
     const { appTree, routeOptions } = setup();
     await routeGenerator(appTree, routeOptions);
     expect(
-      appTree.exists('test-app/src/routes/fake-route/index.tsx')
+      appTree.exists('apps/test-app/src/routes/fake-route/index.tsx')
     ).toBeTruthy();
   });
 
@@ -33,7 +33,7 @@ describe('route generator', () => {
     routeOptions.addLayout = true;
     await routeGenerator(appTree, routeOptions);
     expect(
-      appTree.exists('test-app/src/routes/fake-route/layout.tsx')
+      appTree.exists('apps/test-app/src/routes/fake-route/layout.tsx')
     ).toBeTruthy();
   });
 });

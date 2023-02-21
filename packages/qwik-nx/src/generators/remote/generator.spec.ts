@@ -1,20 +1,44 @@
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { Tree, readProjectConfiguration } from '@nrwl/devkit';
+import { Tree, readProjectConfiguration, readJson } from '@nrwl/devkit';
 
-import generator from './generator';
+import { remoteGenerator } from './generator';
+import { hostGenerator } from './../host/generator';
 import { RemoteGeneratorSchema } from './schema';
 
 describe('remote generator', () => {
   let appTree: Tree;
-  const options: RemoteGeneratorSchema = { name: 'test' };
+  const options: RemoteGeneratorSchema = { name: 'myremote' };
 
   beforeEach(() => {
-    appTree = createTreeWithEmptyWorkspace();
+    appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
   });
 
   it('should run successfully', async () => {
-    await generator(appTree, options);
-    const config = readProjectConfiguration(appTree, 'test');
+    await remoteGenerator(appTree, options);
+    const config = readProjectConfiguration(appTree, 'myremote');
     expect(config).toBeDefined();
+    expect(
+      appTree.read('apps/myremote/vite.config.ts', 'utf-8')
+    ).toMatchSnapshot();
+    expect(
+      appTree.read('apps/myremote/project.json', 'utf-8')
+    ).toMatchSnapshot();
+    expect(
+      appTree.listChanges().map((c) => ({ path: c.path, type: c.type }))
+    ).toMatchSnapshot();
+  });
+
+  it('should update host config', async () => {
+    await hostGenerator(appTree, { name: 'myhost' });
+
+    expect(readJson(appTree, 'apps/myhost/src/config/remotes.json')).toEqual(
+      {}
+    );
+
+    await remoteGenerator(appTree, { ...options, host: 'myhost', port: 777 });
+
+    expect(readJson(appTree, 'apps/myhost/src/config/remotes.json')).toEqual({
+      myremote: 'http://localhost:777',
+    });
   });
 });

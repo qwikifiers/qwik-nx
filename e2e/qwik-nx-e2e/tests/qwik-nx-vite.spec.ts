@@ -26,7 +26,7 @@ describe('qwikNxVite plugin e2e', () => {
   beforeAll(async () => {
     await killPorts(4212);
     ensureNxProject('qwik-nx', 'dist/packages/qwik-nx');
-  });
+  }, 10000);
 
   afterAll(async () => {
     // `nx reset` kills the daemon, and performs
