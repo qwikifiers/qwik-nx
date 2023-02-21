@@ -5,7 +5,7 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import migrate from './switch-to-qwik-nx:build-executor';
+import migrate from './switch-to-qwik-nx-build-executor';
 
 describe('Use new "qwik-nx:build" executor in qwik apps', () => {
   let tree: Tree;
