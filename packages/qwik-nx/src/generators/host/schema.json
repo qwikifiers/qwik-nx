@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "Host",
+  "title": "Generate Micro Frontends Setup for Qwik Host App",
+  "description": "Create Micro Frontends configuration files for the Qwik Application.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use?"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Add tags to the project (used for linting)",
+      "alias": "t"
+    },
+    "directory": {
+      "type": "string",
+      "description": "A directory where the project is placed",
+      "x-priority": "important"
+    },
+    "style": {
+      "description": "The file extension to be used for style files.",
+      "type": "string",
+      "default": "css",
+      "alias": "s",
+      "x-prompt": {
+        "message": "Which stylesheet format would you like to use?",
+        "type": "list",
+        "items": [
+          {
+            "value": "css",
+            "label": "CSS"
+          },
+          {
+            "value": "scss",
+            "label": "SASS(.scss)       [ http://sass-lang.com                     ]"
+          },
+          {
+            "value": "styl",
+            "label": "Stylus(.styl)     [ http://stylus-lang.com                   ]"
+          },
+          {
+            "value": "less",
+            "label": "LESS              [ http://lesscss.org                       ]"
+          }
+        ],
+        "default": "css"
+      }
+    },
+    "linter": {
+      "description": "The tool to use for running lint checks.",
+      "type": "string",
+      "enum": ["eslint", "none"],
+      "default": "eslint"
+    },
+    "skipFormat": {
+      "description": "Skip formatting files.",
+      "type": "boolean",
+      "default": false
+    },
+    "unitTestRunner": {
+      "type": "string",
+      "enum": ["vitest", "none"],
+      "description": "Test runner to use for unit tests.",
+      "default": "vitest"
+    },
+    "strict": {
+      "type": "boolean",
+      "description": "Creates an application with strict mode and strict type checking.",
+      "default": true
+    },
+    "tailwind": {
+      "description": "Setup Tailwind",
+      "type": "boolean",
+      "default": false
+    },
+    "e2eTestRunner": {
+      "type": "string",
+      "enum": ["playwright", "cypress", "none"],
+      "description": "Test runner to use for end to end (E2E) tests.",
+      "default": "playwright"
+    },
+    "port": {
+      "type": "number",
+      "description": "The port for the dev and preview servers of the app (they're the same by default in MF setup).",
+      "default": 4200
+    },
+    "remotes": {
+      "type": "array",
+      "description": "A list of remote application names that the host application should consume.",
+      "x-priority": "important"
+    }
+  },
+  "required": ["name"]
+}

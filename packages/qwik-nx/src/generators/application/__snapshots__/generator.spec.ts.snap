@@ -80,14 +80,16 @@ exports[`qwik-nx generator should run successfully 2`] = `
     \\"preview\\": {
       \\"executor\\": \\"@nrwl/vite:preview-server\\",
       \\"options\\": {
-        \\"buildTarget\\": \\"myapp:build\\"
+        \\"buildTarget\\": \\"myapp:build\\",
+        \\"port\\": 4300
       }
     },
     \\"serve\\": {
       \\"executor\\": \\"@nrwl/vite:dev-server\\",
       \\"options\\": {
         \\"buildTarget\\": \\"myapp:build.client\\",
-        \\"mode\\": \\"ssr\\"
+        \\"mode\\": \\"ssr\\",
+        \\"port\\": 4200
       }
     },
     \\"serve.debug\\": {

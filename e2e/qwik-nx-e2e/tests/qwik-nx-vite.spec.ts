@@ -13,6 +13,7 @@ import {
   promisifiedTreeKill,
   killPort,
   removeFile,
+  killPorts,
 } from '@qwikifiers/e2e/utils';
 
 describe('qwikNxVite plugin e2e', () => {
@@ -22,9 +23,10 @@ describe('qwikNxVite plugin e2e', () => {
   // consumes 1 workspace. The tests should each operate
   // on a unique project in the workspace, such that they
   // are not dependant on one another.
-  beforeAll(() => {
+  beforeAll(async () => {
+    await killPorts(4212);
     ensureNxProject('qwik-nx', 'dist/packages/qwik-nx');
-  });
+  }, 10000);
 
   afterAll(async () => {
     // `nx reset` kills the daemon, and performs

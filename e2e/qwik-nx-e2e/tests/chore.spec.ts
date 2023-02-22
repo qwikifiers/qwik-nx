@@ -1,16 +1,8 @@
 import {
-  checkFilesExist,
   ensureNxProject,
   readJson,
   runNxCommandAsync,
-  uniq,
 } from '@nrwl/nx-plugin/testing';
-
-import {
-  runCommandUntil,
-  promisifiedTreeKill,
-  killPort,
-} from '@qwikifiers/e2e/utils';
 
 describe('appGenerator e2e', () => {
   // Setting up individual workspaces per

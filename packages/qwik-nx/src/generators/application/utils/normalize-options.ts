@@ -18,10 +18,10 @@ function normalizeProjectName(options: QwikAppGeneratorSchema) {
   return normalizeDirectory(options).replace(new RegExp('/', 'g'), '-');
 }
 
-export const normalizeOptions = (
+export function normalizeOptions(
   host: Tree,
   options: QwikAppGeneratorSchema
-): NormalizedSchema => {
+): NormalizedSchema {
   const appDirectory = normalizeDirectory(options);
   const appProjectName = normalizeProjectName(options);
 
@@ -46,5 +46,7 @@ export const normalizeOptions = (
     styleExtension,
     setupVitest: options.unitTestRunner === 'vitest',
     parsedTags,
+    devServerPort: options.devServerPort ?? 4200,
+    previewServerPort: options.previewServerPort ?? 4300,
   };
-};
+}

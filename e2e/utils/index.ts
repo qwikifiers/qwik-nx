@@ -135,6 +135,11 @@ export async function killPort(port: number): Promise<boolean> {
   }
 }
 
+export async function killPorts(...ports: number[]): Promise<boolean> {
+  const killed = await Promise.all(ports.map((p) => killPort(p)));
+  return killed.every(Boolean);
+}
+
 export function runCommandUntil(
   command: string,
   criteria: (output: string) => boolean

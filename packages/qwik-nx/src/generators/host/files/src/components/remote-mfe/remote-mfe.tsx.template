@@ -1,0 +1,49 @@
+import {
+  SSRStream,
+  SSRStreamBlock,
+  component$,
+} from '@builder.io/qwik';
+import { useLocation } from '@builder.io/qwik-city';
+
+import remotesConfigRaw from '../../config/remotes.json?raw'
+
+export interface RemoteMfeProps {
+  remote: string;
+}
+
+export const RemoteMfe = component$(({ remote }: RemoteMfeProps) => {
+  const loc = useLocation();
+  const remotesConfig = JSON.parse(remotesConfigRaw);
+  const decoder = new TextDecoder();
+
+  return (
+    <SSRStreamBlock>
+      <SSRStream>
+        {async (stream) => {
+          // constructing the url by swapping the origin of an actual page's origin with the one from the config
+          // this behavior is expected to be adjusted to feet the specifics of the use case
+          const url =  loc.href.replace(new URL(loc.href).origin, remotesConfig[remote]);
+          const init: RequestInit = {
+            headers: { accept: 'text/html' },
+          };
+
+          let fragment: Response;
+          try {
+            fragment = await fetch(url, init);
+          } catch (error) {
+            console.error(`Failed to fetch remote's url: ${url}`);
+            throw error;
+          }
+
+          const reader = fragment.body!.getReader();
+          let fragmentChunk = await reader.read();
+          while (!fragmentChunk.done) {
+            const rawHtml = decoder.decode(fragmentChunk.value);
+            stream.write(rawHtml);
+            fragmentChunk = await reader.read();
+          }
+        }}
+      </SSRStream>
+    </SSRStreamBlock>
+  );
+});

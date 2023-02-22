@@ -10,15 +10,19 @@ import {
   promisifiedTreeKill,
   killPort,
   stripConsoleColors,
+  killPorts,
 } from '@qwikifiers/e2e/utils';
 
 export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
+  const devServerPort = 4212;
+  const previewServerPort = 4232;
   describe(`Basic behavior with ${generator} generator`, () => {
     let project: string;
 
-    beforeAll(() => {
+    beforeAll(async () => {
+      await killPorts(devServerPort, previewServerPort);
       ensureNxProject('qwik-nx', 'dist/packages/qwik-nx');
-    });
+    }, 10000);
 
     beforeAll(async () => {
       project = uniq('qwik-nx');
@@ -77,32 +81,35 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
     }, 200000);
 
     it('should serve application in dev mode with custom port', async () => {
-      const port = 4212;
       const p = await runCommandUntil(
-        `run ${project}:serve --port=${port}`,
+        `run ${project}:serve --port=${devServerPort}`,
         (output) => {
-          return output.includes('Local:') && output.includes(`:${port}`);
+          return (
+            output.includes('Local:') && output.includes(`:${devServerPort}`)
+          );
         }
       );
       try {
         await promisifiedTreeKill(p.pid!, 'SIGKILL');
-        await killPort(port);
+        await killPort(devServerPort);
       } catch {
         // ignore
       }
     }, 200000);
 
     it('should serve application in preview mode with custom port', async () => {
-      const port = 4232;
       const p = await runCommandUntil(
-        `run ${project}:preview --port=${port}`,
+        `run ${project}:preview --port=${previewServerPort}`,
         (output) => {
-          return output.includes('Local:') && output.includes(`:${port}`);
+          return (
+            output.includes('Local:') &&
+            output.includes(`:${previewServerPort}`)
+          );
         }
       );
       try {
         await promisifiedTreeKill(p.pid!, 'SIGKILL');
-        await killPort(port);
+        await killPort(previewServerPort);
       } catch {
         // ignore
       }

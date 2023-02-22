@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`remote generator should run successfully 1`] = `
+"import { qwikVite } from '@builder.io/qwik/optimizer';
+import { qwikCity } from '@builder.io/qwik-city/vite';
+import { defineConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { qwikNxVite } from 'qwik-nx/plugins';
+
+export default defineConfig({
+  plugins: [
+    qwikNxVite(),
+    qwikCity(), 
+    qwikVite({
+			client: {
+				outDir: '../../dist/apps/myremote/client',
+			},
+			ssr: {
+				outDir: '../../dist/apps/myremote/server',
+			},
+		}),
+    tsconfigPaths({ root: '../../' })
+  ],
+  server: {
+    fs: {
+      // Allow serving files from the project root
+      allow: ['../../'],
+    },
+  },
+  preview: {
+    headers: {
+      'Cache-Control': 'public, max-age=600',
+    },
+  },
+   test: {
+    globals: true,
+    cache: {
+      dir: '../../node_modules/.vitest',
+    },
+    environment: 'node',
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}']
+  }
+  
+});
+"
+`;
+
+exports[`remote generator should run successfully 2`] = `
+"{
+  \\"name\\": \\"myremote\\",
+  \\"$schema\\": \\"../../node_modules/nx/schemas/project-schema.json\\",
+  \\"projectType\\": \\"application\\",
+  \\"sourceRoot\\": \\"apps/myremote/src\\",
+  \\"targets\\": {
+    \\"build\\": {
+      \\"executor\\": \\"qwik-nx:build\\",
+      \\"options\\": {
+        \\"runSequence\\": [
+          \\"myremote:build.client\\",
+          \\"myremote:build.ssr\\"
+        ],
+        \\"outputPath\\": \\"dist/apps/myremote\\"
+      },
+      \\"configurations\\": {
+        \\"preview\\": {}
+      }
+    },
+    \\"build.client\\": {
+      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"options\\": {
+        \\"outputPath\\": \\"dist/apps/myremote\\",
+        \\"configFile\\": \\"apps/myremote/vite.config.ts\\"
+      }
+    },
+    \\"build.ssr\\": {
+      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"defaultConfiguration\\": \\"preview\\",
+      \\"options\\": {
+        \\"outputPath\\": \\"dist/apps/myremote\\"
+      },
+      \\"configurations\\": {
+        \\"preview\\": {
+          \\"ssr\\": \\"src/entry.preview.tsx\\",
+          \\"mode\\": \\"production\\"
+        }
+      }
+    },
+    \\"preview\\": {
+      \\"executor\\": \\"@nrwl/vite:preview-server\\",
+      \\"options\\": {
+        \\"buildTarget\\": \\"myremote:build\\",
+        \\"port\\": 4300
+      }
+    },
+    \\"test\\": {
+      \\"executor\\": \\"@nrwl/vite:test\\",
+      \\"outputs\\": [
+        \\"../../coverage/apps/myremote\\"
+      ],
+      \\"options\\": {
+        \\"passWithNoTests\\": true,
+        \\"reportsDirectory\\": \\"../../coverage/apps/myremote\\"
+      }
+    },
+    \\"serve\\": {
+      \\"executor\\": \\"@nrwl/vite:dev-server\\",
+      \\"options\\": {
+        \\"buildTarget\\": \\"myremote:build.client\\",
+        \\"mode\\": \\"ssr\\",
+        \\"port\\": 4200
+      }
+    },
+    \\"serve.debug\\": {
+      \\"executor\\": \\"nx:run-commands\\",
+      \\"options\\": {
+        \\"command\\": \\"node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force\\",
+        \\"cwd\\": \\"apps/myremote\\"
+      }
+    }
+  },
+  \\"tags\\": []
+}
+"
+`;
+
+exports[`remote generator should run successfully 3`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/.prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/public/favicon.svg",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/public/manifest.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/src/components/header/header.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/src/entry.dev.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/src/entry.preview.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/src/entry.ssr.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/src/global.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/src/routes/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/src/routes/layout.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/src/routes/service-worker.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/tsconfig.app.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/src/components/.gitkeep",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/src/routes/about/index.tsx",
+    "type": "CREATE",
+  },
+]
+`;

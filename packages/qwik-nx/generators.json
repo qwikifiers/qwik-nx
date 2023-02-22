@@ -54,6 +54,16 @@
       "factory": "./src/generators/integrations/cloudflare-pages-integration/generator",
       "schema": "./src/generators/integrations/cloudflare-pages-integration/schema.json",
       "description": "Qwik City Cloudflare Pages adaptor allows you to connect Qwik City to Cloudflare Pages"
+    },
+    "host": {
+      "factory": "./src/generators/host/generator",
+      "schema": "./src/generators/host/schema.json",
+      "description": "Generate a host Qwik application for the micro frontend setup"
+    },
+    "remote": {
+      "factory": "./src/generators/remote/generator",
+      "schema": "./src/generators/remote/schema.json",
+      "description": "Generate a remote Qwik application for the micro frontend setup"
     }
   }
 }
