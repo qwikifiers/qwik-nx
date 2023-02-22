@@ -40,4 +40,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           npm_token: ${{ secrets.NPM_TOKEN }}
-          release_target: ${{ version-publish-minor }}
+          release_target: version-publish-minor
