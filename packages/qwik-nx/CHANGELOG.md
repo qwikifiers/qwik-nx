@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.11.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.10.1...qwik-nx-0.11.0) (2023-02-22)
+
+
+### Bug Fixes
+
+* **qwik-nx:** migration file name should not contain colon ([#88](https://github.com/qwikifiers/qwik-nx/issues/88)) ([2bc2893](https://github.com/qwikifiers/qwik-nx/commit/2bc28939877a16951068e6bae05d0a340dbeba5a))
+
+
+### Features
+
+* **qwik-nx:** setup for micro frontends ([#75](https://github.com/qwikifiers/qwik-nx/issues/75)) ([37662ed](https://github.com/qwikifiers/qwik-nx/commit/37662edc3ddce5631f5d1f814dc116ed851d889e))
+
+
+
 ## [0.10.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.10.0...qwik-nx-0.10.1) (2023-02-21)
 
 
