@@ -20,6 +20,7 @@ import { NormalizedSchema, QwikAppGeneratorSchema } from './schema';
 import { getQwikApplicationProjectTargets } from './utils/get-qwik-application-project-params';
 import { normalizeOptions } from './utils/normalize-options';
 import { addE2eProject } from '../e2e-project/generator';
+import { ensureTsConfigBaseExists } from '../../utils/ensure-tsconfig-base-exists';
 
 function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
@@ -48,6 +49,8 @@ export async function appGenerator(
   if (!normalizedOptions.setupVitest) {
     delete targets['test'];
   }
+
+  ensureTsConfigBaseExists(tree);
 
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
