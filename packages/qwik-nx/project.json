@@ -80,6 +80,15 @@
         "postTargets": ["qwik-nx:publish", "qwik-nx:push-to-github"]
       }
     },
+    "version-publish-minor": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "noVerify": true,
+        "push": true,
+        "releaseAs": "minor",
+        "postTargets": ["qwik-nx:publish", "qwik-nx:push-to-github"]
+      }
+    },
     "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
