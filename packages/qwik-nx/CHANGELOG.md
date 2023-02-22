@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.11.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.11.0...qwik-nx-0.11.1) (2023-02-22)
+
+
+### Bug Fixes
+
+* **qwik-nx:** preset generator should check for the presense of peerDeps ([#91](https://github.com/qwikifiers/qwik-nx/issues/91)) ([ca6b313](https://github.com/qwikifiers/qwik-nx/commit/ca6b313aa525cde41c4a4432720b19a822591264))
+
+
+### Features
+
+* **qwik-nx:** ensure tsconfig.base.json exists in a package-based repo ([#92](https://github.com/qwikifiers/qwik-nx/issues/92)) ([bbdcced](https://github.com/qwikifiers/qwik-nx/commit/bbdcced49d5f0be3b2d6345da43f50f8d21f1b4d))
+
+
+
 # [0.11.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.10.1...qwik-nx-0.11.0) (2023-02-22)
 
 
