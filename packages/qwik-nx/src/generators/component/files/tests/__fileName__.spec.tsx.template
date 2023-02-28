@@ -5,5 +5,5 @@ import { <%- className %> } from './<%- fileName %>';
 test(`[<%- className %> Component]: Should render`, async () => {
   const { screen, render } = await createDOM();
   await render(<<%- className %> />);
-  expect(screen.innerHTML).toBeTruthy();
+  expect(screen.innerHTML).toContain('<%= className %> works!');
 });

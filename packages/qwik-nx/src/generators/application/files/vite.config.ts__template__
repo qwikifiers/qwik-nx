@@ -5,6 +5,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import { qwikNxVite } from 'qwik-nx/plugins';
 
 export default defineConfig({
+  cacheDir: '<%= offsetFromRoot %>node_modules/.vite/<%= projectRoot %>',
   plugins: [
     qwikNxVite(),
     qwikCity(), 

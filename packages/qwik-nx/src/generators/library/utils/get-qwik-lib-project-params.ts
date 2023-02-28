@@ -3,15 +3,21 @@ import { TargetConfiguration } from '@nrwl/devkit';
 export interface UpdateQwikAppConfigurationParams {
   projectRoot: string;
   offsetFromRoot: string;
+  buildable: boolean;
+  setupVitest: boolean;
 }
 
 export function getQwikLibProjectTargets(
   params: UpdateQwikAppConfigurationParams
-) {
-  return {
-    build: getBuildTarget(params),
-    test: getTestTarget(params),
-  };
+): Record<string, TargetConfiguration> {
+  const config: Record<string, TargetConfiguration> = {};
+  if (params.buildable) {
+    config['build'] = getBuildTarget(params);
+  }
+  if (params.setupVitest) {
+    config['test'] = getTestTarget(params);
+  }
+  return config;
 }
 
 function getBuildTarget(

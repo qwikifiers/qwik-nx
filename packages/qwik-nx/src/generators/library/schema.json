@@ -19,6 +19,12 @@
       "type": "string",
       "description": "A directory where the lib is placed."
     },
+    "buildable": {
+      "type": "boolean",
+      "default": false,
+      "description": "Generate a buildable library.",
+      "x-priority": "important"
+    },
     "linter": {
       "description": "The tool to use for running lint checks.",
       "type": "string",

@@ -1,22 +1,25 @@
 import { qwikVite } from '@builder.io/qwik/optimizer';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
+<% if(buildable) { %>import dts from 'vite-plugin-dts';
 import { join } from 'path';
+<% } %>
 import { qwikNxVite } from 'qwik-nx/plugins';
 
 export default defineConfig({
+  cacheDir: '<%= offsetFromRoot %>node_modules/.vite/<%= projectRoot %>',
   plugins: [
     qwikNxVite(),
     qwikVite(), 
     tsconfigPaths({ root: '<%= offsetFromRoot %>' }),
-    dts({
+    <% if(buildable) { %>  dts({
       tsConfigFilePath: join(__dirname, 'tsconfig.lib.json'),
       // Faster builds by skipping tests. Set this to false to enable type checking.
       skipDiagnostics: true,
     }),
+    <% } %>
   ],
-  mode: 'lib',
+  <% if(buildable) { %>  mode: 'lib',
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
@@ -34,6 +37,7 @@ export default defineConfig({
       external: [],
     },
   },
+  <% } %>
   <% if(setupVitest) { %>  test: {
     globals: true,
     cache: {
@@ -44,6 +48,6 @@ export default defineConfig({
     coverage: {
       reportsDirectory: '<%= offsetFromRoot %>coverage/<%= projectRoot %>'
     }
-  }
+  },
   <% } %>
 });

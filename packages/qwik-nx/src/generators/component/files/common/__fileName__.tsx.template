@@ -8,6 +8,6 @@ export const <%= className %> = component$(()=>{
   useStylesScoped$(styles);
   <% } %>
   return <>
-
+    <%= className %> works!
   </>;
 });
