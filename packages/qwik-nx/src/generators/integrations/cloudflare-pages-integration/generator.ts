@@ -74,7 +74,7 @@ export async function cloudflarePagesIntegrationGenerator(
 
 function getBuildSSRTargetCloudflareConfiguration(options: NormalizedOptions) {
   return {
-    configFile: `${options.projectConfig.root}/adaptors/cloudflare-pages/vite.config.ts`,
+    configFile: `${options.projectConfig.root}/adapters/cloudflare-pages/vite.config.ts`,
   };
 }
 
