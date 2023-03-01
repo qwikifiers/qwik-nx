@@ -13,7 +13,7 @@ import {
 import { Linter } from '@nrwl/linter';
 import { libraryGenerator as nxLibraryGenerator } from '@nrwl/workspace/generators';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
-import { getRelativePathToRootTsConfig } from '@nrwl/workspace/src/utilities/typescript';
+import { getRelativePathToRootTsConfig } from '@nrwl/js';
 import { LibraryGeneratorSchema } from './schema';
 import componentGenerator from './../component/generator';
 import { configureEslint } from '../../utils/configure-eslint';
