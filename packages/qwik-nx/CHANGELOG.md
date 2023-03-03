@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.11.2](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.11.1...qwik-nx-0.11.2) (2023-03-03)
+
+
+### Bug Fixes
+
+* **qwik-nx:** do not import app generator in the preset ([#97](https://github.com/qwikifiers/qwik-nx/issues/97)) ([120a685](https://github.com/qwikifiers/qwik-nx/commit/120a6857ad3f05532a3617b0dc76209fc99348ea))
+
+
+
 ## [0.11.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.11.0...qwik-nx-0.11.1) (2023-02-22)
 
 
