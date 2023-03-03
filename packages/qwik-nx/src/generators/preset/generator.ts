@@ -1,6 +1,5 @@
 import { ensurePackage, Tree } from '@nrwl/devkit';
 import { QwikWorkspacePresetGeneratorSchema } from './schema';
-import { appGenerator } from '../application/generator';
 import { getInstalledNxVersion } from '../../utils/get-installed-nx-version';
 
 export default async function (
@@ -12,5 +11,7 @@ export default async function (
   options.directory = '';
   options.name = options.qwikAppName ?? options.name;
   options.style = options.qwikAppStyle ?? options.style;
-  return appGenerator(tree, options);
+  return await import('../application/generator').then(({ appGenerator }) =>
+    appGenerator(tree, options)
+  );
 }
