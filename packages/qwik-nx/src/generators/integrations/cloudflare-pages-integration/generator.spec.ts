@@ -36,7 +36,7 @@ describe('cloudflare-pages-integration generator', () => {
     await cloudflarePagesIntegrationGenerator(appTree, options);
     const config = readProjectConfiguration(appTree, projectName);
     expect(config.targets!['build.ssr'].configurations!['production']).toEqual({
-      configFile: `apps/${projectName}/adaptors/cloudflare-pages/vite.config.ts`,
+      configFile: `apps/${projectName}/adapters/cloudflare-pages/vite.config.ts`,
     });
     expect(config.targets!['deploy']).toEqual({
       executor: '@k11r/nx-cloudflare-wrangler:deploy-page',
@@ -69,7 +69,7 @@ describe('cloudflare-pages-integration generator', () => {
 
     const config = readProjectConfiguration(appTree, projectName);
     expect(config.targets!['build.ssr'].configurations!['production']).toEqual({
-      configFile: `apps/${projectName}/adaptors/cloudflare-pages/vite.config.ts`,
+      configFile: `apps/${projectName}/adapters/cloudflare-pages/vite.config.ts`,
     });
     expect(config.targets!['deploy']).toEqual({ executor: 'nx:noop' });
     expect(config.targets!['deploy.cloudflare'].executor).toEqual(
@@ -92,7 +92,7 @@ describe('cloudflare-pages-integration generator', () => {
       {}
     );
     expect(config.targets!['build.ssr'].configurations!['cloudflare']).toEqual({
-      configFile: `apps/${projectName}/adaptors/cloudflare-pages/vite.config.ts`,
+      configFile: `apps/${projectName}/adapters/cloudflare-pages/vite.config.ts`,
     });
     expect(config.targets!['deploy'].executor).toEqual(
       '@k11r/nx-cloudflare-wrangler:deploy-page'

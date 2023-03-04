@@ -1,24 +1,24 @@
 // qwik packages
-export const qwikVersion = '~0.17.5';
-export const qwikCityVersion = '~0.1.0';
-export const qwikEslintPluginVersion = '~0.17.5';
+export const qwikVersion = '~0.20.0';
+export const qwikCityVersion = '~0.5.0';
+export const qwikEslintPluginVersion = '~0.20.0';
 
 // css preprocessors
 export const sassVersion = '~1.56.1';
 export const lessVersion = '~4.1.3';
 export const stylusVersion = '~0.59.0';
 
-export const undiciVersion = '^5.18.0';
+export const undiciVersion = '^5.20.0';
 export const viteVersion = '~4.1.1';
 export const viteTsconfigPathsVersion = '~4.0.3';
-export const vitestVersion = '^0.25.8';
+export const vitestVersion = '^0.28.5';
 
 export const autoprefixerVersion = '~10.4.11';
 export const postcssVersion = '~8.4.16';
 export const tailwindcssVersion = '~3.1.8';
 
 // nxkit packages
-export const nxKitVersion = '^2.1.1';
+export const nxKitVersion = '^2.1.2';
 
 // cloudflare-pages integration
 export const wranglerVersion = '^2.8.0';

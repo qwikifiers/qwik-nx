@@ -39,6 +39,10 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
       await runNxCommandAsync('reset');
     });
 
+    it('should contain tsconfig.base.json', () => {
+      expect(() => checkFilesExist(`tsconfig.base.json`)).not.toThrow();
+    });
+
     it('should create qwik-nx', async () => {
       const result = await runNxCommandAsync(`build ${project}`);
       expect(stripConsoleColors(result.stdout.replace(/\n|\s/g, ''))).toContain(

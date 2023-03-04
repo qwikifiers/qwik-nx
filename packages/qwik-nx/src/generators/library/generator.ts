@@ -13,14 +13,16 @@ import {
 import { Linter } from '@nrwl/linter';
 import { libraryGenerator as nxLibraryGenerator } from '@nrwl/workspace/generators';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
-import { getRelativePathToRootTsConfig } from '@nrwl/workspace/src/utilities/typescript';
+import {
+  getRelativePathToRootTsConfig,
+  initGenerator as jsInitGenerator,
+} from '@nrwl/js';
 import { LibraryGeneratorSchema } from './schema';
 import componentGenerator from './../component/generator';
 import { configureEslint } from '../../utils/configure-eslint';
 import { initGenerator } from '@nrwl/vite';
 import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
 import { getQwikLibProjectTargets } from './utils/get-qwik-lib-project-params';
-import { ensureTsConfigBaseExists } from '../../utils/ensure-tsconfig-base-exists';
 
 interface NormalizedSchema extends LibraryGeneratorSchema {
   projectName: string;
@@ -63,7 +65,9 @@ export async function libraryGenerator(
   const options = normalizeOptions(tree, schema);
   const tasks: GeneratorCallback[] = [];
 
-  ensureTsConfigBaseExists(tree);
+  await jsInitGenerator(tree, {
+    skipFormat: true,
+  });
 
   tasks.push(await addLibrary(tree, options));
 

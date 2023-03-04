@@ -5,9 +5,9 @@ import { RouteGeneratorSchema } from './schema';
 import appGenerator from '../application/generator';
 
 describe('route generator', () => {
-  function setup() {
+  async function setup() {
     const appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
-    appGenerator(appTree, { name: 'testApp' });
+    await appGenerator(appTree, { name: 'testApp' });
 
     const routeOptions: RouteGeneratorSchema = {
       name: 'fake-route',
@@ -21,7 +21,7 @@ describe('route generator', () => {
   }
 
   it('should generate the route index.tsx in the right location', async () => {
-    const { appTree, routeOptions } = setup();
+    const { appTree, routeOptions } = await setup();
     await routeGenerator(appTree, routeOptions);
     expect(
       appTree.exists('apps/test-app/src/routes/fake-route/index.tsx')
@@ -29,7 +29,7 @@ describe('route generator', () => {
   });
 
   it('should generate layout.tsx if selected', async () => {
-    const { appTree, routeOptions } = setup();
+    const { appTree, routeOptions } = await setup();
     routeOptions.addLayout = true;
     await routeGenerator(appTree, routeOptions);
     expect(

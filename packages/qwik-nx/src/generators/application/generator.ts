@@ -10,6 +10,7 @@ import {
 } from '@nrwl/devkit';
 import { Linter } from '@nrwl/linter';
 import { initGenerator } from '@nrwl/vite';
+import { initGenerator as jsInitGenerator } from '@nrwl/js';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
 import { addStyledModuleDependencies } from '../../utils/add-styled-dependencies';
@@ -20,7 +21,6 @@ import { NormalizedSchema, QwikAppGeneratorSchema } from './schema';
 import { getQwikApplicationProjectTargets } from './utils/get-qwik-application-project-params';
 import { normalizeOptions } from './utils/normalize-options';
 import { addE2eProject } from '../e2e-project/generator';
-import { ensureTsConfigBaseExists } from '../../utils/ensure-tsconfig-base-exists';
 
 function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
@@ -50,7 +50,9 @@ export async function appGenerator(
     delete targets['test'];
   }
 
-  ensureTsConfigBaseExists(tree);
+  await jsInitGenerator(tree, {
+    skipFormat: true,
+  });
 
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,

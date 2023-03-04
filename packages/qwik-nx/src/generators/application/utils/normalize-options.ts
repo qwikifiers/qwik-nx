@@ -5,7 +5,7 @@ import {
   offsetFromRoot,
   Tree,
 } from '@nrwl/devkit';
-import { getRelativePathToRootTsConfig } from '@nrwl/workspace/src/utilities/typescript';
+import { getRelativePathToRootTsConfig } from '@nrwl/js';
 import { NormalizedSchema, QwikAppGeneratorSchema } from '../schema';
 
 function normalizeDirectory(options: QwikAppGeneratorSchema) {
