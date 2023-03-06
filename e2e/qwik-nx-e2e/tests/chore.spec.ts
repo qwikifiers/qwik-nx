@@ -3,6 +3,7 @@ import {
   readJson,
   runNxCommandAsync,
 } from '@nrwl/nx-plugin/testing';
+import { DEFAULT_E2E_TIMEOUT } from '@qwikifiers/e2e/utils';
 
 describe('appGenerator e2e', () => {
   // Setting up individual workspaces per
@@ -22,8 +23,10 @@ describe('appGenerator e2e', () => {
   });
 
   describe("qwik-nx's compiled package.json", () => {
-    it("qwik-nx's package.json should contain only expected dependencies", async () => {
-      const packageJson = readJson('node_modules/qwik-nx/package.json');
+    it(
+      "qwik-nx's package.json should contain only expected dependencies",
+      async () => {
+        const packageJson = readJson('node_modules/qwik-nx/package.json');
 
       expect(packageJson.dependencies).toBeUndefined();
       expect(packageJson.peerDependencies).toEqual({
@@ -33,6 +36,6 @@ describe('appGenerator e2e', () => {
         '@nrwl/vite': '^15.8.0',
         tslib: '^2.3.0',
       });
-    }, 200000);
+    }, DEFAULT_E2E_TIMEOUT);
   });
 });

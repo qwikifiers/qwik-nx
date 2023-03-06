@@ -14,6 +14,7 @@ import {
   killPort,
   removeFile,
   killPorts,
+  DEFAULT_E2E_TIMEOUT,
 } from '@qwikifiers/e2e/utils';
 
 describe('qwikNxVite plugin e2e', () => {
@@ -105,35 +106,43 @@ describe('qwikNxVite plugin e2e', () => {
         `libs/${iconLibName}/src/index.ts`,
         `export * from './lib/qwik';`
       );
-    }, 200000);
+    }, DEFAULT_E2E_TIMEOUT);
 
-    it('should be able to successfully build the application', async () => {
-      const result = await runNxCommandAsync(`build ${project}`);
-      expect(result.stdout).toContain(
-        `Successfully ran target build for project ${project}`
-      );
-      expect(() =>
-        checkFilesExist(`dist/apps/${project}/client/q-manifest.json`)
-      ).not.toThrow();
-      expect(() =>
-        checkFilesExist(`dist/apps/${project}/server/entry.preview.mjs`)
-      ).not.toThrow();
-    }, 200000);
+    it(
+      'should be able to successfully build the application',
+      async () => {
+        const result = await runNxCommandAsync(`build ${project}`);
+        expect(result.stdout).toContain(
+          `Successfully ran target build for project ${project}`
+        );
+        expect(() =>
+          checkFilesExist(`dist/apps/${project}/client/q-manifest.json`)
+        ).not.toThrow();
+        expect(() =>
+          checkFilesExist(`dist/apps/${project}/server/entry.preview.mjs`)
+        ).not.toThrow();
+      },
+      DEFAULT_E2E_TIMEOUT
+    );
 
-    it('should serve application in preview mode with custom port', async () => {
-      const port = 4212;
-      const p = await runCommandUntil(
-        `run ${project}:preview --port=${port}`,
-        (output) => {
-          return output.includes('Local:') && output.includes(`:${port}`);
+    it(
+      'should serve application in preview mode with custom port',
+      async () => {
+        const port = 4212;
+        const p = await runCommandUntil(
+          `run ${project}:preview --port=${port}`,
+          (output) => {
+            return output.includes('Local:') && output.includes(`:${port}`);
+          }
+        );
+        try {
+          await promisifiedTreeKill(p.pid!, 'SIGKILL');
+          await killPort(port);
+        } catch {
+          // ignore
         }
-      );
-      try {
-        await promisifiedTreeKill(p.pid!, 'SIGKILL');
-        await killPort(port);
-      } catch {
-        // ignore
-      }
-    }, 200000);
+      },
+      DEFAULT_E2E_TIMEOUT
+    );
   });
 });

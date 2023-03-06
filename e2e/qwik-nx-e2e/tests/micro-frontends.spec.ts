@@ -11,6 +11,7 @@ import {
   promisifiedTreeKill,
   stripConsoleColors,
   killPorts,
+  DEFAULT_E2E_TIMEOUT,
 } from '@qwikifiers/e2e/utils';
 
 const PORTS = [4200, 4201, 4202, 4203];
@@ -30,127 +31,155 @@ describe('Micro-frontends e2e', () => {
     await runNxCommandAsync(
       `generate qwik-nx:host ${project} --remotes=${remote1},${remote2} --no-interactive `
     );
-  }, 240000);
+  }, DEFAULT_E2E_TIMEOUT);
 
   afterAll(async () => {
     await runNxCommandAsync('reset');
   });
 
-  it('should create host and remote applications', async () => {
-    expect(() =>
-      checkFilesExist(`apps/${project}/vite.config.ts`)
-    ).not.toThrow();
-    expect(() =>
-      checkFilesExist(`apps/${remote1}/vite.config.ts`)
-    ).not.toThrow();
-    expect(() =>
-      checkFilesExist(`apps/${remote2}/vite.config.ts`)
-    ).not.toThrow();
-    const configFilePath = `apps/${project}/src/config/remotes.json`;
-    expect(() => checkFilesExist(configFilePath)).not.toThrow();
-    const config = readJson(configFilePath);
-    expect(config[remote1]).toEqual('http://localhost:4201');
-    expect(config[remote2]).toEqual('http://localhost:4202');
-  }, 200000);
+  it(
+    'should create host and remote applications',
+    async () => {
+      expect(() =>
+        checkFilesExist(`apps/${project}/vite.config.ts`)
+      ).not.toThrow();
+      expect(() =>
+        checkFilesExist(`apps/${remote1}/vite.config.ts`)
+      ).not.toThrow();
+      expect(() =>
+        checkFilesExist(`apps/${remote2}/vite.config.ts`)
+      ).not.toThrow();
+      const configFilePath = `apps/${project}/src/config/remotes.json`;
+      expect(() => checkFilesExist(configFilePath)).not.toThrow();
+      const config = readJson(configFilePath);
+      expect(config[remote1]).toEqual('http://localhost:4201');
+      expect(config[remote2]).toEqual('http://localhost:4202');
+    },
+    DEFAULT_E2E_TIMEOUT
+  );
 
-  it('should be able to build host and remotes', async () => {
-    const checkProject = async (name: string) => {
-      const result = await runNxCommandAsync(`build ${name}`);
+  it(
+    'should be able to build host and remotes',
+    async () => {
+      const checkProject = async (name: string) => {
+        const result = await runNxCommandAsync(`build ${name}`);
+        expect(result.stdout).toContain(
+          `Successfully ran target build for project ${name}`
+        );
+        expect(() =>
+          checkFilesExist(`dist/apps/${name}/client/q-manifest.json`)
+        ).not.toThrow();
+        expect(() =>
+          checkFilesExist(`dist/apps/${name}/server/entry.preview.mjs`)
+        ).not.toThrow();
+      };
+      await checkProject(project);
+      await checkProject(remote1);
+      await checkProject(remote2);
+    },
+    DEFAULT_E2E_TIMEOUT
+  );
+
+  it(
+    'should serve host and remotes in dev mode',
+    async () => {
+      const result = await runHostAndRemotes(project, remote1, remote2);
+
+      expect(result.invokedRemote1).toBeTruthy();
+      expect(result.invokedRemote2).toBeTruthy();
+      expect(result.showedAllRemotesInvokedInfo).toBeTruthy();
+      expect(result.invokedHost).toBeTruthy();
+    },
+    DEFAULT_E2E_TIMEOUT
+  );
+
+  it(
+    'should be able to skip specified remotes in dev mode',
+    async () => {
+      const result = await runHostAndRemotes(
+        project,
+        remote1,
+        remote2,
+        undefined,
+        true
+      );
+
+      expect(result.invokedRemote1).toBeFalsy();
+      expect(result.invokedRemote2).toBeTruthy();
+      expect(result.showedAllRemotesInvokedInfo).toBeTruthy();
+      expect(result.invokedHost).toBeTruthy();
+    },
+    DEFAULT_E2E_TIMEOUT
+  );
+
+  it(
+    'should serve host and remotes in preview mode',
+    async () => {
+      const result = await previewHostAndRemotes(project, remote1, remote2);
+
+      expect(result.builtRemote1).toBeTruthy();
+      expect(result.builtRemote2).toBeTruthy();
+      expect(result.builtHost).toBeTruthy();
+      expect(result.invokedRemote1).toBeTruthy();
+      expect(result.invokedRemote2).toBeTruthy();
+      expect(result.showedAllRemotesInvokedInfo).toBeTruthy();
+      expect(result.invokedHost).toBeTruthy();
+    },
+    DEFAULT_E2E_TIMEOUT
+  );
+
+  it(
+    'should be able to skip specified remotes in preview mode',
+    async () => {
+      const result = await previewHostAndRemotes(
+        project,
+        remote1,
+        remote2,
+        undefined,
+        true
+      );
+
+      expect(result.builtRemote1).toBeFalsy();
+      expect(result.builtRemote2).toBeTruthy();
+      expect(result.builtHost).toBeTruthy();
+      expect(result.invokedRemote1).toBeFalsy();
+      expect(result.invokedRemote2).toBeTruthy();
+      expect(result.showedAllRemotesInvokedInfo).toBeTruthy();
+      expect(result.invokedHost).toBeTruthy();
+    },
+    DEFAULT_E2E_TIMEOUT
+  );
+
+  it(
+    'should be able to add a new remote to the existing setup',
+    async () => {
+      const remote3 = uniq('qwik-nx');
+      await runNxCommandAsync(
+        `generate qwik-nx:remote ${remote3} --host=${project} --port=4203 --no-interactive`
+      );
+      const result = await runNxCommandAsync(`build ${remote3}`);
       expect(result.stdout).toContain(
-        `Successfully ran target build for project ${name}`
+        `Successfully ran target build for project ${remote3}`
       );
       expect(() =>
-        checkFilesExist(`dist/apps/${name}/client/q-manifest.json`)
+        checkFilesExist(`dist/apps/${remote3}/server/entry.preview.mjs`)
       ).not.toThrow();
-      expect(() =>
-        checkFilesExist(`dist/apps/${name}/server/entry.preview.mjs`)
-      ).not.toThrow();
-    };
-    await checkProject(project);
-    await checkProject(remote1);
-    await checkProject(remote2);
-  }, 200000);
 
-  it('should serve host and remotes in dev mode', async () => {
-    const result = await runHostAndRemotes(project, remote1, remote2);
+      const runResult = await runHostAndRemotes(
+        project,
+        remote1,
+        remote2,
+        remote3
+      );
 
-    expect(result.invokedRemote1).toBeTruthy();
-    expect(result.invokedRemote2).toBeTruthy();
-    expect(result.showedAllRemotesInvokedInfo).toBeTruthy();
-    expect(result.invokedHost).toBeTruthy();
-  }, 200000);
-
-  it('should be able to skip specified remotes in dev mode', async () => {
-    const result = await runHostAndRemotes(
-      project,
-      remote1,
-      remote2,
-      undefined,
-      true
-    );
-
-    expect(result.invokedRemote1).toBeFalsy();
-    expect(result.invokedRemote2).toBeTruthy();
-    expect(result.showedAllRemotesInvokedInfo).toBeTruthy();
-    expect(result.invokedHost).toBeTruthy();
-  }, 200000);
-
-  it('should serve host and remotes in preview mode', async () => {
-    const result = await previewHostAndRemotes(project, remote1, remote2);
-
-    expect(result.builtRemote1).toBeTruthy();
-    expect(result.builtRemote2).toBeTruthy();
-    expect(result.builtHost).toBeTruthy();
-    expect(result.invokedRemote1).toBeTruthy();
-    expect(result.invokedRemote2).toBeTruthy();
-    expect(result.showedAllRemotesInvokedInfo).toBeTruthy();
-    expect(result.invokedHost).toBeTruthy();
-  }, 200000);
-
-  it('should be able to skip specified remotes in preview mode', async () => {
-    const result = await previewHostAndRemotes(
-      project,
-      remote1,
-      remote2,
-      undefined,
-      true
-    );
-
-    expect(result.builtRemote1).toBeFalsy();
-    expect(result.builtRemote2).toBeTruthy();
-    expect(result.builtHost).toBeTruthy();
-    expect(result.invokedRemote1).toBeFalsy();
-    expect(result.invokedRemote2).toBeTruthy();
-    expect(result.showedAllRemotesInvokedInfo).toBeTruthy();
-    expect(result.invokedHost).toBeTruthy();
-  }, 200000);
-
-  it('should be able to add a new remote to the existing setup', async () => {
-    const remote3 = uniq('qwik-nx');
-    await runNxCommandAsync(
-      `generate qwik-nx:remote ${remote3} --host=${project} --port=4203 --no-interactive`
-    );
-    const result = await runNxCommandAsync(`build ${remote3}`);
-    expect(result.stdout).toContain(
-      `Successfully ran target build for project ${remote3}`
-    );
-    expect(() =>
-      checkFilesExist(`dist/apps/${remote3}/server/entry.preview.mjs`)
-    ).not.toThrow();
-
-    const runResult = await runHostAndRemotes(
-      project,
-      remote1,
-      remote2,
-      remote3
-    );
-
-    expect(runResult.invokedRemote1).toBeTruthy();
-    expect(runResult.invokedRemote2).toBeTruthy();
-    expect(runResult.invokedRemote3).toBeTruthy();
-    expect(runResult.showedAllRemotesInvokedInfo).toBeTruthy();
-    expect(runResult.invokedHost).toBeTruthy();
-  }, 200000);
+      expect(runResult.invokedRemote1).toBeTruthy();
+      expect(runResult.invokedRemote2).toBeTruthy();
+      expect(runResult.invokedRemote3).toBeTruthy();
+      expect(runResult.showedAllRemotesInvokedInfo).toBeTruthy();
+      expect(runResult.invokedHost).toBeTruthy();
+    },
+    DEFAULT_E2E_TIMEOUT
+  );
 });
 
 async function runHostAndRemotes(
