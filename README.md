@@ -34,7 +34,7 @@ npm install -D qwik-nx
 ### Generating a workspace
 
 ```
-npx create-nx-workspace org-workspace --preset=qwik-nx
+npx create-nx-workspace@latest org-workspace --preset=qwik-nx
 ```
 
 ### Generating an application
@@ -69,14 +69,14 @@ nx generate qwik-nx:setup-tailwind
 
 ## qwik-nx & Nx Compatibility Chart
 
-| qwik-nx version  | Nx version |
-| ---------------- | ---------- |
-| ~0.12.0          | ^15.8.0    |
-| ~0.10.0, ~0.11.0 | ~15.7.2    |
-| ~0.6.0           | ~15.6.0    |
-| ~0.5.0           | ~15.5.0    |
-| ~0.4.0           | ~15.4.0    |
-| <=0.4.0          | ^15.0.0    |
+| qwik-nx version     | Nx version |
+| ------------------- | ---------- |
+| ~0.12.0, ~0.13.0    | ^15.8.0    |
+| ~0.10.0, ~0.11.0    | ~15.7.2    |
+| >= ~0.6.0 <= ~0.9.0 | ~15.6.0    |
+| ~0.5.0              | ~15.5.0    |
+| ~0.4.0              | ~15.4.0    |
+| <=0.4.0             | ^15.0.0    |
 
 ## ROADMAP:
 
