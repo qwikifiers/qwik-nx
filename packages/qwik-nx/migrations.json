@@ -5,6 +5,67 @@
       "description": "switch-to-qwik-nx-build-executor",
       "cli": "nx",
       "implementation": "./src/migrations/switch-to-qwik-nx-build-executor/switch-to-qwik-nx-build-executor"
+    },
+    "update-use-client-effect$-to-use-visisble-task$": {
+      "version": "0.13.1",
+      "description": "useClientEffect$ has been changed to useVisisbleTask$",
+      "cli": "nx",
+      "implementation": "./src/migrations/update-use-client-effect$-to-use-visisble-task$/update-use-client-effect$-to-use-visisble-task$"
+    }
+  },
+  "packageJsonUpdates": {
+    "0.13.1": {
+      "version": "0.13.1",
+      "packages": {
+        "@builder.io/qwik": {
+          "version": "~0.20.1"
+        },
+        "@builder.io/qwik-city": {
+          "version": "0.5.2"
+        },
+        "@types/eslint": {
+          "version": "8.21.1"
+        },
+        "@types/node": {
+          "version": "^18.14.0"
+        },
+        "@types/node-fetch": {
+          "version": "latest"
+        },
+        "@typescript-eslint/eslint-plugin": {
+          "version": "5.54.0"
+        },
+        "@typescript-eslint/parser": {
+          "version": "5.54.0"
+        },
+        "eslint": {
+          "version": "8.35.0"
+        },
+        "eslint-plugin-qwik": {
+          "version": "~0.20.1"
+        },
+        "node-fetch": {
+          "version": "3.3.0"
+        },
+        "prettier": {
+          "version": "2.8.4"
+        },
+        "typescript": {
+          "version": "4.9.5"
+        },
+        "undici": {
+          "version": "5.20.0"
+        },
+        "vite": {
+          "version": "4.1.4"
+        },
+        "vite-tsconfig-paths": {
+          "version": "3.5.0"
+        },
+        "zod": {
+          "version": "^3.20.6"
+        }
+      }
     }
   }
 }

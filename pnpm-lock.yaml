@@ -51,6 +51,7 @@ importers:
       tcp-port-used: 1.0.2
       tree-kill: 1.2.2
       ts-jest: 29.0.5
+      ts-morph: 17.0.1
       ts-node: 10.9.1
       tslib: ^2.3.0
       typescript: 4.9.5
@@ -107,6 +108,7 @@ importers:
       tcp-port-used: 1.0.2
       tree-kill: 1.2.2
       ts-jest: 29.0.5_tdvb75zhi4rosovphsrxxq3mum
+      ts-morph: 17.0.1
       ts-node: 10.9.1_tsi375xftxorovxtfm3hlbydte
       typescript: 4.9.5
       verdaccio: 5.21.1_typanion@3.12.1
@@ -3694,6 +3696,18 @@ packages:
     engines: { node: '>= 10' }
     dev: true
 
+  /@ts-morph/common/0.18.1:
+    resolution:
+      {
+        integrity: sha512-RVE+zSRICWRsfrkAw5qCAK+4ZH9kwEFv5h0+/YeHTLieWP7F4wWq4JsKFuNWG+fYh/KF+8rAtgdj5zb2mm+DVA==,
+      }
+    dependencies:
+      fast-glob: 3.2.12
+      minimatch: 5.1.0
+      mkdirp: 1.0.4
+      path-browserify: 1.0.1
+    dev: true
+
   /@tsconfig/node10/1.0.9:
     resolution:
       {
@@ -5424,6 +5438,13 @@ packages:
         integrity: sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==,
       }
     engines: { iojs: '>= 1.0.0', node: '>= 0.12.0' }
+    dev: true
+
+  /code-block-writer/11.0.3:
+    resolution:
+      {
+        integrity: sha512-NiujjUFB4SwScJq2bwbYUtXbZhBSlY6vYzm++3Q6oC+U+injTqfPYFK8wS9COOmb2lueqp0ZRB4nK1VYeHgNyw==,
+      }
     dev: true
 
   /collect-v8-coverage/1.0.1:
@@ -10704,6 +10725,13 @@ packages:
     engines: { node: '>= 0.8' }
     dev: true
 
+  /path-browserify/1.0.1:
+    resolution:
+      {
+        integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==,
+      }
+    dev: true
+
   /path-exists/3.0.0:
     resolution:
       {
@@ -12429,6 +12457,16 @@ packages:
       semver: 7.3.8
       typescript: 4.9.5
       yargs-parser: 21.1.1
+    dev: true
+
+  /ts-morph/17.0.1:
+    resolution:
+      {
+        integrity: sha512-10PkHyXmrtsTvZSL+cqtJLTgFXkU43Gd0JCc0Rw6GchWbqKe0Rwgt1v3ouobTZwQzF1mGhDeAlWYBMGRV7y+3g==,
+      }
+    dependencies:
+      '@ts-morph/common': 0.18.1
+      code-block-writer: 11.0.3
     dev: true
 
   /ts-node/10.9.1_tsi375xftxorovxtfm3hlbydte:
