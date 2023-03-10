@@ -1,0 +1,428 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`library generator should generate build configs for buildable libraries 1`] = `
+Object {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "mylib",
+  "projectType": "library",
+  "root": "libs/mylib",
+  "sourceRoot": "libs/mylib/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "executor": "@nrwl/vite:build",
+      "options": Object {
+        "configFile": "libs/mylib/vite.config.ts",
+        "mode": "lib",
+        "outputPath": "dist/libs/mylib",
+      },
+      "outputs": Array [
+        "{options.outputPath}",
+      ],
+    },
+    "lint": Object {
+      "executor": "@nrwl/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "libs/mylib/**/*.{ts,tsx,js,jsx}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+    "test": Object {
+      "executor": "@nrwl/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/libs/mylib",
+      },
+      "outputs": Array [
+        "../..//coverage/libs/mylib",
+      ],
+    },
+  },
+}
+`;
+
+exports[`library generator should generate build configs for buildable libraries 2`] = `
+"import { qwikVite } from '@builder.io/qwik/optimizer';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
+import { join } from 'path';
+
+import { qwikNxVite } from 'qwik-nx/plugins';
+
+export default defineConfig({
+  cacheDir: '../../node_modules/.vite/libs/mylib',
+  plugins: [
+    qwikNxVite(),
+    qwikVite(), 
+    tsconfigPaths({ root: '../../' }),
+      dts({
+      tsConfigFilePath: join(__dirname, 'tsconfig.lib.json'),
+      // Faster builds by skipping tests. Set this to false to enable type checking.
+      skipDiagnostics: true,
+    }),
+    
+  ],
+    mode: 'lib',
+  // Configuration for building your library.
+  // See: https://vitejs.dev/guide/build.html#library-mode
+  build: {
+    lib: {
+      // Could also be a dictionary or array of multiple entry points.
+      entry: 'src/index.ts',
+      name: 'mylib',
+      fileName: 'index',
+      // Change this to the formats you want to support.
+      // Don't forgot to update your package.json as well.
+      formats: ['es', 'cjs'],
+    },
+    rollupOptions: {
+      // External packages that should not be bundled into your library.
+      external: [],
+    },
+  },
+  
+    test: {
+    globals: true,
+    cache: {
+      dir: '../../node_modules/.vitest',
+    },
+    environment: 'node',
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    coverage: {
+      reportsDirectory: '../../coverage/libs/mylib'
+    }
+  },
+  
+});
+"
+`;
+
+exports[`library generator should generate build configs for buildable libraries 3`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/index.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/tsconfig.lib.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/lib/mylib.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/lib/mylib.css",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/lib/mylib.spec.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintignore",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`library generator should not generate build and test configs for non-buildable libraries w/o unit tests 1`] = `
+Object {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "mylib",
+  "projectType": "library",
+  "root": "libs/mylib",
+  "sourceRoot": "libs/mylib/src",
+  "tags": Array [],
+  "targets": Object {
+    "lint": Object {
+      "executor": "@nrwl/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "libs/mylib/**/*.{ts,tsx,js,jsx}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+  },
+}
+`;
+
+exports[`library generator should not generate build and test configs for non-buildable libraries w/o unit tests 2`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/index.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/tsconfig.lib.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/lib/mylib.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/lib/mylib.css",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintignore",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`library generator should run successfully 1`] = `
+Object {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "mylib",
+  "projectType": "library",
+  "root": "libs/mylib",
+  "sourceRoot": "libs/mylib/src",
+  "tags": Array [],
+  "targets": Object {
+    "lint": Object {
+      "executor": "@nrwl/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "libs/mylib/**/*.{ts,tsx,js,jsx}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+    "test": Object {
+      "executor": "@nrwl/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/libs/mylib",
+      },
+      "outputs": Array [
+        "../..//coverage/libs/mylib",
+      ],
+    },
+  },
+}
+`;
+
+exports[`library generator should run successfully 2`] = `
+"import { qwikVite } from '@builder.io/qwik/optimizer';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { defineConfig } from 'vite';
+
+import { qwikNxVite } from 'qwik-nx/plugins';
+
+export default defineConfig({
+  cacheDir: '../../node_modules/.vite/libs/mylib',
+  plugins: [
+    qwikNxVite(),
+    qwikVite(), 
+    tsconfigPaths({ root: '../../' }),
+    
+  ],
+  
+    test: {
+    globals: true,
+    cache: {
+      dir: '../../node_modules/.vitest',
+    },
+    environment: 'node',
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    coverage: {
+      reportsDirectory: '../../coverage/libs/mylib'
+    }
+  },
+  
+});
+"
+`;
+
+exports[`library generator should run successfully 3`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/index.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/tsconfig.lib.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/lib/mylib.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/lib/mylib.css",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/lib/mylib.spec.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintignore",
+    "type": "CREATE",
+  },
+]
+`;

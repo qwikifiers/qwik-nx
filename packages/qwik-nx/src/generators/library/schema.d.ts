@@ -10,5 +10,29 @@ export interface LibraryGeneratorSchema {
   linter?: Linter;
   importPath?: string;
   strict?: boolean;
+  buildable?: boolean;
   standaloneConfig?: boolean;
 }
+
+type NormalizedRequiredPropsNames =
+  | 'style'
+  | 'unitTestRunner'
+  | 'linter'
+  | 'buildable';
+type NormalizedRequiredProps = Required<
+  Pick<LibraryGeneratorSchema, NormalizedRequiredPropsNames>
+>;
+
+export type NormalizedSchema = Omit<
+  LibraryGeneratorSchema,
+  NormalizedRequiredPropsNames
+> &
+  NormalizedRequiredProps & {
+    projectName: string;
+    projectRoot: string;
+    projectDirectory: string;
+    parsedTags: string[];
+    offsetFromRoot: string;
+    setupVitest: boolean;
+    buildable: boolean;
+  };

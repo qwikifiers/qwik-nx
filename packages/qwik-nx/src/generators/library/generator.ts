@@ -2,10 +2,8 @@ import {
   formatFiles,
   generateFiles,
   GeneratorCallback,
-  getWorkspaceLayout,
   joinPathFragments,
   names,
-  offsetFromRoot,
   readProjectConfiguration,
   Tree,
   updateProjectConfiguration,
@@ -17,46 +15,13 @@ import {
   getRelativePathToRootTsConfig,
   initGenerator as jsInitGenerator,
 } from '@nrwl/js';
-import { LibraryGeneratorSchema } from './schema';
+import { LibraryGeneratorSchema, NormalizedSchema } from './schema';
 import componentGenerator from './../component/generator';
 import { configureEslint } from '../../utils/configure-eslint';
 import { initGenerator } from '@nrwl/vite';
 import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
 import { getQwikLibProjectTargets } from './utils/get-qwik-lib-project-params';
-
-interface NormalizedSchema extends LibraryGeneratorSchema {
-  projectName: string;
-  projectRoot: string;
-  projectDirectory: string;
-  parsedTags: string[];
-  offsetFromRoot: string;
-  setupVitest: boolean;
-}
-
-function normalizeOptions(
-  tree: Tree,
-  schema: LibraryGeneratorSchema
-): NormalizedSchema {
-  const name = names(schema.name).fileName;
-  const projectDirectory = schema.directory
-    ? `${names(schema.directory).fileName}/${name}`
-    : name;
-  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
-  const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
-  const parsedTags = schema.tags
-    ? schema.tags.split(',').map((s) => s.trim())
-    : [];
-
-  return {
-    ...schema,
-    projectName,
-    projectRoot,
-    projectDirectory,
-    parsedTags,
-    setupVitest: schema.unitTestRunner === 'vitest',
-    offsetFromRoot: offsetFromRoot(projectRoot),
-  };
-}
+import { normalizeOptions } from './utils/normalize-options';
 
 export async function libraryGenerator(
   tree: Tree,
@@ -89,7 +54,8 @@ async function addLibrary(
   tree: Tree,
   options: NormalizedSchema
 ): Promise<GeneratorCallback> {
-  nxLibraryGenerator(tree, {
+  const tasks = [];
+  const libGeneratorTask = await nxLibraryGenerator(tree, {
     name: options.name,
     directory: options.directory,
     tags: options.tags,
@@ -101,6 +67,8 @@ async function addLibrary(
     skipBabelrc: true,
     skipFormat: true,
   });
+  tasks.push(libGeneratorTask);
+
   tree.delete(`${options.projectRoot}/src/lib/${options.name}.ts`);
 
   const templateOptions = {
@@ -115,15 +83,29 @@ async function addLibrary(
     options.projectRoot,
     templateOptions
   );
-  const callback = await componentGenerator(tree, {
+
+  if (!options.setupVitest) {
+    tree.delete(`${options.projectRoot}/tsconfig.spec.json`);
+  }
+
+  if (!options.buildable) {
+    tree.delete(`${options.projectRoot}/package.json`);
+    if (!options.setupVitest) {
+      tree.delete(`${options.projectRoot}/vite.config.ts`);
+    }
+  }
+
+  const componentGeneratorTask = await componentGenerator(tree, {
     name: options.name,
-    skipTests: options.unitTestRunner !== 'vitest',
+    skipTests: !options.setupVitest,
     style: options.style,
     project: options.projectName,
     flat: true,
   });
 
-  return callback;
+  tasks.push(componentGeneratorTask);
+
+  return runTasksInSerial(...tasks);
 }
 
 async function configureVite(tree: Tree, options: NormalizedSchema) {
@@ -134,17 +116,10 @@ async function configureVite(tree: Tree, options: NormalizedSchema) {
 
   const projectConfig = readProjectConfiguration(tree, options.projectName);
 
-  const targets = getQwikLibProjectTargets(options);
-
-  projectConfig.targets ??= {};
-
-  projectConfig.targets['build'] = targets.build;
-
-  if (options.setupVitest) {
-    projectConfig.targets['test'] = targets.test;
-  } else {
-    tree.delete(`${options.projectRoot}/tsconfig.spec.json`);
-  }
+  projectConfig.targets = {
+    ...projectConfig.targets,
+    ...getQwikLibProjectTargets(options),
+  };
 
   updateProjectConfiguration(tree, options.projectName, projectConfig);
 
