@@ -2,6 +2,16 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.13.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.13.0...qwik-nx-0.13.1) (2023-03-10)
+
+
+### Features
+
+* added deps migration ([#99](https://github.com/qwikifiers/qwik-nx/issues/99)) ([e6e5b03](https://github.com/qwikifiers/qwik-nx/commit/e6e5b033f481d5604183d8d04fb32296adae86b6))
+* **qwik-nx:** non buildable libs ([#105](https://github.com/qwikifiers/qwik-nx/issues/105)) ([d93c0d3](https://github.com/qwikifiers/qwik-nx/commit/d93c0d38257938258ff5c71706a0a135c0f529f7))
+
+
+
 # [0.13.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.12.0...qwik-nx-0.13.0) (2023-03-07)
 
 
