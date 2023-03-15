@@ -28,11 +28,6 @@ describe('appGenerator e2e', () => {
       expect(packageJson.dependencies).toBeUndefined();
       expect(packageJson.peerDependencies).toEqual({
         '@nrwl/vite': '^15.8.0',
-        '@builder.io/qwik': '^0.17.0',
-        '@playwright/test': '^1.30.0',
-        undici: '^5.18.0',
-        vite: '^4.0.0',
-        vitest: '^0.25.0',
         tslib: '^2.3.0',
       });
     }, 200000);

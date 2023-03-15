@@ -1,9 +1,14 @@
-import { type QwikVitePlugin } from '@builder.io/qwik/optimizer';
 import { type Plugin } from 'vite';
 import { join } from 'path';
 import { readWorkspaceConfig } from 'nx/src/project-graph/file-utils';
 import { ProjectConfiguration, workspaceRoot } from '@nrwl/devkit';
 import { readFileSync } from 'fs';
+
+interface QwikVitePluginStub {
+  api: {
+    getOptions: () => { vendorRoots: string[] };
+  };
+}
 
 export interface ProjectFilter {
   name?: string[] | RegExp;
@@ -35,7 +40,7 @@ export function qwikNxVite(options?: QwikNxVitePluginOptions): Plugin {
     async configResolved(config) {
       const qwikPlugin = config.plugins.find(
         (p) => p.name === 'vite-plugin-qwik'
-      ) as QwikVitePlugin;
+      ) as QwikVitePluginStub;
       if (!qwikPlugin) {
         throw new Error('Missing vite-plugin-qwik');
       }

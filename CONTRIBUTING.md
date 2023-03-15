@@ -147,9 +147,9 @@ it can be useful to publish to a local registry.
 - Run `npm adduser --registry http://localhost:4873` in Terminal 2 (real credentials are not required, you just need to
   be logged in. You can use test/test/test@test.io.)
 - Run `pnpm run local-registry enable` in Terminal 2
-- Run `pnpm run nx run qwik-nx:publish:local` in Terminal 2. You can set the version you want to publish in the package's package.json file.
+- Run `pnpm exec nx run qwik-nx:publish:local` in Terminal 2. You can set the version you want to publish in the package's package.json file.
 
-If you have problems publishing, make sure you use Node 18 and NPM 8. Alternatively to running the project's "publish" target you can build and publish manually by running `pnpm run nx build:qwik-nx && cd dist/projects/qwik-nx && npm publish --registry=http://localhost:4873`
+If you have problems publishing, make sure you use Node 18 and NPM 8. Alternatively to running the project's "publish" target you can build and publish manually by running `pnpm exec nx build:qwik-nx && cd dist/projects/qwik-nx && npm publish --registry=http://localhost:4873`
 
 **NOTE:** After you finish with local testing don't forget to stop the local registry (e.g. closing the Terminal 1) and disabling the local registry using `pnpm run local-registry disable`. Keeping local registry enabled will change your lock file resolutions to `localhost:4873` on the next `pnpm install`. You can also run `pnpm run local-registry clear` to clean all packages in that local registry.
 
