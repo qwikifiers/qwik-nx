@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.13.2](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.13.1...qwik-nx-0.13.2) (2023-03-15)
+
+
+### Features
+
+* **qwik-nx:** bump qwik deps and exclude qwik package from peer dependencies ([#107](https://github.com/qwikifiers/qwik-nx/issues/107)) ([6b2c229](https://github.com/qwikifiers/qwik-nx/commit/6b2c2293089a1be5da40d24407aa03fa9bdc80a4))
+
+
+
 ## [0.13.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.13.0...qwik-nx-0.13.1) (2023-03-10)
 
 
