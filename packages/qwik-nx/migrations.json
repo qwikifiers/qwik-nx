@@ -66,6 +66,17 @@
           "version": "^3.20.6"
         }
       }
+    },
+    "0.13.2": {
+      "version": "0.13.2",
+      "packages": {
+        "@builder.io/qwik": {
+          "version": "~0.21.0"
+        },
+        "eslint-plugin-qwik": {
+          "version": "~0.21.0"
+        }
+      }
     }
   }
 }
