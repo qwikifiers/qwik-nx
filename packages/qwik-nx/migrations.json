@@ -77,6 +77,53 @@
           "version": "~0.21.0"
         }
       }
+    },
+    "0.13.3": {
+      "version": "0.13.3",
+      "packages": {
+        "@builder.io/qwik": {
+          "version": "~0.23.0"
+        },
+        "@builder.io/qwik-city": {
+          "version": "0.6.6"
+        },
+        "@types/eslint": {
+          "version": "8.21.3"
+        },
+        "@types/node": {
+          "version": "^18.15.3"
+        },
+        "@typescript-eslint/eslint-plugin": {
+          "version": "5.56.0"
+        },
+        "@typescript-eslint/parser": {
+          "version": "5.56.0"
+        },
+        "eslint": {
+          "version": "8.36.0"
+        },
+        "eslint-plugin-qwik": {
+          "version": "~0.23.0"
+        },
+        "prettier": {
+          "version": "2.8.6"
+        },
+        "typescript": {
+          "version": "5.0.2"
+        },
+        "undici": {
+          "version": "5.21.0"
+        },
+        "vite": {
+          "version": "4.2.1"
+        },
+        "vite-tsconfig-paths": {
+          "version": "4.0.7"
+        },
+        "zod": {
+          "version": "^3.21.4"
+        }
+      }
     }
   }
 }
