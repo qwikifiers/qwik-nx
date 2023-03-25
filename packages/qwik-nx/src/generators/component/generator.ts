@@ -95,6 +95,15 @@ function createComponentFiles(tree: Tree, options: NormalizedSchema) {
       templateOptions
     );
   }
+  if (options.generateStories) {
+    // TODO: ensure mdx is specified in target's tsconfig types
+    generateFiles(
+      tree,
+      joinPathFragments(__dirname, 'files/storybook'),
+      componentDir,
+      templateOptions
+    );
+  }
 }
 
 export async function componentGenerator(

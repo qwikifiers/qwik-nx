@@ -26,6 +26,7 @@
     "@nrwl/js": "15.8.2",
     "@nrwl/linter": "15.8.2",
     "@nrwl/nx-plugin": "15.8.2",
+    "@nrwl/storybook": "15.8.2",
     "@nrwl/vite": "15.8.2",
     "@nrwl/workspace": "15.8.2",
     "@nxkit/playwright": "^2.1.2",

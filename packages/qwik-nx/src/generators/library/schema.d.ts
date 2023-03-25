@@ -11,7 +11,7 @@ export interface LibraryGeneratorSchema {
   importPath?: string;
   strict?: boolean;
   buildable?: boolean;
-  standaloneConfig?: boolean;
+  storybookConfiguration?: boolean;
 }
 
 type NormalizedRequiredPropsNames =

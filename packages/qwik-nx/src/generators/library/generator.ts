@@ -22,6 +22,7 @@ import { initGenerator } from '@nrwl/vite';
 import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
 import { getQwikLibProjectTargets } from './utils/get-qwik-lib-project-params';
 import { normalizeOptions } from './utils/normalize-options';
+import storybookConfigurationGenerator from '../storybook-configuration/generator';
 
 export async function libraryGenerator(
   tree: Tree,
@@ -62,7 +63,6 @@ async function addLibrary(
     linter: Linter.None,
     importPath: options.importPath,
     strict: options.strict,
-    standaloneConfig: options.standaloneConfig,
     unitTestRunner: 'none',
     skipBabelrc: true,
     skipFormat: true,
@@ -95,11 +95,16 @@ async function addLibrary(
     }
   }
 
+  if (options.storybookConfiguration) {
+    tasks.push(await configureStorybook(tree, options));
+  }
+
   const componentGeneratorTask = await componentGenerator(tree, {
     name: options.name,
     skipTests: !options.setupVitest,
     style: options.style,
     project: options.projectName,
+    generateStories: options.storybookConfiguration,
     flat: true,
   });
 
@@ -124,6 +129,15 @@ async function configureVite(tree: Tree, options: NormalizedSchema) {
   updateProjectConfiguration(tree, options.projectName, projectConfig);
 
   return callback;
+}
+
+async function configureStorybook(
+  tree: Tree,
+  options: NormalizedSchema
+): Promise<GeneratorCallback> {
+  return storybookConfigurationGenerator(tree, {
+    name: options.projectName,
+  });
 }
 
 export default libraryGenerator;

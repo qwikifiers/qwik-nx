@@ -18,7 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@qwikifiers/e2e/utils": ["e2e/utils"],
-      "qwik-nx": ["packages/qwik-nx/src/index.ts"]
+      "qwik-nx": ["packages/qwik-nx/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

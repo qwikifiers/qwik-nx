@@ -1,0 +1,21 @@
+import type { Meta } from 'storybook-framework-qwik';
+import { <%- className %> } from './<%- fileName %>';
+import doc from './<%- fileName %>.doc.mdx';
+
+export default {
+  title: '<%- className %>',
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      page: doc,
+    },
+  },
+  argTypes: {
+    // put component params here
+  },
+  render(args) {
+    return <<%- className %> {...args}/>;
+  },
+} as Meta;
+
+export const Primary = {};
