@@ -23,6 +23,7 @@ import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependenc
 import { getQwikLibProjectTargets } from './utils/get-qwik-lib-project-params';
 import { normalizeOptions } from './utils/normalize-options';
 import storybookConfigurationGenerator from '../storybook-configuration/generator';
+import { ensureRootTsxExists } from '../../utils/ensure-file-utils';
 
 export async function libraryGenerator(
   tree: Tree,
@@ -83,6 +84,8 @@ async function addLibrary(
     options.projectRoot,
     templateOptions
   );
+
+  ensureRootTsxExists(tree, options.projectName);
 
   if (!options.setupVitest) {
     tree.delete(`${options.projectRoot}/tsconfig.spec.json`);

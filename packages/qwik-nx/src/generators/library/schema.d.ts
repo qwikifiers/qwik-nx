@@ -18,6 +18,7 @@ type NormalizedRequiredPropsNames =
   | 'style'
   | 'unitTestRunner'
   | 'linter'
+  | 'storybookConfiguration'
   | 'buildable';
 type NormalizedRequiredProps = Required<
   Pick<LibraryGeneratorSchema, NormalizedRequiredPropsNames>

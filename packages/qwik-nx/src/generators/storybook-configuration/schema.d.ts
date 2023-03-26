@@ -5,5 +5,4 @@ export interface StorybookConfigurationGeneratorSchema {
   linter?: Linter;
   js?: boolean;
   tsConfiguration?: boolean;
-  // generateStories: boolean; // TODO
 }

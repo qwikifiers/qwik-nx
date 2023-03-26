@@ -1,29 +1,15 @@
-import { qwikVite } from '@builder.io/qwik/optimizer';
-import { resolve } from 'path';
-import type { UserConfig } from 'vite';
-import tsConfigPaths from 'vite-tsconfig-paths';
+import { mergeConfig, UserConfig } from 'vite';
+import viteConfig from './../vite.config';
 
 const config = {
   stories: [
     '../**/*.stories.mdx',
     '../**/*.stories.@(js|jsx|ts|tsx)'
   ],
-  addons: [
-    '@storybook/addon-essentials',
-  ],
-  framework: {
-    name: 'storybook-framework-qwik',
-  },
+  addons: ['@storybook/addon-essentials'],
+  framework: { name: 'storybook-framework-qwik', },
   async viteFinal(config: UserConfig) {
-    config.cacheDir = '<%= offsetFromRoot %>node_modules/.vite/<%= projectRoot %>',
-    (config.plugins ??= []).unshift(
-      qwikVite({
-        srcDir: __dirname,
-        vendorRoots: [resolve(__dirname, '../src')]
-      }),
-      tsConfigPaths()
-    );
-    return config;
+    return mergeConfig(config, viteConfig);
   },
 };
 

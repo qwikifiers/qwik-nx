@@ -10,6 +10,10 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
+import {
+  ensureMdxTypeInTsConfig,
+  ensureRootTsxExists,
+} from '../../utils/ensure-file-utils';
 import { getInstalledNxVersion } from '../../utils/get-installed-nx-version';
 import {
   storybookFrameworkQwikVersion,
@@ -31,6 +35,9 @@ function addFiles(tree: Tree, options: StorybookConfigurationGeneratorSchema) {
     projectRoot: root,
   };
   generateFiles(tree, path.join(__dirname, 'files'), root, templateOptions);
+
+  ensureRootTsxExists(tree, options.name);
+  ensureMdxTypeInTsConfig(tree, options.name);
 }
 
 export async function storybookConfigurationGenerator(
@@ -50,8 +57,6 @@ export async function storybookConfigurationGenerator(
     storybook7betaConfiguration: true,
     configureCypress: false,
   });
-
-  // TODO: mdx support
 
   addFiles(tree, options);
   await formatFiles(tree);

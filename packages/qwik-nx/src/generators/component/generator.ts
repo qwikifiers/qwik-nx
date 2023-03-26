@@ -9,6 +9,7 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import { addStyledModuleDependencies } from '../../utils/add-styled-dependencies';
+import { ensureMdxTypeInTsConfig } from '../../utils/ensure-file-utils';
 import { ComponentGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends ComponentGeneratorSchema {
@@ -96,13 +97,13 @@ function createComponentFiles(tree: Tree, options: NormalizedSchema) {
     );
   }
   if (options.generateStories) {
-    // TODO: ensure mdx is specified in target's tsconfig types
     generateFiles(
       tree,
       joinPathFragments(__dirname, 'files/storybook'),
       componentDir,
       templateOptions
     );
+    ensureMdxTypeInTsConfig(tree, options.project);
   }
 }
 
