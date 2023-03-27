@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "Run a single command",
+  "description": "Run a single command using child_process. It is a simplified version of \"nx:run-commands\" executor that allows running interactive commands.",
+  "type": "object",
+  "outputCapture": "direct-nodejs",
+  "properties": {
+    "command": {
+      "type": "string",
+      "description": "Command to run in child process.",
+      "x-priority": "important"
+    },
+    "cwd": {
+      "type": "string",
+      "description": "Current working directory of the commands. If it's not specified the commands will run in the workspace root, if a relative path is specified the commands will run in that path relative to the workspace root and if it's an absolute path the commands will run in that path."
+    }
+  },
+  "required": ["command"]
+}
