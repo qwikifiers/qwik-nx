@@ -67,8 +67,7 @@ export default defineConfig({
     }),
     
   ],
-    mode: 'lib',
-  // Configuration for building your library.
+   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
     lib: {
@@ -162,6 +161,10 @@ Array [
   },
   Object {
     "path": "libs/mylib/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/root.tsx",
     "type": "CREATE",
   },
   Object {
@@ -259,6 +262,10 @@ Array [
   },
   Object {
     "path": "libs/mylib/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/root.tsx",
     "type": "CREATE",
   },
   Object {
@@ -402,6 +409,10 @@ Array [
   },
   Object {
     "path": "libs/mylib/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/root.tsx",
     "type": "CREATE",
   },
   Object {

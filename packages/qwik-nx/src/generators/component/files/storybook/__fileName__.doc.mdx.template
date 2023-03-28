@@ -22,5 +22,5 @@ import { <%- className %> } from './<%- fileName %>';
 ### Primary
 
 <Canvas>
-  <Story id="<%- fileName %>--primary" />
+  <Story id="<%- className.toLowerCase() %>--primary" />
 </Canvas>

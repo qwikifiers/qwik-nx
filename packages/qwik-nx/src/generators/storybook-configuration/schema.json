@@ -2,7 +2,8 @@
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
   "$id": "StorybookConfiguration",
-  "title": "",
+  "title": "Adds Storybook configuration to a project.",
+  "description": "Adds Storybook configuration to a project to be able to use and create stories.",
   "type": "object",
   "properties": {
     "name": {
@@ -31,7 +32,7 @@
     "tsConfiguration": {
       "type": "boolean",
       "description": "Configure your project with TypeScript. Generate main.ts and preview.ts files, instead of main.js and preview.js.",
-      "default": false,
+      "default": true,
       "x-priority": "important"
     }
   },

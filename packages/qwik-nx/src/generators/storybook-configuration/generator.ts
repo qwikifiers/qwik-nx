@@ -9,6 +9,7 @@ import {
   readProjectConfiguration,
   Tree,
 } from '@nrwl/devkit';
+import { Linter } from '@nrwl/linter';
 import * as path from 'path';
 import {
   ensureMdxTypeInTsConfig,
@@ -21,7 +22,10 @@ import {
   storybookReactVersion,
   typesMdx,
 } from '../../utils/versions';
-import { StorybookConfigurationGeneratorSchema } from './schema';
+import {
+  NormalizedSchema,
+  StorybookConfigurationGeneratorSchema,
+} from './schema';
 
 function addFiles(tree: Tree, options: StorybookConfigurationGeneratorSchema) {
   const { root } = readProjectConfiguration(tree, options.name);
@@ -33,6 +37,7 @@ function addFiles(tree: Tree, options: StorybookConfigurationGeneratorSchema) {
     ...names(options.name),
     offsetFromRoot: offsetFromRoot(root),
     projectRoot: root,
+    configExtension: options.tsConfiguration ? 'ts' : 'js',
   };
   generateFiles(tree, path.join(__dirname, 'files'), root, templateOptions);
 
@@ -40,25 +45,37 @@ function addFiles(tree: Tree, options: StorybookConfigurationGeneratorSchema) {
   ensureMdxTypeInTsConfig(tree, options.name);
 }
 
+function normalizeOptions(
+  options: StorybookConfigurationGeneratorSchema
+): NormalizedSchema {
+  return {
+    ...options,
+    js: !!options.js,
+    linter: options.linter ?? Linter.EsLint,
+    tsConfiguration: options.tsConfiguration ?? true,
+  };
+}
+
 export async function storybookConfigurationGenerator(
   tree: Tree,
   options: StorybookConfigurationGeneratorSchema
 ): Promise<GeneratorCallback> {
+  const normalizedOptions = normalizeOptions(options);
   ensurePackage('@nrwl/storybook', getInstalledNxVersion(tree));
   const { configurationGenerator } = await import('@nrwl/storybook');
 
   await configurationGenerator(tree, {
     uiFramework: '@storybook/html',
     bundler: 'vite',
-    name: options.name,
-    js: options.js,
-    linter: options.linter,
-    tsConfiguration: options.tsConfiguration,
+    name: normalizedOptions.name,
+    js: normalizedOptions.js,
+    linter: normalizedOptions.linter,
+    tsConfiguration: normalizedOptions.tsConfiguration,
     storybook7betaConfiguration: true,
     configureCypress: false,
   });
 
-  addFiles(tree, options);
+  addFiles(tree, normalizedOptions);
   await formatFiles(tree);
 
   return addStorybookDependencies(tree);
