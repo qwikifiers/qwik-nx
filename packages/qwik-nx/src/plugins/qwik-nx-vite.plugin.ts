@@ -1,13 +1,27 @@
 import { type Plugin } from 'vite';
-import { join } from 'path';
+import { join, relative } from 'path';
 import { readWorkspaceConfig } from 'nx/src/project-graph/file-utils';
-import { ProjectConfiguration, workspaceRoot } from '@nrwl/devkit';
+import {
+  createProjectRootMappingsFromProjectConfigurations,
+  findProjectForPath,
+} from 'nx/src/project-graph/utils/find-project-for-path';
+import {
+  ProjectConfiguration,
+  ProjectsConfigurations,
+  workspaceRoot,
+} from '@nrwl/devkit';
 import { readFileSync } from 'fs';
 
 interface QwikVitePluginStub {
   api: {
-    getOptions: () => { vendorRoots: string[] };
+    getOptions: () => QwikVitePluginOptionsStub;
   };
+}
+
+interface QwikVitePluginOptionsStub {
+  vendorRoots: string[];
+  rootDir: string;
+  debug: boolean;
 }
 
 export interface ProjectFilter {
@@ -18,6 +32,7 @@ export interface ProjectFilter {
 }
 
 export interface QwikNxVitePluginOptions {
+  currentProjectName?: string;
   includeProjects?: ProjectFilter;
   excludeProjects?: ProjectFilter;
   debug?: boolean;
@@ -30,7 +45,7 @@ export interface QwikNxVitePluginOptions {
  *
  * By default `qwikNxVite` plugin will provide Qwik with paths of all Nx projects, that are specified in the tsconfig.base.json.
  * However, this behavior might not be always suitable, especially in cases when you have code that you don't want the optimizer to go through.
- * It is possible to use specifically exclude or include certain projects using plugin options.
+ * It is possible to specifically exclude or include certain projects using plugin options.
  */
 export function qwikNxVite(options?: QwikNxVitePluginOptions): Plugin {
   const vitePlugin: Plugin = {
@@ -45,17 +60,49 @@ export function qwikNxVite(options?: QwikNxVitePluginOptions): Plugin {
         throw new Error('Missing vite-plugin-qwik');
       }
 
-      const vendorRoots = getVendorRoots(options);
+      const pluginOptions = qwikPlugin.api.getOptions();
 
-      qwikPlugin.api.getOptions().vendorRoots.push(...vendorRoots);
+      const vendorRoots = getVendorRoots(options, pluginOptions);
+
+      pluginOptions.vendorRoots.push(...vendorRoots);
     },
   };
 
   return vitePlugin;
 }
 
+function getCurrentProjectName(
+  projectsConfigurations: ProjectsConfigurations,
+  projectRootDir: string
+): string {
+  const projectRootMappings =
+    createProjectRootMappingsFromProjectConfigurations(
+      projectsConfigurations.projects
+    );
+  const relativeDirname = relative(workspaceRoot, projectRootDir);
+  const currentProjectName = findProjectForPath(
+    relativeDirname,
+    projectRootMappings
+  );
+
+  if (!currentProjectName) {
+    throw new Error(
+      `Could not resolve the project name for path "${projectRootDir}"`
+    );
+  }
+  return currentProjectName;
+}
+
 /** Retrieves vendor roots and applies necessary filtering */
-function getVendorRoots(options?: QwikNxVitePluginOptions): string[] {
+function getVendorRoots(
+  options: QwikNxVitePluginOptions | undefined,
+  qwikOptions: QwikVitePluginOptionsStub
+): string[] {
+  const log = (...str: unknown[]) => {
+    (options?.debug || qwikOptions.debug) &&
+      console.debug(`[QWIK-NX-VITE PLUGIN:]`, ...str);
+  };
+
   const workspaceConfig = readWorkspaceConfig({ format: 'nx' });
 
   const baseTsConfig = JSON.parse(
@@ -67,13 +114,19 @@ function getVendorRoots(options?: QwikNxVitePluginOptions): string[] {
 
   let projects = Object.values(workspaceConfig.projects);
 
+  const currentProjectName =
+    options?.currentProjectName ??
+    getCurrentProjectName(workspaceConfig, qwikOptions.rootDir);
+
+  projects = projects.filter((p) => p.name !== currentProjectName);
+
   projects.forEach((p) => (p.sourceRoot ??= p.root));
 
   projects = filterProjects(projects, options?.excludeProjects, true);
   projects = filterProjects(projects, options?.includeProjects, false);
 
   if (options?.debug) {
-    console.log(
+    log(
       'Projects after applying include\\exclude filters:',
       projects.map((p) => p.name)
     );
@@ -84,7 +137,7 @@ function getVendorRoots(options?: QwikNxVitePluginOptions): string[] {
   );
 
   if (options?.debug) {
-    console.log(
+    log(
       'Projects after excluding those not in tsconfig.base.json:',
       projects.map((p) => p.name)
     );

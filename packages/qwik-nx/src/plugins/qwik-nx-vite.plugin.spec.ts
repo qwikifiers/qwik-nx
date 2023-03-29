@@ -78,14 +78,22 @@ describe('qwik-nx-vite plugin', () => {
   jest.spyOn(fs, 'readFileSync').mockReturnValue(tsConfigString1);
 
   const getDecoratedPaths = async (
-    options?: QwikNxVitePluginOptions
+    options?: QwikNxVitePluginOptions,
+    rootDir?: string
   ): Promise<string[]> => {
-    const plugin = qwikNxVite(options);
+    const plugin = qwikNxVite({
+      ...options,
+      // do not exclude any projects by setting "currentProjectName" to a not valid value
+      currentProjectName:
+        options?.currentProjectName || rootDir
+          ? options?.currentProjectName
+          : 'mock',
+    });
     const vendorRoots: string[] = [];
     const qwikViteMock = {
       name: 'vite-plugin-qwik',
       api: {
-        getOptions: () => ({ vendorRoots }),
+        getOptions: () => ({ vendorRoots, rootDir }),
       },
     };
     await (plugin.configResolved as any)({ plugins: [qwikViteMock] });
@@ -102,6 +110,31 @@ describe('qwik-nx-vite plugin', () => {
       `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
       `${workspaceRoot}/libs/other/test-lib-a/src`,
     ]);
+  });
+
+  describe('Should not include current porject as a vendor root for itself', () => {
+    it('with project name specified', async () => {
+      const paths = await getDecoratedPaths({
+        currentProjectName: 'tmp-test-lib-a',
+      });
+
+      expect(paths).toEqual([
+        `${workspaceRoot}/libs/test-lib-b/src`,
+        `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
+        `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
+        `${workspaceRoot}/libs/other/test-lib-a/src`,
+      ]);
+    });
+    it('implicitly by project path', async () => {
+      const paths = await getDecoratedPaths(undefined, 'libs/test-lib-b');
+
+      expect(paths).toEqual([
+        `${workspaceRoot}/libs/test-lib-a/src`,
+        `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
+        `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
+        `${workspaceRoot}/libs/other/test-lib-a/src`,
+      ]);
+    });
   });
 
   describe('Name filter', () => {
