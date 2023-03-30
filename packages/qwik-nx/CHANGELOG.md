@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.14.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.14.0...qwik-nx-0.14.1) (2023-03-30)
+
+
+### Bug Fixes
+
+* **qwik-nx:** vite plugin exclude its project as a vendor root ([#113](https://github.com/qwikifiers/qwik-nx/issues/113)) ([9456a9d](https://github.com/qwikifiers/qwik-nx/commit/9456a9d687d34e29bbf020808037d79cc5d1e347))
+
+
+### Features
+
+* **qwik-nx:** storybook generator ([#110](https://github.com/qwikifiers/qwik-nx/issues/110)) ([a07d5e8](https://github.com/qwikifiers/qwik-nx/commit/a07d5e84db923e2c2ad068d16c3c5ebc93471f93))
+
+
+
 # [0.14.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.13.2...qwik-nx-0.14.0) (2023-03-23)
 
 
