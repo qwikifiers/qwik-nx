@@ -1,0 +1,16 @@
+import { mergeConfig, UserConfig } from 'vite';
+import viteConfig from './../vite.config';
+
+const config = {
+  stories: [
+    '../**/*.stories.mdx',
+    '../**/*.stories.@(js|jsx|ts|tsx)'
+  ],
+  addons: ['@storybook/addon-essentials'],
+  framework: { name: 'storybook-framework-qwik', },
+  async viteFinal(config: UserConfig) {
+    return mergeConfig(config, viteConfig);
+  },
+};
+
+export default config;

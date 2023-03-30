@@ -1,0 +1,26 @@
+import { Canvas, Story } from '@storybook/addon-docs';
+import { <%- className %> } from './<%- fileName %>';
+
+# <%- className %> Component
+
+## Purpose
+
+{/* Why the component is needed */}
+
+## Example
+
+{/* Common copy/paste example that people can throw into their templates and ts */}
+
+~~~tsx
+<<%- className %> param="value" />
+~~~
+
+## Use case examples
+
+{/* Examples based on use cases */}
+
+### Primary
+
+<Canvas>
+  <Story id="<%- className.toLowerCase() %>--primary" />
+</Canvas>

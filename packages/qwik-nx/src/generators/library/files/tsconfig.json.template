@@ -19,7 +19,12 @@
     "isolatedModules": true,
     "outDir": "tmp",
     "noEmit": true,
-    "types": ["node", "vite/client"<% if(setupVitest) { %> , "vitest" <% } %>]
+    "types": [
+      "node", 
+      "vite/client",
+      <% if(setupVitest) { %>"vitest", <% } %>
+      <% if(storybookConfiguration) { %>"mdx", <% } %>
+    ]
   },
   "files": [],
   "include": [],

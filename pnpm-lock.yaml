@@ -16,6 +16,7 @@ importers:
       '@nrwl/js': 15.8.2
       '@nrwl/linter': 15.8.2
       '@nrwl/nx-plugin': 15.8.2
+      '@nrwl/storybook': 15.8.2
       '@nrwl/vite': 15.8.2
       '@nrwl/workspace': 15.8.2
       '@nxkit/playwright': ^2.1.2
@@ -74,6 +75,7 @@ importers:
       '@nrwl/js': 15.8.2_f5tjcz6mhtzkzfqnengccsh7d4
       '@nrwl/linter': 15.8.2_f5tjcz6mhtzkzfqnengccsh7d4
       '@nrwl/nx-plugin': 15.8.2_bp5jfpqvuv6yvfesjqccwfqew4
+      '@nrwl/storybook': 15.8.2_f5tjcz6mhtzkzfqnengccsh7d4
       '@nrwl/vite': 15.8.2_rr7rokjmekkdx2xr3kv4tzxvui
       '@nrwl/workspace': 15.8.2_53wkrcrrxffq2surs33fwlwix4
       '@nxkit/playwright': 2.1.2_@playwright+test@1.30.0
@@ -3291,6 +3293,32 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@nrwl/storybook/15.8.2_f5tjcz6mhtzkzfqnengccsh7d4:
+    resolution:
+      {
+        integrity: sha512-rSA6utYeCn07+0Z/w0vlkNeF1eE4Slct5EMoZKhgvw+4z0ZLQMABOxj7rnsifakmMr4tXKEJK+VZiR33xHlmwQ==,
+      }
+    dependencies:
+      '@nrwl/cypress': 15.8.2_f5tjcz6mhtzkzfqnengccsh7d4
+      '@nrwl/devkit': 15.8.2_nx@15.8.2+typescript@4.9.5
+      '@nrwl/js': 15.8.2_f5tjcz6mhtzkzfqnengccsh7d4
+      '@nrwl/linter': 15.8.2_f5tjcz6mhtzkzfqnengccsh7d4
+      '@nrwl/workspace': 15.8.2_53wkrcrrxffq2surs33fwlwix4
+      '@phenomnomnominal/tsquery': 4.1.1_typescript@4.9.5
+      dotenv: 10.0.0
+      semver: 7.3.4
+    transitivePeerDependencies:
+      - '@swc-node/register'
+      - '@swc/core'
+      - cypress
+      - debug
+      - eslint
+      - nx
+      - prettier
+      - supports-color
+      - typescript
+    dev: true
 
   /@nrwl/tao/15.8.2_lwc5ciab46qbgcufzept4zyhgi:
     resolution:

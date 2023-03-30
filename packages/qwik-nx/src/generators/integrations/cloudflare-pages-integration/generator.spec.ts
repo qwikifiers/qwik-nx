@@ -18,10 +18,10 @@ describe('cloudflare-pages-integration generator', () => {
     project: projectName,
   };
 
-  beforeEach(() => {
+  beforeEach(async () => {
     appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
 
-    applicationGenerator(appTree, {
+    await applicationGenerator(appTree, {
       name: projectName,
       e2eTestRunner: 'none',
       linter: Linter.None,

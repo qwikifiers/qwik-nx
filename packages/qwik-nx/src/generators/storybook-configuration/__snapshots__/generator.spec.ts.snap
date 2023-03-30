@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`storybook-configuration generator should add required targets 1`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/.prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/public/favicon.svg",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/public/manifest.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/components/header/header.css",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/components/header/header.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/components/icons/qwik.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/components/router-head/router-head.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/entry.dev.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/entry.preview.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/entry.ssr.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/global.css",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/routes/flower/flower.css",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/routes/flower/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/routes/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/routes/layout.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/routes/service-worker.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/tsconfig.app.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/.storybook/main.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/.storybook/preview.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/.storybook/tsconfig.json",
+    "type": "CREATE",
+  },
+]
+`;

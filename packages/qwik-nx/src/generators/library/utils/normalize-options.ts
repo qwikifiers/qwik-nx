@@ -22,6 +22,7 @@ export function normalizeOptions(
     unitTestRunner: schema.unitTestRunner ?? 'vitest',
     linter: schema.linter ?? Linter.EsLint,
     buildable: !!schema.buildable,
+    storybookConfiguration: !!schema.storybookConfiguration,
   };
 
   return {

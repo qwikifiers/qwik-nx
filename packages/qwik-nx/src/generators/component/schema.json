@@ -68,6 +68,10 @@
       "type": "boolean",
       "description": "Create component at the source root rather than its own directory.",
       "default": false
+    },
+    "generateStories": {
+      "description": "Create Storybook stories for the component",
+      "type": "boolean"
     }
   },
   "required": ["name", "project"]

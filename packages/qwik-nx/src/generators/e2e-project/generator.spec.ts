@@ -20,9 +20,9 @@ describe('e2e project', () => {
     .spyOn(getInstalledNxVersionModule, 'getInstalledNxVersion')
     .mockReturnValue('15.6.0');
 
-  beforeEach(() => {
+  beforeEach(async () => {
     appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
-    appGenerator(appTree, {
+    await appGenerator(appTree, {
       name: 'myapp',
       e2eTestRunner: 'none',
     });

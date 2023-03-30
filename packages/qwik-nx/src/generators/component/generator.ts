@@ -9,6 +9,7 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import { addStyledModuleDependencies } from '../../utils/add-styled-dependencies';
+import { ensureMdxTypeInTsConfig } from '../../utils/ensure-file-utils';
 import { ComponentGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends ComponentGeneratorSchema {
@@ -94,6 +95,15 @@ function createComponentFiles(tree: Tree, options: NormalizedSchema) {
       componentDir,
       templateOptions
     );
+  }
+  if (options.generateStories) {
+    generateFiles(
+      tree,
+      joinPathFragments(__dirname, 'files/storybook'),
+      componentDir,
+      templateOptions
+    );
+    ensureMdxTypeInTsConfig(tree, options.project);
   }
 }
 

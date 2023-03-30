@@ -24,6 +24,12 @@ export const nxKitVersion = '^2.1.2';
 export const wranglerVersion = '^2.8.0';
 export const nxCloudflareWrangler = '^2.0.0';
 
+// storybook
+export const storybookFrameworkQwikVersion = '^0.0.8';
+export const storybookReactVersion = '^18.0.0';
+export const storybookReactDOMVersion = '^18.0.0';
+export const typesMdx = '^2.0.3';
+
 // other
 export const eslintVersion = '~8.36.0';
 export const tsEslintVersion = '~5.43.0';

@@ -88,9 +88,10 @@
       "description": "Whether to enable `tsconfig` strict mode or not.",
       "default": true
     },
-    "standaloneConfig": {
-      "description": "Split the project configuration into `<projectRoot>/project.json` rather than including it inside `workspace.json`.",
-      "type": "boolean"
+    "storybookConfiguration": {
+      "description": "Whether to include storybook configuration for the generated library.",
+      "type": "boolean",
+      "default": false
     }
   },
   "required": ["name"]
