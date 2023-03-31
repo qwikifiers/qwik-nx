@@ -27,6 +27,10 @@ Array [
     "type": "CREATE",
   },
   Object {
+    "path": ".prettierignore",
+    "type": "CREATE",
+  },
+  Object {
     "path": "apps/test-project/project.json",
     "type": "CREATE",
   },

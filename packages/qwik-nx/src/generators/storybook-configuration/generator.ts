@@ -61,18 +61,23 @@ export async function storybookConfigurationGenerator(
   options: StorybookConfigurationGeneratorSchema
 ): Promise<GeneratorCallback> {
   const normalizedOptions = normalizeOptions(options);
-  ensurePackage('@nrwl/storybook', getInstalledNxVersion(tree));
+  const nxVersion = getInstalledNxVersion(tree);
+
+  ensurePackage('@nrwl/storybook', nxVersion);
   const { configurationGenerator } = await import('@nrwl/storybook');
 
   await configurationGenerator(tree, {
+    storybook7UiFramework: '@storybook/html-webpack5',
     uiFramework: '@storybook/html',
     bundler: 'vite',
     name: normalizedOptions.name,
     js: normalizedOptions.js,
     linter: normalizedOptions.linter,
     tsConfiguration: normalizedOptions.tsConfiguration,
-    storybook7betaConfiguration: true,
+    storybook7Configuration: true,
     configureCypress: false,
+    // @ts-expect-error providing params in the old format for nx 15.8
+    storybook7betaConfiguration: true,
   });
 
   addFiles(tree, normalizedOptions);

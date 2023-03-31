@@ -58,16 +58,15 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/libs/mylib',
   plugins: [
     qwikNxVite(),
-    qwikVite(), 
+    qwikVite(),
     tsconfigPaths({ root: '../../' }),
-      dts({
+    dts({
       tsConfigFilePath: join(__dirname, 'tsconfig.lib.json'),
       // Faster builds by skipping tests. Set this to false to enable type checking.
       skipDiagnostics: true,
     }),
-    
   ],
-   // Configuration for building your library.
+  // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
     lib: {
@@ -84,8 +83,8 @@ export default defineConfig({
       external: [],
     },
   },
-  
-    test: {
+
+  test: {
     globals: true,
     cache: {
       dir: '../../node_modules/.vitest',
@@ -93,10 +92,9 @@ export default defineConfig({
     environment: 'node',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     coverage: {
-      reportsDirectory: '../../coverage/libs/mylib'
-    }
+      reportsDirectory: '../../coverage/libs/mylib',
+    },
   },
-  
 });
 "
 `;
@@ -125,6 +123,10 @@ Array [
   },
   Object {
     "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierignore",
     "type": "CREATE",
   },
   Object {
@@ -241,6 +243,10 @@ Array [
     "type": "CREATE",
   },
   Object {
+    "path": ".prettierignore",
+    "type": "CREATE",
+  },
+  Object {
     "path": "libs/mylib/README.md",
     "type": "CREATE",
   },
@@ -330,14 +336,9 @@ import { qwikNxVite } from 'qwik-nx/plugins';
 
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/libs/mylib',
-  plugins: [
-    qwikNxVite(),
-    qwikVite(), 
-    tsconfigPaths({ root: '../../' }),
-    
-  ],
-  
-    test: {
+  plugins: [qwikNxVite(), qwikVite(), tsconfigPaths({ root: '../../' })],
+
+  test: {
     globals: true,
     cache: {
       dir: '../../node_modules/.vitest',
@@ -345,10 +346,9 @@ export default defineConfig({
     environment: 'node',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     coverage: {
-      reportsDirectory: '../../coverage/libs/mylib'
-    }
+      reportsDirectory: '../../coverage/libs/mylib',
+    },
   },
-  
 });
 "
 `;
@@ -377,6 +377,10 @@ Array [
   },
   Object {
     "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierignore",
     "type": "CREATE",
   },
   Object {

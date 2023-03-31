@@ -11,16 +11,16 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/myapp',
   plugins: [
     qwikNxVite(),
-    qwikCity(), 
+    qwikCity(),
     qwikVite({
-			client: {
-				outDir: '../../dist/apps/myapp/client',
-			},
-			ssr: {
-				outDir: '../../dist/apps/myapp/server',
-			},
-		}),
-    tsconfigPaths({ root: '../../' })
+      client: {
+        outDir: '../../dist/apps/myapp/client',
+      },
+      ssr: {
+        outDir: '../../dist/apps/myapp/server',
+      },
+    }),
+    tsconfigPaths({ root: '../../' }),
   ],
   server: {
     fs: {
@@ -33,7 +33,6 @@ export default defineConfig({
       'Cache-Control': 'public, max-age=600',
     },
   },
-  
 });
 "
 `;
@@ -48,10 +47,7 @@ exports[`qwik-nx generator should run successfully 2`] = `
     \\"build\\": {
       \\"executor\\": \\"qwik-nx:build\\",
       \\"options\\": {
-        \\"runSequence\\": [
-          \\"myapp:build.client\\",
-          \\"myapp:build.ssr\\"
-        ],
+        \\"runSequence\\": [\\"myapp:build.client\\", \\"myapp:build.ssr\\"],
         \\"outputPath\\": \\"dist/apps/myapp\\"
       },
       \\"configurations\\": {
@@ -130,6 +126,10 @@ Array [
   },
   Object {
     "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierignore",
     "type": "CREATE",
   },
   Object {
