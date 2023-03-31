@@ -6,15 +6,12 @@ import { QwikWorkspacePresetGeneratorSchema } from './schema';
 import { Linter } from '@nrwl/linter';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const devkit = require('@nrwl/devkit');
 const getInstalledNxVersionModule = require('../../utils/get-installed-nx-version');
 
 describe('preset generator', () => {
-  jest.spyOn(devkit, 'ensurePackage').mockReturnValue(Promise.resolve());
-
   jest
-    .spyOn(getInstalledNxVersionModule, 'getInstalledNxVersion')
-    .mockReturnValue('15.6.0');
+    .spyOn(getInstalledNxVersionModule, 'ensurePeerDependenciesInstalled')
+    .mockImplementation();
 
   let appTree: Tree;
   const options: QwikWorkspacePresetGeneratorSchema = {
