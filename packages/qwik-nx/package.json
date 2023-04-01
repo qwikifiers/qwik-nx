@@ -22,7 +22,11 @@
   "generators": "./generators.json",
   "executors": "./executors.json",
   "peerDependencies": {
-    "@nrwl/vite": "^15.8.0"
+    "@nrwl/devkit": "^15.8.0",
+    "@nrwl/js": "^15.8.0",
+    "@nrwl/linter": "^15.8.0",
+    "@nrwl/vite": "^15.8.0",
+    "tslib": "^2.3.0"
   },
   "nx-migrations": {
     "migrations": "./migrations.json"

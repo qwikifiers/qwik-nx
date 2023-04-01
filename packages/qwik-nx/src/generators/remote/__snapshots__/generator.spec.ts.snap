@@ -11,16 +11,16 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/myremote',
   plugins: [
     qwikNxVite(),
-    qwikCity(), 
+    qwikCity(),
     qwikVite({
-			client: {
-				outDir: '../../dist/apps/myremote/client',
-			},
-			ssr: {
-				outDir: '../../dist/apps/myremote/server',
-			},
-		}),
-    tsconfigPaths({ root: '../../' })
+      client: {
+        outDir: '../../dist/apps/myremote/client',
+      },
+      ssr: {
+        outDir: '../../dist/apps/myremote/server',
+      },
+    }),
+    tsconfigPaths({ root: '../../' }),
   ],
   server: {
     fs: {
@@ -33,15 +33,14 @@ export default defineConfig({
       'Cache-Control': 'public, max-age=600',
     },
   },
-   test: {
+  test: {
     globals: true,
     cache: {
       dir: '../../node_modules/.vitest',
     },
     environment: 'node',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}']
-  }
-  
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+  },
 });
 "
 `;
@@ -56,10 +55,7 @@ exports[`remote generator should run successfully 2`] = `
     \\"build\\": {
       \\"executor\\": \\"qwik-nx:build\\",
       \\"options\\": {
-        \\"runSequence\\": [
-          \\"myremote:build.client\\",
-          \\"myremote:build.ssr\\"
-        ],
+        \\"runSequence\\": [\\"myremote:build.client\\", \\"myremote:build.ssr\\"],
         \\"outputPath\\": \\"dist/apps/myremote\\"
       },
       \\"configurations\\": {
@@ -95,9 +91,7 @@ exports[`remote generator should run successfully 2`] = `
     },
     \\"test\\": {
       \\"executor\\": \\"@nrwl/vite:test\\",
-      \\"outputs\\": [
-        \\"../../coverage/apps/myremote\\"
-      ],
+      \\"outputs\\": [\\"../../coverage/apps/myremote\\"],
       \\"options\\": {
         \\"passWithNoTests\\": true,
         \\"reportsDirectory\\": \\"../../coverage/apps/myremote\\"
@@ -148,6 +142,10 @@ Array [
   },
   Object {
     "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierignore",
     "type": "CREATE",
   },
   Object {

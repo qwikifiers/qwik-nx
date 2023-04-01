@@ -27,6 +27,9 @@ describe('appGenerator e2e', () => {
 
       expect(packageJson.dependencies).toBeUndefined();
       expect(packageJson.peerDependencies).toEqual({
+        '@nrwl/devkit': '^15.8.0',
+        '@nrwl/js': '^15.8.0',
+        '@nrwl/linter': '^15.8.0',
         '@nrwl/vite': '^15.8.0',
         tslib: '^2.3.0',
       });
