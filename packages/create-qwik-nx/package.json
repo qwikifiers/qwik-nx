@@ -1,6 +1,6 @@
 {
   "name": "create-qwik-nx",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "private": false,
   "description": "This package is used to create a brand-new nx workspace with the qwik-nx plugin added",
   "repository": {
