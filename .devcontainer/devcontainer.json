@@ -8,6 +8,9 @@
     "ghcr.io/devcontainers-contrib/features/nx-npm:1": {},
     "ghcr.io/devcontainers-contrib/features/pnpm:2": {}
   },
+  "hostRequirements": {
+    "cpus": 4
+  },
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
