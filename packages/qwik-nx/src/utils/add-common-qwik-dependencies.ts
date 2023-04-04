@@ -6,6 +6,7 @@ import {
 import {
   nodeFetchVersion,
   qwikCityVersion,
+  qwikEslintPluginVersion,
   qwikVersion,
   undiciVersion,
   viteTsconfigPathsVersion,
@@ -19,6 +20,7 @@ export function addCommonQwikDependencies(host: Tree): GeneratorCallback {
     {
       '@builder.io/qwik': qwikVersion,
       '@builder.io/qwik-city': qwikCityVersion,
+      'eslint-plugin-qwik': qwikEslintPluginVersion,
       vite: viteVersion,
       'vite-tsconfig-paths': viteTsconfigPathsVersion,
       'node-fetch': nodeFetchVersion,
@@ -29,7 +31,6 @@ export function addCommonQwikDependencies(host: Tree): GeneratorCallback {
       // "@typescript-eslint/eslint-plugin": tsEslintVersion,
       // "@typescript-eslint/parser": tsEslintVersion,
       // "eslint": eslintVersion,
-      // "eslint-plugin-qwik": qwikEslintPluginVersion,
       // "prettier": prettierVersion,
       // "typescript": typescriptVersion,
     }

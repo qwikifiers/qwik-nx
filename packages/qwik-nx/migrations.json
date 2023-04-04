@@ -124,6 +124,26 @@
           "version": "^3.21.4"
         }
       }
+    },
+    "0.15.0": {
+      "version": "0.15.0",
+      "packages": {
+        "@builder.io/qwik": {
+          "version": "~0.100.0"
+        },
+        "@builder.io/qwik-city": {
+          "version": "~0.100.0"
+        },
+        "@types/node": {
+          "version": "c"
+        },
+        "eslint-plugin-qwik": {
+          "version": "~0.100.0"
+        },
+        "prettier": {
+          "version": "~2.8.7"
+        }
+      }
     }
   }
 }
