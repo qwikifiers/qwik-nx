@@ -2,6 +2,21 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.15.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.14.2...qwik-nx-0.15.0) (2023-04-05)
+
+
+### Bug Fixes
+
+* changed useClientEffect ([282ad2b](https://github.com/qwikifiers/qwik-nx/commit/282ad2b71f1fdbfa189002d568b771137c0a0bba))
+* **qwik-nx:** use location.url.searchParams in the "flower" route template ([2a30f3d](https://github.com/qwikifiers/qwik-nx/commit/2a30f3da84340bfbd7aa3e8ce85dd48c5c2971ad))
+
+
+### Features
+
+* add migration to qwik RC 0.100.0 ([ec095ba](https://github.com/qwikifiers/qwik-nx/commit/ec095bade1ed589bf3d092799bb4b555c86ee16d))
+
+
+
 ## [0.14.2](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.14.1...qwik-nx-0.14.2) (2023-04-01)
 
 
