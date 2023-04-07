@@ -9,6 +9,7 @@ import {
   ProjectConfiguration,
   ProjectsConfigurations,
   workspaceRoot,
+  normalizePath,
 } from '@nrwl/devkit';
 import { readFileSync } from 'fs';
 
@@ -80,8 +81,9 @@ function getCurrentProjectName(
       projectsConfigurations.projects
     );
   const relativeDirname = relative(workspaceRoot, projectRootDir);
+  const normalizedRelativeDirname = normalizePath(relativeDirname);
   const currentProjectName = findProjectForPath(
-    relativeDirname,
+    normalizedRelativeDirname,
     projectRootMappings
   );
 
@@ -113,6 +115,15 @@ function getVendorRoots(
   ).flat();
 
   let projects = Object.values(workspaceConfig.projects);
+
+  if (
+    options?.currentProjectName &&
+    !workspaceConfig.projects[options.currentProjectName]
+  ) {
+    throw new Error(
+      `Could not find project with name "${options.currentProjectName}"`
+    );
+  }
 
   const currentProjectName =
     options?.currentProjectName ??

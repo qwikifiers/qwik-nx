@@ -1,4 +1,5 @@
 import { workspaceRoot } from '@nrwl/devkit';
+import { join } from 'path';
 import { qwikNxVite, QwikNxVitePluginOptions } from './qwik-nx-vite.plugin';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -56,6 +57,15 @@ const workspaceConfig1 = {
       prefix: 'tmp',
       tags: [],
     },
+    // it will be excluded because it is not set in our mock tsconfig.json
+    'tmp-always-excluded': {
+      root: 'libs/always/excluded',
+      name: 'tmp-always-excluded',
+      projectType: 'library',
+      sourceRoot: 'libs/always/excluded/src',
+      prefix: 'tmp',
+      tags: [],
+    },
   },
 };
 
@@ -77,38 +87,48 @@ describe('qwik-nx-vite plugin', () => {
     .mockReturnValue(workspaceConfig1);
   jest.spyOn(fs, 'readFileSync').mockReturnValue(tsConfigString1);
 
+  /**
+   * @param options options for the qwikNxVite plugin
+   * @param qwikPluginRootDir mock root dir that is supposed to be available in the qwik plugin
+   */
   const getDecoratedPaths = async (
     options?: QwikNxVitePluginOptions,
-    rootDir?: string
+    qwikPluginRootDir?: string
   ): Promise<string[]> => {
+    let currentProjectName: string | undefined;
+    if (options?.currentProjectName || qwikPluginRootDir) {
+      // not defining it if rootDir is provided
+      currentProjectName = options?.currentProjectName;
+    } else {
+      // do not exclude any projects by setting "currentProjectName" to the "tmp-always-excluded", which is not present in the mock tsconfig
+      currentProjectName = 'tmp-always-excluded';
+    }
     const plugin = qwikNxVite({
       ...options,
-      // do not exclude any projects by setting "currentProjectName" to a not valid value
-      currentProjectName:
-        options?.currentProjectName || rootDir
-          ? options?.currentProjectName
-          : 'mock',
+      currentProjectName,
     });
     const vendorRoots: string[] = [];
     const qwikViteMock = {
       name: 'vite-plugin-qwik',
       api: {
-        getOptions: () => ({ vendorRoots, rootDir }),
+        getOptions: () => ({ vendorRoots, rootDir: qwikPluginRootDir }),
       },
     };
     await (plugin.configResolved as any)({ plugins: [qwikViteMock] });
     return vendorRoots;
   };
 
+  const toAbsolute = (path: string) => join(workspaceRoot, path);
+
   it('Without filters', async () => {
     const paths = await getDecoratedPaths();
 
     expect(paths).toEqual([
-      `${workspaceRoot}/libs/test-lib-a/src`,
-      `${workspaceRoot}/libs/test-lib-b/src`,
-      `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-      `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
-      `${workspaceRoot}/libs/other/test-lib-a/src`,
+      toAbsolute(`/libs/test-lib-a/src`),
+      toAbsolute(`/libs/test-lib-b/src`),
+      toAbsolute(`/libs/test-lib-c/nested-1/src`),
+      toAbsolute(`/libs/test-lib-c/nested-2/src`),
+      toAbsolute(`/libs/other/test-lib-a/src`),
     ]);
   });
 
@@ -119,21 +139,56 @@ describe('qwik-nx-vite plugin', () => {
       });
 
       expect(paths).toEqual([
-        `${workspaceRoot}/libs/test-lib-b/src`,
-        `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-        `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
-        `${workspaceRoot}/libs/other/test-lib-a/src`,
+        toAbsolute(`/libs/test-lib-b/src`),
+        toAbsolute(`/libs/test-lib-c/nested-1/src`),
+        toAbsolute(`/libs/test-lib-c/nested-2/src`),
+        toAbsolute(`/libs/other/test-lib-a/src`),
       ]);
     });
-    it('implicitly by project path', async () => {
-      const paths = await getDecoratedPaths(undefined, 'libs/test-lib-b');
 
-      expect(paths).toEqual([
-        `${workspaceRoot}/libs/test-lib-a/src`,
-        `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-        `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
-        `${workspaceRoot}/libs/other/test-lib-a/src`,
-      ]);
+    describe('implicitly by the root dir from the qwik plugin', () => {
+      it('relative to workspace root', async () => {
+        const paths = await getDecoratedPaths(undefined, 'libs/test-lib-b');
+
+        expect(paths).toEqual([
+          toAbsolute(`/libs/test-lib-a/src`),
+          toAbsolute(`/libs/test-lib-c/nested-1/src`),
+          toAbsolute(`/libs/test-lib-c/nested-2/src`),
+          toAbsolute(`/libs/other/test-lib-a/src`),
+        ]);
+      });
+      it('absolute', async () => {
+        const paths = await getDecoratedPaths(
+          undefined,
+          join(workspaceRoot, 'libs/test-lib-b')
+        );
+
+        expect(paths).toEqual([
+          toAbsolute(`/libs/test-lib-a/src`),
+          toAbsolute(`/libs/test-lib-c/nested-1/src`),
+          toAbsolute(`/libs/test-lib-c/nested-2/src`),
+          toAbsolute(`/libs/other/test-lib-a/src`),
+        ]);
+      });
+    });
+
+    describe('validation', () => {
+      it('should throw if invalid project is provided', async () => {
+        const invalidProjectName = 'tmp-test-lib-a-123';
+        await expect(
+          getDecoratedPaths({
+            currentProjectName: invalidProjectName,
+          })
+        ).rejects.toThrow(
+          `Could not find project with name "${invalidProjectName}"`
+        );
+      });
+      it('should throw if for some reason path from qwik plugin could not be resolved', async () => {
+        const invalidPath = 'libs/libs/test-lib-b';
+        await expect(getDecoratedPaths(undefined, invalidPath)).rejects.toThrow(
+          `Could not resolve the project name for path "${invalidPath}"`
+        );
+      });
     });
   });
 
@@ -146,9 +201,9 @@ describe('qwik-nx-vite plugin', () => {
           },
         });
         expect(paths).toEqual([
-          `${workspaceRoot}/libs/test-lib-a/src`,
-          `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-          `${workspaceRoot}/libs/other/test-lib-a/src`,
+          toAbsolute(`/libs/test-lib-a/src`),
+          toAbsolute(`/libs/test-lib-c/nested-1/src`),
+          toAbsolute(`/libs/other/test-lib-a/src`),
         ]);
       });
       it('Include', async () => {
@@ -158,8 +213,8 @@ describe('qwik-nx-vite plugin', () => {
           },
         });
         expect(paths).toEqual([
-          `${workspaceRoot}/libs/test-lib-b/src`,
-          `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
+          toAbsolute(`/libs/test-lib-b/src`),
+          toAbsolute(`/libs/test-lib-c/nested-2/src`),
         ]);
       });
       it('Both', async () => {
@@ -167,9 +222,7 @@ describe('qwik-nx-vite plugin', () => {
           includeProjects: { name: ['tmp-test-lib-c-nested-2'] },
           excludeProjects: { name: ['tmp-test-lib-b'] },
         });
-        expect(paths).toEqual([
-          `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
-        ]);
+        expect(paths).toEqual([toAbsolute(`/libs/test-lib-c/nested-2/src`)]);
       });
     });
     describe('As regexp', () => {
@@ -178,9 +231,9 @@ describe('qwik-nx-vite plugin', () => {
           excludeProjects: { name: /lib-a/ },
         });
         expect(paths).toEqual([
-          `${workspaceRoot}/libs/test-lib-b/src`,
-          `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-          `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
+          toAbsolute(`/libs/test-lib-b/src`),
+          toAbsolute(`/libs/test-lib-c/nested-1/src`),
+          toAbsolute(`/libs/test-lib-c/nested-2/src`),
         ]);
       });
       it('Exclude - ends with', async () => {
@@ -188,9 +241,9 @@ describe('qwik-nx-vite plugin', () => {
           excludeProjects: { name: /tmp-test-lib-\w$/ },
         });
         expect(paths).toEqual([
-          `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-          `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
-          `${workspaceRoot}/libs/other/test-lib-a/src`,
+          toAbsolute(`/libs/test-lib-c/nested-1/src`),
+          toAbsolute(`/libs/test-lib-c/nested-2/src`),
+          toAbsolute(`/libs/other/test-lib-a/src`),
         ]);
       });
       it('Exclude - wrong value', async () => {
@@ -198,11 +251,11 @@ describe('qwik-nx-vite plugin', () => {
           excludeProjects: { name: /test-lib$/ },
         });
         expect(paths).toEqual([
-          `${workspaceRoot}/libs/test-lib-a/src`,
-          `${workspaceRoot}/libs/test-lib-b/src`,
-          `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-          `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
-          `${workspaceRoot}/libs/other/test-lib-a/src`,
+          toAbsolute(`/libs/test-lib-a/src`),
+          toAbsolute(`/libs/test-lib-b/src`),
+          toAbsolute(`/libs/test-lib-c/nested-1/src`),
+          toAbsolute(`/libs/test-lib-c/nested-2/src`),
+          toAbsolute(`/libs/other/test-lib-a/src`),
         ]);
       });
       it('Include', async () => {
@@ -210,8 +263,8 @@ describe('qwik-nx-vite plugin', () => {
           includeProjects: { name: /nested/ },
         });
         expect(paths).toEqual([
-          `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-          `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
+          toAbsolute(`/libs/test-lib-c/nested-1/src`),
+          toAbsolute(`/libs/test-lib-c/nested-2/src`),
         ]);
       });
 
@@ -220,8 +273,8 @@ describe('qwik-nx-vite plugin', () => {
           includeProjects: { name: /nested/g },
         });
         expect(paths).toEqual([
-          `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-          `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
+          toAbsolute(`/libs/test-lib-c/nested-1/src`),
+          toAbsolute(`/libs/test-lib-c/nested-2/src`),
         ]);
       });
 
@@ -230,9 +283,7 @@ describe('qwik-nx-vite plugin', () => {
           includeProjects: { name: /nested/ },
           excludeProjects: { name: /nested-2/ },
         });
-        expect(paths).toEqual([
-          `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-        ]);
+        expect(paths).toEqual([toAbsolute(`/libs/test-lib-c/nested-1/src`)]);
       });
     });
   });
@@ -243,10 +294,10 @@ describe('qwik-nx-vite plugin', () => {
         excludeProjects: { path: /other\/test/ },
       });
       expect(paths).toEqual([
-        `${workspaceRoot}/libs/test-lib-a/src`,
-        `${workspaceRoot}/libs/test-lib-b/src`,
-        `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-        `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
+        toAbsolute(`/libs/test-lib-a/src`),
+        toAbsolute(`/libs/test-lib-b/src`),
+        toAbsolute(`/libs/test-lib-c/nested-1/src`),
+        toAbsolute(`/libs/test-lib-c/nested-2/src`),
       ]);
     });
     it('Include', async () => {
@@ -254,8 +305,8 @@ describe('qwik-nx-vite plugin', () => {
         includeProjects: { path: /nested/ },
       });
       expect(paths).toEqual([
-        `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-        `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
+        toAbsolute(`/libs/test-lib-c/nested-1/src`),
+        toAbsolute(`/libs/test-lib-c/nested-2/src`),
       ]);
     });
 
@@ -264,8 +315,8 @@ describe('qwik-nx-vite plugin', () => {
         includeProjects: { path: /nested/g },
       });
       expect(paths).toEqual([
-        `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-        `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
+        toAbsolute(`/libs/test-lib-c/nested-1/src`),
+        toAbsolute(`/libs/test-lib-c/nested-2/src`),
       ]);
     });
 
@@ -274,7 +325,7 @@ describe('qwik-nx-vite plugin', () => {
         includeProjects: { path: /lib-a/ },
         excludeProjects: { path: /other/ },
       });
-      expect(paths).toEqual([`${workspaceRoot}/libs/test-lib-a/src`]);
+      expect(paths).toEqual([toAbsolute(`/libs/test-lib-a/src`)]);
     });
   });
 
@@ -284,10 +335,10 @@ describe('qwik-nx-vite plugin', () => {
         excludeProjects: { tags: ['tag1'] },
       });
       expect(paths).toEqual([
-        `${workspaceRoot}/libs/test-lib-a/src`,
-        `${workspaceRoot}/libs/test-lib-b/src`,
-        `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-        `${workspaceRoot}/libs/other/test-lib-a/src`,
+        toAbsolute(`/libs/test-lib-a/src`),
+        toAbsolute(`/libs/test-lib-b/src`),
+        toAbsolute(`/libs/test-lib-c/nested-1/src`),
+        toAbsolute(`/libs/other/test-lib-a/src`),
       ]);
     });
     it('Exclude multiple', async () => {
@@ -295,9 +346,9 @@ describe('qwik-nx-vite plugin', () => {
         excludeProjects: { tags: ['tag1', 'tag3'] },
       });
       expect(paths).toEqual([
-        `${workspaceRoot}/libs/test-lib-a/src`,
-        `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-        `${workspaceRoot}/libs/other/test-lib-a/src`,
+        toAbsolute(`/libs/test-lib-a/src`),
+        toAbsolute(`/libs/test-lib-c/nested-1/src`),
+        toAbsolute(`/libs/other/test-lib-a/src`),
       ]);
     });
     it('Include', async () => {
@@ -305,15 +356,15 @@ describe('qwik-nx-vite plugin', () => {
         includeProjects: { tags: ['tag3'] },
       });
       expect(paths).toEqual([
-        `${workspaceRoot}/libs/test-lib-b/src`,
-        `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
+        toAbsolute(`/libs/test-lib-b/src`),
+        toAbsolute(`/libs/test-lib-c/nested-2/src`),
       ]);
     });
     it('Include multiple', async () => {
       const paths = await getDecoratedPaths({
         includeProjects: { tags: ['tag1', 'tag3'] },
       });
-      expect(paths).toEqual([`${workspaceRoot}/libs/test-lib-c/nested-2/src`]);
+      expect(paths).toEqual([toAbsolute(`/libs/test-lib-c/nested-2/src`)]);
     });
   });
   describe('Custom filter', () => {
@@ -322,17 +373,17 @@ describe('qwik-nx-vite plugin', () => {
         excludeProjects: { customFilter: (p) => p.name === 'tmp-test-lib-a' },
       });
       expect(paths).toEqual([
-        `${workspaceRoot}/libs/test-lib-b/src`,
-        `${workspaceRoot}/libs/test-lib-c/nested-1/src`,
-        `${workspaceRoot}/libs/test-lib-c/nested-2/src`,
-        `${workspaceRoot}/libs/other/test-lib-a/src`,
+        toAbsolute(`/libs/test-lib-b/src`),
+        toAbsolute(`/libs/test-lib-c/nested-1/src`),
+        toAbsolute(`/libs/test-lib-c/nested-2/src`),
+        toAbsolute(`/libs/other/test-lib-a/src`),
       ]);
     });
     it('Exclude', async () => {
       const paths = await getDecoratedPaths({
         includeProjects: { customFilter: (p) => p.name === 'tmp-test-lib-a' },
       });
-      expect(paths).toEqual([`${workspaceRoot}/libs/test-lib-a/src`]);
+      expect(paths).toEqual([toAbsolute(`/libs/test-lib-a/src`)]);
     });
   });
 });

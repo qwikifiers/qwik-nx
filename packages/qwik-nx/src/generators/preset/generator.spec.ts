@@ -20,7 +20,7 @@ describe('preset generator', () => {
     qwikAppStyle: 'css',
     style: 'css',
     linter: Linter.None,
-    skipFormat: false,
+    skipFormat: true,
     e2eTestRunner: 'playwright',
     unitTestRunner: 'none',
     strict: false,
