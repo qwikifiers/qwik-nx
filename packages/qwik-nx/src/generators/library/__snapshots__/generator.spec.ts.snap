@@ -102,19 +102,19 @@ export default defineConfig({
 exports[`library generator should generate build configs for buildable libraries 3`] = `
 Array [
   Object {
+    "path": ".eslintignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierignore",
+    "type": "CREATE",
+  },
+  Object {
     "path": ".prettierrc",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
   Object {
@@ -126,11 +126,7 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": ".prettierignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/mylib/README.md",
+    "path": "libs/mylib/.eslintrc.json",
     "type": "CREATE",
   },
   Object {
@@ -138,39 +134,15 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": "libs/mylib/src/index.ts",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/mylib/tsconfig.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/mylib/tsconfig.lib.json",
-    "type": "CREATE",
-  },
-  Object {
     "path": "libs/mylib/project.json",
     "type": "CREATE",
   },
   Object {
-    "path": "libs/mylib/.eslintrc.json",
+    "path": "libs/mylib/README.md",
     "type": "CREATE",
   },
   Object {
-    "path": "libs/mylib/tsconfig.spec.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/mylib/vite.config.ts",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/mylib/src/root.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/mylib/src/lib/mylib.tsx",
+    "path": "libs/mylib/src/index.ts",
     "type": "CREATE",
   },
   Object {
@@ -182,11 +154,39 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": ".eslintrc.json",
+    "path": "libs/mylib/src/lib/mylib.tsx",
     "type": "CREATE",
   },
   Object {
-    "path": ".eslintignore",
+    "path": "libs/mylib/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/tsconfig.lib.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]
@@ -219,19 +219,19 @@ Object {
 exports[`library generator should not generate build and test configs for non-buildable libraries w/o unit tests 2`] = `
 Array [
   Object {
+    "path": ".eslintignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierignore",
+    "type": "CREATE",
+  },
+  Object {
     "path": ".prettierrc",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
   Object {
@@ -243,7 +243,11 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": ".prettierignore",
+    "path": "libs/mylib/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/project.json",
     "type": "CREATE",
   },
   Object {
@@ -255,6 +259,18 @@ Array [
     "type": "CREATE",
   },
   Object {
+    "path": "libs/mylib/src/lib/mylib.css",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/lib/mylib.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
     "path": "libs/mylib/tsconfig.json",
     "type": "CREATE",
   },
@@ -263,31 +279,15 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": "libs/mylib/project.json",
+    "path": "nx.json",
     "type": "CREATE",
   },
   Object {
-    "path": "libs/mylib/.eslintrc.json",
+    "path": "package.json",
     "type": "CREATE",
   },
   Object {
-    "path": "libs/mylib/src/root.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/mylib/src/lib/mylib.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/mylib/src/lib/mylib.css",
-    "type": "CREATE",
-  },
-  Object {
-    "path": ".eslintrc.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": ".eslintignore",
+    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]
@@ -356,19 +356,19 @@ export default defineConfig({
 exports[`library generator should run successfully 3`] = `
 Array [
   Object {
+    "path": ".eslintignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierignore",
+    "type": "CREATE",
+  },
+  Object {
     "path": ".prettierrc",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
   Object {
@@ -380,7 +380,11 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": ".prettierignore",
+    "path": "libs/mylib/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/project.json",
     "type": "CREATE",
   },
   Object {
@@ -392,19 +396,27 @@ Array [
     "type": "CREATE",
   },
   Object {
+    "path": "libs/mylib/src/lib/mylib.css",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/lib/mylib.spec.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/lib/mylib.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/mylib/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
     "path": "libs/mylib/tsconfig.json",
     "type": "CREATE",
   },
   Object {
     "path": "libs/mylib/tsconfig.lib.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/mylib/project.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/mylib/.eslintrc.json",
     "type": "CREATE",
   },
   Object {
@@ -416,27 +428,15 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": "libs/mylib/src/root.tsx",
+    "path": "nx.json",
     "type": "CREATE",
   },
   Object {
-    "path": "libs/mylib/src/lib/mylib.tsx",
+    "path": "package.json",
     "type": "CREATE",
   },
   Object {
-    "path": "libs/mylib/src/lib/mylib.css",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/mylib/src/lib/mylib.spec.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": ".eslintrc.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": ".eslintignore",
+    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]

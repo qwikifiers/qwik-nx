@@ -25,7 +25,9 @@ describe('library generator', () => {
       appTree.read('libs/mylib/vite.config.ts', 'utf-8')
     ).toMatchSnapshot();
     expect(
-      appTree.listChanges().map((c) => ({ path: c.path, type: c.type }))
+      [...appTree.listChanges()]
+        .sort((a, b) => a.path.localeCompare(b.path))
+        .map((c) => ({ path: c.path, type: c.type }))
     ).toMatchSnapshot();
   });
 
@@ -42,7 +44,9 @@ describe('library generator', () => {
       appTree.read('libs/mylib/vite.config.ts', 'utf-8')
     ).toMatchSnapshot();
     expect(
-      appTree.listChanges().map((c) => ({ path: c.path, type: c.type }))
+      [...appTree.listChanges()]
+        .sort((a, b) => a.path.localeCompare(b.path))
+        .map((c) => ({ path: c.path, type: c.type }))
     ).toMatchSnapshot();
   });
 
@@ -59,7 +63,9 @@ describe('library generator', () => {
 
     expect(config).toMatchSnapshot();
     expect(
-      appTree.listChanges().map((c) => ({ path: c.path, type: c.type }))
+      [...appTree.listChanges()]
+        .sort((a, b) => a.path.localeCompare(b.path))
+        .map((c) => ({ path: c.path, type: c.type }))
     ).toMatchSnapshot();
   });
 });

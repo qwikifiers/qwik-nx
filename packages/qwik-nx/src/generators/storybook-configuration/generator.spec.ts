@@ -64,7 +64,9 @@ describe('storybook-configuration generator', () => {
     });
 
     expect(
-      appTree.listChanges().map((c) => ({ path: c.path, type: c.type }))
+      [...appTree.listChanges()]
+        .sort((a, b) => a.path.localeCompare(b.path))
+        .map((c) => ({ path: c.path, type: c.type }))
     ).toMatchSnapshot();
   });
 });

@@ -169,35 +169,15 @@ exports[`host generator should run successfully 3`] = `
 exports[`host generator should run successfully 4`] = `
 Array [
   Object {
-    "path": ".prettierrc",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "apps/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
     "path": ".prettierignore",
     "type": "CREATE",
   },
   Object {
-    "path": "apps/myhostapp/project.json",
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
     "type": "CREATE",
   },
   Object {
@@ -209,11 +189,11 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": "apps/myhostapp/README.md",
+    "path": "apps/myhostapp/package.json",
     "type": "CREATE",
   },
   Object {
-    "path": "apps/myhostapp/package.json",
+    "path": "apps/myhostapp/project.json",
     "type": "CREATE",
   },
   Object {
@@ -229,6 +209,10 @@ Array [
     "type": "CREATE",
   },
   Object {
+    "path": "apps/myhostapp/README.md",
+    "type": "CREATE",
+  },
+  Object {
     "path": "apps/myhostapp/src/components/header/header.,",
     "type": "CREATE",
   },
@@ -241,7 +225,15 @@ Array [
     "type": "CREATE",
   },
   Object {
+    "path": "apps/myhostapp/src/components/remote-mfe/remote-mfe.tsx",
+    "type": "CREATE",
+  },
+  Object {
     "path": "apps/myhostapp/src/components/router-head/router-head.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/config/remotes.json",
     "type": "CREATE",
   },
   Object {
@@ -262,6 +254,10 @@ Array [
   },
   Object {
     "path": "apps/myhostapp/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myhostapp/src/routes/about/index.tsx",
     "type": "CREATE",
   },
   Object {
@@ -297,10 +293,6 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": "apps/remote1/project.json",
-    "type": "CREATE",
-  },
-  Object {
     "path": "apps/remote1/.eslintrc.json",
     "type": "CREATE",
   },
@@ -309,11 +301,11 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": "apps/remote1/README.md",
+    "path": "apps/remote1/package.json",
     "type": "CREATE",
   },
   Object {
-    "path": "apps/remote1/package.json",
+    "path": "apps/remote1/project.json",
     "type": "CREATE",
   },
   Object {
@@ -326,6 +318,14 @@ Array [
   },
   Object {
     "path": "apps/remote1/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/src/components/.gitkeep",
     "type": "CREATE",
   },
   Object {
@@ -350,6 +350,10 @@ Array [
   },
   Object {
     "path": "apps/remote1/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote1/src/routes/about/index.tsx",
     "type": "CREATE",
   },
   Object {
@@ -381,18 +385,6 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": "apps/remote1/src/components/.gitkeep",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "apps/remote1/src/routes/about/index.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "apps/remote2/project.json",
-    "type": "CREATE",
-  },
-  Object {
     "path": "apps/remote2/.eslintrc.json",
     "type": "CREATE",
   },
@@ -401,11 +393,11 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": "apps/remote2/README.md",
+    "path": "apps/remote2/package.json",
     "type": "CREATE",
   },
   Object {
-    "path": "apps/remote2/package.json",
+    "path": "apps/remote2/project.json",
     "type": "CREATE",
   },
   Object {
@@ -418,6 +410,14 @@ Array [
   },
   Object {
     "path": "apps/remote2/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/src/components/.gitkeep",
     "type": "CREATE",
   },
   Object {
@@ -442,6 +442,10 @@ Array [
   },
   Object {
     "path": "apps/remote2/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/remote2/src/routes/about/index.tsx",
     "type": "CREATE",
   },
   Object {
@@ -473,23 +477,19 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": "apps/remote2/src/components/.gitkeep",
+    "path": "libs/.gitignore",
     "type": "CREATE",
   },
   Object {
-    "path": "apps/remote2/src/routes/about/index.tsx",
+    "path": "nx.json",
     "type": "CREATE",
   },
   Object {
-    "path": "apps/myhostapp/src/components/remote-mfe/remote-mfe.tsx",
+    "path": "package.json",
     "type": "CREATE",
   },
   Object {
-    "path": "apps/myhostapp/src/routes/about/index.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "apps/myhostapp/src/config/remotes.json",
+    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]

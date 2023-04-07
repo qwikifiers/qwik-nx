@@ -121,35 +121,15 @@ exports[`remote generator should run successfully 2`] = `
 exports[`remote generator should run successfully 3`] = `
 Array [
   Object {
-    "path": ".prettierrc",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "apps/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
     "path": ".prettierignore",
     "type": "CREATE",
   },
   Object {
-    "path": "apps/myremote/project.json",
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
     "type": "CREATE",
   },
   Object {
@@ -161,11 +141,11 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": "apps/myremote/README.md",
+    "path": "apps/myremote/package.json",
     "type": "CREATE",
   },
   Object {
-    "path": "apps/myremote/package.json",
+    "path": "apps/myremote/project.json",
     "type": "CREATE",
   },
   Object {
@@ -178,6 +158,14 @@ Array [
   },
   Object {
     "path": "apps/myremote/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/src/components/.gitkeep",
     "type": "CREATE",
   },
   Object {
@@ -202,6 +190,10 @@ Array [
   },
   Object {
     "path": "apps/myremote/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myremote/src/routes/about/index.tsx",
     "type": "CREATE",
   },
   Object {
@@ -233,11 +225,19 @@ Array [
     "type": "CREATE",
   },
   Object {
-    "path": "apps/myremote/src/components/.gitkeep",
+    "path": "libs/.gitignore",
     "type": "CREATE",
   },
   Object {
-    "path": "apps/myremote/src/routes/about/index.tsx",
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]
