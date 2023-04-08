@@ -1,0 +1,3 @@
+<% if(!qwikCitySupportInternal) { %>// uncomment this if current project requires qwikCity <% } %>
+<% if(!qwikCitySupportInternal) { %>// <% } %>import { qwikCityDecorator } from 'storybook-framework-qwik/qwik-city-decorator';
+<% if(!qwikCitySupportInternal) { %>// <% } %>export const decorators = [qwikCityDecorator];

@@ -34,6 +34,13 @@
       "description": "Configure your project with TypeScript. Generate main.ts and preview.ts files, instead of main.js and preview.js.",
       "default": true,
       "x-priority": "important"
+    },
+    "qwikCitySupport": {
+      "type": "string",
+      "enum": ["true", "false", "auto"],
+      "x-priority": "important",
+      "description": "Whether to add support for the qwik city. By default, it will be added for applications, not libraries.",
+      "default": "auto"
     }
   },
   "required": ["name"]

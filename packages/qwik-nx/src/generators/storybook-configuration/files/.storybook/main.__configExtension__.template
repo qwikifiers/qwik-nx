@@ -1,4 +1,5 @@
 import { mergeConfig, UserConfig } from 'vite';
+import { withNx } from 'qwik-nx/storybook';
 import viteConfig from './../vite.config';
 
 const config = {
@@ -9,7 +10,8 @@ const config = {
   addons: ['@storybook/addon-essentials'],
   framework: { name: 'storybook-framework-qwik', },
   async viteFinal(config: UserConfig) {
-    return mergeConfig(config, viteConfig);
+    const updatedConfig = mergeConfig(config, viteConfig);
+    return withNx(updatedConfig);
   },
 };
 
