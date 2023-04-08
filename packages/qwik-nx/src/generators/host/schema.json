@@ -85,7 +85,7 @@
       "type": "string",
       "enum": ["playwright", "cypress", "none"],
       "description": "Test runner to use for end to end (E2E) tests.",
-      "default": "playwright"
+      "default": "none"
     },
     "port": {
       "type": "number",

@@ -11,6 +11,7 @@ import {
   killPort,
   killPorts,
 } from '@qwikifiers/e2e/utils';
+import { normalize } from 'path';
 
 const STORYBOOK_PORT = 4400;
 
@@ -94,13 +95,18 @@ function checkStorybookIsBuiltAndServed(
       }
     );
 
+    const mdxPattern = normalize(`${type}/${projectName}/**/*.stories.mdx`);
+    const storiesPattern = normalize(
+      `${type}/${projectName}/**/*.stories.@(js|jsx|ts|tsx)`
+    );
+
     // it is expected that projects won't have stories by default and storybook should recognize it.
     expect(resultOutput).toContain(
-      `No story files found for the specified pattern: ${type}/${projectName}/**/*.stories.mdx`
+      `No story files found for the specified pattern: ${mdxPattern}`
     );
     if (!hasTsStories) {
       expect(resultOutput).toContain(
-        `No story files found for the specified pattern: ${type}/${projectName}/**/*.stories.@(js|jsx|ts|tsx)`
+        `No story files found for the specified pattern: ${storiesPattern}`
       );
     }
     try {
