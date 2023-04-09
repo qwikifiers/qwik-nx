@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.15.2](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.1...qwik-nx-0.15.2) (2023-04-09)
+
+
+### Features
+
+* **qwik-nx:** default export option for component generator ([#123](https://github.com/qwikifiers/qwik-nx/issues/123)) ([c2047c3](https://github.com/qwikifiers/qwik-nx/commit/c2047c3218e1b8400eecd617f6029fd47af87ea4))
+
+
+
 ## [0.15.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.0...qwik-nx-0.15.1) (2023-04-09)
 
 
