@@ -6,6 +6,7 @@ import {
   GeneratorCallback,
   names,
   offsetFromRoot,
+  ProjectConfiguration,
   readProjectConfiguration,
   Tree,
 } from '@nrwl/devkit';
@@ -27,9 +28,11 @@ import {
   StorybookConfigurationGeneratorSchema,
 } from './schema';
 
-function addFiles(tree: Tree, options: StorybookConfigurationGeneratorSchema) {
-  const { root } = readProjectConfiguration(tree, options.name);
-
+function addFiles(
+  tree: Tree,
+  options: StorybookConfigurationGeneratorSchema,
+  { root }: ProjectConfiguration
+) {
   tree.delete(path.join(root, '.storybook/main.js'));
 
   const templateOptions = {
@@ -46,13 +49,24 @@ function addFiles(tree: Tree, options: StorybookConfigurationGeneratorSchema) {
 }
 
 function normalizeOptions(
-  options: StorybookConfigurationGeneratorSchema
+  options: StorybookConfigurationGeneratorSchema,
+  projectConfig: ProjectConfiguration
 ): NormalizedSchema {
+  let qwikCitySupportInternal: boolean;
+  if (options.qwikCitySupport === 'auto' || !options.qwikCitySupport) {
+    // "auto"
+    qwikCitySupportInternal = projectConfig.projectType === 'application';
+  } else {
+    // "true" or "false"
+    qwikCitySupportInternal = options.qwikCitySupport === 'true';
+  }
+
   return {
     ...options,
     js: !!options.js,
     linter: options.linter ?? Linter.EsLint,
     tsConfiguration: options.tsConfiguration ?? true,
+    qwikCitySupportInternal,
   };
 }
 
@@ -60,7 +74,9 @@ export async function storybookConfigurationGenerator(
   tree: Tree,
   options: StorybookConfigurationGeneratorSchema
 ): Promise<GeneratorCallback> {
-  const normalizedOptions = normalizeOptions(options);
+  const projectConfig = readProjectConfiguration(tree, options.name);
+
+  const normalizedOptions = normalizeOptions(options, projectConfig);
   const nxVersion = getInstalledNxVersion(tree);
 
   ensurePackage('@nrwl/storybook', nxVersion);
@@ -80,7 +96,7 @@ export async function storybookConfigurationGenerator(
     storybook7betaConfiguration: true,
   });
 
-  addFiles(tree, normalizedOptions);
+  addFiles(tree, normalizedOptions, projectConfig);
   await formatFiles(tree);
 
   return addStorybookDependencies(tree);

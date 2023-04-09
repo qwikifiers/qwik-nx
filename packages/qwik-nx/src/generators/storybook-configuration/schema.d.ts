@@ -5,6 +5,7 @@ export interface StorybookConfigurationGeneratorSchema {
   linter?: Linter;
   js?: boolean;
   tsConfiguration?: boolean;
+  qwikCitySupport?: 'true' | 'false' | 'auto';
 }
 
 type NormalizedRequiredPropsNames = 'js' | 'linter' | 'tsConfiguration';
@@ -16,4 +17,6 @@ export type NormalizedSchema = Omit<
   StorybookConfigurationGeneratorSchema,
   NormalizedRequiredPropsNames
 > &
-  NormalizedRequiredProps;
+  NormalizedRequiredProps & {
+    qwikCitySupportInternal: boolean;
+  };

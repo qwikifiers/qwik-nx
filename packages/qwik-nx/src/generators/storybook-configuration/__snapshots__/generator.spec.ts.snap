@@ -27,6 +27,10 @@ Array [
     "type": "CREATE",
   },
   Object {
+    "path": "apps/test-project/.storybook/preview-head.html",
+    "type": "CREATE",
+  },
+  Object {
     "path": "apps/test-project/.storybook/preview.ts",
     "type": "CREATE",
   },
@@ -147,4 +151,68 @@ Array [
     "type": "CREATE",
   },
 ]
+`;
+
+exports[`storybook-configuration generator should add required targets 2`] = `
+"import { mergeConfig, UserConfig } from 'vite';
+import { withNx } from 'qwik-nx/storybook';
+import viteConfig from './../vite.config';
+
+const config = {
+  stories: ['../**/*.stories.mdx', '../**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-essentials'],
+  framework: { name: 'storybook-framework-qwik' },
+  async viteFinal(config: UserConfig) {
+    const updatedConfig = mergeConfig(config, viteConfig);
+    return withNx(updatedConfig);
+  },
+};
+
+export default config;
+"
+`;
+
+exports[`storybook-configuration generator should add required targets 3`] = `
+"import { qwikCityDecorator } from 'storybook-framework-qwik/qwik-city-decorator';
+export const decorators = [qwikCityDecorator];
+"
+`;
+
+exports[`storybook-configuration generator should conditionally add qwikCity decorator to preview.ts matches the snapshot when qwikCitySupport is "auto" and project is "test-project" 1`] = `
+"import { qwikCityDecorator } from 'storybook-framework-qwik/qwik-city-decorator';
+export const decorators = [qwikCityDecorator];
+"
+`;
+
+exports[`storybook-configuration generator should conditionally add qwikCity decorator to preview.ts matches the snapshot when qwikCitySupport is "auto" and project is "test-project-lib" 1`] = `
+"// uncomment this if current project requires qwikCity
+// import { qwikCityDecorator } from 'storybook-framework-qwik/qwik-city-decorator';
+// export const decorators = [qwikCityDecorator];
+"
+`;
+
+exports[`storybook-configuration generator should conditionally add qwikCity decorator to preview.ts matches the snapshot when qwikCitySupport is "false" and project is "test-project" 1`] = `
+"// uncomment this if current project requires qwikCity
+// import { qwikCityDecorator } from 'storybook-framework-qwik/qwik-city-decorator';
+// export const decorators = [qwikCityDecorator];
+"
+`;
+
+exports[`storybook-configuration generator should conditionally add qwikCity decorator to preview.ts matches the snapshot when qwikCitySupport is "false" and project is "test-project-lib" 1`] = `
+"// uncomment this if current project requires qwikCity
+// import { qwikCityDecorator } from 'storybook-framework-qwik/qwik-city-decorator';
+// export const decorators = [qwikCityDecorator];
+"
+`;
+
+exports[`storybook-configuration generator should conditionally add qwikCity decorator to preview.ts matches the snapshot when qwikCitySupport is "true" and project is "test-project" 1`] = `
+"import { qwikCityDecorator } from 'storybook-framework-qwik/qwik-city-decorator';
+export const decorators = [qwikCityDecorator];
+"
+`;
+
+exports[`storybook-configuration generator should conditionally add qwikCity decorator to preview.ts matches the snapshot when qwikCitySupport is "true" and project is "test-project-lib" 1`] = `
+"import { qwikCityDecorator } from 'storybook-framework-qwik/qwik-city-decorator';
+export const decorators = [qwikCityDecorator];
+"
 `;
