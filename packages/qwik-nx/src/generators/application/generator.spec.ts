@@ -39,7 +39,9 @@ describe('qwik-nx generator', () => {
     ).toMatchSnapshot();
     expect(appTree.read('apps/myapp/project.json', 'utf-8')).toMatchSnapshot();
     expect(
-      appTree.listChanges().map((c) => ({ path: c.path, type: c.type }))
+      [...appTree.listChanges()]
+        .sort((a, b) => a.path.localeCompare(b.path))
+        .map((c) => ({ path: c.path, type: c.type }))
     ).toMatchSnapshot();
   });
 

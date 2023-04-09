@@ -13,6 +13,7 @@ describe('e2e project', () => {
   let appTree: Tree;
   const defaultOptions: Omit<E2eProjectGeneratorSchema, 'e2eTestRunner'> = {
     project: 'myapp',
+    skipFormat: true,
   };
 
   jest.spyOn(devkit, 'ensurePackage').mockReturnValue(Promise.resolve());

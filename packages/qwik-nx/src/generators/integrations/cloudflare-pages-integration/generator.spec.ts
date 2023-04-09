@@ -118,7 +118,7 @@ describe('cloudflare-pages-integration generator', () => {
       config.projectType = 'library';
       updateProjectConfiguration(appTree, projectName, config);
 
-      expect(
+      await expect(
         cloudflarePagesIntegrationGenerator(appTree, options)
       ).rejects.toThrow(
         'Cannot setup cloudflare integration for the given project.'
