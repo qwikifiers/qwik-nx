@@ -72,6 +72,11 @@
     "generateStories": {
       "description": "Create Storybook stories for the component",
       "type": "boolean"
+    },
+    "exportDefault": {
+      "description": "Whether to use default export instead of named one for the generated component.",
+      "type": "boolean",
+      "default": false
     }
   },
   "required": ["name", "project"]

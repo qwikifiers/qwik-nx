@@ -4,6 +4,7 @@ import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 import generator from './generator';
 import { QwikAppGeneratorSchema } from './schema';
 import { Linter } from '@nrwl/linter';
+import { getFormattedListChanges } from './../../utils/testing-generators';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const devkit = require('@nrwl/devkit');
@@ -38,11 +39,7 @@ describe('qwik-nx generator', () => {
       appTree.read('apps/myapp/vite.config.ts', 'utf-8')
     ).toMatchSnapshot();
     expect(appTree.read('apps/myapp/project.json', 'utf-8')).toMatchSnapshot();
-    expect(
-      [...appTree.listChanges()]
-        .sort((a, b) => a.path.localeCompare(b.path))
-        .map((c) => ({ path: c.path, type: c.type }))
-    ).toMatchSnapshot();
+    expect(getFormattedListChanges(appTree)).toMatchSnapshot();
   });
 
   describe('e2e project', () => {

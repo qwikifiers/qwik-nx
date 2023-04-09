@@ -3,6 +3,7 @@ import { Tree, readProjectConfiguration, readJson } from '@nrwl/devkit';
 
 import generator from './generator';
 import { HostGeneratorSchema } from './schema';
+import { getFormattedListChanges } from '../../utils/testing-generators';
 
 describe('host generator', () => {
   let appTree: Tree;
@@ -37,11 +38,7 @@ describe('host generator', () => {
     expect(
       appTree.read('apps/myhostapp/project.json', 'utf-8')
     ).toMatchSnapshot();
-    expect(
-      [...appTree.listChanges()]
-        .sort((a, b) => a.path.localeCompare(b.path))
-        .map((c) => ({ path: c.path, type: c.type }))
-    ).toMatchSnapshot();
+    expect(getFormattedListChanges(appTree)).toMatchSnapshot();
 
     // remote snapshots
     for (const remote of ['remote1', 'remote2']) {

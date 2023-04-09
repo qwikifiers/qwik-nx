@@ -6,6 +6,7 @@ import { StorybookConfigurationGeneratorSchema } from './schema';
 import appGenerator from '../application/generator';
 import { Linter } from '@nrwl/linter';
 import { libraryGenerator } from '../library/generator';
+import { getFormattedListChanges } from '../../utils/testing-generators';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const devkit = require('@nrwl/devkit');
@@ -65,10 +66,8 @@ describe('storybook-configuration generator', () => {
     });
 
     expect(
-      [...appTree.listChanges()]
-        .sort((a, b) => a.path.localeCompare(b.path))
-        .map((c) => ({ path: c.path, type: c.type }))
-    ).toMatchSnapshot();
+      expect(getFormattedListChanges(appTree)).toMatchSnapshot()
+    );
     expect(
       appTree.read(`apps/${projectName}/.storybook/main.ts`)?.toString()
     ).toMatchSnapshot();

@@ -1,0 +1,754 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "false" and skipTests is "false"  1`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.spec.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "false" and skipTests is "false" : hello.doc.mdx 1`] = `undefined`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "false" and skipTests is "false" : hello.spec.tsx 1`] = `
+"import { createDOM } from '@builder.io/qwik/testing';
+import { test, expect } from 'vitest';
+import { Hello } from './hello';
+
+test(\`[Hello Component]: Should render\`, async () => {
+  const { screen, render } = await createDOM();
+  await render(<Hello />);
+  expect(screen.innerHTML).toContain('Hello works!');
+});
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "false" and skipTests is "false" : hello.stories.tsx 1`] = `undefined`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "false" and skipTests is "false" : hello.tsx 1`] = `
+"import { component$ } from '@builder.io/qwik';
+
+export const Hello = component$(() => {
+  return <>Hello works!</>;
+});
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "false" and skipTests is "true"  1`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "false" and skipTests is "true" : hello.doc.mdx 1`] = `undefined`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "false" and skipTests is "true" : hello.spec.tsx 1`] = `undefined`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "false" and skipTests is "true" : hello.stories.tsx 1`] = `undefined`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "false" and skipTests is "true" : hello.tsx 1`] = `
+"import { component$ } from '@builder.io/qwik';
+
+export const Hello = component$(() => {
+  return <>Hello works!</>;
+});
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "true" and skipTests is "false"  1`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.doc.mdx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.spec.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.stories.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "true" and skipTests is "false" : hello.doc.mdx 1`] = `
+"import { Canvas, Story } from '@storybook/addon-docs';
+import { Hello } from './hello';
+
+# Hello Component
+
+## Purpose
+
+{/* Why the component is needed */}
+
+## Example
+
+{/* Common copy/paste example that people can throw into their templates and ts */}
+
+\`\`\`tsx
+<Hello param=\\"value\\" />
+\`\`\`
+
+## Use case examples
+
+{/* Examples based on use cases */}
+
+### Primary
+
+<Canvas>
+  <Story id=\\"hello--primary\\" />
+</Canvas>
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "true" and skipTests is "false" : hello.spec.tsx 1`] = `
+"import { createDOM } from '@builder.io/qwik/testing';
+import { test, expect } from 'vitest';
+import { Hello } from './hello';
+
+test(\`[Hello Component]: Should render\`, async () => {
+  const { screen, render } = await createDOM();
+  await render(<Hello />);
+  expect(screen.innerHTML).toContain('Hello works!');
+});
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "true" and skipTests is "false" : hello.stories.tsx 1`] = `
+"import type { Meta } from 'storybook-framework-qwik';
+import { Hello } from './hello';
+import doc from './hello.doc.mdx';
+
+export default {
+  title: 'Hello',
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      page: doc,
+    },
+  },
+  argTypes: {
+    // put component params here
+  },
+  render(args) {
+    return <Hello {...args} />;
+  },
+} as Meta;
+
+export const Primary = {};
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "true" and skipTests is "false" : hello.tsx 1`] = `
+"import { component$ } from '@builder.io/qwik';
+
+export const Hello = component$(() => {
+  return <>Hello works!</>;
+});
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "true" and skipTests is "true"  1`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.doc.mdx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.stories.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "true" and skipTests is "true" : hello.doc.mdx 1`] = `
+"import { Canvas, Story } from '@storybook/addon-docs';
+import { Hello } from './hello';
+
+# Hello Component
+
+## Purpose
+
+{/* Why the component is needed */}
+
+## Example
+
+{/* Common copy/paste example that people can throw into their templates and ts */}
+
+\`\`\`tsx
+<Hello param=\\"value\\" />
+\`\`\`
+
+## Use case examples
+
+{/* Examples based on use cases */}
+
+### Primary
+
+<Canvas>
+  <Story id=\\"hello--primary\\" />
+</Canvas>
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "true" and skipTests is "true" : hello.spec.tsx 1`] = `undefined`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "true" and skipTests is "true" : hello.stories.tsx 1`] = `
+"import type { Meta } from 'storybook-framework-qwik';
+import { Hello } from './hello';
+import doc from './hello.doc.mdx';
+
+export default {
+  title: 'Hello',
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      page: doc,
+    },
+  },
+  argTypes: {
+    // put component params here
+  },
+  render(args) {
+    return <Hello {...args} />;
+  },
+} as Meta;
+
+export const Primary = {};
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "true" and skipTests is "true" : hello.tsx 1`] = `
+"import { component$ } from '@builder.io/qwik';
+
+export const Hello = component$(() => {
+  return <>Hello works!</>;
+});
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "false" and skipTests is "false"  1`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.spec.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "false" and skipTests is "false" : hello.doc.mdx 1`] = `undefined`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "false" and skipTests is "false" : hello.spec.tsx 1`] = `
+"import { createDOM } from '@builder.io/qwik/testing';
+import { test, expect } from 'vitest';
+import Hello from './hello';
+
+test(\`[Hello Component]: Should render\`, async () => {
+  const { screen, render } = await createDOM();
+  await render(<Hello />);
+  expect(screen.innerHTML).toContain('Hello works!');
+});
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "false" and skipTests is "false" : hello.stories.tsx 1`] = `undefined`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "false" and skipTests is "false" : hello.tsx 1`] = `
+"import { component$ } from '@builder.io/qwik';
+
+export default component$(() => {
+  return <>Hello works!</>;
+});
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "false" and skipTests is "true"  1`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "false" and skipTests is "true" : hello.doc.mdx 1`] = `undefined`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "false" and skipTests is "true" : hello.spec.tsx 1`] = `undefined`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "false" and skipTests is "true" : hello.stories.tsx 1`] = `undefined`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "false" and skipTests is "true" : hello.tsx 1`] = `
+"import { component$ } from '@builder.io/qwik';
+
+export default component$(() => {
+  return <>Hello works!</>;
+});
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "true" and skipTests is "false"  1`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.doc.mdx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.spec.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.stories.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "true" and skipTests is "false" : hello.doc.mdx 1`] = `
+"import { Canvas, Story } from '@storybook/addon-docs';
+import Hello from './hello';
+
+# Hello Component
+
+## Purpose
+
+{/* Why the component is needed */}
+
+## Example
+
+{/* Common copy/paste example that people can throw into their templates and ts */}
+
+\`\`\`tsx
+<Hello param=\\"value\\" />
+\`\`\`
+
+## Use case examples
+
+{/* Examples based on use cases */}
+
+### Primary
+
+<Canvas>
+  <Story id=\\"hello--primary\\" />
+</Canvas>
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "true" and skipTests is "false" : hello.spec.tsx 1`] = `
+"import { createDOM } from '@builder.io/qwik/testing';
+import { test, expect } from 'vitest';
+import Hello from './hello';
+
+test(\`[Hello Component]: Should render\`, async () => {
+  const { screen, render } = await createDOM();
+  await render(<Hello />);
+  expect(screen.innerHTML).toContain('Hello works!');
+});
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "true" and skipTests is "false" : hello.stories.tsx 1`] = `
+"import type { Meta } from 'storybook-framework-qwik';
+import Hello from './hello';
+import doc from './hello.doc.mdx';
+
+export default {
+  title: 'Hello',
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      page: doc,
+    },
+  },
+  argTypes: {
+    // put component params here
+  },
+  render(args) {
+    return <Hello {...args} />;
+  },
+} as Meta;
+
+export const Primary = {};
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "true" and skipTests is "false" : hello.tsx 1`] = `
+"import { component$ } from '@builder.io/qwik';
+
+export default component$(() => {
+  return <>Hello works!</>;
+});
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "true" and skipTests is "true"  1`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.doc.mdx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.stories.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "true" and skipTests is "true" : hello.doc.mdx 1`] = `
+"import { Canvas, Story } from '@storybook/addon-docs';
+import Hello from './hello';
+
+# Hello Component
+
+## Purpose
+
+{/* Why the component is needed */}
+
+## Example
+
+{/* Common copy/paste example that people can throw into their templates and ts */}
+
+\`\`\`tsx
+<Hello param=\\"value\\" />
+\`\`\`
+
+## Use case examples
+
+{/* Examples based on use cases */}
+
+### Primary
+
+<Canvas>
+  <Story id=\\"hello--primary\\" />
+</Canvas>
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "true" and skipTests is "true" : hello.spec.tsx 1`] = `undefined`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "true" and skipTests is "true" : hello.stories.tsx 1`] = `
+"import type { Meta } from 'storybook-framework-qwik';
+import Hello from './hello';
+import doc from './hello.doc.mdx';
+
+export default {
+  title: 'Hello',
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      page: doc,
+    },
+  },
+  argTypes: {
+    // put component params here
+  },
+  render(args) {
+    return <Hello {...args} />;
+  },
+} as Meta;
+
+export const Primary = {};
+"
+`;
+
+exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "true" and skipTests is "true" : hello.tsx 1`] = `
+"import { component$ } from '@builder.io/qwik';
+
+export default component$(() => {
+  return <>Hello works!</>;
+});
+"
+`;
+
+exports[`component generator should generate a component file inside a given directory 1`] = `
+Array [
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.spec.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;

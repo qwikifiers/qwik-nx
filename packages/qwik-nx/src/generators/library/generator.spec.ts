@@ -3,6 +3,7 @@ import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 
 import generator from './generator';
 import { LibraryGeneratorSchema } from './schema';
+import { getFormattedListChanges } from '../../utils/testing-generators';
 
 describe('library generator', () => {
   let appTree: Tree;
@@ -24,11 +25,7 @@ describe('library generator', () => {
     expect(
       appTree.read('libs/mylib/vite.config.ts', 'utf-8')
     ).toMatchSnapshot();
-    expect(
-      [...appTree.listChanges()]
-        .sort((a, b) => a.path.localeCompare(b.path))
-        .map((c) => ({ path: c.path, type: c.type }))
-    ).toMatchSnapshot();
+    expect(getFormattedListChanges(appTree)).toMatchSnapshot();
   });
 
   it('should generate build configs for buildable libraries', async () => {
@@ -43,11 +40,7 @@ describe('library generator', () => {
     expect(
       appTree.read('libs/mylib/vite.config.ts', 'utf-8')
     ).toMatchSnapshot();
-    expect(
-      [...appTree.listChanges()]
-        .sort((a, b) => a.path.localeCompare(b.path))
-        .map((c) => ({ path: c.path, type: c.type }))
-    ).toMatchSnapshot();
+    expect(getFormattedListChanges(appTree)).toMatchSnapshot();
   });
 
   it('should not generate build and test configs for non-buildable libraries w/o unit tests', async () => {
@@ -62,10 +55,6 @@ describe('library generator', () => {
     expect(appTree.exists('libs/mylib/tsconfig.spec.json')).toBeFalsy();
 
     expect(config).toMatchSnapshot();
-    expect(
-      [...appTree.listChanges()]
-        .sort((a, b) => a.path.localeCompare(b.path))
-        .map((c) => ({ path: c.path, type: c.type }))
-    ).toMatchSnapshot();
+    expect(getFormattedListChanges(appTree)).toMatchSnapshot();
   });
 });

@@ -16,3 +16,11 @@ export function createLib(tree: Tree, libName: string): void {
     true
   );
 }
+
+export function getFormattedListChanges(
+  tree: Tree
+): { path: string; type: string }[] {
+  return [...tree.listChanges()]
+    .sort((a, b) => a.path.localeCompare(b.path))
+    .map((c) => ({ path: c.path, type: c.type }));
+}

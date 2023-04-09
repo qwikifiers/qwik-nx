@@ -4,6 +4,7 @@ import { Tree, readProjectConfiguration, readJson } from '@nrwl/devkit';
 import { remoteGenerator } from './generator';
 import { hostGenerator } from './../host/generator';
 import { RemoteGeneratorSchema } from './schema';
+import { getFormattedListChanges } from '../../utils/testing-generators';
 
 describe('remote generator', () => {
   let appTree: Tree;
@@ -23,11 +24,7 @@ describe('remote generator', () => {
     expect(
       appTree.read('apps/myremote/project.json', 'utf-8')
     ).toMatchSnapshot();
-    expect(
-      [...appTree.listChanges()]
-        .sort((a, b) => a.path.localeCompare(b.path))
-        .map((c) => ({ path: c.path, type: c.type }))
-    ).toMatchSnapshot();
+    expect(getFormattedListChanges(appTree)).toMatchSnapshot();
   });
 
   it('should update host config', async () => {
