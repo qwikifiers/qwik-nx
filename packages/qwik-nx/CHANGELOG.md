@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.15.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.0...qwik-nx-0.15.1) (2023-04-09)
+
+
+### Bug Fixes
+
+* **qwik-nx:** storybook updates for qwikCity ([#122](https://github.com/qwikifiers/qwik-nx/issues/122)) ([62a884c](https://github.com/qwikifiers/qwik-nx/commit/62a884ccd0dd30b4e18e7785d8c0a25c8193b8d0))
+
+
+### Features
+
+* **qwik-nx:** do not include e2e tests by default for app ([#117](https://github.com/qwikifiers/qwik-nx/issues/117)) ([05dfb6e](https://github.com/qwikifiers/qwik-nx/commit/05dfb6e7aac9023e0a0056cb56a224e92d5195e7))
+
+
+
 # [0.15.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.14.2...qwik-nx-0.15.0) (2023-04-05)
 
 
