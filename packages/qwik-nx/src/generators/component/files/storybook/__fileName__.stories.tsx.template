@@ -1,5 +1,5 @@
 import type { Meta } from 'storybook-framework-qwik';
-import { <%- className %> } from './<%- fileName %>';
+import <%- importExportStatement %> from './<%- fileName %>';
 import doc from './<%- fileName %>.doc.mdx';
 
 export default {

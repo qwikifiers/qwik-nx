@@ -5,5 +5,6 @@ export interface ComponentGeneratorSchema {
   style?: 'none' | 'css' | 'scss' | 'styl' | 'less';
   skipTests?: boolean;
   flat?: boolean;
+  exportDefault?: boolean;
   generateStories?: boolean;
 }

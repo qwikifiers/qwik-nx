@@ -57,6 +57,7 @@ function normalizeOptions(
     directory,
     hasStyles: options.style !== 'none',
     projectRoot,
+    exportDefault: !!options.exportDefault,
   };
 }
 
@@ -67,6 +68,9 @@ function createComponentFiles(tree: Tree, options: NormalizedSchema) {
     ...options,
     ...libNames,
     hasStyles,
+    importExportStatement: options.exportDefault
+      ? libNames.className
+      : `{ ${libNames.className} }`,
   };
 
   const componentDir = joinPathFragments(

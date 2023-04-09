@@ -1,6 +1,6 @@
 import { createDOM } from '@builder.io/qwik/testing';
 import { test, expect } from 'vitest';
-import { <%- className %> } from './<%- fileName %>';
+import <%- importExportStatement %> from './<%- fileName %>';
 
 test(`[<%- className %> Component]: Should render`, async () => {
   const { screen, render } = await createDOM();

@@ -1,5 +1,5 @@
 import { Canvas, Story } from '@storybook/addon-docs';
-import { <%- className %> } from './<%- fileName %>';
+import <%- importExportStatement %> from './<%- fileName %>';
 
 # <%- className %> Component
 
