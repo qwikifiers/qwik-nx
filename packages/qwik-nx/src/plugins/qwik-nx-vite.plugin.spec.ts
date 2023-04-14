@@ -1,11 +1,14 @@
 import { workspaceRoot } from '@nrwl/devkit';
 import { join } from 'path';
-import { qwikNxVite, QwikNxVitePluginOptions } from './qwik-nx-vite.plugin';
+import { qwikNxVite } from './qwik-nx-vite.plugin';
+import { QwikNxVitePluginOptions } from './models/qwik-nx-vite';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fileUtils = require('nx/src/project-graph/file-utils');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const getProjectDependenciesModule = require('./utils/get-project-dependencies');
 
 const workspaceConfig1 = {
   projects: {
@@ -86,6 +89,11 @@ describe('qwik-nx-vite plugin', () => {
     .spyOn(fileUtils, 'readWorkspaceConfig')
     .mockReturnValue(workspaceConfig1);
   jest.spyOn(fs, 'readFileSync').mockReturnValue(tsConfigString1);
+  jest
+    .spyOn(getProjectDependenciesModule, 'getProjectDependencies')
+    .mockReturnValue(
+      Promise.resolve(new Set(Object.keys(workspaceConfig1.projects)))
+    );
 
   /**
    * @param options options for the qwikNxVite plugin
@@ -132,7 +140,7 @@ describe('qwik-nx-vite plugin', () => {
     ]);
   });
 
-  describe('Should not include current porject as a vendor root for itself', () => {
+  describe('Should not include current project as a vendor root for itself', () => {
     it('with project name specified', async () => {
       const paths = await getDecoratedPaths({
         currentProjectName: 'tmp-test-lib-a',
