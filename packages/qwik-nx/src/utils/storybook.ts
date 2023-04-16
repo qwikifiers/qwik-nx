@@ -1,16 +1,35 @@
 import type { PluginOption, UserConfig } from 'vite';
+import {
+  type QwikVitePluginOptions,
+  qwikVite,
+} from '@builder.io/qwik/optimizer';
 
-/** Updates config for the storybook */
-export function withNx(config: UserConfig): UserConfig {
+/**
+ * Updates config for the storybook
+ * @param config vite configuration to be updated for storybook
+ * @param qwikViteOpts options for the `qwikVite` plugin that is being overridden in this utility
+ */
+export function withNx(
+  config: UserConfig,
+  qwikViteOpts?: QwikVitePluginOptions
+): UserConfig {
   const updated = { ...config };
-  // logic below has been copied from "storybook-framework-qwik" plugin
-  // it doesn't work out of the box for Nx applications because base config is not
-  // Qwik-city plugin may be used in apps, but it has mdx stuff that conflicts with Storybook mdx
-  // we'll try to only remove the transform code (where the mdx stuff is), and keep everything else.
-  updated.plugins = updated.plugins?.map((plugin: PluginOption) =>
-    (plugin as any)?.name === 'vite-plugin-qwik-city'
-      ? ({ ...plugin, transform: () => null } as PluginOption)
-      : plugin
-  );
+  updated.plugins = updated.plugins?.map((plugin: PluginOption) => {
+    switch ((plugin as any)?.name) {
+      case 'vite-plugin-qwik':
+        // as of now there's no way of extending qwikVite with overridden output paths, thus have to override to completely
+        return qwikVite(qwikViteOpts);
+
+      case 'vite-plugin-qwik-city':
+        // logic below has been copied from "storybook-framework-qwik" plugin
+        // it doesn't work out of the box for Nx applications because base config is not included by storybook if it's not in the root cwd
+        // Qwik-city plugin may be used in apps, but it has mdx stuff that conflicts with Storybook mdx
+        // we'll try to only remove the transform code (where the mdx stuff is), and keep everything else.
+        return { ...plugin, transform: () => null } as PluginOption;
+
+      default:
+        return plugin;
+    }
+  });
   return updated;
 }
