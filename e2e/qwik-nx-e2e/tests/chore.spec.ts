@@ -28,14 +28,15 @@ describe('appGenerator e2e', () => {
       async () => {
         const packageJson = readJson('node_modules/qwik-nx/package.json');
 
-      expect(packageJson.dependencies).toBeUndefined();
-      expect(packageJson.peerDependencies).toEqual({
-        '@nrwl/devkit': '^15.8.0',
-        '@nrwl/js': '^15.8.0',
-        '@nrwl/linter': '^15.8.0',
-        '@nrwl/vite': '^15.8.0',
-        tslib: '^2.3.0',
-      });
-    }, DEFAULT_E2E_TIMEOUT);
+        expect(packageJson.peerDependencies).toBeUndefined();
+        expect(packageJson.dependencies).toEqual({
+          '@nrwl/devkit': '^15.8.0',
+          '@nrwl/js': '^15.8.0',
+          '@nrwl/linter': '^15.8.0',
+          '@nrwl/vite': '^15.8.0',
+        });
+      },
+      DEFAULT_E2E_TIMEOUT
+    );
   });
 });

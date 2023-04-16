@@ -10,6 +10,7 @@
       "options": {
         "outputPath": "dist/packages/qwik-nx",
         "main": "packages/qwik-nx/src/index.ts",
+        "updateBuildableProjectDepsInPackageJson": false,
         "tsConfig": "packages/qwik-nx/tsconfig.lib.json",
         "assets": [
           "README.md",
