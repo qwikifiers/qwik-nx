@@ -1,91 +1,103 @@
 import { workspaceRoot } from '@nrwl/devkit';
 import { join } from 'path';
-import { qwikNxVite, QwikNxVitePluginOptions } from './qwik-nx-vite.plugin';
+import { qwikNxVite } from './qwik-nx-vite.plugin';
+import { QwikNxVitePluginOptions } from './models/qwik-nx-vite';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fileUtils = require('nx/src/project-graph/file-utils');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const getProjectDependenciesModule = require('./utils/get-project-dependencies');
 
-const workspaceConfig1 = {
-  projects: {
-    'tmp-test-app-a': {
-      root: 'apps/test-app-a',
-      name: 'tmp-test-app-a',
-      projectType: 'application',
-      sourceRoot: 'apps/test-app-a/src',
-      prefix: 'tmp',
-      tags: ['tag1', 'tag2'],
+function getWorkspaceConfig() {
+  return {
+    projects: {
+      'tmp-test-app-a': {
+        root: 'apps/test-app-a',
+        name: 'tmp-test-app-a',
+        projectType: 'application',
+        sourceRoot: 'apps/test-app-a/src',
+        prefix: 'tmp',
+        tags: ['tag1', 'tag2'],
+      },
+      'tmp-test-lib-a': {
+        root: 'libs/test-lib-a',
+        name: 'tmp-test-lib-a',
+        projectType: 'library',
+        sourceRoot: 'libs/test-lib-a/src',
+        prefix: 'tmp',
+        tags: ['tag2'],
+      },
+      'tmp-test-lib-b': {
+        root: 'libs/test-lib-b',
+        name: 'tmp-test-lib-b',
+        projectType: 'library',
+        sourceRoot: 'libs/test-lib-b/src',
+        prefix: 'tmp',
+        tags: ['tag2', 'tag3'],
+      },
+      'tmp-test-lib-c-nested-1': {
+        root: 'libs/test-lib-c/nested',
+        name: 'tmp-test-lib-c-nested-1',
+        projectType: 'library',
+        sourceRoot: 'libs/test-lib-c/nested-1/src',
+        prefix: 'tmp',
+        tags: ['tag4'],
+      },
+      'tmp-test-lib-c-nested-2': {
+        root: 'libs/test-lib-c/nested',
+        name: 'tmp-test-lib-c-nested-2',
+        projectType: 'library',
+        sourceRoot: 'libs/test-lib-c/nested-2/src',
+        prefix: 'tmp',
+        tags: ['tag1', 'tag2', 'tag3'],
+      },
+      'tmp-other-test-lib-a': {
+        root: 'libs/other/test-lib-a',
+        name: 'tmp-other-test-lib-a',
+        projectType: 'library',
+        sourceRoot: 'libs/other/test-lib-a/src',
+        prefix: 'tmp',
+        tags: [],
+      },
+      // it will be excluded because it is not set in our mock tsconfig.json
+      'tmp-always-excluded': {
+        root: 'libs/always/excluded',
+        name: 'tmp-always-excluded',
+        projectType: 'library',
+        sourceRoot: 'libs/always/excluded/src',
+        prefix: 'tmp',
+        tags: [],
+      },
     },
-    'tmp-test-lib-a': {
-      root: 'libs/test-lib-a',
-      name: 'tmp-test-lib-a',
-      projectType: 'library',
-      sourceRoot: 'libs/test-lib-a/src',
-      prefix: 'tmp',
-      tags: ['tag2'],
-    },
-    'tmp-test-lib-b': {
-      root: 'libs/test-lib-b',
-      name: 'tmp-test-lib-b',
-      projectType: 'library',
-      sourceRoot: 'libs/test-lib-b/src',
-      prefix: 'tmp',
-      tags: ['tag2', 'tag3'],
-    },
-    'tmp-test-lib-c-nested-1': {
-      root: 'libs/test-lib-c/nested',
-      name: 'tmp-test-lib-c-nested-1',
-      projectType: 'library',
-      sourceRoot: 'libs/test-lib-c/nested-1/src',
-      prefix: 'tmp',
-      tags: ['tag4'],
-    },
-    'tmp-test-lib-c-nested-2': {
-      root: 'libs/test-lib-c/nested',
-      name: 'tmp-test-lib-c-nested-2',
-      projectType: 'library',
-      sourceRoot: 'libs/test-lib-c/nested-2/src',
-      prefix: 'tmp',
-      tags: ['tag1', 'tag2', 'tag3'],
-    },
-    'tmp-other-test-lib-a': {
-      root: 'libs/other/test-lib-a',
-      name: 'tmp-other-test-lib-a',
-      projectType: 'library',
-      sourceRoot: 'libs/other/test-lib-a/src',
-      prefix: 'tmp',
-      tags: [],
-    },
-    // it will be excluded because it is not set in our mock tsconfig.json
-    'tmp-always-excluded': {
-      root: 'libs/always/excluded',
-      name: 'tmp-always-excluded',
-      projectType: 'library',
-      sourceRoot: 'libs/always/excluded/src',
-      prefix: 'tmp',
-      tags: [],
-    },
-  },
-};
+  };
+}
 
-const tsConfigString1 = JSON.stringify({
-  compilerOptions: {
-    paths: {
-      '@tmp/test-lib-a': 'libs/test-lib-a/src/index.ts',
-      '@tmp/test-lib-b': 'libs/test-lib-b/src/index.ts',
-      '@tmp/test-lib-c/nested-1': 'libs/test-lib-c/nested-1/src/index.ts',
-      '@tmp/test-lib-c/nested-2': 'libs/test-lib-c/nested-2/src/index.ts',
-      '@tmp/other/test-lib-a/nested-2': 'libs/other/test-lib-a/src/index.ts',
+function getTsConfigString() {
+  return JSON.stringify({
+    compilerOptions: {
+      paths: {
+        '@tmp/test-lib-a': 'libs/test-lib-a/src/index.ts',
+        '@tmp/test-lib-b': 'libs/test-lib-b/src/index.ts',
+        '@tmp/test-lib-c/nested-1': 'libs/test-lib-c/nested-1/src/index.ts',
+        '@tmp/test-lib-c/nested-2': 'libs/test-lib-c/nested-2/src/index.ts',
+        '@tmp/other/test-lib-a/nested-2': 'libs/other/test-lib-a/src/index.ts',
+      },
     },
-  },
-});
+  });
+}
 
 describe('qwik-nx-vite plugin', () => {
   jest
     .spyOn(fileUtils, 'readWorkspaceConfig')
-    .mockReturnValue(workspaceConfig1);
-  jest.spyOn(fs, 'readFileSync').mockReturnValue(tsConfigString1);
+    .mockReturnValue(getWorkspaceConfig());
+  jest.spyOn(fs, 'readFileSync').mockReturnValue(getTsConfigString());
+  jest
+    .spyOn(getProjectDependenciesModule, 'getProjectDependencies')
+    .mockReturnValue(
+      Promise.resolve(new Set(Object.keys(getWorkspaceConfig().projects)))
+    );
 
   /**
    * @param options options for the qwikNxVite plugin
@@ -132,7 +144,7 @@ describe('qwik-nx-vite plugin', () => {
     ]);
   });
 
-  describe('Should not include current porject as a vendor root for itself', () => {
+  describe('Should not include current project as a vendor root for itself', () => {
     it('with project name specified', async () => {
       const paths = await getDecoratedPaths({
         currentProjectName: 'tmp-test-lib-a',
