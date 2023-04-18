@@ -2,6 +2,21 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.15.3](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.2...qwik-nx-0.15.3) (2023-04-18)
+
+
+### Bug Fixes
+
+* **qwik-nx:** override qwikVite plugin for storybook ([#127](https://github.com/qwikifiers/qwik-nx/issues/127)) ([e70e337](https://github.com/qwikifiers/qwik-nx/commit/e70e337f8fbe4fc7bd06cebdbb37b26a220e0143))
+
+
+### Features
+
+* **qwik-nx:** move peer dependencies to dependencies ([#128](https://github.com/qwikifiers/qwik-nx/issues/128)) ([ff1de6b](https://github.com/qwikifiers/qwik-nx/commit/ff1de6b1a18245089b71556b196f92d332c2cce1))
+* **qwik-nx:** qwikNxVite plugin to include only project's dependencies  by default ([#126](https://github.com/qwikifiers/qwik-nx/issues/126)) ([e2a6793](https://github.com/qwikifiers/qwik-nx/commit/e2a67935f3ac02a1fd9745234cc5e251d06076c3))
+
+
+
 ## [0.15.2](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.1...qwik-nx-0.15.2) (2023-04-09)
 
 
