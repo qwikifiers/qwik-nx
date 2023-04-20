@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.15.4](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.3...qwik-nx-0.15.4) (2023-04-20)
+
+
+### Bug Fixes
+
+* **qwik-nx:** bump vitest to fix the issue with undefined styles in tests ([#130](https://github.com/qwikifiers/qwik-nx/issues/130)) ([58202bf](https://github.com/qwikifiers/qwik-nx/commit/58202bf6a68567337e333d73e48a9ce0bd5924e6))
+
+
+
 ## [0.15.3](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.2...qwik-nx-0.15.3) (2023-04-18)
 
 
