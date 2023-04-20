@@ -15,6 +15,7 @@ importers:
       '@nrwl/jest': 15.9.2
       '@nrwl/js': 15.9.2
       '@nrwl/linter': 15.9.2
+      '@nrwl/nx-cloud': 15.3.5
       '@nrwl/nx-plugin': 15.9.2
       '@nrwl/storybook': 15.9.2
       '@nrwl/vite': 15.9.2
@@ -59,6 +60,7 @@ importers:
       typescript: 4.9.5
       verdaccio: 5.21.1
       vite: 4.1.1
+      yargs: 17.7.1
     dependencies:
       '@swc/helpers': 0.4.14
       tslib: 2.4.1
@@ -75,6 +77,7 @@ importers:
       '@nrwl/jest': 15.9.2_onctva737euqlzvedgott3yxea
       '@nrwl/js': 15.9.2_xcgw5gqx2vhtn6waragqnnwbne
       '@nrwl/linter': 15.9.2_lpjovexkv6vyvs6m23weloino4
+      '@nrwl/nx-cloud': 15.3.5
       '@nrwl/nx-plugin': 15.9.2_zc2ffdgzupeuh2qxsxsihtui6y
       '@nrwl/storybook': 15.9.2_lpjovexkv6vyvs6m23weloino4
       '@nrwl/vite': 15.9.2_gqzg74fcn2jhw26pxfq2hsd2ya
@@ -117,6 +120,7 @@ importers:
       typescript: 4.9.5
       verdaccio: 5.21.1_typanion@3.12.1
       vite: 4.1.1_@types+node@16.11.7
+      yargs: 17.7.1
 
   packages/qwik-nx:
     specifiers:
@@ -1753,7 +1757,7 @@ packages:
       lodash.isfunction: 3.0.9
       resolve-from: 5.0.0
       resolve-global: 1.0.0
-      yargs: 17.6.2
+      yargs: 17.7.1
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
@@ -3096,6 +3100,25 @@ packages:
       - typescript
     dev: true
 
+  /@nrwl/nx-cloud/15.3.5:
+    resolution:
+      {
+        integrity: sha512-JMKLY0HhdzQ/6jEvfL/EecPPdsdBIM0SyFrWAjikSJAh5MqhpFJWnr6FfTc5P57PJZ+IUNLkJ21VMuoTrA4+4w==,
+      }
+    hasBin: true
+    dependencies:
+      axios: 0.21.4
+      chalk: 4.1.0
+      dotenv: 10.0.0
+      fs-extra: 10.1.0
+      node-machine-id: 1.1.12
+      strip-json-comments: 3.1.1
+      tar: 6.1.11
+      yargs-parser: 21.1.1
+    transitivePeerDependencies:
+      - debug
+    dev: true
+
   /@nrwl/nx-darwin-arm64/15.9.2:
     resolution:
       {
@@ -3322,7 +3345,7 @@ packages:
       rxjs: 6.6.7
       tmp: 0.2.1
       tslib: 2.4.1
-      yargs: 17.6.2
+      yargs: 17.7.1
       yargs-parser: 21.1.1
     transitivePeerDependencies:
       - '@swc-node/register'
@@ -4717,6 +4740,17 @@ packages:
       }
     dev: true
 
+  /axios/0.21.4:
+    resolution:
+      {
+        integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==,
+      }
+    dependencies:
+      follow-redirects: 1.15.2
+    transitivePeerDependencies:
+      - debug
+    dev: true
+
   /axios/1.1.3:
     resolution:
       {
@@ -5247,6 +5281,17 @@ packages:
       supports-color: 7.2.0
     dev: true
 
+  /chalk/4.1.0:
+    resolution:
+      {
+        integrity: sha512-qwx12AxXe2Q5xQ43Ac//I6v5aXTipYrSESdOgzrN+9XjgEpyjpKuvSGaN4qE93f7TQTlerQQ8S+EQ0EyDoVL1A==,
+      }
+    engines: { node: '>=10' }
+    dependencies:
+      ansi-styles: 4.3.0
+      supports-color: 7.2.0
+    dev: true
+
   /chalk/4.1.2:
     resolution:
       {
@@ -5296,6 +5341,14 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /chownr/2.0.0:
+    resolution:
+      {
+        integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==,
+      }
+    engines: { node: '>=10' }
     dev: true
 
   /ci-info/3.6.1:
@@ -7292,6 +7345,16 @@ packages:
       universalify: 2.0.0
     dev: true
 
+  /fs-minipass/2.1.0:
+    resolution:
+      {
+        integrity: sha512-V/JgOLFCS+R6Vcq0slCuaeWEdNC3ouDlJMNIsacH2VtALiu9mV4LPrHc5cDl8k5aw6J8jwgWWpiTo5RYhmIzvg==,
+      }
+    engines: { node: '>= 8' }
+    dependencies:
+      minipass: 3.3.6
+    dev: true
+
   /fs.realpath/1.0.0:
     resolution:
       {
@@ -8415,7 +8478,7 @@ packages:
       jest-util: 29.4.3
       jest-validate: 29.4.3
       prompts: 2.4.2
-      yargs: 17.6.2
+      yargs: 17.7.1
     transitivePeerDependencies:
       - '@types/node'
       - supports-color
@@ -10122,6 +10185,27 @@ packages:
       }
     dev: true
 
+  /minipass/3.3.6:
+    resolution:
+      {
+        integrity: sha512-DxiNidxSEK+tHG6zOIklvNOwm3hvCrbUrdtzY74U6HKTJxvIDfOUL5W5P2Ghd3DTkhhKPYGqeNUIh5qcM4YBfw==,
+      }
+    engines: { node: '>=8' }
+    dependencies:
+      yallist: 4.0.0
+    dev: true
+
+  /minizlib/2.1.2:
+    resolution:
+      {
+        integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==,
+      }
+    engines: { node: '>= 8' }
+    dependencies:
+      minipass: 3.3.6
+      yallist: 4.0.0
+    dev: true
+
   /mkdirp/0.5.6:
     resolution:
       {
@@ -10317,6 +10401,13 @@ packages:
       }
     dev: true
 
+  /node-machine-id/1.1.12:
+    resolution:
+      {
+        integrity: sha512-QNABxbrPa3qEIfrE6GOJ7BYIuignnJw7iQ2YPbc3Nla1HzRJjXzZOiikfF8m7eAMfichLt3M4VgLOetqgDmgGQ==,
+      }
+    dev: true
+
   /node-releases/2.0.6:
     resolution:
       {
@@ -10425,7 +10516,7 @@ packages:
       tsconfig-paths: 4.1.2
       tslib: 2.4.1
       v8-compile-cache: 2.3.0
-      yargs: 17.6.2
+      yargs: 17.7.1
       yargs-parser: 21.1.1
     optionalDependencies:
       '@nrwl/nx-darwin-arm64': 15.9.2
@@ -12182,6 +12273,21 @@ packages:
       readable-stream: 3.6.0
     dev: true
 
+  /tar/6.1.11:
+    resolution:
+      {
+        integrity: sha512-an/KZQzQUkZCkuoAA64hM92X0Urb6VpRhAFllDzz44U2mcD5scmT3zBc4VgVpkugF580+DQn8eAFSyoQt0tznA==,
+      }
+    engines: { node: '>= 10' }
+    dependencies:
+      chownr: 2.0.0
+      fs-minipass: 2.1.0
+      minipass: 3.3.6
+      minizlib: 2.1.2
+      mkdirp: 1.0.4
+      yallist: 4.0.0
+    dev: true
+
   /tcp-port-used/1.0.2:
     resolution:
       {
@@ -13383,10 +13489,10 @@ packages:
       yargs-parser: 20.2.9
     dev: true
 
-  /yargs/17.6.2:
+  /yargs/17.7.1:
     resolution:
       {
-        integrity: sha512-1/9UrdHjDZc0eOU0HxOHoS78C69UD3JRMvzlJ7S79S2nTaWRA/whGCTV8o9e/N/1Va9YIV7Q4sOxD8VV4pCWOw==,
+        integrity: sha512-cwiTb08Xuv5fqF4AovYacTFNxk62th7LKJ6BL9IGUpTJrWoU7/7WdQGTP2SjKf1dUNBGzDd28p/Yfs/GI6JrLw==,
       }
     engines: { node: '>=12' }
     dependencies:
