@@ -9,6 +9,7 @@ import {
   qwikEslintPluginVersion,
   qwikVersion,
   undiciVersion,
+  vitestVersion,
   viteTsconfigPathsVersion,
   viteVersion,
 } from './versions';
@@ -22,17 +23,10 @@ export function addCommonQwikDependencies(host: Tree): GeneratorCallback {
       '@builder.io/qwik-city': qwikCityVersion,
       'eslint-plugin-qwik': qwikEslintPluginVersion,
       vite: viteVersion,
+      vitest: vitestVersion, // TODO: vitest is also installed by "@nrwl/vite", but our version is higher
       'vite-tsconfig-paths': viteTsconfigPathsVersion,
       'node-fetch': nodeFetchVersion,
       undici: undiciVersion,
-      // TODO: dependencies below should be setup correctly by Nx's generator, so not needed to provide them here?
-      // "@types/eslint": typesEslint,
-      // '@types/node': 'latest',
-      // "@typescript-eslint/eslint-plugin": tsEslintVersion,
-      // "@typescript-eslint/parser": tsEslintVersion,
-      // "eslint": eslintVersion,
-      // "prettier": prettierVersion,
-      // "typescript": typescriptVersion,
     }
   );
 }
