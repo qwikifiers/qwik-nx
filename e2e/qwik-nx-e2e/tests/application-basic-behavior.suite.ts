@@ -36,6 +36,9 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
       await runNxCommandAsync(
         `generate qwik-nx:${generator} ${projectNameParam} --no-interactive`
       );
+      await runNxCommandAsync(
+        `generate qwik-nx:component my-test-component --project=${project} --unitTestRunner=vitest --no-interactive`
+      );
     }, DEFAULT_E2E_TIMEOUT);
 
     afterAll(async () => {
@@ -70,6 +73,20 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
         expect(() =>
           checkFilesExist(`dist/apps/${project}/server/entry.preview.mjs`)
         ).not.toThrow();
+      },
+      DEFAULT_E2E_TIMEOUT
+    );
+
+    it(
+      'unit tests should pass in the created app',
+      async () => {
+        const result = await runNxCommandAsync(`test ${project}`);
+        expect(result.stdout).toContain(
+          `Successfully ran target test for project ${project}`
+        );
+        expect(stripConsoleColors(result.stdout)).toContain(
+          `Test Files  1 passed`
+        );
       },
       DEFAULT_E2E_TIMEOUT
     );
@@ -147,7 +164,7 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
 
 async function checkPageResponses(host: string) {
   // wait for a while to make sure everything is settled
-  await new Promise(r => setTimeout(r, 3000));
+  await new Promise((r) => setTimeout(r, 3000));
   const domParser = new DOMParser();
   const pages = ['', 'flower'];
   for (const page of pages) {
