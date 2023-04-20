@@ -25,6 +25,7 @@
     "@nrwl/jest": "15.9.2",
     "@nrwl/js": "15.9.2",
     "@nrwl/linter": "15.9.2",
+    "@nrwl/nx-cloud": "15.3.5",
     "@nrwl/nx-plugin": "15.9.2",
     "@nrwl/storybook": "15.9.2",
     "@nrwl/vite": "15.9.2",
@@ -66,7 +67,8 @@
     "ts-node": "10.9.1",
     "typescript": "4.9.5",
     "verdaccio": "5.21.1",
-    "vite": "4.1.1"
+    "vite": "4.1.1",
+    "yargs": "17.7.1"
   },
   "dependencies": {
     "@swc/helpers": "~0.4.11",

@@ -3,9 +3,14 @@
   "npmScope": "qwikifiers",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "nx/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "runtimeCacheInputs": [
+          "node ./scripts/get-cache-input.js --type=node",
+          "node ./scripts/get-cache-input.js --type=os"
+        ],
+        "accessToken": "MmI5MzJhMDctNGYwMi00OTI1LWJiZjUtNWIwNTQ4NmY2ZjhjfHJlYWQtd3JpdGU="
       }
     }
   },
