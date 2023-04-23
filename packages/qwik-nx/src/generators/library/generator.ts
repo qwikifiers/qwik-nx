@@ -102,16 +102,18 @@ async function addLibrary(
     tasks.push(await configureStorybook(tree, options));
   }
 
-  const componentGeneratorTask = await componentGenerator(tree, {
-    name: options.name,
-    skipTests: !options.setupVitest,
-    style: options.style,
-    project: options.projectName,
-    generateStories: options.storybookConfiguration,
-    flat: true,
-  });
+  if (options.generateComponent) {
+    const componentGeneratorTask = await componentGenerator(tree, {
+      name: options.name,
+      skipTests: !options.setupVitest,
+      style: options.style,
+      project: options.projectName,
+      generateStories: options.storybookConfiguration,
+      flat: true,
+    });
 
-  tasks.push(componentGeneratorTask);
+    tasks.push(componentGeneratorTask);
+  }
 
   return runTasksInSerial(...tasks);
 }

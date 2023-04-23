@@ -19,8 +19,8 @@ import {
 import { getInstalledNxVersion } from '../../utils/get-installed-nx-version';
 import {
   storybookFrameworkQwikVersion,
-  storybookReactDOMVersion,
-  storybookReactVersion,
+  reactDOMVersion,
+  reactVersion,
   typesMdx,
 } from '../../utils/versions';
 import {
@@ -116,8 +116,8 @@ async function addStorybookDependencies(
       'storybook-framework-qwik': storybookFrameworkQwikVersion,
       '@storybook/builder-vite': storybook7Version,
       '@storybook/addon-docs': storybook7Version,
-      react: storybookReactVersion,
-      'react-dom': storybookReactDOMVersion,
+      react: reactVersion,
+      'react-dom': reactDOMVersion,
       '@types/mdx': typesMdx,
     }
   );

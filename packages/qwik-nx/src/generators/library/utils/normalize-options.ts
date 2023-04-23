@@ -23,6 +23,7 @@ export function normalizeOptions(
     linter: schema.linter ?? Linter.EsLint,
     buildable: !!schema.buildable,
     storybookConfiguration: !!schema.storybookConfiguration,
+    generateComponent: schema.generateComponent !== false,
   };
 
   return {
