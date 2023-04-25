@@ -26,9 +26,18 @@ export const nxCloudflareWrangler = '^2.0.0';
 
 // storybook
 export const storybookFrameworkQwikVersion = '^0.0.8';
-export const storybookReactVersion = '^18.0.0';
-export const storybookReactDOMVersion = '^18.0.0';
 export const typesMdx = '^2.0.3';
+
+// react integartion
+export const qwikReactVersion = '^0.5.0';
+export const reactVersion = '^18.0.0';
+export const reactDOMVersion = '^18.0.0';
+export const typesReactVersion = '^18.0.0';
+export const typesReactDOMVersion = '^18.0.0';
+export const emotionReactVersion = '^11.10.0';
+export const emotionStyledVersion = '^11.10.0';
+export const muiMaterialVersion = '^5.12.0';
+export const muiDataGridVersion = '^6.2.0';
 
 // other
 export const eslintVersion = '~8.36.0';

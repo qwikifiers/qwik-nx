@@ -69,6 +69,16 @@
       "factory": "./src/generators/storybook-configuration/generator",
       "schema": "./src/generators/storybook-configuration/schema.json",
       "description": "Adds Storybook configuration to a project."
+    },
+    "react-in-app": {
+      "factory": "./src/generators/integrations/react-in-app/generator",
+      "schema": "./src/generators/integrations/react-in-app/schema.json",
+      "description": "Add qwikified React components to your Qwik app"
+    },
+    "react-library": {
+      "factory": "./src/generators/integrations/react-library/generator",
+      "schema": "./src/generators/integrations/react-library/schema.json",
+      "description": "Add qwikified React components as a separate library"
     }
   }
 }

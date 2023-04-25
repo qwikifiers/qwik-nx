@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "ReactInApp",
+  "title": "React In App integration",
+  "description": "Add qwikified React components to your Qwik app",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Name of the project to add React integration to"
+    },
+    "installMUIExample": {
+      "type": "boolean",
+      "description": "Add dependencies for Material UI and qwikified example component, that uses it",
+      "x-priority": "important",
+      "default": true
+    },
+    "skipFormat": {
+      "description": "Skip formatting files.",
+      "type": "boolean",
+      "x-priority": "internal",
+      "default": false
+    }
+  },
+  "required": ["project"]
+}

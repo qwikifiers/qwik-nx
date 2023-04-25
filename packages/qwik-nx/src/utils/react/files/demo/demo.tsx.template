@@ -1,0 +1,28 @@
+/** @jsxImportSource react */
+
+import { qwikify$ } from '@builder.io/qwik-react';
+import React, { useState, useEffect } from 'react';
+
+interface Props {
+  initialCountValue?: number;
+}
+
+export const ReactDemoComponent = qwikify$(({initialCountValue}: Props) => {
+  const [count, setCount] = useState(initialCountValue ?? 0);
+
+  useEffect(() => {
+    console.log(`Count: ${count}`);
+  }, [count]);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <div>
+      <h1>Simple React Counter</h1>
+      <p>{count}</p>
+      <button onClick={handleClick}>Increment</button>
+    </div>
+  );
+});

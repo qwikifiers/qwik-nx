@@ -1,8 +1,9 @@
 {
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
-  "$id": "Library",
-  "title": "",
+  "$id": "ReactLibrary",
+  "title": "React Library",
+  "description": "Add qwikified React components as a separate library",
   "type": "object",
   "properties": {
     "name": {
@@ -18,6 +19,21 @@
     "directory": {
       "type": "string",
       "description": "A directory where the lib is placed."
+    },
+    "installMUIExample": {
+      "type": "boolean",
+      "description": "Add dependencies for Material UI and qwikified example component, that uses it",
+      "x-priority": "important",
+      "default": true
+    },
+    "targetApps": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string", "uniqueItems": true } }
+      ],
+      "description": "The names of the applications that should be configured to work with react components.",
+      "x-prompt": "What apps are you going to use this integration with? (Comma delimited, leave empty for none)",
+      "x-priority": "important"
     },
     "buildable": {
       "type": "boolean",
@@ -41,42 +57,10 @@
       "type": "string",
       "description": "Add tags to the library (used for linting)."
     },
-    "style": {
-      "description": "The file extension to be used for style files.",
-      "type": "string",
-      "default": "css",
-      "alias": "s",
-      "x-prompt": {
-        "message": "Which stylesheet format would you like to use?",
-        "type": "list",
-        "items": [
-          {
-            "value": "css",
-            "label": "CSS"
-          },
-          {
-            "value": "scss",
-            "label": "SASS(.scss)       [ http://sass-lang.com                     ]"
-          },
-          {
-            "value": "styl",
-            "label": "Stylus(.styl)     [ http://stylus-lang.com                   ]"
-          },
-          {
-            "value": "less",
-            "label": "LESS              [ http://lesscss.org                       ]"
-          },
-          {
-            "value": "none",
-            "label": "none"
-          }
-        ],
-        "default": "css"
-      }
-    },
     "skipFormat": {
       "description": "Skip formatting files.",
       "type": "boolean",
+      "x-priority": "internal",
       "default": false
     },
     "importPath": {
@@ -92,11 +76,6 @@
       "description": "Whether to include storybook configuration for the generated library.",
       "type": "boolean",
       "default": false
-    },
-    "generateComponent": {
-      "description": "Whether to generate component for the library.",
-      "type": "boolean",
-      "default": true
     }
   },
   "required": ["name"]
