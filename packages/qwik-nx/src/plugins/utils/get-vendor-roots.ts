@@ -46,7 +46,7 @@ export async function getVendorRoots(
 
   projects = projects.filter((p) => p.name !== currentProjectName);
 
-  if (!options?.includeProjects) {
+  if (!options?.excludeProjects?.keepUnrelatedProjects) {
     // by default including only project dependencies
     const dependencies = await getProjectDependencies(currentProjectName);
     projects = projects.filter((p) => dependencies.has(p.name!));

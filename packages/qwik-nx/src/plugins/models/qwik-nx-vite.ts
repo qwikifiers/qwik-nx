@@ -7,6 +7,14 @@ export interface ProjectFilter {
   customFilter?: (project: ProjectConfiguration) => boolean;
 }
 
+export interface ExcludeProjectFilter extends ProjectFilter {
+  /**
+   * Set to "true" to keep projects, that are not dependant on the current app according to Nx project graph.
+   * By default only related projects are included.
+   */
+  keepUnrelatedProjects?: boolean;
+}
+
 export interface QwikNxVitePluginOptions {
   /**
    * Name of the project, with which plugin is used. By default it will be resolved using the path of the `rootDir` from the Vite environment.
@@ -20,7 +28,7 @@ export interface QwikNxVitePluginOptions {
   /**
    *  Projects to be excluded from the list of resolved vendor roots.
    */
-  excludeProjects?: ProjectFilter;
+  excludeProjects?: ExcludeProjectFilter;
   debug?: boolean;
 }
 
