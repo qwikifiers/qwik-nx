@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.15.6](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.5...qwik-nx-0.15.6) (2023-04-25)
+
+
+### Features
+
+* **qwik-nx:** add "excludeProjects.keepUnrelatedProjects" option for the qwikNxVite plugin ([#137](https://github.com/qwikifiers/qwik-nx/issues/137)) ([0b0b8c5](https://github.com/qwikifiers/qwik-nx/commit/0b0b8c52a066e504f11321c46e96d0f58aea7d53))
+
+
+
 ## [0.15.5](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.4...qwik-nx-0.15.5) (2023-04-25)
 
 
