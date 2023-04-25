@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.15.5](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.4...qwik-nx-0.15.5) (2023-04-25)
+
+
+### Features
+
+* **qwik-nx:** react integration ([#136](https://github.com/qwikifiers/qwik-nx/issues/136)) ([3a4a032](https://github.com/qwikifiers/qwik-nx/commit/3a4a032516cc3307190f8690d83d67de15542913))
+
+
+
 ## [0.15.4](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.3...qwik-nx-0.15.4) (2023-04-20)
 
 
