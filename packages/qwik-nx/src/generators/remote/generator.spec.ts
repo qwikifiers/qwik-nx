@@ -1,5 +1,5 @@
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { Tree, readProjectConfiguration, readJson } from '@nrwl/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { Tree, readProjectConfiguration, readJson } from '@nx/devkit';
 
 import { remoteGenerator } from './generator';
 import { hostGenerator } from './../host/generator';

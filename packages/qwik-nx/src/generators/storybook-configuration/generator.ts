@@ -9,8 +9,8 @@ import {
   ProjectConfiguration,
   readProjectConfiguration,
   Tree,
-} from '@nrwl/devkit';
-import { Linter } from '@nrwl/linter';
+} from '@nx/devkit';
+import { Linter } from '@nx/linter';
 import * as path from 'path';
 import {
   ensureMdxTypeInTsConfig,
@@ -79,8 +79,8 @@ export async function storybookConfigurationGenerator(
   const normalizedOptions = normalizeOptions(options, projectConfig);
   const nxVersion = getInstalledNxVersion(tree);
 
-  ensurePackage('@nrwl/storybook', nxVersion);
-  const { configurationGenerator } = await import('@nrwl/storybook');
+  ensurePackage('@nx/storybook', nxVersion);
+  const { configurationGenerator } = await import('@nx/storybook');
 
   await configurationGenerator(tree, {
     storybook7UiFramework: '@storybook/html-webpack5',
@@ -106,7 +106,7 @@ async function addStorybookDependencies(
   tree: Tree
 ): Promise<GeneratorCallback> {
   const { storybook7Version } = await import(
-    '@nrwl/storybook/src/utils/versions'
+    '@nx/storybook/src/utils/versions'
   );
 
   return addDependenciesToPackageJson(

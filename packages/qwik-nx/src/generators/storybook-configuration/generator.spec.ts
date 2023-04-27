@@ -1,15 +1,15 @@
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { Tree, readProjectConfiguration } from '@nrwl/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { Tree, readProjectConfiguration } from '@nx/devkit';
 
 import { storybookConfigurationGenerator } from './generator';
 import { StorybookConfigurationGeneratorSchema } from './schema';
 import appGenerator from '../application/generator';
-import { Linter } from '@nrwl/linter';
+import { Linter } from '@nx/linter';
 import { libraryGenerator } from '../library/generator';
 import { getFormattedListChanges } from '../../utils/testing-generators';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const devkit = require('@nrwl/devkit');
+const devkit = require('@nx/devkit');
 const getInstalledNxVersionModule = require('../../utils/get-installed-nx-version');
 
 describe('storybook-configuration generator', () => {
@@ -40,7 +40,7 @@ describe('storybook-configuration generator', () => {
     await storybookConfigurationGenerator(appTree, options);
     const config = readProjectConfiguration(appTree, projectName);
     expect(config.targets!['storybook']).toEqual({
-      executor: '@nrwl/storybook:storybook',
+      executor: '@nx/storybook:storybook',
       options: {
         port: 4400,
         configDir: `apps/${projectName}/.storybook`,
@@ -52,7 +52,7 @@ describe('storybook-configuration generator', () => {
       },
     });
     expect(config.targets!['build-storybook']).toEqual({
-      executor: '@nrwl/storybook:build',
+      executor: '@nx/storybook:build',
       outputs: ['{options.outputDir}'],
       options: {
         configDir: `apps/${projectName}/.storybook`,
@@ -65,9 +65,7 @@ describe('storybook-configuration generator', () => {
       },
     });
 
-    expect(
-      expect(getFormattedListChanges(appTree)).toMatchSnapshot()
-    );
+    expect(expect(getFormattedListChanges(appTree)).toMatchSnapshot());
     expect(
       appTree.read(`apps/${projectName}/.storybook/main.ts`)?.toString()
     ).toMatchSnapshot();

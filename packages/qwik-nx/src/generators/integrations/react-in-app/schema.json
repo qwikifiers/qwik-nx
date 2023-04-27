@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "$id": "ReactInApp",
   "title": "React In App integration",
   "description": "Add qwikified React components to your Qwik app",

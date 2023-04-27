@@ -1,7 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
   "version": 2,
-  "cli": "nx",
   "title": "Qwik Build",
   "description": "Builds a Qwik application for production.",
   "type": "object",

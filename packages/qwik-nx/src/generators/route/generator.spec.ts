@@ -1,4 +1,4 @@
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 
 import { routeGenerator } from './generator';
 import { RouteGeneratorSchema } from './schema';

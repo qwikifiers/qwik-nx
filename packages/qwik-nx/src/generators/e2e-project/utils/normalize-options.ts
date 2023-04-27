@@ -1,4 +1,4 @@
-import { getWorkspaceLayout, names, Tree } from '@nrwl/devkit';
+import { getWorkspaceLayout, names, Tree } from '@nx/devkit';
 import { E2eProjectGeneratorSchema, NormalizedSchema } from '../schema';
 
 export function normalizeOptions(

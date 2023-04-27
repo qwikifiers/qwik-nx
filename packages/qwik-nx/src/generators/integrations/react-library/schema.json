@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "$id": "ReactLibrary",
   "title": "React Library",
   "description": "Add qwikified React components as a separate library",
@@ -28,8 +27,16 @@
     },
     "targetApps": {
       "oneOf": [
-        { "type": "string" },
-        { "type": "array", "items": { "type": "string", "uniqueItems": true } }
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "uniqueItems": true
+          }
+        }
       ],
       "description": "The names of the applications that should be configured to work with react components.",
       "x-prompt": "What apps are you going to use this integration with? (Comma delimited, leave empty for none)",

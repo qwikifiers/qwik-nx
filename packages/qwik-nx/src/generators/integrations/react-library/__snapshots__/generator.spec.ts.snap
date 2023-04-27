@@ -10,7 +10,7 @@ Object {
   "tags": Array [],
   "targets": Object {
     "lint": Object {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": Object {
         "lintFilePatterns": Array [
           "libs/mylib/**/*.{ts,tsx,js,jsx}",
@@ -21,7 +21,7 @@ Object {
       ],
     },
     "test": Object {
-      "executor": "@nrwl/vite:test",
+      "executor": "@nx/vite:test",
       "options": Object {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/libs/mylib",
@@ -154,7 +154,7 @@ Object {
   "tags": Array [],
   "targets": Object {
     "lint": Object {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": Object {
         "lintFilePatterns": Array [
           "libs/mylib/**/*.{ts,tsx,js,jsx}",
@@ -165,7 +165,7 @@ Object {
       ],
     },
     "test": Object {
-      "executor": "@nrwl/vite:test",
+      "executor": "@nx/vite:test",
       "options": Object {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/libs/mylib",

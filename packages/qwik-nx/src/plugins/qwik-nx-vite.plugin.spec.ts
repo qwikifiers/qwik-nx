@@ -1,4 +1,4 @@
-import { workspaceRoot } from '@nrwl/devkit';
+import { workspaceRoot } from '@nx/devkit';
 import { join } from 'path';
 import { qwikNxVite } from './qwik-nx-vite.plugin';
 import { QwikNxVitePluginOptions } from './models/qwik-nx-vite';

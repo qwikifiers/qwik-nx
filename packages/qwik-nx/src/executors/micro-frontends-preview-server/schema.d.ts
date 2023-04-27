@@ -1,4 +1,4 @@
-import { VitePreviewServerExecutorOptions } from '@nrwl/vite/executors';
+import { VitePreviewServerExecutorOptions } from '@nx/vite/executors';
 
 // VitePreviewServerExecutorOptions are expected to be passed into the executor,
 // despite they're not explicitly specified in the schema.json

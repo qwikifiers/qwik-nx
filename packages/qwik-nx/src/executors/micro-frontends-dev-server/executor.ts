@@ -1,5 +1,5 @@
-import { viteDevServerExecutor } from '@nrwl/vite/executors';
-import { ExecutorContext } from '@nrwl/devkit';
+import { viteDevServerExecutor } from '@nx/vite/executors';
+import { ExecutorContext } from '@nx/devkit';
 import { runRemotes } from '../utils/run-remotes';
 import { MicroFrontendsDevServerExecutorSchema } from './schema';
 import { addMicroFrontendBetaWarning } from '../../utils/mf-beta-warning';

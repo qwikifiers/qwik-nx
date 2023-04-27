@@ -2,7 +2,7 @@ import {
   addDependenciesToPackageJson,
   GeneratorCallback,
   Tree,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import { lessVersion, sassVersion, stylusVersion } from './versions';
 
 type PackageDependencies = Record<

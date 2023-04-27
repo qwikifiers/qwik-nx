@@ -1,5 +1,5 @@
-import { addProjectConfiguration, Tree } from '@nrwl/devkit';
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
+import { addProjectConfiguration, Tree } from '@nx/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import migrate from './update-use-client-effect$-to-use-visisble-task$';
 
 describe('Use new "qwik-nx:build" executor in qwik apps', () => {

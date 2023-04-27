@@ -3,8 +3,8 @@ import {
   ProjectConfiguration,
   readProjectConfiguration,
   Tree,
-} from '@nrwl/devkit';
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
+} from '@nx/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import migrate from './switch-to-qwik-nx-build-executor';
 
 describe('Use new "qwik-nx:build" executor in qwik apps', () => {
@@ -39,14 +39,14 @@ function getSampleProjectJson() {
       sourceRoot: 'apps/myapp/src',
       targets: {
         build: {
-          executor: '@nrwl/vite:build',
+          executor: '@nx/vite:build',
           options: {
             outputPath: 'dist/apps/myapp',
             configFile: 'apps/myapp/vite.config.ts',
           },
         },
         'build-ssr': {
-          executor: '@nrwl/vite:build',
+          executor: '@nx/vite:build',
           defaultConfiguration: 'preview',
           options: {
             outputPath: 'dist/apps/myapp',
@@ -68,7 +68,7 @@ function getSampleProjectJson() {
           dependsOn: ['build-ssr'],
         },
         test: {
-          executor: '@nrwl/vite:test',
+          executor: '@nx/vite:test',
           outputs: ['../../coverage/apps/myapp'],
           options: {
             passWithNoTests: true,
@@ -76,7 +76,7 @@ function getSampleProjectJson() {
           },
         },
         serve: {
-          executor: '@nrwl/vite:dev-server',
+          executor: '@nx/vite:dev-server',
           defaultConfiguration: 'development',
           options: {
             buildTarget: 'myapp:build',
@@ -102,7 +102,7 @@ function getSampleProjectJson() {
           },
         },
         lint: {
-          executor: '@nrwl/linter:eslint',
+          executor: '@nx/linter:eslint',
           outputs: ['{options.outputFile}'],
           options: {
             lintFilePatterns: ['apps/myapp/**/*.{ts,tsx,js,jsx}'],
@@ -126,14 +126,14 @@ function getSampleProjectJson() {
           },
         },
         'build.client': {
-          executor: '@nrwl/vite:build',
+          executor: '@nx/vite:build',
           options: {
             outputPath: 'dist/apps/myapp',
             configFile: 'apps/myapp/vite.config.ts',
           },
         },
         'build.ssr': {
-          executor: '@nrwl/vite:build',
+          executor: '@nx/vite:build',
           defaultConfiguration: 'preview',
           options: {
             outputPath: 'dist/apps/myapp',
@@ -155,7 +155,7 @@ function getSampleProjectJson() {
           dependsOn: ['build'],
         },
         test: {
-          executor: '@nrwl/vite:test',
+          executor: '@nx/vite:test',
           outputs: ['../../coverage/apps/myapp'],
           options: {
             passWithNoTests: true,
@@ -163,7 +163,7 @@ function getSampleProjectJson() {
           },
         },
         serve: {
-          executor: '@nrwl/vite:dev-server',
+          executor: '@nx/vite:dev-server',
           defaultConfiguration: 'development',
           options: {
             buildTarget: 'myapp:build.client',
@@ -189,7 +189,7 @@ function getSampleProjectJson() {
           },
         },
         lint: {
-          executor: '@nrwl/linter:eslint',
+          executor: '@nx/linter:eslint',
           outputs: ['{options.outputFile}'],
           options: {
             lintFilePatterns: ['apps/myapp/**/*.{ts,tsx,js,jsx}'],
@@ -206,14 +206,14 @@ function getSampleProjectJson() {
       sourceRoot: 'apps/myapp/src',
       targets: {
         build: {
-          executor: '@nrwl/vite:build',
+          executor: '@nx/vite:build',
           options: {
             outputPath: 'dist/apps/myapp',
             configFile: 'apps/myapp/vite.config.ts',
           },
         },
         'build-ssr': {
-          executor: '@nrwl/vite:build',
+          executor: '@nx/vite:build',
           defaultConfiguration: 'preview',
           options: {
             outputPath: 'dist/apps/myapp',
@@ -238,7 +238,7 @@ function getSampleProjectJson() {
           dependsOn: ['build-ssr'],
         },
         test: {
-          executor: '@nrwl/vite:test',
+          executor: '@nx/vite:test',
           outputs: ['../../coverage/apps/myapp'],
           options: {
             passWithNoTests: true,
@@ -246,7 +246,7 @@ function getSampleProjectJson() {
           },
         },
         serve: {
-          executor: '@nrwl/vite:dev-server',
+          executor: '@nx/vite:dev-server',
           options: {
             buildTarget: 'myapp:build',
             mode: 'ssr',
@@ -261,7 +261,7 @@ function getSampleProjectJson() {
           },
         },
         lint: {
-          executor: '@nrwl/linter:eslint',
+          executor: '@nx/linter:eslint',
           outputs: ['{options.outputFile}'],
           options: {
             lintFilePatterns: ['apps/myapp/**/*.{ts,tsx,js,jsx}'],
@@ -309,14 +309,14 @@ function getSampleProjectJson() {
           },
         },
         'build.client': {
-          executor: '@nrwl/vite:build',
+          executor: '@nx/vite:build',
           options: {
             outputPath: 'dist/apps/myapp',
             configFile: 'apps/myapp/vite.config.ts',
           },
         },
         'build.ssr': {
-          executor: '@nrwl/vite:build',
+          executor: '@nx/vite:build',
           defaultConfiguration: 'preview',
           options: {
             outputPath: 'dist/apps/myapp',
@@ -341,7 +341,7 @@ function getSampleProjectJson() {
           dependsOn: ['build'],
         },
         test: {
-          executor: '@nrwl/vite:test',
+          executor: '@nx/vite:test',
           outputs: ['../../coverage/apps/myapp'],
           options: {
             passWithNoTests: true,
@@ -349,7 +349,7 @@ function getSampleProjectJson() {
           },
         },
         serve: {
-          executor: '@nrwl/vite:dev-server',
+          executor: '@nx/vite:dev-server',
           options: {
             buildTarget: 'myapp:build.client',
             mode: 'ssr',
@@ -364,7 +364,7 @@ function getSampleProjectJson() {
           },
         },
         lint: {
-          executor: '@nrwl/linter:eslint',
+          executor: '@nx/linter:eslint',
           outputs: ['{options.outputFile}'],
           options: {
             lintFilePatterns: ['apps/myapp/**/*.{ts,tsx,js,jsx}'],

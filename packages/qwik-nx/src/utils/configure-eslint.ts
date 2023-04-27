@@ -4,8 +4,8 @@ import {
   joinPathFragments,
   readProjectConfiguration,
   Tree,
-} from '@nrwl/devkit';
-import { lintProjectGenerator, Linter } from '@nrwl/linter';
+} from '@nx/devkit';
+import { lintProjectGenerator, Linter } from '@nx/linter';
 import { qwikEslintPluginVersion } from './versions';
 
 export function configureEslint(

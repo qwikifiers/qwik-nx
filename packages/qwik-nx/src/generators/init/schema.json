@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "$id": "NxQwikInit",
   "title": "Qwik Init Plugin",
   "description": "Qwik Init Plugin",

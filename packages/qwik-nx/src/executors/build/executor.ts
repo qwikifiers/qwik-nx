@@ -4,7 +4,7 @@ import {
   parseTargetString,
   runExecutor,
   targetToTargetString,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import { BuildExecutorSchema } from './schema';
 import * as chalk from 'chalk';
 

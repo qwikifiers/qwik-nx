@@ -1,4 +1,4 @@
-import { ProjectConfiguration } from '@nrwl/devkit';
+import { ProjectConfiguration } from '@nx/devkit';
 import { ProjectFilter } from '../models/qwik-nx-vite';
 
 export function filterProjects(

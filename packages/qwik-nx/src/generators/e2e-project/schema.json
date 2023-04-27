@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "$id": "E2eProject",
   "title": "Create an E2E app for a Qwik app",
   "type": "object",

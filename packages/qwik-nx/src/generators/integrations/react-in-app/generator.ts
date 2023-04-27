@@ -5,7 +5,7 @@ import {
   ProjectType,
   readProjectConfiguration,
   Tree,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import * as path from 'path';
 import { ReactInAppGeneratorSchema } from './schema';
 import { reactInit } from '../../../utils/react/init';

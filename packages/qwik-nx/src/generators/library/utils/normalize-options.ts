@@ -1,5 +1,5 @@
-import { getWorkspaceLayout, names, offsetFromRoot, Tree } from '@nrwl/devkit';
-import { Linter } from '@nrwl/linter';
+import { getWorkspaceLayout, names, offsetFromRoot, Tree } from '@nx/devkit';
+import { Linter } from '@nx/linter';
 import { LibraryGeneratorSchema, NormalizedSchema } from '../schema';
 
 export function normalizeOptions(

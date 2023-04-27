@@ -4,7 +4,7 @@ import {
   ProjectConfiguration,
   stripIndents,
   Tree,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 
 const knownLocations = [
   'src/global.css',

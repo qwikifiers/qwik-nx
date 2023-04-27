@@ -7,18 +7,18 @@ import {
   readProjectConfiguration,
   Tree,
   updateProjectConfiguration,
-} from '@nrwl/devkit';
-import { Linter } from '@nrwl/linter';
-import { libraryGenerator as nxLibraryGenerator } from '@nrwl/workspace/generators';
-import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
+} from '@nx/devkit';
+import { Linter } from '@nx/linter';
+import { libraryGenerator as nxLibraryGenerator } from '@nx/workspace/generators';
+import { runTasksInSerial } from '@nx/workspace/src/utilities/run-tasks-in-serial';
 import {
   getRelativePathToRootTsConfig,
   initGenerator as jsInitGenerator,
-} from '@nrwl/js';
+} from '@nx/js';
 import { LibraryGeneratorSchema, NormalizedSchema } from './schema';
 import componentGenerator from './../component/generator';
 import { configureEslint } from '../../utils/configure-eslint';
-import { initGenerator } from '@nrwl/vite';
+import { initGenerator } from '@nx/vite';
 import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
 import { getQwikLibProjectTargets } from './utils/get-qwik-lib-project-params';
 import { normalizeOptions } from './utils/normalize-options';

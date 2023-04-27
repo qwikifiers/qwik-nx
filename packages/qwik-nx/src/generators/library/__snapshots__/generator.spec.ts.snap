@@ -10,7 +10,7 @@ Object {
   "tags": Array [],
   "targets": Object {
     "build": Object {
-      "executor": "@nrwl/vite:build",
+      "executor": "@nx/vite:build",
       "options": Object {
         "configFile": "libs/mylib/vite.config.ts",
         "mode": "lib",
@@ -21,7 +21,7 @@ Object {
       ],
     },
     "lint": Object {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": Object {
         "lintFilePatterns": Array [
           "libs/mylib/**/*.{ts,tsx,js,jsx}",
@@ -32,7 +32,7 @@ Object {
       ],
     },
     "test": Object {
-      "executor": "@nrwl/vite:test",
+      "executor": "@nx/vite:test",
       "options": Object {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/libs/mylib",
@@ -202,7 +202,7 @@ Object {
   "tags": Array [],
   "targets": Object {
     "lint": Object {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": Object {
         "lintFilePatterns": Array [
           "libs/mylib/**/*.{ts,tsx,js,jsx}",
@@ -303,7 +303,7 @@ Object {
   "tags": Array [],
   "targets": Object {
     "lint": Object {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": Object {
         "lintFilePatterns": Array [
           "libs/mylib/**/*.{ts,tsx,js,jsx}",
@@ -314,7 +314,7 @@ Object {
       ],
     },
     "test": Object {
-      "executor": "@nrwl/vite:test",
+      "executor": "@nx/vite:test",
       "options": Object {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/libs/mylib",

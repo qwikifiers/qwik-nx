@@ -3,8 +3,8 @@ import {
   readJson,
   stripIndents,
   writeJson,
-} from '@nrwl/devkit';
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
+} from '@nx/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import update from './setup-tailwind';
 
 describe('setup-tailwind', () => {
@@ -44,7 +44,7 @@ describe('setup-tailwind', () => {
       sourceRoot: 'apps/example/src',
       targets: {
         build: {
-          executor: '@nrwl/vite:build',
+          executor: '@nx/vite:build',
           options: {
             outputPath: 'dist/apps/example',
             configFile: 'apps/example/vite.config.ts',

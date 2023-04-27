@@ -1,4 +1,4 @@
-import { TargetConfiguration } from '@nrwl/devkit';
+import { TargetConfiguration } from '@nx/devkit';
 
 export interface UpdateQwikAppConfigurationParams {
   projectRoot: string;
@@ -24,7 +24,7 @@ function getBuildTarget(
   params: UpdateQwikAppConfigurationParams
 ): TargetConfiguration {
   return {
-    executor: '@nrwl/vite:build',
+    executor: '@nx/vite:build',
     outputs: ['{options.outputPath}'],
     options: {
       outputPath: `dist/${params.projectRoot}`,
@@ -38,7 +38,7 @@ function getTestTarget(
   params: UpdateQwikAppConfigurationParams
 ): TargetConfiguration {
   return {
-    executor: '@nrwl/vite:test',
+    executor: '@nx/vite:test',
     outputs: [`${params.offsetFromRoot}/coverage/${params.projectRoot}`],
     options: {
       passWithNoTests: true,

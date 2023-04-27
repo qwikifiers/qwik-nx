@@ -3,7 +3,7 @@ import {
   getProjects,
   Tree,
   visitNotIgnoredFiles,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import { extname } from 'path';
 import { SyntaxKind } from 'typescript';
 

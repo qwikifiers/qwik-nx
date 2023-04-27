@@ -4,8 +4,8 @@ import {
   normalizePath,
   offsetFromRoot,
   Tree,
-} from '@nrwl/devkit';
-import { getRelativePathToRootTsConfig } from '@nrwl/js';
+} from '@nx/devkit';
+import { getRelativePathToRootTsConfig } from '@nx/js';
 import { NormalizedSchema, QwikAppGeneratorSchema } from '../schema';
 
 function normalizeDirectory(options: QwikAppGeneratorSchema) {

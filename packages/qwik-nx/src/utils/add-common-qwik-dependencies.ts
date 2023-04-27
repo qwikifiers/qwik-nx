@@ -2,7 +2,7 @@ import {
   addDependenciesToPackageJson,
   GeneratorCallback,
   Tree,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import {
   nodeFetchVersion,
   qwikCityVersion,
@@ -23,7 +23,7 @@ export function addCommonQwikDependencies(host: Tree): GeneratorCallback {
       '@builder.io/qwik-city': qwikCityVersion,
       'eslint-plugin-qwik': qwikEslintPluginVersion,
       vite: viteVersion,
-      vitest: vitestVersion, // TODO: vitest is also installed by "@nrwl/vite", but our version is higher
+      vitest: vitestVersion, // TODO: vitest is also installed by "@nx/vite", but our version is higher
       'vite-tsconfig-paths': viteTsconfigPathsVersion,
       'node-fetch': nodeFetchVersion,
       undici: undiciVersion,

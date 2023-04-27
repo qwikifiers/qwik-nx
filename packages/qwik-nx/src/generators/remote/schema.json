@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "$id": "Remote",
   "title": "Generate Micro Frontends Setup for Qwik Remote App",
   "description": "Create Micro Frontends configuration files for the Qwik Application.",

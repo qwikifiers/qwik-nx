@@ -1,4 +1,4 @@
-import { readJson, readProjectConfiguration, Tree } from '@nrwl/devkit';
+import { readJson, readProjectConfiguration, Tree } from '@nx/devkit';
 import { join } from 'path';
 
 /** Creates root.tsx if it is not found */
