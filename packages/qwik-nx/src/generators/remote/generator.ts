@@ -7,8 +7,8 @@ import {
   readJson,
   readProjectConfiguration,
   Tree,
+  runTasksInSerial,
 } from '@nx/devkit';
-import { runTasksInSerial } from '@nx/workspace/src/utilities/run-tasks-in-serial';
 import { addMicroFrontendBetaWarning } from '../../utils/mf-beta-warning';
 import appGenerator from '../application/generator';
 import {

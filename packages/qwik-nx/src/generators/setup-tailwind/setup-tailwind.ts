@@ -7,8 +7,8 @@ import {
   joinPathFragments,
   logger,
   readProjectConfiguration,
+  runTasksInSerial,
 } from '@nx/devkit';
-import { runTasksInSerial } from '@nx/workspace/src/utilities/run-tasks-in-serial';
 import {
   autoprefixerVersion,
   postcssVersion,

@@ -7,11 +7,11 @@ import {
   names,
   TargetConfiguration,
   Tree,
+  runTasksInSerial,
 } from '@nx/devkit';
 import { Linter } from '@nx/linter';
 import { initGenerator } from '@nx/vite';
 import { initGenerator as jsInitGenerator } from '@nx/js';
-import { runTasksInSerial } from '@nx/workspace/src/utilities/run-tasks-in-serial';
 import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';
 import { addStyledModuleDependencies } from '../../utils/add-styled-dependencies';
 import { configureEslint } from '../../utils/configure-eslint';

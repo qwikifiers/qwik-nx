@@ -7,13 +7,13 @@ import {
   readProjectConfiguration,
   Tree,
   updateProjectConfiguration,
+  runTasksInSerial,
 } from '@nx/devkit';
 import { Linter } from '@nx/linter';
-import { libraryGenerator as nxLibraryGenerator } from '@nx/workspace/generators';
-import { runTasksInSerial } from '@nx/workspace/src/utilities/run-tasks-in-serial';
 import {
   getRelativePathToRootTsConfig,
   initGenerator as jsInitGenerator,
+  libraryGenerator as nxLibraryGenerator
 } from '@nx/js';
 import { LibraryGeneratorSchema, NormalizedSchema } from './schema';
 import componentGenerator from './../component/generator';
@@ -65,8 +65,10 @@ async function addLibrary(
     importPath: options.importPath,
     strict: options.strict,
     unitTestRunner: 'none',
-    skipBabelrc: true,
     skipFormat: true,
+    includeBabelRc: false,
+    buildable: false,
+    bundler: 'none',
   });
   tasks.push(libGeneratorTask);
 

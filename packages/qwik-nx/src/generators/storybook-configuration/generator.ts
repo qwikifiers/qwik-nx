@@ -92,8 +92,6 @@ export async function storybookConfigurationGenerator(
     tsConfiguration: normalizedOptions.tsConfiguration,
     storybook7Configuration: true,
     configureCypress: false,
-    // @ts-expect-error providing params in the old format for nx 15.8
-    storybook7betaConfiguration: true,
   });
 
   addFiles(tree, normalizedOptions, projectConfig);

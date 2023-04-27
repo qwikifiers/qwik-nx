@@ -32,7 +32,7 @@ export async function addE2eProject(
 }
 
 async function addCypress(tree: Tree, options: NormalizedSchema) {
-  await ensurePackage(tree, '@nx/cypress', getInstalledNxVersion(tree));
+  await ensurePackage('@nx/cypress', getInstalledNxVersion(tree));
   const { cypressProjectGenerator } = await import('@nx/cypress');
 
   return await cypressProjectGenerator(tree, {
@@ -46,7 +46,9 @@ async function addCypress(tree: Tree, options: NormalizedSchema) {
 }
 
 async function addPlaywright(tree: Tree, options: NormalizedSchema) {
-  await ensurePackage(tree, '@nxkit/playwright', nxKitVersion);
+  console.warn('Playwright generator is not yet compatible with nx 16');
+  return () => void 0;
+  await ensurePackage('@nxkit/playwright', nxKitVersion);
   const { projectGenerator } = await import('@nxkit/playwright');
 
   return await projectGenerator(tree, {

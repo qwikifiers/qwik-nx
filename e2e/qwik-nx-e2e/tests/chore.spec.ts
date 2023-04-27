@@ -30,10 +30,10 @@ describe('appGenerator e2e', () => {
 
         expect(packageJson.peerDependencies).toBeUndefined();
         expect(packageJson.dependencies).toEqual({
-          '@nx/devkit': '^15.8.0',
-          '@nx/js': '^15.8.0',
-          '@nx/linter': '^15.8.0',
-          '@nx/vite': '^15.8.0',
+          '@nx/devkit': '^16.0.0',
+          '@nx/js': '^16.0.0',
+          '@nx/linter': '^16.0.0',
+          '@nx/vite': '^16.0.0',
         });
       },
       DEFAULT_E2E_TIMEOUT
