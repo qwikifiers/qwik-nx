@@ -37,7 +37,7 @@
         ]
       }
     },
-    "build": {
+    "xbuild": {
       "executor": "nx:run-commands",
       "outputs": ["{workspaceRoot}/build/packages/add-nx-to-qwik"],
       "options": {
