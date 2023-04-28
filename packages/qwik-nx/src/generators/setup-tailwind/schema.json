@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "$id": "QwikTailwindSetupGenerator",
   "title": "Configures Tailwind CSS for an application or a buildable/publishable library.",
   "description": "Adds the Tailwind CSS configuration files for a given Qwik project and installs, if needed, the packages required for Tailwind CSS to work.",

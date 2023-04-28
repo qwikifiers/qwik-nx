@@ -1,12 +1,12 @@
-import { readJson, Tree } from '@nrwl/devkit';
+import { readJson, Tree } from '@nx/devkit';
 import { PackageJson } from 'nx/src/utils/package-json';
 
 function readNxVersion(packageJson: PackageJson) {
   return (
     packageJson?.devDependencies?.['nx'] ??
     packageJson?.dependencies?.['nx'] ??
-    packageJson?.devDependencies?.['@nrwl/workspace'] ??
-    packageJson?.dependencies?.['@nrwl/workspace']
+    packageJson?.devDependencies?.['@nx/workspace'] ??
+    packageJson?.dependencies?.['@nx/workspace']
   );
 }
 

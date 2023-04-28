@@ -7,7 +7,7 @@ import {
   logger,
   names,
   Tree,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import { addStyledModuleDependencies } from '../../utils/add-styled-dependencies';
 import { ensureMdxTypeInTsConfig } from '../../utils/ensure-file-utils';
 import { ComponentGeneratorSchema } from './schema';

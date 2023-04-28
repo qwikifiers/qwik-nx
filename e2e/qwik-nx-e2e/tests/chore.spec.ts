@@ -2,7 +2,7 @@ import {
   ensureNxProject,
   readJson,
   runNxCommandAsync,
-} from '@nrwl/nx-plugin/testing';
+} from '@nx/plugin/testing';
 import { DEFAULT_E2E_TIMEOUT } from '@qwikifiers/e2e/utils';
 
 describe('appGenerator e2e', () => {
@@ -30,10 +30,10 @@ describe('appGenerator e2e', () => {
 
         expect(packageJson.peerDependencies).toBeUndefined();
         expect(packageJson.dependencies).toEqual({
-          '@nrwl/devkit': '^15.8.0',
-          '@nrwl/js': '^15.8.0',
-          '@nrwl/linter': '^15.8.0',
-          '@nrwl/vite': '^15.8.0',
+          '@nx/devkit': '^16.0.0',
+          '@nx/js': '^16.0.0',
+          '@nx/linter': '^16.0.0',
+          '@nx/vite': '^16.0.0',
         });
       },
       DEFAULT_E2E_TIMEOUT

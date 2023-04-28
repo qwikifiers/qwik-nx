@@ -111,14 +111,14 @@ exports[`host generator should run successfully 3`] = `
       }
     },
     \\"build.client\\": {
-      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"executor\\": \\"@nx/vite:build\\",
       \\"options\\": {
         \\"outputPath\\": \\"dist/apps/myhostapp\\",
         \\"configFile\\": \\"apps/myhostapp/vite.config.ts\\"
       }
     },
     \\"build.ssr\\": {
-      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"executor\\": \\"@nx/vite:build\\",
       \\"defaultConfiguration\\": \\"preview\\",
       \\"options\\": {
         \\"outputPath\\": \\"dist/apps/myhostapp\\"
@@ -138,7 +138,7 @@ exports[`host generator should run successfully 3`] = `
       }
     },
     \\"test\\": {
-      \\"executor\\": \\"@nrwl/vite:test\\",
+      \\"executor\\": \\"@nx/vite:test\\",
       \\"outputs\\": [\\"../../coverage/apps/myhostapp\\"],
       \\"options\\": {
         \\"passWithNoTests\\": true,
@@ -604,14 +604,14 @@ exports[`host generator should run successfully 7`] = `
       }
     },
     \\"build.client\\": {
-      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"executor\\": \\"@nx/vite:build\\",
       \\"options\\": {
         \\"outputPath\\": \\"dist/apps/remote1\\",
         \\"configFile\\": \\"apps/remote1/vite.config.ts\\"
       }
     },
     \\"build.ssr\\": {
-      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"executor\\": \\"@nx/vite:build\\",
       \\"defaultConfiguration\\": \\"preview\\",
       \\"options\\": {
         \\"outputPath\\": \\"dist/apps/remote1\\"
@@ -624,14 +624,14 @@ exports[`host generator should run successfully 7`] = `
       }
     },
     \\"preview\\": {
-      \\"executor\\": \\"@nrwl/vite:preview-server\\",
+      \\"executor\\": \\"@nx/vite:preview-server\\",
       \\"options\\": {
         \\"buildTarget\\": \\"remote1:build\\",
         \\"port\\": 4201
       }
     },
     \\"test\\": {
-      \\"executor\\": \\"@nrwl/vite:test\\",
+      \\"executor\\": \\"@nx/vite:test\\",
       \\"outputs\\": [\\"../../coverage/apps/remote1\\"],
       \\"options\\": {
         \\"passWithNoTests\\": true,
@@ -639,7 +639,7 @@ exports[`host generator should run successfully 7`] = `
       }
     },
     \\"serve\\": {
-      \\"executor\\": \\"@nrwl/vite:dev-server\\",
+      \\"executor\\": \\"@nx/vite:dev-server\\",
       \\"options\\": {
         \\"buildTarget\\": \\"remote1:build.client\\",
         \\"mode\\": \\"ssr\\",
@@ -768,14 +768,14 @@ exports[`host generator should run successfully 10`] = `
       }
     },
     \\"build.client\\": {
-      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"executor\\": \\"@nx/vite:build\\",
       \\"options\\": {
         \\"outputPath\\": \\"dist/apps/remote2\\",
         \\"configFile\\": \\"apps/remote2/vite.config.ts\\"
       }
     },
     \\"build.ssr\\": {
-      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"executor\\": \\"@nx/vite:build\\",
       \\"defaultConfiguration\\": \\"preview\\",
       \\"options\\": {
         \\"outputPath\\": \\"dist/apps/remote2\\"
@@ -788,14 +788,14 @@ exports[`host generator should run successfully 10`] = `
       }
     },
     \\"preview\\": {
-      \\"executor\\": \\"@nrwl/vite:preview-server\\",
+      \\"executor\\": \\"@nx/vite:preview-server\\",
       \\"options\\": {
         \\"buildTarget\\": \\"remote2:build\\",
         \\"port\\": 4202
       }
     },
     \\"test\\": {
-      \\"executor\\": \\"@nrwl/vite:test\\",
+      \\"executor\\": \\"@nx/vite:test\\",
       \\"outputs\\": [\\"../../coverage/apps/remote2\\"],
       \\"options\\": {
         \\"passWithNoTests\\": true,
@@ -803,7 +803,7 @@ exports[`host generator should run successfully 10`] = `
       }
     },
     \\"serve\\": {
-      \\"executor\\": \\"@nrwl/vite:dev-server\\",
+      \\"executor\\": \\"@nx/vite:dev-server\\",
       \\"options\\": {
         \\"buildTarget\\": \\"remote2:build.client\\",
         \\"mode\\": \\"ssr\\",

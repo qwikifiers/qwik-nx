@@ -1,4 +1,4 @@
-import { output } from '@nrwl/devkit';
+import { output } from '@nx/devkit';
 
 export function addMicroFrontendBetaWarning() {
   output.warn({

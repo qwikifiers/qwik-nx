@@ -1,12 +1,12 @@
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { Tree, readProjectConfiguration } from '@nrwl/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { Tree, readProjectConfiguration } from '@nx/devkit';
 import { appGenerator } from './../application/generator';
 
 import generator from './generator';
 import { E2eProjectGeneratorSchema } from './schema';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const devkit = require('@nrwl/devkit');
+const devkit = require('@nx/devkit');
 const getInstalledNxVersionModule = require('../../utils/get-installed-nx-version');
 
 describe('e2e project', () => {
@@ -47,7 +47,7 @@ describe('e2e project', () => {
     });
     const config = readProjectConfiguration(appTree, 'myapp-e2e');
     expect(config).toBeDefined();
-    expect(config.targets?.e2e.executor).toEqual('@nrwl/cypress:cypress');
+    expect(config.targets?.e2e.executor).toEqual('@nx/cypress:cypress');
     expect(appTree.exists('apps/myapp-e2e/cypress.config.ts')).toBeTruthy();
   });
 });

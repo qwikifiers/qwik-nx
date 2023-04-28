@@ -2,7 +2,7 @@ import {
   ProjectsConfigurations,
   normalizePath,
   workspaceRoot,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import {
   createProjectRootMappingsFromProjectConfigurations,
   findProjectForPath,

@@ -55,14 +55,14 @@ exports[`qwik-nx generator should run successfully 2`] = `
       }
     },
     \\"build.client\\": {
-      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"executor\\": \\"@nx/vite:build\\",
       \\"options\\": {
         \\"outputPath\\": \\"dist/apps/myapp\\",
         \\"configFile\\": \\"apps/myapp/vite.config.ts\\"
       }
     },
     \\"build.ssr\\": {
-      \\"executor\\": \\"@nrwl/vite:build\\",
+      \\"executor\\": \\"@nx/vite:build\\",
       \\"defaultConfiguration\\": \\"preview\\",
       \\"options\\": {
         \\"outputPath\\": \\"dist/apps/myapp\\"
@@ -75,14 +75,14 @@ exports[`qwik-nx generator should run successfully 2`] = `
       }
     },
     \\"preview\\": {
-      \\"executor\\": \\"@nrwl/vite:preview-server\\",
+      \\"executor\\": \\"@nx/vite:preview-server\\",
       \\"options\\": {
         \\"buildTarget\\": \\"myapp:build\\",
         \\"port\\": 4300
       }
     },
     \\"serve\\": {
-      \\"executor\\": \\"@nrwl/vite:dev-server\\",
+      \\"executor\\": \\"@nx/vite:dev-server\\",
       \\"options\\": {
         \\"buildTarget\\": \\"myapp:build.client\\",
         \\"mode\\": \\"ssr\\",

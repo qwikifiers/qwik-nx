@@ -1,4 +1,4 @@
-import { ProjectConfiguration } from '@nrwl/devkit';
+import { ProjectConfiguration } from '@nx/devkit';
 
 export enum IntegrationName {
   Cloudflare = 'cloudflare',

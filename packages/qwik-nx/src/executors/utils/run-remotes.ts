@@ -1,4 +1,4 @@
-import { ExecutorContext, output } from '@nrwl/devkit';
+import { ExecutorContext, output } from '@nx/devkit';
 import { exec } from 'child_process';
 import { join, resolve } from 'path';
 import * as chalk from 'chalk';

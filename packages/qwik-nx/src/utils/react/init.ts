@@ -3,7 +3,7 @@ import {
   Tree,
   addDependenciesToPackageJson,
   generateFiles,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import path = require('path');
 import {
   emotionReactVersion,
@@ -17,7 +17,7 @@ import {
   typesReactVersion,
 } from '../versions';
 import { updateViteConfig } from '../update-vite-config';
-import { normalizeViteConfigFilePathWithTree } from '@nrwl/vite';
+import { normalizeViteConfigFilePathWithTree } from '@nx/vite';
 
 export interface ReactInitSchema {
   demoFilePath: string;

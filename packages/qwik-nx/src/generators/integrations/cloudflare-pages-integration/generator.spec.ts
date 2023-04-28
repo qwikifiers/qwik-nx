@@ -1,15 +1,15 @@
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import {
   Tree,
   readProjectConfiguration,
   readJson,
   updateProjectConfiguration,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 
 import { cloudflarePagesIntegrationGenerator } from './generator';
 import applicationGenerator from './../../application/generator';
 import { CloudflarePagesIntegrationGeneratorSchema } from './schema';
-import { Linter } from '@nrwl/linter';
+import { Linter } from '@nx/linter';
 
 describe('cloudflare-pages-integration generator', () => {
   let appTree: Tree;

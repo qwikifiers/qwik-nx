@@ -1,7 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
   "version": 2,
-  "cli": "nx",
   "title": "Micro Frontends Dev Server",
   "description": "Serve a host application along with its known remotes in a preview mode.",
   "type": "object",

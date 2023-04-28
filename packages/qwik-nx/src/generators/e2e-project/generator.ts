@@ -3,7 +3,7 @@ import {
   GeneratorCallback,
   readProjectConfiguration,
   Tree,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import { getInstalledNxVersion } from '../../utils/get-installed-nx-version';
 import { nxKitVersion } from '../../utils/versions';
 import { E2eProjectGeneratorSchema, NormalizedSchema } from './schema';
@@ -32,8 +32,8 @@ export async function addE2eProject(
 }
 
 async function addCypress(tree: Tree, options: NormalizedSchema) {
-  await ensurePackage(tree, '@nrwl/cypress', getInstalledNxVersion(tree));
-  const { cypressProjectGenerator } = await import('@nrwl/cypress');
+  await ensurePackage('@nx/cypress', getInstalledNxVersion(tree));
+  const { cypressProjectGenerator } = await import('@nx/cypress');
 
   return await cypressProjectGenerator(tree, {
     ...options,
@@ -46,7 +46,7 @@ async function addCypress(tree: Tree, options: NormalizedSchema) {
 }
 
 async function addPlaywright(tree: Tree, options: NormalizedSchema) {
-  await ensurePackage(tree, '@nxkit/playwright', nxKitVersion);
+  await ensurePackage('@nxkit/playwright', nxKitVersion);
   const { projectGenerator } = await import('@nxkit/playwright');
 
   return await projectGenerator(tree, {

@@ -1,4 +1,4 @@
-import { ProjectGraph, createProjectGraphAsync } from '@nrwl/devkit';
+import { ProjectGraph, createProjectGraphAsync } from '@nx/devkit';
 import { pruneExternalNodes } from 'nx/src/project-graph/operators';
 
 /** Retrieves all projects given `currentProjectName` depends on */

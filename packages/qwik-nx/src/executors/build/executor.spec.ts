@@ -1,9 +1,9 @@
 import { BuildExecutorSchema } from './schema';
 import executor from './executor';
-import { ExecutorContext, runExecutor, Target } from '@nrwl/devkit';
+import { ExecutorContext, runExecutor, Target } from '@nx/devkit';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const devkit: { runExecutor: typeof runExecutor } = require('@nrwl/devkit');
+const devkit: { runExecutor: typeof runExecutor } = require('@nx/devkit');
 
 enum MockFailTargets {
   NoSuccess = 'mock-no-success',

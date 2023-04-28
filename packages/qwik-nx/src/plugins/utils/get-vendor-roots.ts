@@ -5,7 +5,7 @@ import {
 } from '../models/qwik-nx-vite';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { workspaceRoot } from '@nrwl/devkit';
+import { workspaceRoot } from '@nx/devkit';
 import { getCurrentProjectName } from './current-project-name';
 import { filterProjects } from './filter-projects';
 import { getProjectDependencies } from './get-project-dependencies';

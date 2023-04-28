@@ -6,10 +6,10 @@ import {
   readProjectConfiguration,
   Tree,
   updateProjectConfiguration,
-} from '@nrwl/devkit';
+  runTasksInSerial,
+} from '@nx/devkit';
 import { HostGeneratorSchema } from './schema';
 import { appGenerator } from './../application/generator';
-import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 import remoteGenerator from '../remote/generator';
 import { normalizeOptions } from '../application/utils/normalize-options';
 import { join } from 'path';

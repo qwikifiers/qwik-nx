@@ -6,7 +6,8 @@ import {
   output,
   readProjectConfiguration,
   Tree,
-} from '@nrwl/devkit';
+  runTasksInSerial,
+} from '@nx/devkit';
 import * as path from 'path';
 import { ReactLibraryGeneratorSchema } from './schema';
 import { normalizeOptions as libraryNormalizeOptions } from './../../library/utils/normalize-options';
@@ -15,7 +16,6 @@ import {
   addReactPluginToViteConfig,
   reactInit,
 } from '../../../utils/react/init';
-import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 
 interface NormalizedSchema extends ReactLibraryGeneratorSchema {
   installMUIExample: boolean;

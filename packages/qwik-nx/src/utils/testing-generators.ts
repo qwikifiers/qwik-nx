@@ -1,4 +1,4 @@
-import { addProjectConfiguration, names, Tree } from '@nrwl/devkit';
+import { addProjectConfiguration, names, Tree } from '@nx/devkit';
 
 export function createLib(tree: Tree, libName: string): void {
   const { fileName } = names(libName);

@@ -4,7 +4,7 @@ import {
   TargetConfiguration,
   Tree,
   updateProjectConfiguration,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 
 export default function update(host: Tree) {
   const projects = getProjects(host);
@@ -84,10 +84,10 @@ export default function update(host: Tree) {
 function isQwikNxProject(
   config: ProjectConfiguration
 ): config is OldQwikNxConfiguration {
-  if (config.targets?.['build']?.executor !== '@nrwl/vite:build') {
+  if (config.targets?.['build']?.executor !== '@nx/vite:build') {
     return false;
   }
-  if (config.targets['build-ssr']?.executor !== '@nrwl/vite:build') {
+  if (config.targets['build-ssr']?.executor !== '@nx/vite:build') {
     return false;
   }
   if (!config.targets['preview']) {

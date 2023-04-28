@@ -1,6 +1,6 @@
 // source: https://github.com/nrwl/nx/blob/master/e2e/utils/index.ts
 
-import { runNxCommandAsync, uniq, tmpProjPath } from '@nrwl/nx-plugin/testing';
+import { runNxCommandAsync, uniq, tmpProjPath } from '@nx/plugin/testing';
 import { ChildProcess, exec, execSync } from 'child_process';
 import { readdirSync, readFileSync, removeSync, statSync } from 'fs-extra';
 import { check as portCheck } from 'tcp-port-used';

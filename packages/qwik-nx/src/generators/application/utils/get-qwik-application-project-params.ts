@@ -1,4 +1,4 @@
-import { TargetConfiguration } from '@nrwl/devkit';
+import { TargetConfiguration } from '@nx/devkit';
 
 export interface UpdateQwikAppConfigurationParams {
   projectName: string;
@@ -44,7 +44,7 @@ function getBuildClientTarget(
   params: UpdateQwikAppConfigurationParams
 ): TargetConfiguration {
   return {
-    executor: '@nrwl/vite:build',
+    executor: '@nx/vite:build',
     options: {
       outputPath: `dist/${params.projectRoot}`,
       configFile: `${params.projectRoot}/vite.config.ts`,
@@ -56,7 +56,7 @@ function getBuildSsrTarget(
   params: UpdateQwikAppConfigurationParams
 ): TargetConfiguration {
   return {
-    executor: '@nrwl/vite:build',
+    executor: '@nx/vite:build',
     defaultConfiguration: 'preview',
     options: {
       outputPath: `dist/${params.projectRoot}`,
@@ -74,7 +74,7 @@ function getPreviewTarget(
   params: UpdateQwikAppConfigurationParams
 ): TargetConfiguration {
   return {
-    executor: '@nrwl/vite:preview-server',
+    executor: '@nx/vite:preview-server',
     options: {
       buildTarget: `${params.projectName}:build`,
       port: params.previewServerPort,
@@ -86,7 +86,7 @@ function getTestTarget(
   params: UpdateQwikAppConfigurationParams
 ): TargetConfiguration {
   return {
-    executor: '@nrwl/vite:test',
+    executor: '@nx/vite:test',
     outputs: [`${params.offsetFromRoot}coverage/${params.projectRoot}`],
     options: {
       passWithNoTests: true,
@@ -99,7 +99,7 @@ function getServeTarget(
   params: UpdateQwikAppConfigurationParams
 ): TargetConfiguration {
   return {
-    executor: '@nrwl/vite:dev-server',
+    executor: '@nx/vite:dev-server',
     options: {
       buildTarget: `${params.projectName}:build.client`,
       mode: 'ssr',
