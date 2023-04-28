@@ -13,7 +13,7 @@ import { Linter } from '@nx/linter';
 import {
   getRelativePathToRootTsConfig,
   initGenerator as jsInitGenerator,
-  libraryGenerator as nxLibraryGenerator
+  libraryGenerator as nxLibraryGenerator,
 } from '@nx/js';
 import { LibraryGeneratorSchema, NormalizedSchema } from './schema';
 import componentGenerator from './../component/generator';

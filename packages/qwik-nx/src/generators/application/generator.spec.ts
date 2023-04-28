@@ -53,8 +53,7 @@ describe('qwik-nx generator', () => {
       );
     });
 
-    // TODO: playwright is not compatible with nx 16
-    xit('--e2eTestRunner playwright', async () => {
+    it('--e2eTestRunner playwright', async () => {
       await generator(appTree, {
         ...defaultOptions,
         e2eTestRunner: 'playwright',

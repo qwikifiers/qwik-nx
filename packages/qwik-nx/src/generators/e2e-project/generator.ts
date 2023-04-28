@@ -46,8 +46,6 @@ async function addCypress(tree: Tree, options: NormalizedSchema) {
 }
 
 async function addPlaywright(tree: Tree, options: NormalizedSchema) {
-  console.warn('Playwright generator is not yet compatible with nx 16');
-  return () => void 0;
   await ensurePackage('@nxkit/playwright', nxKitVersion);
   const { projectGenerator } = await import('@nxkit/playwright');
 
