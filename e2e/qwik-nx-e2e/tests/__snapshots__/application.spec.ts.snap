@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`appGenerator e2e Basic behavior with app generator should run type checking before the build step: stderr 1`] = `""`;
+
+exports[`appGenerator e2e Basic behavior with app generator should run type checking before the build step: stdout 1`] = `
+"
+> nx run PROJECT_NAME:build
+
+ [36m>[39m [0m[7m[1m[36m NX [39m[22m[27m[0m  Running type check for the \\"PROJECT_NAME\\"..
+   [2mnpx tsc --incremental --noEmit --pretty -p REPLACED_PATH/tsconfig.app.json
+[96mapps/PROJECT_NAME/src/routes/index.tsx[0m:[93m8[0m:[93m15[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'number'.
+[7m8[0m               a = 'not-a-number';
+[7m [0m [91m              ~[0m
+[96mlibs/LIB_PROJECT_NAME/src/lib/LIB_PROJECT_NAME.tsx[0m:[93m7[0m:[93m22[0m - [91merror[0m[90m TS2345: [0mArgument of type 'number' is not assignable to parameter of type 'string'.
+[7m7[0m               b.push(1);
+[7m [0m [91m                     ~[0m
+Found 2 errors in 2 files.
+Errors  Files
+     1  apps/PROJECT_NAME/src/routes/index.tsx[90m:8[0m
+     1  libs/LIB_PROJECT_NAME/src/lib/LIB_PROJECT_NAME.tsx[90m:7[0m
+
+ 
+
+ >  NX   Running target build for project PROJECT_NAME failed
+
+   Failed tasks:
+   
+   - PROJECT_NAME:build
+   
+   Hint: run the command with --verbose for more details.
+
+"
+`;

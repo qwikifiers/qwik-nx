@@ -5,6 +5,7 @@ import {
   ensureNxProject,
   runNxCommandAsync,
   uniq,
+  updateFile,
 } from '@nx/plugin/testing';
 
 import {
@@ -15,12 +16,17 @@ import {
   killPorts,
   DEFAULT_E2E_TIMEOUT,
 } from '@qwikifiers/e2e/utils';
+import { names } from '@nx/devkit';
 
 export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
   const devServerPort = 4212;
   const previewServerPort = 4232;
   describe(`Basic behavior with ${generator} generator`, () => {
     let project: string;
+    let libProject: string;
+    let rootRoutePath: string;
+    let libComponentName: string;
+    let libComponentPath: string;
 
     beforeAll(async () => {
       await killPorts(devServerPort, previewServerPort);
@@ -29,6 +35,10 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
 
     beforeAll(async () => {
       project = uniq('qwik-nx');
+      libProject = uniq('qwik-nx');
+      rootRoutePath = `apps/${project}/src/routes/index.tsx`;
+      libComponentPath = `libs/${libProject}/src/lib/${libProject}.tsx`;
+      libComponentName = names(libProject).className;
 
       const projectNameParam =
         generator === 'preset' ? `--qwikAppName=${project}` : project;
@@ -37,8 +47,18 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
         `generate qwik-nx:${generator} ${projectNameParam} --no-interactive`
       );
       await runNxCommandAsync(
+        `generate qwik-nx:library ${libProject} --no-interactive`
+      );
+      await runNxCommandAsync(
         `generate qwik-nx:component my-test-component --project=${project} --unitTestRunner=vitest --no-interactive`
       );
+      updateFile(rootRoutePath, (content) => {
+        content =
+          `import { ${libComponentName} } from '@proj/${libProject}';\n` +
+          content;
+        content = content.replace('<h1>', `<${libComponentName}/>\n<h1>`);
+        return content;
+      });
     }, DEFAULT_E2E_TIMEOUT);
 
     afterAll(async () => {
@@ -53,6 +73,9 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
       'should create qwik-nx',
       async () => {
         const result = await runNxCommandAsync(`build ${project}`);
+        expect(result.stdout).toContain(
+          `Running type check for the "${project}"..`
+        );
         expect(
           stripConsoleColors(result.stdout.replace(/\n|\s/g, ''))
         ).toContain(
@@ -73,6 +96,53 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
         expect(() =>
           checkFilesExist(`dist/apps/${project}/server/entry.preview.mjs`)
         ).not.toThrow();
+      },
+      DEFAULT_E2E_TIMEOUT
+    );
+
+    it(
+      'should run type checking before the build step',
+      async () => {
+        let originalContent!: string;
+        let originalLibContent!: string;
+        updateFile(rootRoutePath, (content) => {
+          originalContent = content;
+          return content.replace(
+            'export default component$(() => {',
+            `export default component$(() => {
+              let a = 0;
+              a = 'not-a-number';
+            `
+          );
+        });
+        updateFile(libComponentPath, (content) => {
+          originalLibContent = content;
+          return content.replace(
+            'component$(() => {',
+            `component$(() => {
+              let b: string[] = ['some-string'];
+              b.push(1);
+            `
+          );
+        });
+
+        const result = await runNxCommandAsync(`build ${project} --verbose`, {
+          silenceError: true,
+        });
+
+        // restore original contents
+        updateFile(rootRoutePath, originalContent);
+        updateFile(libComponentPath, originalLibContent);
+
+        function replaceDynamicContent(output: string) {
+          return output
+            .replaceAll(project, 'PROJECT_NAME')
+            .replaceAll(libProject, 'LIB_PROJECT_NAME')
+            .replace(/-p .+/, '-p REPLACED_PATH/tsconfig.app.json');
+        }
+
+        expect(replaceDynamicContent(result.stderr)).toMatchSnapshot('stderr');
+        expect(replaceDynamicContent(result.stdout)).toMatchSnapshot('stdout');
       },
       DEFAULT_E2E_TIMEOUT
     );
