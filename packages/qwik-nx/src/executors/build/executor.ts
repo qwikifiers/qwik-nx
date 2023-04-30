@@ -9,6 +9,7 @@ import { BuildExecutorSchema } from './schema';
 import * as chalk from 'chalk';
 import { spawn } from 'child_process';
 import { resolve } from 'path';
+import { existsSync } from 'fs';
 
 export default async function* runBuildExecutor(
   options: BuildExecutorSchema,
@@ -66,6 +67,14 @@ async function runTypeCheck(
         ? 'tsconfig.app.json'
         : 'tsconfig.lib.json';
     tsFilePath = resolve(projectConfiguration.root, tsFileName);
+  }
+  if (!existsSync(tsFilePath)) {
+    const customTsConfigMessage = options.tsConfig
+      ? ''
+      : ` If project's tsconfig file name is not standard, provide the path to it as "tsConfig" executor option.`;
+    throw new Error(
+      `Could not find tsconfig at "${tsFilePath}".` + customTsConfigMessage
+    );
   }
 
   const typeCheckCommand = `npx tsc --incremental --noEmit --pretty -p ${tsFilePath}`;
