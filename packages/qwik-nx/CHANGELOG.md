@@ -2,6 +2,21 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.15.7](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.6...qwik-nx-0.15.7) (2023-05-01)
+
+
+### Bug Fixes
+
+* **qwik-nx:** get "url" correctly in remote-mfe template ([#139](https://github.com/qwikifiers/qwik-nx/issues/139)) ([054e002](https://github.com/qwikifiers/qwik-nx/commit/054e00253733aec6d8cf9f3524ac6748886df65b))
+* **qwik-nx:** get canonical url from the right path ([#138](https://github.com/qwikifiers/qwik-nx/issues/138)) ([d82dad4](https://github.com/qwikifiers/qwik-nx/commit/d82dad4166fd4b8eaae04a29060561623a784091))
+
+
+### Features
+
+* **qwik-nx:** build executor should run type checking (v0.15) ([#144](https://github.com/qwikifiers/qwik-nx/issues/144)) ([559a69f](https://github.com/qwikifiers/qwik-nx/commit/559a69fcc81c83bf4f73e1165afca6df4aa94532))
+
+
+
 ## [0.15.6](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.5...qwik-nx-0.15.6) (2023-04-25)
 
 
