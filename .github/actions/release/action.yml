@@ -22,9 +22,10 @@ runs:
         NODE_AUTH_TOKEN: ${{ inputs.npm_token }}
         GITHUB_TOKEN: ${{ inputs.github_token }}
       shell: bash
-      run: pnpx nx affected --base=last-release --target=${{ inputs.release_target }} --parallel=1
+      run: pnpx nx affected --base=last-release --target=${{ inputs.release_target }} --parallel=1 --baseBranch=${{ github.ref_name }}
 
     - name: Tag last-release
+      if: github.ref == 'refs/heads/main'
       shell: bash
       run: git tag -f last-release
 
