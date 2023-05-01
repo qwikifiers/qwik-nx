@@ -6,12 +6,22 @@
   "type": "object",
   "properties": {
     "runSequence": {
-      "description": "An array of targets to be executed in a sequence",
+      "description": "An array of targets to be executed in a sequence.",
       "type": "array",
       "items": {
         "type": "string",
         "x-completion-type": "projectTarget"
       }
+    },
+    "tsConfig": {
+      "type": "string",
+      "description": "The full path for the TypeScript configuration file, relative to the workspace root. Is used for the type checking.",
+      "x-completion-type": "file",
+      "x-completion-glob": "tsconfig.*.json"
+    },
+    "skipTypeCheck": {
+      "type": "boolean",
+      "description": "Skip the type checking."
     }
   },
   "required": ["runSequence"]

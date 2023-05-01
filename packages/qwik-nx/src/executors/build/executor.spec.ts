@@ -1,9 +1,17 @@
 import { BuildExecutorSchema } from './schema';
 import executor from './executor';
-import { ExecutorContext, runExecutor, Target } from '@nx/devkit';
+import {
+  ExecutorContext,
+  ProjectsConfigurations,
+  runExecutor,
+  Target,
+} from '@nx/devkit';
+import { resolve } from 'path';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const devkit: { runExecutor: typeof runExecutor } = require('@nx/devkit');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const fs = require('fs');
 
 enum MockFailTargets {
   NoSuccess = 'mock-no-success',
@@ -12,6 +20,15 @@ enum MockFailTargets {
 
 describe('Build Executor', () => {
   let runExecutorPayloads: Target[] = [];
+  const defaultContext = {
+    root: '/root',
+    projectName: 'my-app',
+    targetName: 'build',
+    configurationName: 'production',
+    projectsConfigurations: {
+      projects: { 'my-app': { projectType: 'application', root: '/root' } },
+    } as any as ProjectsConfigurations,
+  } as ExecutorContext;
 
   jest.spyOn(devkit, 'runExecutor').mockImplementation((target: Target) => {
     if (target.target === MockFailTargets.NoSuccess) {
@@ -44,17 +61,11 @@ describe('Build Executor', () => {
   });
 
   it('should execute targets sequentially', async () => {
-    const context = {
-      root: '/root',
-      projectName: 'my-app',
-      targetName: 'build',
-      configurationName: 'production',
-    } as ExecutorContext;
-
     const options: BuildExecutorSchema = {
       runSequence: ['my-app:target1:development', 'my-app:target2'],
+      skipTypeCheck: true,
     };
-    const iterable = executor(options, context);
+    const iterable = executor(options, defaultContext);
     let result = await iterable.next();
     expect(result.value?.success).toEqual(true);
     expect(runExecutorPayloads).toEqual([
@@ -66,13 +77,6 @@ describe('Build Executor', () => {
   });
 
   it('should stop execution if executor returned "success: false"', async () => {
-    const context = {
-      root: '/root',
-      projectName: 'my-app',
-      targetName: 'build',
-      configurationName: 'production',
-    } as ExecutorContext;
-
     const target = MockFailTargets.NoSuccess;
 
     const options: BuildExecutorSchema = {
@@ -81,8 +85,9 @@ describe('Build Executor', () => {
         `my-app:${target}`,
         'my-app:target2',
       ],
+      skipTypeCheck: true,
     };
-    const iterable = executor(options, context);
+    const iterable = executor(options, defaultContext);
     let result = await iterable.next();
     expect(result.value?.success).toEqual(false);
     expect(runExecutorPayloads).toEqual([
@@ -94,13 +99,6 @@ describe('Build Executor', () => {
   });
 
   it('should stop execution if unhandled error occurs', async () => {
-    const context = {
-      root: '/root',
-      projectName: 'my-app',
-      targetName: 'build',
-      configurationName: 'production',
-    } as ExecutorContext;
-
     const target = MockFailTargets.Error;
 
     const options: BuildExecutorSchema = {
@@ -109,8 +107,9 @@ describe('Build Executor', () => {
         `my-app:${target}`,
         'my-app:target2',
       ],
+      skipTypeCheck: true,
     };
-    const iterable = executor(options, context);
+    const iterable = executor(options, defaultContext);
     let result = await iterable.next();
     expect(result.value?.success).toEqual(false);
     expect(runExecutorPayloads).toEqual([
@@ -119,5 +118,34 @@ describe('Build Executor', () => {
     ]);
     result = await iterable.next();
     expect(result.done).toEqual(true);
+  });
+
+  describe('type check', () => {
+    const defaultOptionsForTypeCheck: BuildExecutorSchema = {
+      runSequence: ['my-app:target1:development', 'my-app:target2'],
+    };
+
+    it('should throw an error if tsconfig is not found at default location', async () => {
+      jest.spyOn(fs, 'existsSync').mockReturnValue(false);
+      const iterable = executor(defaultOptionsForTypeCheck, defaultContext);
+      await expect(iterable.next()).rejects.toThrow(
+        `Could not find tsconfig at "${resolve(
+          '/root/tsconfig.app.json'
+        )}". If project's tsconfig file name is not standard, provide the path to it as "tsConfig" executor option.`
+      );
+    });
+    it('should throw an error if tsconfig is not found at specified location', async () => {
+      jest.spyOn(fs, 'existsSync').mockReturnValue(false);
+      const iterable = executor(
+        {
+          ...defaultOptionsForTypeCheck,
+          tsConfig: '/root/tsconfig.other.json',
+        },
+        defaultContext
+      );
+      await expect(iterable.next()).rejects.toThrow(
+        `Could not find tsconfig at "${resolve('/root/tsconfig.other.json')}".`
+      );
+    });
   });
 });
