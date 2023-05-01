@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.16.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.16.0...qwik-nx-0.16.1) (2023-05-01)
+
+
+### Features
+
+* **qwik-nx:** build executor should run type checking ([#143](https://github.com/qwikifiers/qwik-nx/issues/143)) ([d489436](https://github.com/qwikifiers/qwik-nx/commit/d489436a38122cd2d198cf09fcb7ac8c2bee4716))
+
+
+
 # [0.16.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.15.6...qwik-nx-0.16.0) (2023-04-28)
 
 
