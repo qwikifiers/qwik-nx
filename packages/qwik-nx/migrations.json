@@ -135,7 +135,7 @@
           "version": "~0.100.0"
         },
         "@types/node": {
-          "version": "c"
+          "version": "^18.15.9"
         },
         "eslint-plugin-qwik": {
           "version": "~0.100.0"
