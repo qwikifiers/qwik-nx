@@ -75,6 +75,7 @@ This plugin supports Nx migrations and provides necessary version and code updat
 
 | qwik-nx version    | Nx version |
 | ------------------ | ---------- |
+| ^1.0.0             | ^16.0.0    |
 | ^0.16.0            | ^16.0.0    |
 | >= 0.12.0 < 0.16.0 | ^15.8.0    |
 | ~0.10.0, ~0.11.0   | ~15.7.2    |
@@ -82,6 +83,8 @@ This plugin supports Nx migrations and provides necessary version and code updat
 | ~0.5.0             | ~15.5.0    |
 | ~0.4.0             | ~15.4.0    |
 | <=0.4.0            | ^15.0.0    |
+
+We will provide support for Nx 15 with critical bug fixes and minor features for a while. If you're using nx@15.8 or higher, you can stick to qwik-nx@0.15.
 
 ## ROADMAP:
 

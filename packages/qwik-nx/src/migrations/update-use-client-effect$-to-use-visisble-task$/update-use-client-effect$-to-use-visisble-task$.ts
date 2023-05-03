@@ -6,9 +6,10 @@ import {
 } from '@nx/devkit';
 import { extname } from 'path';
 import { SyntaxKind } from 'typescript';
+import { tsMorphVersion } from '../../utils/versions';
 
 export default async function update(tree: Tree) {
-  ensurePackage('ts-morph', '^17.0.0');
+  ensurePackage('ts-morph', tsMorphVersion);
   const tsMorph = await import('ts-morph');
   for (const [, definition] of getProjects(tree)) {
     visitNotIgnoredFiles(tree, definition.root, (file) => {
