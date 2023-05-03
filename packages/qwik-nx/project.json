@@ -90,6 +90,15 @@
         "postTargets": ["qwik-nx:publish", "qwik-nx:push-to-github"]
       }
     },
+    "version-publish-major": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "noVerify": true,
+        "push": true,
+        "releaseAs": "major",
+        "postTargets": ["qwik-nx:publish", "qwik-nx:push-to-github"]
+      }
+    },
     "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
