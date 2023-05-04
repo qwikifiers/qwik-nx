@@ -76,27 +76,21 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "noVerify": true,
-        "push": true,
+        "push": false,
         "releaseAs": "patch",
         "postTargets": ["qwik-nx:publish", "qwik-nx:push-to-github"]
-      }
-    },
-    "version-publish-minor": {
-      "executor": "@jscutlery/semver:version",
-      "options": {
-        "noVerify": true,
-        "push": true,
-        "releaseAs": "minor",
-        "postTargets": ["qwik-nx:publish", "qwik-nx:push-to-github"]
-      }
-    },
-    "version-publish-major": {
-      "executor": "@jscutlery/semver:version",
-      "options": {
-        "noVerify": true,
-        "push": true,
-        "releaseAs": "major",
-        "postTargets": ["qwik-nx:publish", "qwik-nx:push-to-github"]
+      },
+      "configurations": {
+        "patch": {},
+        "minor": {
+          "releaseAs": "minor"
+        },
+        "major": {
+          "releaseAs": "major"
+        },
+        "previous": {
+          "postTargets": ["qwik-nx:publish:previous", "qwik-nx:push-to-github"]
+        }
       }
     },
     "publish": {
@@ -107,6 +101,9 @@
       "configurations": {
         "local": {
           "registry": "http://localhost:4873"
+        },
+        "previous": {
+          "tag": "previous"
         }
       }
     },

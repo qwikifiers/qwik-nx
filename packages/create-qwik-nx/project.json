@@ -70,7 +70,7 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "noVerify": true,
-        "push": true,
+        "push": false,
         "releaseAs": "patch",
         "postTargets": [
           "create-qwik-nx:publish",

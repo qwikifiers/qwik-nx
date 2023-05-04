@@ -1,9 +1,27 @@
-name: Release Patch
+name: Release
 
 on:
-  - workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      type:
+        required: true
+        type: choice
+        description: Release type
+        options:
+          - patch
+          - minor
+          - major
+          - previous
+        default: 'patch'
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          [[ "${{ inputs.type }}" ]] || { echo "inputs.type input is empty" ; exit 1; }
+        shell: bash
+
   test:
     runs-on: ubuntu-latest
 
@@ -25,13 +43,11 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
-
-    if: github.ref == 'refs/heads/main'
-
     needs: [test]
-
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Setup
         uses: ./.github/actions/setup
 
@@ -40,3 +56,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           npm_token: ${{ secrets.NPM_TOKEN }}
+          configuration: ${{ github.event.inputs.type }}
