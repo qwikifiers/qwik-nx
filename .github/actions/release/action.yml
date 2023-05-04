@@ -9,10 +9,9 @@ inputs:
   npm_token:
     description: NPM token
     required: true
-  release_target:
-    description: Release target (patch, minor)
-    required: false
-    default: version-publish
+  configuration:
+    description: Release type (patch, minor, major, previous)
+    required: true
 
 runs:
   using: composite
@@ -22,9 +21,10 @@ runs:
         NODE_AUTH_TOKEN: ${{ inputs.npm_token }}
         GITHUB_TOKEN: ${{ inputs.github_token }}
       shell: bash
-      run: pnpx nx affected --base=last-release --target=${{ inputs.release_target }} --parallel=1
+      run: pnpx nx affected --base=last-release --target=version-publish --configuration=${{ inputs.configuration }} --parallel=1 --baseBranch=${{ github.ref_name }} --push=true
 
     - name: Tag last-release
+      if: github.ref == 'refs/heads/main'
       shell: bash
       run: git tag -f last-release
 
