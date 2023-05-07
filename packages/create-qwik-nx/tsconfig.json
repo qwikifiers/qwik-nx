@@ -2,8 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "types": ["node", "jest"],
-    "resolveJsonModule": true,
-    "esModuleInterop": true
+    "strict": true
   },
   "include": [],
   "files": [],
