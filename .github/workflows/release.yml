@@ -14,6 +14,14 @@ on:
           - previous
         default: 'patch'
 
+      package:
+        required: true
+        type: choice
+        description: Package to release
+        options:
+          - qwik-nx
+          - create-qwik-nx
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -54,8 +62,20 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Release
-        uses: ./.github/actions/release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpx nx run ${{ inputs.package }}:version-publish --configuration=${{ inputs.type }} --push=true
+
+      - name: Tag last-release
+        if: github.ref == 'refs/heads/main'
+        shell: bash
+        run: git tag -f last-release
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          npm_token: ${{ secrets.NPM_TOKEN }}
-          configuration: ${{ github.event.inputs.type }}
+          branch: ${{ github.ref }}
+          force: true
+          tags: true
