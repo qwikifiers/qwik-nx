@@ -16,7 +16,7 @@
     "CLI"
   ],
   "bin": {
-    "create-qwik-nx": "./bin/create-qwik-nx.js"
+    "create-qwik-nx": "./bin/index.js"
   },
   "author": "Shai Reznik",
   "license": "MIT",
@@ -24,7 +24,9 @@
     "url": "https://github.com/qwikifiers/qwik-nx/issues"
   },
   "homepage": "https://github.com/qwikifiers/qwik-nx",
-  "dependencies": {},
+  "dependencies": {
+    "create-nx-workspace": "^16.0.0"
+  },
   "publishConfig": {
     "access": "public"
   }
