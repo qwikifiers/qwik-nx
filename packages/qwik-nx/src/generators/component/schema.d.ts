@@ -8,3 +8,9 @@ export interface ComponentGeneratorSchema {
   exportDefault?: boolean;
   generateStories?: boolean;
 }
+
+export interface NormalizedSchema extends ComponentGeneratorSchema {
+  directory: string;
+  hasStyles: boolean;
+  projectRoot: string;
+}

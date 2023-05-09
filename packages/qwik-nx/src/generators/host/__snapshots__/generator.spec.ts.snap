@@ -1,5 +1,941 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`host generator should be able to resolve directory path based on the workspace layout when directory is "/apps/frontend" should generate "frontend-myhostapp" and "frontend-remote1" with projects' roots at "apps/frontend/myhostapp" and "apps/frontend/remote1": "/apps/frontend" 1`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "frontend-myhostapp",
+  "projectType": "application",
+  "root": "apps/frontend/myhostapp",
+  "sourceRoot": "apps/frontend/myhostapp/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "preview": Object {},
+      },
+      "executor": "qwik-nx:build",
+      "options": Object {
+        "outputPath": "dist/apps/frontend/myhostapp",
+        "runSequence": Array [
+          "frontend-myhostapp:build.client",
+          "frontend-myhostapp:build.ssr",
+        ],
+      },
+    },
+    "build.client": Object {
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "configFile": "apps/frontend/myhostapp/vite.config.ts",
+        "outputPath": "dist/apps/frontend/myhostapp",
+      },
+    },
+    "build.ssr": Object {
+      "configurations": Object {
+        "preview": Object {
+          "mode": "production",
+          "ssr": "src/entry.preview.tsx",
+        },
+      },
+      "defaultConfiguration": "preview",
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "outputPath": "dist/apps/frontend/myhostapp",
+      },
+    },
+    "preview": Object {
+      "executor": "qwik-nx:micro-frontends-preview-server",
+      "options": Object {
+        "buildTarget": "frontend-myhostapp:build",
+        "port": 4300,
+      },
+    },
+    "serve": Object {
+      "executor": "qwik-nx:micro-frontends-dev-server",
+      "options": Object {
+        "buildTarget": "frontend-myhostapp:build.client",
+        "mode": "ssr",
+        "port": 4200,
+      },
+    },
+    "serve.debug": Object {
+      "executor": "nx:run-commands",
+      "options": Object {
+        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "apps/frontend/myhostapp",
+      },
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/apps/frontend/myhostapp",
+      },
+      "outputs": Array [
+        "../../../coverage/apps/frontend/myhostapp",
+      ],
+    },
+  },
+}
+`;
+
+exports[`host generator should be able to resolve directory path based on the workspace layout when directory is "/apps/frontend" should generate "frontend-myhostapp" and "frontend-remote1" with projects' roots at "apps/frontend/myhostapp" and "apps/frontend/remote1": "/apps/frontend" 2`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "frontend-remote1",
+  "projectType": "application",
+  "root": "apps/frontend/remote1",
+  "sourceRoot": "apps/frontend/remote1/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "preview": Object {},
+      },
+      "executor": "qwik-nx:build",
+      "options": Object {
+        "outputPath": "dist/apps/frontend/remote1",
+        "runSequence": Array [
+          "frontend-remote1:build.client",
+          "frontend-remote1:build.ssr",
+        ],
+      },
+    },
+    "build.client": Object {
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "configFile": "apps/frontend/remote1/vite.config.ts",
+        "outputPath": "dist/apps/frontend/remote1",
+      },
+    },
+    "build.ssr": Object {
+      "configurations": Object {
+        "preview": Object {
+          "mode": "production",
+          "ssr": "src/entry.preview.tsx",
+        },
+      },
+      "defaultConfiguration": "preview",
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "outputPath": "dist/apps/frontend/remote1",
+      },
+    },
+    "preview": Object {
+      "executor": "@nx/vite:preview-server",
+      "options": Object {
+        "buildTarget": "frontend-remote1:build",
+        "port": 4201,
+      },
+    },
+    "serve": Object {
+      "executor": "@nx/vite:dev-server",
+      "options": Object {
+        "buildTarget": "frontend-remote1:build.client",
+        "mode": "ssr",
+        "port": 4201,
+      },
+    },
+    "serve.debug": Object {
+      "executor": "nx:run-commands",
+      "options": Object {
+        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "apps/frontend/remote1",
+      },
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/apps/frontend/remote1",
+      },
+      "outputs": Array [
+        "../../../coverage/apps/frontend/remote1",
+      ],
+    },
+  },
+}
+`;
+
+exports[`host generator should be able to resolve directory path based on the workspace layout when directory is "/frontend" should generate "frontend-myhostapp" and "frontend-remote1" with projects' roots at "apps/frontend/myhostapp" and "apps/frontend/remote1": "/frontend" 1`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "frontend-myhostapp",
+  "projectType": "application",
+  "root": "apps/frontend/myhostapp",
+  "sourceRoot": "apps/frontend/myhostapp/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "preview": Object {},
+      },
+      "executor": "qwik-nx:build",
+      "options": Object {
+        "outputPath": "dist/apps/frontend/myhostapp",
+        "runSequence": Array [
+          "frontend-myhostapp:build.client",
+          "frontend-myhostapp:build.ssr",
+        ],
+      },
+    },
+    "build.client": Object {
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "configFile": "apps/frontend/myhostapp/vite.config.ts",
+        "outputPath": "dist/apps/frontend/myhostapp",
+      },
+    },
+    "build.ssr": Object {
+      "configurations": Object {
+        "preview": Object {
+          "mode": "production",
+          "ssr": "src/entry.preview.tsx",
+        },
+      },
+      "defaultConfiguration": "preview",
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "outputPath": "dist/apps/frontend/myhostapp",
+      },
+    },
+    "preview": Object {
+      "executor": "qwik-nx:micro-frontends-preview-server",
+      "options": Object {
+        "buildTarget": "frontend-myhostapp:build",
+        "port": 4300,
+      },
+    },
+    "serve": Object {
+      "executor": "qwik-nx:micro-frontends-dev-server",
+      "options": Object {
+        "buildTarget": "frontend-myhostapp:build.client",
+        "mode": "ssr",
+        "port": 4200,
+      },
+    },
+    "serve.debug": Object {
+      "executor": "nx:run-commands",
+      "options": Object {
+        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "apps/frontend/myhostapp",
+      },
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/apps/frontend/myhostapp",
+      },
+      "outputs": Array [
+        "../../../coverage/apps/frontend/myhostapp",
+      ],
+    },
+  },
+}
+`;
+
+exports[`host generator should be able to resolve directory path based on the workspace layout when directory is "/frontend" should generate "frontend-myhostapp" and "frontend-remote1" with projects' roots at "apps/frontend/myhostapp" and "apps/frontend/remote1": "/frontend" 2`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "frontend-remote1",
+  "projectType": "application",
+  "root": "apps/frontend/remote1",
+  "sourceRoot": "apps/frontend/remote1/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "preview": Object {},
+      },
+      "executor": "qwik-nx:build",
+      "options": Object {
+        "outputPath": "dist/apps/frontend/remote1",
+        "runSequence": Array [
+          "frontend-remote1:build.client",
+          "frontend-remote1:build.ssr",
+        ],
+      },
+    },
+    "build.client": Object {
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "configFile": "apps/frontend/remote1/vite.config.ts",
+        "outputPath": "dist/apps/frontend/remote1",
+      },
+    },
+    "build.ssr": Object {
+      "configurations": Object {
+        "preview": Object {
+          "mode": "production",
+          "ssr": "src/entry.preview.tsx",
+        },
+      },
+      "defaultConfiguration": "preview",
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "outputPath": "dist/apps/frontend/remote1",
+      },
+    },
+    "preview": Object {
+      "executor": "@nx/vite:preview-server",
+      "options": Object {
+        "buildTarget": "frontend-remote1:build",
+        "port": 4201,
+      },
+    },
+    "serve": Object {
+      "executor": "@nx/vite:dev-server",
+      "options": Object {
+        "buildTarget": "frontend-remote1:build.client",
+        "mode": "ssr",
+        "port": 4201,
+      },
+    },
+    "serve.debug": Object {
+      "executor": "nx:run-commands",
+      "options": Object {
+        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "apps/frontend/remote1",
+      },
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/apps/frontend/remote1",
+      },
+      "outputs": Array [
+        "../../../coverage/apps/frontend/remote1",
+      ],
+    },
+  },
+}
+`;
+
+exports[`host generator should be able to resolve directory path based on the workspace layout when directory is "/packages" should generate "myhostapp" and "remote1" with projects' roots at "packages/myhostapp" and "packages/remote1": "/packages" 1`] = `
+Object {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "myhostapp",
+  "projectType": "application",
+  "root": "packages/myhostapp",
+  "sourceRoot": "packages/myhostapp/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "preview": Object {},
+      },
+      "executor": "qwik-nx:build",
+      "options": Object {
+        "outputPath": "dist/packages/myhostapp",
+        "runSequence": Array [
+          "myhostapp:build.client",
+          "myhostapp:build.ssr",
+        ],
+      },
+    },
+    "build.client": Object {
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "configFile": "packages/myhostapp/vite.config.ts",
+        "outputPath": "dist/packages/myhostapp",
+      },
+    },
+    "build.ssr": Object {
+      "configurations": Object {
+        "preview": Object {
+          "mode": "production",
+          "ssr": "src/entry.preview.tsx",
+        },
+      },
+      "defaultConfiguration": "preview",
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "outputPath": "dist/packages/myhostapp",
+      },
+    },
+    "preview": Object {
+      "executor": "qwik-nx:micro-frontends-preview-server",
+      "options": Object {
+        "buildTarget": "myhostapp:build",
+        "port": 4300,
+      },
+    },
+    "serve": Object {
+      "executor": "qwik-nx:micro-frontends-dev-server",
+      "options": Object {
+        "buildTarget": "myhostapp:build.client",
+        "mode": "ssr",
+        "port": 4200,
+      },
+    },
+    "serve.debug": Object {
+      "executor": "nx:run-commands",
+      "options": Object {
+        "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "packages/myhostapp",
+      },
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/myhostapp",
+      },
+      "outputs": Array [
+        "../../coverage/packages/myhostapp",
+      ],
+    },
+  },
+}
+`;
+
+exports[`host generator should be able to resolve directory path based on the workspace layout when directory is "/packages" should generate "myhostapp" and "remote1" with projects' roots at "packages/myhostapp" and "packages/remote1": "/packages" 2`] = `
+Object {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "remote1",
+  "projectType": "application",
+  "root": "packages/remote1",
+  "sourceRoot": "packages/remote1/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "preview": Object {},
+      },
+      "executor": "qwik-nx:build",
+      "options": Object {
+        "outputPath": "dist/packages/remote1",
+        "runSequence": Array [
+          "remote1:build.client",
+          "remote1:build.ssr",
+        ],
+      },
+    },
+    "build.client": Object {
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "configFile": "packages/remote1/vite.config.ts",
+        "outputPath": "dist/packages/remote1",
+      },
+    },
+    "build.ssr": Object {
+      "configurations": Object {
+        "preview": Object {
+          "mode": "production",
+          "ssr": "src/entry.preview.tsx",
+        },
+      },
+      "defaultConfiguration": "preview",
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "outputPath": "dist/packages/remote1",
+      },
+    },
+    "preview": Object {
+      "executor": "@nx/vite:preview-server",
+      "options": Object {
+        "buildTarget": "remote1:build",
+        "port": 4201,
+      },
+    },
+    "serve": Object {
+      "executor": "@nx/vite:dev-server",
+      "options": Object {
+        "buildTarget": "remote1:build.client",
+        "mode": "ssr",
+        "port": 4201,
+      },
+    },
+    "serve.debug": Object {
+      "executor": "nx:run-commands",
+      "options": Object {
+        "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "packages/remote1",
+      },
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/remote1",
+      },
+      "outputs": Array [
+        "../../coverage/packages/remote1",
+      ],
+    },
+  },
+}
+`;
+
+exports[`host generator should be able to resolve directory path based on the workspace layout when directory is "/packages/frontend" should generate "frontend-myhostapp" and "frontend-remote1" with projects' roots at "packages/frontend/myhostapp" and "packages/frontend/remote1": "/packages/frontend" 1`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "frontend-myhostapp",
+  "projectType": "application",
+  "root": "packages/frontend/myhostapp",
+  "sourceRoot": "packages/frontend/myhostapp/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "preview": Object {},
+      },
+      "executor": "qwik-nx:build",
+      "options": Object {
+        "outputPath": "dist/packages/frontend/myhostapp",
+        "runSequence": Array [
+          "frontend-myhostapp:build.client",
+          "frontend-myhostapp:build.ssr",
+        ],
+      },
+    },
+    "build.client": Object {
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "configFile": "packages/frontend/myhostapp/vite.config.ts",
+        "outputPath": "dist/packages/frontend/myhostapp",
+      },
+    },
+    "build.ssr": Object {
+      "configurations": Object {
+        "preview": Object {
+          "mode": "production",
+          "ssr": "src/entry.preview.tsx",
+        },
+      },
+      "defaultConfiguration": "preview",
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "outputPath": "dist/packages/frontend/myhostapp",
+      },
+    },
+    "preview": Object {
+      "executor": "qwik-nx:micro-frontends-preview-server",
+      "options": Object {
+        "buildTarget": "frontend-myhostapp:build",
+        "port": 4300,
+      },
+    },
+    "serve": Object {
+      "executor": "qwik-nx:micro-frontends-dev-server",
+      "options": Object {
+        "buildTarget": "frontend-myhostapp:build.client",
+        "mode": "ssr",
+        "port": 4200,
+      },
+    },
+    "serve.debug": Object {
+      "executor": "nx:run-commands",
+      "options": Object {
+        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "packages/frontend/myhostapp",
+      },
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/packages/frontend/myhostapp",
+      },
+      "outputs": Array [
+        "../../../coverage/packages/frontend/myhostapp",
+      ],
+    },
+  },
+}
+`;
+
+exports[`host generator should be able to resolve directory path based on the workspace layout when directory is "/packages/frontend" should generate "frontend-myhostapp" and "frontend-remote1" with projects' roots at "packages/frontend/myhostapp" and "packages/frontend/remote1": "/packages/frontend" 2`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "frontend-remote1",
+  "projectType": "application",
+  "root": "packages/frontend/remote1",
+  "sourceRoot": "packages/frontend/remote1/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "preview": Object {},
+      },
+      "executor": "qwik-nx:build",
+      "options": Object {
+        "outputPath": "dist/packages/frontend/remote1",
+        "runSequence": Array [
+          "frontend-remote1:build.client",
+          "frontend-remote1:build.ssr",
+        ],
+      },
+    },
+    "build.client": Object {
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "configFile": "packages/frontend/remote1/vite.config.ts",
+        "outputPath": "dist/packages/frontend/remote1",
+      },
+    },
+    "build.ssr": Object {
+      "configurations": Object {
+        "preview": Object {
+          "mode": "production",
+          "ssr": "src/entry.preview.tsx",
+        },
+      },
+      "defaultConfiguration": "preview",
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "outputPath": "dist/packages/frontend/remote1",
+      },
+    },
+    "preview": Object {
+      "executor": "@nx/vite:preview-server",
+      "options": Object {
+        "buildTarget": "frontend-remote1:build",
+        "port": 4201,
+      },
+    },
+    "serve": Object {
+      "executor": "@nx/vite:dev-server",
+      "options": Object {
+        "buildTarget": "frontend-remote1:build.client",
+        "mode": "ssr",
+        "port": 4201,
+      },
+    },
+    "serve.debug": Object {
+      "executor": "nx:run-commands",
+      "options": Object {
+        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "packages/frontend/remote1",
+      },
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/packages/frontend/remote1",
+      },
+      "outputs": Array [
+        "../../../coverage/packages/frontend/remote1",
+      ],
+    },
+  },
+}
+`;
+
+exports[`host generator should be able to resolve directory path based on the workspace layout when directory is "apps" should generate "myhostapp" and "remote1" with projects' roots at "apps/myhostapp" and "apps/remote1": "apps" 1`] = `
+Object {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "myhostapp",
+  "projectType": "application",
+  "root": "apps/myhostapp",
+  "sourceRoot": "apps/myhostapp/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "preview": Object {},
+      },
+      "executor": "qwik-nx:build",
+      "options": Object {
+        "outputPath": "dist/apps/myhostapp",
+        "runSequence": Array [
+          "myhostapp:build.client",
+          "myhostapp:build.ssr",
+        ],
+      },
+    },
+    "build.client": Object {
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "configFile": "apps/myhostapp/vite.config.ts",
+        "outputPath": "dist/apps/myhostapp",
+      },
+    },
+    "build.ssr": Object {
+      "configurations": Object {
+        "preview": Object {
+          "mode": "production",
+          "ssr": "src/entry.preview.tsx",
+        },
+      },
+      "defaultConfiguration": "preview",
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "outputPath": "dist/apps/myhostapp",
+      },
+    },
+    "preview": Object {
+      "executor": "qwik-nx:micro-frontends-preview-server",
+      "options": Object {
+        "buildTarget": "myhostapp:build",
+        "port": 4300,
+      },
+    },
+    "serve": Object {
+      "executor": "qwik-nx:micro-frontends-dev-server",
+      "options": Object {
+        "buildTarget": "myhostapp:build.client",
+        "mode": "ssr",
+        "port": 4200,
+      },
+    },
+    "serve.debug": Object {
+      "executor": "nx:run-commands",
+      "options": Object {
+        "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "apps/myhostapp",
+      },
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/myhostapp",
+      },
+      "outputs": Array [
+        "../../coverage/apps/myhostapp",
+      ],
+    },
+  },
+}
+`;
+
+exports[`host generator should be able to resolve directory path based on the workspace layout when directory is "apps" should generate "myhostapp" and "remote1" with projects' roots at "apps/myhostapp" and "apps/remote1": "apps" 2`] = `
+Object {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "remote1",
+  "projectType": "application",
+  "root": "apps/remote1",
+  "sourceRoot": "apps/remote1/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "preview": Object {},
+      },
+      "executor": "qwik-nx:build",
+      "options": Object {
+        "outputPath": "dist/apps/remote1",
+        "runSequence": Array [
+          "remote1:build.client",
+          "remote1:build.ssr",
+        ],
+      },
+    },
+    "build.client": Object {
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "configFile": "apps/remote1/vite.config.ts",
+        "outputPath": "dist/apps/remote1",
+      },
+    },
+    "build.ssr": Object {
+      "configurations": Object {
+        "preview": Object {
+          "mode": "production",
+          "ssr": "src/entry.preview.tsx",
+        },
+      },
+      "defaultConfiguration": "preview",
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "outputPath": "dist/apps/remote1",
+      },
+    },
+    "preview": Object {
+      "executor": "@nx/vite:preview-server",
+      "options": Object {
+        "buildTarget": "remote1:build",
+        "port": 4201,
+      },
+    },
+    "serve": Object {
+      "executor": "@nx/vite:dev-server",
+      "options": Object {
+        "buildTarget": "remote1:build.client",
+        "mode": "ssr",
+        "port": 4201,
+      },
+    },
+    "serve.debug": Object {
+      "executor": "nx:run-commands",
+      "options": Object {
+        "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "apps/remote1",
+      },
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/remote1",
+      },
+      "outputs": Array [
+        "../../coverage/apps/remote1",
+      ],
+    },
+  },
+}
+`;
+
+exports[`host generator should be able to resolve directory path based on the workspace layout when directory is "apps/frontend" should generate "frontend-myhostapp" and "frontend-remote1" with projects' roots at "apps/frontend/myhostapp" and "apps/frontend/remote1": "apps/frontend" 1`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "frontend-myhostapp",
+  "projectType": "application",
+  "root": "apps/frontend/myhostapp",
+  "sourceRoot": "apps/frontend/myhostapp/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "preview": Object {},
+      },
+      "executor": "qwik-nx:build",
+      "options": Object {
+        "outputPath": "dist/apps/frontend/myhostapp",
+        "runSequence": Array [
+          "frontend-myhostapp:build.client",
+          "frontend-myhostapp:build.ssr",
+        ],
+      },
+    },
+    "build.client": Object {
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "configFile": "apps/frontend/myhostapp/vite.config.ts",
+        "outputPath": "dist/apps/frontend/myhostapp",
+      },
+    },
+    "build.ssr": Object {
+      "configurations": Object {
+        "preview": Object {
+          "mode": "production",
+          "ssr": "src/entry.preview.tsx",
+        },
+      },
+      "defaultConfiguration": "preview",
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "outputPath": "dist/apps/frontend/myhostapp",
+      },
+    },
+    "preview": Object {
+      "executor": "qwik-nx:micro-frontends-preview-server",
+      "options": Object {
+        "buildTarget": "frontend-myhostapp:build",
+        "port": 4300,
+      },
+    },
+    "serve": Object {
+      "executor": "qwik-nx:micro-frontends-dev-server",
+      "options": Object {
+        "buildTarget": "frontend-myhostapp:build.client",
+        "mode": "ssr",
+        "port": 4200,
+      },
+    },
+    "serve.debug": Object {
+      "executor": "nx:run-commands",
+      "options": Object {
+        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "apps/frontend/myhostapp",
+      },
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/apps/frontend/myhostapp",
+      },
+      "outputs": Array [
+        "../../../coverage/apps/frontend/myhostapp",
+      ],
+    },
+  },
+}
+`;
+
+exports[`host generator should be able to resolve directory path based on the workspace layout when directory is "apps/frontend" should generate "frontend-myhostapp" and "frontend-remote1" with projects' roots at "apps/frontend/myhostapp" and "apps/frontend/remote1": "apps/frontend" 2`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "frontend-remote1",
+  "projectType": "application",
+  "root": "apps/frontend/remote1",
+  "sourceRoot": "apps/frontend/remote1/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "preview": Object {},
+      },
+      "executor": "qwik-nx:build",
+      "options": Object {
+        "outputPath": "dist/apps/frontend/remote1",
+        "runSequence": Array [
+          "frontend-remote1:build.client",
+          "frontend-remote1:build.ssr",
+        ],
+      },
+    },
+    "build.client": Object {
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "configFile": "apps/frontend/remote1/vite.config.ts",
+        "outputPath": "dist/apps/frontend/remote1",
+      },
+    },
+    "build.ssr": Object {
+      "configurations": Object {
+        "preview": Object {
+          "mode": "production",
+          "ssr": "src/entry.preview.tsx",
+        },
+      },
+      "defaultConfiguration": "preview",
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "outputPath": "dist/apps/frontend/remote1",
+      },
+    },
+    "preview": Object {
+      "executor": "@nx/vite:preview-server",
+      "options": Object {
+        "buildTarget": "frontend-remote1:build",
+        "port": 4201,
+      },
+    },
+    "serve": Object {
+      "executor": "@nx/vite:dev-server",
+      "options": Object {
+        "buildTarget": "frontend-remote1:build.client",
+        "mode": "ssr",
+        "port": 4201,
+      },
+    },
+    "serve.debug": Object {
+      "executor": "nx:run-commands",
+      "options": Object {
+        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "apps/frontend/remote1",
+      },
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/apps/frontend/remote1",
+      },
+      "outputs": Array [
+        "../../../coverage/apps/frontend/remote1",
+      ],
+    },
+  },
+}
+`;
+
 exports[`host generator should run successfully 1`] = `
 "import { qwikVite } from '@builder.io/qwik/optimizer';
 import { qwikCity } from '@builder.io/qwik-city/vite';

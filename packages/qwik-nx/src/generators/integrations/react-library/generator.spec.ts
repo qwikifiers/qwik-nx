@@ -1,5 +1,5 @@
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
-import { Tree, readProjectConfiguration } from '@nx/devkit';
+import { Tree, joinPathFragments, readProjectConfiguration } from '@nx/devkit';
 
 import { reactLibraryGenerator } from './generator';
 import { ReactLibraryGeneratorSchema } from './schema';
@@ -90,6 +90,32 @@ describe('integrations/react-library generator', () => {
     );
     expect(appTree.read('apps/myapp2/vite.config.ts', 'utf-8')).toMatchSnapshot(
       'myapp2'
+    );
+  });
+
+  describe('should be able to resolve directory path based on the workspace layout', () => {
+    test.each`
+      directory             | expectedProjectName | projectRoot
+      ${'/shared'}          | ${'shared-mylib'}   | ${'libs/shared/mylib'}
+      ${'libs'}             | ${'mylib'}          | ${'libs/mylib'}
+      ${'/libs/shared'}     | ${'shared-mylib'}   | ${'libs/shared/mylib'}
+      ${'libs/shared'}      | ${'shared-mylib'}   | ${'libs/shared/mylib'}
+      ${'/packages'}        | ${'mylib'}          | ${'packages/mylib'}
+      ${'/packages/shared'} | ${'shared-mylib'}   | ${'packages/shared/mylib'}
+    `(
+      'when directory is "$directory" should generate "$expectedProjectName" with project\'s root at "$projectRoot"',
+      async ({ directory, expectedProjectName, projectRoot }) => {
+        await reactLibraryGenerator(appTree, { ...options, directory });
+        const config = readProjectConfiguration(appTree, expectedProjectName);
+
+        expect(config.root).toBe(projectRoot);
+        expect(config).toMatchSnapshot(
+          JSON.stringify(directory, expectedProjectName)
+        );
+        expect(
+          appTree.exists(joinPathFragments(projectRoot, 'vite.config.ts'))
+        ).toBeTruthy();
+      }
     );
   });
 });

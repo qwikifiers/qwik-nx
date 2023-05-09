@@ -30,6 +30,7 @@ export async function libraryGenerator(
   schema: LibraryGeneratorSchema
 ) {
   const options = normalizeOptions(tree, schema);
+
   const tasks: GeneratorCallback[] = [];
 
   await jsInitGenerator(tree, {
