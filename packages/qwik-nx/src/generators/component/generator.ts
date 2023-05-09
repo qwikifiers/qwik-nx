@@ -2,64 +2,14 @@ import {
   formatFiles,
   generateFiles,
   GeneratorCallback,
-  getProjects,
   joinPathFragments,
-  logger,
   names,
   Tree,
 } from '@nx/devkit';
 import { addStyledModuleDependencies } from '../../utils/add-styled-dependencies';
 import { ensureMdxTypeInTsConfig } from '../../utils/ensure-file-utils';
-import { ComponentGeneratorSchema } from './schema';
-
-interface NormalizedSchema extends ComponentGeneratorSchema {
-  directory: string;
-  hasStyles: boolean;
-  projectRoot: string;
-}
-
-function getDirectory(host: Tree, options: ComponentGeneratorSchema) {
-  const workspace = getProjects(host);
-  let baseDir: string;
-  if (options.directory) {
-    baseDir = options.directory;
-  } else {
-    baseDir =
-      workspace.get(options.project)!.projectType === 'application'
-        ? 'components'
-        : 'lib';
-  }
-  return options.flat
-    ? baseDir
-    : joinPathFragments(baseDir, names(options.name).fileName);
-}
-
-function normalizeOptions(
-  host: Tree,
-  options: ComponentGeneratorSchema
-): NormalizedSchema {
-  const project = getProjects(host).get(options.project);
-
-  if (!project) {
-    logger.error(
-      `Cannot find the ${options.project} project. Please double check the project name.`
-    );
-    throw new Error();
-  }
-
-  const projectRoot =
-    project.sourceRoot ?? joinPathFragments(project.root, 'src');
-
-  const directory = getDirectory(host, options);
-
-  return {
-    ...options,
-    directory,
-    hasStyles: options.style !== 'none',
-    projectRoot,
-    exportDefault: !!options.exportDefault,
-  };
-}
+import { ComponentGeneratorSchema, NormalizedSchema } from './schema';
+import { normalizeOptions } from './utils/normalize-options';
 
 function createComponentFiles(tree: Tree, options: NormalizedSchema) {
   const libNames = names(options.name);
@@ -73,22 +23,17 @@ function createComponentFiles(tree: Tree, options: NormalizedSchema) {
       : `{ ${libNames.className} }`,
   };
 
-  const componentDir = joinPathFragments(
-    options.projectRoot,
-    options.directory
-  );
-
   generateFiles(
     tree,
     joinPathFragments(__dirname, 'files/common'),
-    componentDir,
+    options.directory,
     templateOptions
   );
   if (hasStyles) {
     generateFiles(
       tree,
       joinPathFragments(__dirname, 'files/styles'),
-      componentDir,
+      options.directory,
       templateOptions
     );
   }
@@ -96,7 +41,7 @@ function createComponentFiles(tree: Tree, options: NormalizedSchema) {
     generateFiles(
       tree,
       joinPathFragments(__dirname, 'files/tests'),
-      componentDir,
+      options.directory,
       templateOptions
     );
   }
@@ -104,7 +49,7 @@ function createComponentFiles(tree: Tree, options: NormalizedSchema) {
     generateFiles(
       tree,
       joinPathFragments(__dirname, 'files/storybook'),
-      componentDir,
+      options.directory,
       templateOptions
     );
     ensureMdxTypeInTsConfig(tree, options.project);

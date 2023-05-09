@@ -1,4 +1,5 @@
 import {
+  extractLayoutDirectory,
   getWorkspaceLayout,
   names,
   normalizePath,
@@ -9,8 +10,9 @@ import { getRelativePathToRootTsConfig } from '@nx/js';
 import { NormalizedSchema, QwikAppGeneratorSchema } from '../schema';
 
 function normalizeDirectory(options: QwikAppGeneratorSchema) {
-  return options.directory
-    ? `${names(options.directory).fileName}/${names(options.name).fileName}`
+  const { projectDirectory } = extractLayoutDirectory(options.directory ?? '');
+  return projectDirectory
+    ? `${names(projectDirectory).fileName}/${names(options.name).fileName}`
     : names(options.name).fileName;
 }
 
@@ -25,7 +27,8 @@ export function normalizeOptions(
   const appDirectory = normalizeDirectory(options);
   const appProjectName = normalizeProjectName(options);
 
-  const { appsDir } = getWorkspaceLayout(host);
+  const { layoutDirectory } = extractLayoutDirectory(options.directory ?? '');
+  const appsDir = layoutDirectory ?? getWorkspaceLayout(host).appsDir;
   const projectRoot = normalizePath(`${appsDir}/${appDirectory}`);
 
   const parsedTags = options.tags

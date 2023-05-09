@@ -1,0 +1,1327 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`e2e project should be able to resolve directory path based on the workspace layout when directory is "/apps/frontend" and framework is "cypress" should generate "frontend-myapp-e2e" with project's root at "apps/frontend/myapp-e2e": "/apps/frontend" 1`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "implicitDependencies": Array [
+    "myapp",
+  ],
+  "name": "frontend-myapp-e2e",
+  "projectType": "application",
+  "root": "apps/frontend/myapp-e2e",
+  "sourceRoot": "apps/frontend/myapp-e2e/src",
+  "tags": Array [],
+  "targets": Object {
+    "e2e": Object {
+      "configurations": Object {
+        "production": Object {
+          "devServerTarget": "myapp:serve:production",
+        },
+      },
+      "executor": "@nx/cypress:cypress",
+      "options": Object {
+        "cypressConfig": "apps/frontend/myapp-e2e/cypress.config.ts",
+        "devServerTarget": "myapp:serve",
+        "testingType": "e2e",
+      },
+    },
+    "lint": Object {
+      "executor": "@nx/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "apps/frontend/myapp-e2e/**/*.{js,ts}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+  },
+}
+`;
+
+exports[`e2e project should be able to resolve directory path based on the workspace layout when directory is "/apps/frontend" and framework is "cypress" should generate "frontend-myapp-e2e" with project's root at "apps/frontend/myapp-e2e": "/apps/frontend" 2`] = `
+Array [
+  Object {
+    "path": ".eslintignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/cypress.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/e2e/app.cy.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/fixtures/example.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/support/app.po.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/support/commands.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/support/e2e.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/.prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/favicon.svg",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/manifest.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/header/header.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/header/header.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/icons/qwik.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/router-head/router-head.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.dev.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.preview.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.ssr.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/global.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/flower/flower.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/flower/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/layout.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/service-worker.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.app.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`e2e project should be able to resolve directory path based on the workspace layout when directory is "/frontend" and framework is "cypress" should generate "frontend-myapp-e2e" with project's root at "apps/frontend/myapp-e2e": "/frontend" 1`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "implicitDependencies": Array [
+    "myapp",
+  ],
+  "name": "frontend-myapp-e2e",
+  "projectType": "application",
+  "root": "apps/frontend/myapp-e2e",
+  "sourceRoot": "apps/frontend/myapp-e2e/src",
+  "tags": Array [],
+  "targets": Object {
+    "e2e": Object {
+      "configurations": Object {
+        "production": Object {
+          "devServerTarget": "myapp:serve:production",
+        },
+      },
+      "executor": "@nx/cypress:cypress",
+      "options": Object {
+        "cypressConfig": "apps/frontend/myapp-e2e/cypress.config.ts",
+        "devServerTarget": "myapp:serve",
+        "testingType": "e2e",
+      },
+    },
+    "lint": Object {
+      "executor": "@nx/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "apps/frontend/myapp-e2e/**/*.{js,ts}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+  },
+}
+`;
+
+exports[`e2e project should be able to resolve directory path based on the workspace layout when directory is "/frontend" and framework is "cypress" should generate "frontend-myapp-e2e" with project's root at "apps/frontend/myapp-e2e": "/frontend" 2`] = `
+Array [
+  Object {
+    "path": ".eslintignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/cypress.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/e2e/app.cy.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/fixtures/example.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/support/app.po.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/support/commands.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/support/e2e.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/.prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/favicon.svg",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/manifest.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/header/header.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/header/header.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/icons/qwik.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/router-head/router-head.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.dev.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.preview.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.ssr.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/global.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/flower/flower.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/flower/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/layout.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/service-worker.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.app.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`e2e project should be able to resolve directory path based on the workspace layout when directory is "/packages" and framework is "cypress" should generate "myapp-e2e" with project's root at "packages/myapp-e2e": "/packages" 1`] = `
+Object {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "implicitDependencies": Array [
+    "myapp",
+  ],
+  "name": "myapp-e2e",
+  "projectType": "application",
+  "root": "packages/myapp-e2e",
+  "sourceRoot": "packages/myapp-e2e/src",
+  "tags": Array [],
+  "targets": Object {
+    "e2e": Object {
+      "configurations": Object {
+        "production": Object {
+          "devServerTarget": "myapp:serve:production",
+        },
+      },
+      "executor": "@nx/cypress:cypress",
+      "options": Object {
+        "cypressConfig": "packages/myapp-e2e/cypress.config.ts",
+        "devServerTarget": "myapp:serve",
+        "testingType": "e2e",
+      },
+    },
+    "lint": Object {
+      "executor": "@nx/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "packages/myapp-e2e/**/*.{js,ts}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+  },
+}
+`;
+
+exports[`e2e project should be able to resolve directory path based on the workspace layout when directory is "/packages" and framework is "cypress" should generate "myapp-e2e" with project's root at "packages/myapp-e2e": "/packages" 2`] = `
+Array [
+  Object {
+    "path": ".eslintignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/.prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/favicon.svg",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/manifest.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/header/header.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/header/header.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/icons/qwik.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/router-head/router-head.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.dev.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.preview.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.ssr.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/global.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/flower/flower.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/flower/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/layout.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/service-worker.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.app.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/myapp-e2e/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/myapp-e2e/cypress.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/myapp-e2e/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/myapp-e2e/src/e2e/app.cy.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/myapp-e2e/src/fixtures/example.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/myapp-e2e/src/support/app.po.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/myapp-e2e/src/support/commands.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/myapp-e2e/src/support/e2e.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/myapp-e2e/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`e2e project should be able to resolve directory path based on the workspace layout when directory is "/packages/frontend" and framework is "cypress" should generate "frontend-myapp-e2e" with project's root at "packages/frontend/myapp-e2e": "/packages/frontend" 1`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "implicitDependencies": Array [
+    "myapp",
+  ],
+  "name": "frontend-myapp-e2e",
+  "projectType": "application",
+  "root": "packages/frontend/myapp-e2e",
+  "sourceRoot": "packages/frontend/myapp-e2e/src",
+  "tags": Array [],
+  "targets": Object {
+    "e2e": Object {
+      "configurations": Object {
+        "production": Object {
+          "devServerTarget": "myapp:serve:production",
+        },
+      },
+      "executor": "@nx/cypress:cypress",
+      "options": Object {
+        "cypressConfig": "packages/frontend/myapp-e2e/cypress.config.ts",
+        "devServerTarget": "myapp:serve",
+        "testingType": "e2e",
+      },
+    },
+    "lint": Object {
+      "executor": "@nx/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "packages/frontend/myapp-e2e/**/*.{js,ts}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+  },
+}
+`;
+
+exports[`e2e project should be able to resolve directory path based on the workspace layout when directory is "/packages/frontend" and framework is "cypress" should generate "frontend-myapp-e2e" with project's root at "packages/frontend/myapp-e2e": "/packages/frontend" 2`] = `
+Array [
+  Object {
+    "path": ".eslintignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/.prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/favicon.svg",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/manifest.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/header/header.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/header/header.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/icons/qwik.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/router-head/router-head.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.dev.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.preview.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.ssr.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/global.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/flower/flower.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/flower/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/layout.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/service-worker.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.app.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/frontend/myapp-e2e/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/frontend/myapp-e2e/cypress.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/frontend/myapp-e2e/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/frontend/myapp-e2e/src/e2e/app.cy.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/frontend/myapp-e2e/src/fixtures/example.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/frontend/myapp-e2e/src/support/app.po.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/frontend/myapp-e2e/src/support/commands.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/frontend/myapp-e2e/src/support/e2e.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "packages/frontend/myapp-e2e/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`e2e project should be able to resolve directory path based on the workspace layout when directory is "apps" and framework is "cypress" should generate "myapp-e2e" with project's root at "apps/myapp-e2e": "apps" 1`] = `
+Object {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "implicitDependencies": Array [
+    "myapp",
+  ],
+  "name": "myapp-e2e",
+  "projectType": "application",
+  "root": "apps/myapp-e2e",
+  "sourceRoot": "apps/myapp-e2e/src",
+  "tags": Array [],
+  "targets": Object {
+    "e2e": Object {
+      "configurations": Object {
+        "production": Object {
+          "devServerTarget": "myapp:serve:production",
+        },
+      },
+      "executor": "@nx/cypress:cypress",
+      "options": Object {
+        "cypressConfig": "apps/myapp-e2e/cypress.config.ts",
+        "devServerTarget": "myapp:serve",
+        "testingType": "e2e",
+      },
+    },
+    "lint": Object {
+      "executor": "@nx/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "apps/myapp-e2e/**/*.{js,ts}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+  },
+}
+`;
+
+exports[`e2e project should be able to resolve directory path based on the workspace layout when directory is "apps" and framework is "cypress" should generate "myapp-e2e" with project's root at "apps/myapp-e2e": "apps" 2`] = `
+Array [
+  Object {
+    "path": ".eslintignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp-e2e/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp-e2e/cypress.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp-e2e/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp-e2e/src/e2e/app.cy.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp-e2e/src/fixtures/example.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp-e2e/src/support/app.po.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp-e2e/src/support/commands.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp-e2e/src/support/e2e.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp-e2e/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/.prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/favicon.svg",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/manifest.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/header/header.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/header/header.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/icons/qwik.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/router-head/router-head.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.dev.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.preview.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.ssr.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/global.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/flower/flower.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/flower/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/layout.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/service-worker.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.app.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`e2e project should be able to resolve directory path based on the workspace layout when directory is "apps/frontend" and framework is "cypress" should generate "frontend-myapp-e2e" with project's root at "apps/frontend/myapp-e2e": "apps/frontend" 1`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "implicitDependencies": Array [
+    "myapp",
+  ],
+  "name": "frontend-myapp-e2e",
+  "projectType": "application",
+  "root": "apps/frontend/myapp-e2e",
+  "sourceRoot": "apps/frontend/myapp-e2e/src",
+  "tags": Array [],
+  "targets": Object {
+    "e2e": Object {
+      "configurations": Object {
+        "production": Object {
+          "devServerTarget": "myapp:serve:production",
+        },
+      },
+      "executor": "@nx/cypress:cypress",
+      "options": Object {
+        "cypressConfig": "apps/frontend/myapp-e2e/cypress.config.ts",
+        "devServerTarget": "myapp:serve",
+        "testingType": "e2e",
+      },
+    },
+    "lint": Object {
+      "executor": "@nx/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "apps/frontend/myapp-e2e/**/*.{js,ts}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+  },
+}
+`;
+
+exports[`e2e project should be able to resolve directory path based on the workspace layout when directory is "apps/frontend" and framework is "cypress" should generate "frontend-myapp-e2e" with project's root at "apps/frontend/myapp-e2e": "apps/frontend" 2`] = `
+Array [
+  Object {
+    "path": ".eslintignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": ".prettierrc",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/cypress.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/e2e/app.cy.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/fixtures/example.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/support/app.po.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/support/commands.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/src/support/e2e.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/frontend/myapp-e2e/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/.eslintrc.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/.prettierignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/project.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/favicon.svg",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/manifest.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/public/robots.txt",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/README.md",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/header/header.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/header/header.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/icons/qwik.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/components/router-head/router-head.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.dev.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.preview.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/entry.ssr.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/global.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/root.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/flower/flower.,",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/flower/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/index.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/layout.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/src/routes/service-worker.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.app.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/tsconfig.spec.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/myapp/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/.gitignore",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "nx.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "package.json",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "tsconfig.base.json",
+    "type": "CREATE",
+  },
+]
+`;

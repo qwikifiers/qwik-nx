@@ -3,39 +3,11 @@
 exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "false" and skipTests is "false"  1`] = `
 Array [
   Object {
-    "path": ".prettierrc",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "apps/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/dummy-lib/project.json",
-    "type": "CREATE",
-  },
-  Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.spec.tsx",
     "type": "CREATE",
   },
   Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]
@@ -70,35 +42,7 @@ export const Hello = component$(() => {
 exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "false" and skipTests is "true"  1`] = `
 Array [
   Object {
-    "path": ".prettierrc",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "apps/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/dummy-lib/project.json",
-    "type": "CREATE",
-  },
-  Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]
@@ -122,22 +66,6 @@ export const Hello = component$(() => {
 exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "true" and skipTests is "false"  1`] = `
 Array [
   Object {
-    "path": ".prettierrc",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "apps/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/dummy-lib/project.json",
-    "type": "CREATE",
-  },
-  Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.doc.mdx",
     "type": "CREATE",
   },
@@ -151,18 +79,6 @@ Array [
   },
   Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]
@@ -248,22 +164,6 @@ export const Hello = component$(() => {
 exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "false", generateStories is "true" and skipTests is "true"  1`] = `
 Array [
   Object {
-    "path": ".prettierrc",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "apps/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/dummy-lib/project.json",
-    "type": "CREATE",
-  },
-  Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.doc.mdx",
     "type": "CREATE",
   },
@@ -273,18 +173,6 @@ Array [
   },
   Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]
@@ -359,39 +247,11 @@ export const Hello = component$(() => {
 exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "false" and skipTests is "false"  1`] = `
 Array [
   Object {
-    "path": ".prettierrc",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "apps/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/dummy-lib/project.json",
-    "type": "CREATE",
-  },
-  Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.spec.tsx",
     "type": "CREATE",
   },
   Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]
@@ -426,35 +286,7 @@ export default component$(() => {
 exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "false" and skipTests is "true"  1`] = `
 Array [
   Object {
-    "path": ".prettierrc",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "apps/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/dummy-lib/project.json",
-    "type": "CREATE",
-  },
-  Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]
@@ -478,22 +310,6 @@ export default component$(() => {
 exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "true" and skipTests is "false"  1`] = `
 Array [
   Object {
-    "path": ".prettierrc",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "apps/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/dummy-lib/project.json",
-    "type": "CREATE",
-  },
-  Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.doc.mdx",
     "type": "CREATE",
   },
@@ -507,18 +323,6 @@ Array [
   },
   Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]
@@ -604,22 +408,6 @@ export default component$(() => {
 exports[`component generator generated contents should match the snapshot should match the snapshot when exportDefault is "true", generateStories is "true" and skipTests is "true"  1`] = `
 Array [
   Object {
-    "path": ".prettierrc",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "apps/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/.gitignore",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "libs/dummy-lib/project.json",
-    "type": "CREATE",
-  },
-  Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.doc.mdx",
     "type": "CREATE",
   },
@@ -629,18 +417,6 @@ Array [
   },
   Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]
@@ -712,42 +488,79 @@ export default component$(() => {
 "
 `;
 
-exports[`component generator should generate a component file inside a given directory 1`] = `
+exports[`component generator should generate a component file inside a given directory should generate component at "apps/dummy-app/secondary/src/hello/hello.tsx" for project dummy-app when directory is "apps/dummy-app/secondary/src": {"directory":"apps/dummy-app/secondary/src"} 1`] = `
 Array [
   Object {
-    "path": ".prettierrc",
+    "path": "apps/dummy-app/secondary/src/hello/hello.spec.tsx",
     "type": "CREATE",
   },
   Object {
-    "path": "apps/.gitignore",
+    "path": "apps/dummy-app/secondary/src/hello/hello.tsx",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`component generator should generate a component file inside a given directory should generate component at "apps/dummy-app/src/components/hello/hello.tsx" for project dummy-app when directory is "undefined": {} 1`] = `
+Array [
+  Object {
+    "path": "apps/dummy-app/src/components/hello/hello.spec.tsx",
     "type": "CREATE",
   },
   Object {
-    "path": "libs/.gitignore",
+    "path": "apps/dummy-app/src/components/hello/hello.tsx",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`component generator should generate a component file inside a given directory should generate component at "apps/dummy-app/src/components/nested-folder/hello/hello.tsx" for project dummy-app when directory is "apps/dummy-app/src/components/nested-folder": {"directory":"apps/dummy-app/src/components/nested-folder"} 1`] = `
+Array [
+  Object {
+    "path": "apps/dummy-app/src/components/nested-folder/hello/hello.spec.tsx",
     "type": "CREATE",
   },
   Object {
-    "path": "libs/dummy-lib/project.json",
+    "path": "apps/dummy-app/src/components/nested-folder/hello/hello.tsx",
     "type": "CREATE",
   },
+]
+`;
+
+exports[`component generator should generate a component file inside a given directory should generate component at "libs/dummy-lib/secondary/src/hello/hello.tsx" for project dummy-lib when directory is "libs/dummy-lib/secondary/src": {"directory":"libs/dummy-lib/secondary/src"} 1`] = `
+Array [
+  Object {
+    "path": "libs/dummy-lib/secondary/src/hello/hello.spec.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/secondary/src/hello/hello.tsx",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`component generator should generate a component file inside a given directory should generate component at "libs/dummy-lib/src/lib/components/nested-folder/hello/hello.tsx" for project dummy-lib when directory is "libs/dummy-lib/src/lib/components/nested-folder": {"directory":"libs/dummy-lib/src/lib/components/nested-folder"} 1`] = `
+Array [
+  Object {
+    "path": "libs/dummy-lib/src/lib/components/nested-folder/hello/hello.spec.tsx",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "libs/dummy-lib/src/lib/components/nested-folder/hello/hello.tsx",
+    "type": "CREATE",
+  },
+]
+`;
+
+exports[`component generator should generate a component file inside a given directory should generate component at "libs/dummy-lib/src/lib/hello/hello.tsx" for project dummy-lib when directory is "undefined": {} 1`] = `
+Array [
   Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.spec.tsx",
     "type": "CREATE",
   },
   Object {
     "path": "libs/dummy-lib/src/lib/hello/hello.tsx",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "nx.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "package.json",
-    "type": "CREATE",
-  },
-  Object {
-    "path": "tsconfig.base.json",
     "type": "CREATE",
   },
 ]

@@ -1,4 +1,11 @@
-import { getWorkspaceLayout, names, offsetFromRoot, Tree } from '@nx/devkit';
+import {
+  extractLayoutDirectory,
+  getWorkspaceLayout,
+  joinPathFragments,
+  names,
+  offsetFromRoot,
+  Tree,
+} from '@nx/devkit';
 import { Linter } from '@nx/linter';
 import { LibraryGeneratorSchema, NormalizedSchema } from '../schema';
 
@@ -6,12 +13,19 @@ export function normalizeOptions(
   tree: Tree,
   schema: LibraryGeneratorSchema
 ): NormalizedSchema {
+  const extracted = extractLayoutDirectory(schema.directory ?? '');
+
   const name = names(schema.name).fileName;
-  const projectDirectory = schema.directory
-    ? `${names(schema.directory).fileName}/${name}`
+
+  const fullProjectDirectory = extracted.projectDirectory
+    ? `${names(extracted.projectDirectory).fileName}/${name}`
     : name;
-  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
-  const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
+  const projectName = fullProjectDirectory.replace(new RegExp('/', 'g'), '-');
+
+  const { libsDir: defaultLibsDir } = getWorkspaceLayout(tree);
+  const libsDir = extracted.layoutDirectory ?? defaultLibsDir;
+
+  const projectRoot = joinPathFragments(libsDir, fullProjectDirectory);
   const parsedTags = schema.tags
     ? schema.tags.split(',').map((s) => s.trim())
     : [];
@@ -30,7 +44,7 @@ export function normalizeOptions(
     ...withDefaultValues,
     projectName,
     projectRoot,
-    projectDirectory,
+    projectDirectory: fullProjectDirectory,
     parsedTags,
     setupVitest: withDefaultValues.unitTestRunner === 'vitest',
     offsetFromRoot: offsetFromRoot(projectRoot),

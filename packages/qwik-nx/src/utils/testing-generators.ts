@@ -1,26 +1,22 @@
-import { addProjectConfiguration, names, Tree } from '@nx/devkit';
+import { Tree } from '@nx/devkit';
 
-export function createLib(tree: Tree, libName: string): void {
-  const { fileName } = names(libName);
-
-  addProjectConfiguration(
-    tree,
-    fileName,
-    {
-      tags: [],
-      root: `libs/${fileName}`,
-      projectType: 'library',
-      sourceRoot: `libs/${fileName}/src`,
-      targets: {},
-    },
-    true
-  );
+interface FormattedChange {
+  path: string;
+  type: string;
 }
 
 export function getFormattedListChanges(
-  tree: Tree
-): { path: string; type: string }[] {
-  return [...tree.listChanges()]
+  tree: Tree,
+  previous?: FormattedChange[]
+): FormattedChange[] {
+  let formatted = [...tree.listChanges()]
     .sort((a, b) => a.path.localeCompare(b.path))
     .map((c) => ({ path: c.path, type: c.type }));
+
+  if (previous) {
+    formatted = formatted.filter(
+      (f) => !previous.some((p) => p.path === f.path && p.type === f.type)
+    );
+  }
+  return formatted;
 }

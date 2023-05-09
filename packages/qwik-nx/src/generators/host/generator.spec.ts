@@ -53,4 +53,46 @@ describe('host generator', () => {
       ).toMatchSnapshot();
     }
   });
+
+  describe('should be able to resolve directory path based on the workspace layout', () => {
+    test.each`
+      directory               | expectedHostProjectName | expectedRemoteProjectName | hostProjectRoot                  | remoteProjectRoot
+      ${'/frontend'}          | ${'frontend-myhostapp'} | ${'frontend-remote1'}     | ${'apps/frontend/myhostapp'}     | ${'apps/frontend/remote1'}
+      ${'apps'}               | ${'myhostapp'}          | ${'remote1'}              | ${'apps/myhostapp'}              | ${'apps/remote1'}
+      ${'/apps/frontend'}     | ${'frontend-myhostapp'} | ${'frontend-remote1'}     | ${'apps/frontend/myhostapp'}     | ${'apps/frontend/remote1'}
+      ${'apps/frontend'}      | ${'frontend-myhostapp'} | ${'frontend-remote1'}     | ${'apps/frontend/myhostapp'}     | ${'apps/frontend/remote1'}
+      ${'/packages'}          | ${'myhostapp'}          | ${'remote1'}              | ${'packages/myhostapp'}          | ${'packages/remote1'}
+      ${'/packages/frontend'} | ${'frontend-myhostapp'} | ${'frontend-remote1'}     | ${'packages/frontend/myhostapp'} | ${'packages/frontend/remote1'}
+    `(
+      'when directory is "$directory" should generate "$expectedHostProjectName" and "$expectedRemoteProjectName" with projects\' roots at "$hostProjectRoot" and "$remoteProjectRoot"',
+      async ({
+        directory,
+        expectedHostProjectName,
+        expectedRemoteProjectName,
+        hostProjectRoot,
+        remoteProjectRoot,
+      }) => {
+        await generator(appTree, { ...options, directory });
+
+        const hostConfig = readProjectConfiguration(
+          appTree,
+          expectedHostProjectName
+        );
+
+        expect(hostConfig.root).toBe(hostProjectRoot);
+        expect(hostConfig).toMatchSnapshot(
+          JSON.stringify(directory, expectedHostProjectName)
+        );
+        const remoteConfig = readProjectConfiguration(
+          appTree,
+          expectedRemoteProjectName
+        );
+
+        expect(remoteConfig.root).toBe(remoteProjectRoot);
+        expect(remoteConfig).toMatchSnapshot(
+          JSON.stringify(directory, expectedRemoteProjectName)
+        );
+      }
+    );
+  });
 });

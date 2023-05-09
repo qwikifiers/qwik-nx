@@ -1,5 +1,5 @@
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
-import { Tree, readProjectConfiguration } from '@nx/devkit';
+import { Tree, joinPathFragments, readProjectConfiguration } from '@nx/devkit';
 
 import generator from './generator';
 import { LibraryGeneratorSchema } from './schema';
@@ -56,5 +56,31 @@ describe('library generator', () => {
 
     expect(config).toMatchSnapshot();
     expect(getFormattedListChanges(appTree)).toMatchSnapshot();
+  });
+
+  describe('should be able to resolve directory path based on the workspace layout', () => {
+    test.each`
+      directory             | expectedProjectName | projectRoot
+      ${'/shared'}          | ${'shared-mylib'}   | ${'libs/shared/mylib'}
+      ${'libs'}             | ${'mylib'}          | ${'libs/mylib'}
+      ${'/libs/shared'}     | ${'shared-mylib'}   | ${'libs/shared/mylib'}
+      ${'libs/shared'}      | ${'shared-mylib'}   | ${'libs/shared/mylib'}
+      ${'/packages'}        | ${'mylib'}          | ${'packages/mylib'}
+      ${'/packages/shared'} | ${'shared-mylib'}   | ${'packages/shared/mylib'}
+    `(
+      'when directory is "$directory" should generate "$expectedProjectName" with project\'s root at "$projectRoot"',
+      async ({ directory, expectedProjectName, projectRoot }) => {
+        await generator(appTree, { ...options, directory });
+        const config = readProjectConfiguration(appTree, expectedProjectName);
+
+        expect(config.root).toBe(projectRoot);
+        expect(config).toMatchSnapshot(
+          JSON.stringify(directory, expectedProjectName)
+        );
+        expect(
+          appTree.exists(joinPathFragments(projectRoot, 'vite.config.ts'))
+        ).toBeTruthy();
+      }
+    );
   });
 });

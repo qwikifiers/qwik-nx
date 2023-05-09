@@ -1,5 +1,5 @@
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
-import { Tree, readProjectConfiguration } from '@nx/devkit';
+import { Tree, joinPathFragments, readProjectConfiguration } from '@nx/devkit';
 
 import generator from './generator';
 import { QwikAppGeneratorSchema } from './schema';
@@ -76,5 +76,31 @@ describe('qwik-nx generator', () => {
       expect(config.targets?.e2e.executor).toEqual('@nx/cypress:cypress');
       expect(appTree.exists('apps/myapp-e2e/cypress.config.ts')).toBeTruthy();
     });
+  });
+
+  describe('should be able to resolve directory path based on the workspace layout', () => {
+    test.each`
+      directory               | expectedProjectName | projectRoot
+      ${'/frontend'}          | ${'frontend-myapp'} | ${'apps/frontend/myapp'}
+      ${'apps'}               | ${'myapp'}          | ${'apps/myapp'}
+      ${'/apps/frontend'}     | ${'frontend-myapp'} | ${'apps/frontend/myapp'}
+      ${'apps/frontend'}      | ${'frontend-myapp'} | ${'apps/frontend/myapp'}
+      ${'/packages'}          | ${'myapp'}          | ${'packages/myapp'}
+      ${'/packages/frontend'} | ${'frontend-myapp'} | ${'packages/frontend/myapp'}
+    `(
+      'when directory is "$directory" should generate "$expectedProjectName" with project\'s root at "$projectRoot"',
+      async ({ directory, expectedProjectName, projectRoot }) => {
+        await generator(appTree, { ...defaultOptions, directory });
+        const config = readProjectConfiguration(appTree, expectedProjectName);
+
+        expect(config.root).toBe(projectRoot);
+        expect(config).toMatchSnapshot(
+          JSON.stringify(directory, expectedProjectName)
+        );
+        expect(
+          appTree.exists(joinPathFragments(projectRoot, 'vite.config.ts'))
+        ).toBeTruthy();
+      }
+    );
   });
 });

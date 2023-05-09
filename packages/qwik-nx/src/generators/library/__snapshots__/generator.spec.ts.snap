@@ -1,5 +1,209 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`library generator should be able to resolve directory path based on the workspace layout when directory is "/libs/shared" should generate "shared-mylib" with project's root at "libs/shared/mylib": "/libs/shared" 1`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "shared-mylib",
+  "projectType": "library",
+  "root": "libs/shared/mylib",
+  "sourceRoot": "libs/shared/mylib/src",
+  "tags": Array [],
+  "targets": Object {
+    "lint": Object {
+      "executor": "@nx/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "libs/shared/mylib/**/*.{ts,tsx,js,jsx}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/libs/shared/mylib",
+      },
+      "outputs": Array [
+        "../../..//coverage/libs/shared/mylib",
+      ],
+    },
+  },
+}
+`;
+
+exports[`library generator should be able to resolve directory path based on the workspace layout when directory is "/packages" should generate "mylib" with project's root at "packages/mylib": "/packages" 1`] = `
+Object {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "mylib",
+  "projectType": "library",
+  "root": "packages/mylib",
+  "sourceRoot": "packages/mylib/src",
+  "tags": Array [],
+  "targets": Object {
+    "lint": Object {
+      "executor": "@nx/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "packages/mylib/**/*.{ts,tsx,js,jsx}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/mylib",
+      },
+      "outputs": Array [
+        "../..//coverage/packages/mylib",
+      ],
+    },
+  },
+}
+`;
+
+exports[`library generator should be able to resolve directory path based on the workspace layout when directory is "/packages/shared" should generate "shared-mylib" with project's root at "packages/shared/mylib": "/packages/shared" 1`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "shared-mylib",
+  "projectType": "library",
+  "root": "packages/shared/mylib",
+  "sourceRoot": "packages/shared/mylib/src",
+  "tags": Array [],
+  "targets": Object {
+    "lint": Object {
+      "executor": "@nx/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "packages/shared/mylib/**/*.{ts,tsx,js,jsx}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/packages/shared/mylib",
+      },
+      "outputs": Array [
+        "../../..//coverage/packages/shared/mylib",
+      ],
+    },
+  },
+}
+`;
+
+exports[`library generator should be able to resolve directory path based on the workspace layout when directory is "/shared" should generate "shared-mylib" with project's root at "libs/shared/mylib": "/shared" 1`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "shared-mylib",
+  "projectType": "library",
+  "root": "libs/shared/mylib",
+  "sourceRoot": "libs/shared/mylib/src",
+  "tags": Array [],
+  "targets": Object {
+    "lint": Object {
+      "executor": "@nx/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "libs/shared/mylib/**/*.{ts,tsx,js,jsx}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/libs/shared/mylib",
+      },
+      "outputs": Array [
+        "../../..//coverage/libs/shared/mylib",
+      ],
+    },
+  },
+}
+`;
+
+exports[`library generator should be able to resolve directory path based on the workspace layout when directory is "libs" should generate "mylib" with project's root at "libs/mylib": "libs" 1`] = `
+Object {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "mylib",
+  "projectType": "library",
+  "root": "libs/mylib",
+  "sourceRoot": "libs/mylib/src",
+  "tags": Array [],
+  "targets": Object {
+    "lint": Object {
+      "executor": "@nx/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "libs/mylib/**/*.{ts,tsx,js,jsx}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/libs/mylib",
+      },
+      "outputs": Array [
+        "../..//coverage/libs/mylib",
+      ],
+    },
+  },
+}
+`;
+
+exports[`library generator should be able to resolve directory path based on the workspace layout when directory is "libs/shared" should generate "shared-mylib" with project's root at "libs/shared/mylib": "libs/shared" 1`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "shared-mylib",
+  "projectType": "library",
+  "root": "libs/shared/mylib",
+  "sourceRoot": "libs/shared/mylib/src",
+  "tags": Array [],
+  "targets": Object {
+    "lint": Object {
+      "executor": "@nx/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "libs/shared/mylib/**/*.{ts,tsx,js,jsx}",
+        ],
+      },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
+    },
+    "test": Object {
+      "executor": "@nx/vite:test",
+      "options": Object {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/libs/shared/mylib",
+      },
+      "outputs": Array [
+        "../../..//coverage/libs/shared/mylib",
+      ],
+    },
+  },
+}
+`;
+
 exports[`library generator should generate build configs for buildable libraries 1`] = `
 Object {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
