@@ -23,13 +23,6 @@ on:
           - create-qwik-nx
 
 jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          [[ "${{ inputs.type }}" ]] || { echo "inputs.type input is empty" ; exit 1; }
-        shell: bash
-
   test:
     runs-on: ubuntu-latest
 
