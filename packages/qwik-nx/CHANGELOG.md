@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.0...qwik-nx-1.0.1) (2023-05-09)
+
+
+### Bug Fixes
+
+* **qwik-nx:** deduce layout directory ([#152](https://github.com/qwikifiers/qwik-nx/issues/152)) ([324f81c](https://github.com/qwikifiers/qwik-nx/commit/324f81c34612f19383e470f891b86548cfa2d25b))
+
+
+
 # [1.0.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-0.16.2...qwik-nx-1.0.0) (2023-05-03)
 
 
