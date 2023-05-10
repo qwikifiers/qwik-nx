@@ -28,6 +28,7 @@
     "create-nx-workspace": "^16.0.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   }
 }
