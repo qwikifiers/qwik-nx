@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.2](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.1...qwik-nx-1.0.2) (2023-05-11)
+
+
+
 ## [1.0.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.0...qwik-nx-1.0.1) (2023-05-09)
 
 
