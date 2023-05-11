@@ -34,6 +34,12 @@ npm install -D qwik-nx
 ### Generating a workspace
 
 ```
+npx create-qwik-nx@latest
+```
+
+or
+
+```
 npx create-nx-workspace@latest org-workspace --preset=qwik-nx
 ```
 

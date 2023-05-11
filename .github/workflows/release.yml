@@ -58,12 +58,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpx nx run ${{ inputs.package }}:version-publish --configuration=${{ inputs.type }} --push=true
-
-      - name: Tag last-release
-        if: github.ref == 'refs/heads/main'
-        shell: bash
-        run: git tag -f last-release
+        run: pnpx nx run ${{ inputs.package }}:version-publish --configuration=${{ inputs.type }} --push=true --baseBranch=${{ github.ref_name }}
 
       - name: Push changes
         uses: ad-m/github-push-action@master
