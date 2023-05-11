@@ -1,4 +1,4 @@
-import type { PluginOption, UserConfig } from 'vite';
+import { PluginOption, UserConfig, mergeConfig } from 'vite';
 import {
   type QwikVitePluginOptions,
   qwikVite,
@@ -13,7 +13,13 @@ export function withNx(
   config: UserConfig,
   qwikViteOpts?: QwikVitePluginOptions
 ): UserConfig {
-  const updated = { ...config };
+  const updated = mergeConfig(config, {
+    build: {
+      rollupOptions: {
+        external: ['@qwik-city-sw-register'],
+      },
+    },
+  });
   updated.plugins = updated.plugins?.map((plugin: PluginOption) => {
     switch ((plugin as any)?.name) {
       case 'vite-plugin-qwik':

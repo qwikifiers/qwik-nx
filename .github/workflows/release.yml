@@ -1,7 +1,26 @@
 name: Release
 
 on:
-  - workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      type:
+        required: true
+        type: choice
+        description: Release type
+        options:
+          - patch
+          - minor
+          - major
+          - previous
+        default: 'patch'
+
+      package:
+        required: true
+        type: choice
+        description: Package to release
+        options:
+          - qwik-nx
+          - create-qwik-nx
 
 jobs:
   test:
@@ -25,9 +44,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
-
     needs: [test]
-
     steps:
       - uses: actions/checkout@v3
         with:
@@ -36,7 +53,20 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Release
-        uses: ./.github/actions/release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpx nx run ${{ inputs.package }}:version-publish --configuration=${{ inputs.type }} --push=true --baseBranch=${{ github.ref_name }}
+
+      - name: Tag last-release
+        if: github.ref == 'refs/heads/main'
+        shell: bash
+        run: git tag -f last-release
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          npm_token: ${{ secrets.NPM_TOKEN }}
+          branch: ${{ github.ref }}
+          force: true
+          tags: true
