@@ -12,19 +12,19 @@ runs:
 
     - name: Lint
       shell: bash
-      run: pnpx nx affected:lint --base=last-release --exclude="add-nx-to-qwik"
+      run: pnpx nx affected:lint --base=${{ env.NX_BASE }} --head=HEAD --exclude="add-nx-to-qwik"
 
     - name: Build
       shell: bash
-      run: pnpx nx affected:build --base=last-release --exclude="add-nx-to-qwik"
+      run: pnpx nx affected:build --base=${{ env.NX_BASE }} --head=HEAD --exclude="add-nx-to-qwik"
 
     - name: Test
       shell: bash
-      run: npx nx affected --target=test --base=last-release
+      run: npx nx affected --target=test --base=${{ env.NX_BASE }} --head=HEAD
 
     - name: E2E Tests
       shell: bash
-      run: npx nx affected --target=e2e --base=last-release
+      run: npx nx affected --target=e2e --base=${{ env.NX_BASE }} --head=HEAD
 
     # - name: Codecov upload
     #   uses: codecov/codecov-action@v2
