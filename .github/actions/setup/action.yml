@@ -42,3 +42,9 @@ runs:
     - name: Install dependencies
       shell: bash
       run: pnpm install --frozen-lockfile
+
+    - name: Nx set SHAs
+      uses: nrwl/nx-set-shas@v3.0.1
+      id: setSHAs
+      with:
+        main-branch-name: 'main'
