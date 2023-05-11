@@ -82,9 +82,13 @@ export async function storybookConfigurationGenerator(
   ensurePackage('@nx/storybook', nxVersion);
   const { configurationGenerator } = await import('@nx/storybook');
 
+  const { oldFormat } = await getStorybookVersion();
+
   await configurationGenerator(tree, {
     storybook7UiFramework: '@storybook/html-webpack5',
-    uiFramework: '@storybook/html',
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    uiFramework: oldFormat ? '@storybook/html' : '@storybook/html-webpack5',
     bundler: 'vite',
     name: normalizedOptions.name,
     js: normalizedOptions.js,
@@ -103,22 +107,33 @@ export async function storybookConfigurationGenerator(
 async function addStorybookDependencies(
   tree: Tree
 ): Promise<GeneratorCallback> {
-  const { storybook7Version } = await import(
-    '@nx/storybook/src/utils/versions'
-  );
+  const { storybookVersion } = await getStorybookVersion();
 
   return addDependenciesToPackageJson(
     tree,
     {},
     {
       'storybook-framework-qwik': storybookFrameworkQwikVersion,
-      '@storybook/builder-vite': storybook7Version,
-      '@storybook/addon-docs': storybook7Version,
+      '@storybook/builder-vite': storybookVersion,
+      '@storybook/addon-docs': storybookVersion,
       react: reactVersion,
       'react-dom': reactDOMVersion,
       '@types/mdx': typesMdx,
     }
   );
+}
+
+async function getStorybookVersion() {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore "storybook7Version" was renamed to "storybookVersion" in nx16.1. Leaving both for compatibility
+  const { storybook7Version, storybookVersion } = await import(
+    '@nx/storybook/src/utils/versions'
+  );
+  const oldFormat = !!storybook7Version;
+  return {
+    oldFormat,
+    storybookVersion: oldFormat ? storybook7Version : storybookVersion,
+  };
 }
 
 export default storybookConfigurationGenerator;
