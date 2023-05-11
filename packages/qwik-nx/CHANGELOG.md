@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.3](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.2...qwik-nx-1.0.3) (2023-05-11)
+
+
+### Bug Fixes
+
+* **qwik-nx:** use renamed variable for storybook version in nx 16.1 ([#160](https://github.com/qwikifiers/qwik-nx/issues/160)) ([0f0b3cd](https://github.com/qwikifiers/qwik-nx/commit/0f0b3cdfef894e4b218bcc3747236ac95a865cfb))
+
+
+
 ## [1.0.2](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.1...qwik-nx-1.0.2) (2023-05-11)
 
 
