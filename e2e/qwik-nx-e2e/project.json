@@ -5,12 +5,13 @@
   "sourceRoot": "e2e/qwik-nx-e2e/src",
   "targets": {
     "e2e": {
-      "executor": "@nx/plugin:e2e",
+      "executor": "@nx/jest:jest",
       "options": {
-        "target": "qwik-nx:build",
         "jestConfig": "e2e/qwik-nx-e2e/jest.config.ts",
-        "maxWorkers": 1
-      }
+        "maxWorkers": 1,
+        "runInBand": true
+      },
+      "dependsOn": ["qwik-nx:build"]
     },
     "lint": {
       "executor": "@nx/linter:eslint",
