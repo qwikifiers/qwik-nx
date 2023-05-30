@@ -12,6 +12,10 @@
     "test": "nx test"
   },
   "private": true,
+  "packageManager": "pnpm@8.4.0",
+  "engines": {
+    "pnpm": "^8.0.0"
+  },
   "devDependencies": {
     "@builder.io/qwik": "0.17.4",
     "@commitlint/cli": "^17.3.0",
