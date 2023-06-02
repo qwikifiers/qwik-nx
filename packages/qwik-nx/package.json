@@ -1,6 +1,6 @@
 {
   "name": "qwik-nx",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./index.js",
   "typings": "./index.d.ts",
   "license": "MIT",
