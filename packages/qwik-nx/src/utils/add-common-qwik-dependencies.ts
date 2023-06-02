@@ -8,6 +8,7 @@ import {
   qwikCityVersion,
   qwikEslintPluginVersion,
   qwikVersion,
+  typesNodeVersion,
   undiciVersion,
   vitestVersion,
   viteTsconfigPathsVersion,
@@ -21,6 +22,7 @@ export function addCommonQwikDependencies(host: Tree): GeneratorCallback {
     {
       '@builder.io/qwik': qwikVersion,
       '@builder.io/qwik-city': qwikCityVersion,
+      '@types/node': typesNodeVersion,
       'eslint-plugin-qwik': qwikEslintPluginVersion,
       vite: viteVersion,
       vitest: vitestVersion, // TODO: vitest is also installed by "@nx/vite", but our version is higher
