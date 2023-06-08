@@ -21,8 +21,8 @@ export const tailwindcssVersion = '~3.1.8';
 export const nxKitVersion = '^3.0.0';
 
 // cloudflare-pages integration
-export const wranglerVersion = '^2.8.0';
-export const nxCloudflareWrangler = '^2.0.0';
+export const wranglerVersion = '^3.1.0';
+export const nxCloudflareWrangler = '^2.4.2';
 
 // storybook
 export const storybookFrameworkQwikVersion = '^0.2.0';
