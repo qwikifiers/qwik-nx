@@ -13,6 +13,8 @@ import {
   DEFAULT_E2E_TIMEOUT,
 } from '@qwikifiers/e2e/utils';
 
+const CLOUDFLARE_PREVIEW_PORT = 4300;
+
 describe('qwikNxVite plugin e2e', () => {
   // Setting up individual workspaces per
   // test can cause e2e runs to take a long time.
@@ -21,7 +23,7 @@ describe('qwikNxVite plugin e2e', () => {
   // on a unique project in the workspace, such that they
   // are not dependant on one another.
   beforeAll(async () => {
-    await killPorts(4212);
+    await killPorts(CLOUDFLARE_PREVIEW_PORT);
     ensureNxProject('qwik-nx', 'dist/packages/qwik-nx');
   }, 10000);
 
@@ -67,16 +69,18 @@ describe('qwikNxVite plugin e2e', () => {
     it(
       'should serve application in preview mode with custom port',
       async () => {
-        const port = 4212;
         const p = await runCommandUntil(
-          `run ${project}:preview-cloudflare --port=${port}`,
+          `run ${project}:preview-cloudflare --port=${CLOUDFLARE_PREVIEW_PORT}`,
           (output) => {
-            return output.includes('Local:') && output.includes(`:${port}`);
+            return (
+              output.includes('Local:') &&
+              output.includes(`:${CLOUDFLARE_PREVIEW_PORT}`)
+            );
           }
         );
         try {
           await promisifiedTreeKill(p.pid!, 'SIGKILL');
-          await killPort(port);
+          await killPort(CLOUDFLARE_PREVIEW_PORT);
         } catch {
           // ignore
         }
