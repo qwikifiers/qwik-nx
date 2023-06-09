@@ -2,6 +2,16 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.5](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.4...qwik-nx-1.0.5) (2023-06-09)
+
+
+### Bug Fixes
+
+* **qwik-nx:** bump cloudflare deps ([#176](https://github.com/qwikifiers/qwik-nx/issues/176)) ([3def657](https://github.com/qwikifiers/qwik-nx/commit/3def6577def2738be5399f68f78b434db52a82fc))
+* vite.config for cloudflare adapter miss-configurations ([#175](https://github.com/qwikifiers/qwik-nx/issues/175)) ([d2dd8e0](https://github.com/qwikifiers/qwik-nx/commit/d2dd8e0cfdb4a931f1be4fcc65083347faeaa749))
+
+
+
 ## [1.0.4](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.3...qwik-nx-1.0.4) (2023-06-02)
 
 
