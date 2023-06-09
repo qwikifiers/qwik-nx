@@ -15,7 +15,7 @@ import {
 
 const CLOUDFLARE_PREVIEW_PORT = 4300;
 
-describe('qwikNxVite plugin e2e', () => {
+describe('qwik nx cloudflare generator', () => {
   // Setting up individual workspaces per
   // test can cause e2e runs to take a long time.
   // For this reason, we recommend each suite only
@@ -33,7 +33,7 @@ describe('qwikNxVite plugin e2e', () => {
     await runNxCommandAsync('reset');
   });
 
-  describe('qwik nx cloudflare generator', () => {
+  describe('should build and serve a project with the cloudflare adapter', () => {
     let project: string;
     beforeAll(async () => {
       project = uniq('qwik-nx');
