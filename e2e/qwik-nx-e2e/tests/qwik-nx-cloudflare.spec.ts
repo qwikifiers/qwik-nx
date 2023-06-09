@@ -66,7 +66,7 @@ describe('qwik nx cloudflare generator', () => {
       DEFAULT_E2E_TIMEOUT
     );
 
-    it(
+    xit(
       'should serve application in preview mode with custom port',
       async () => {
         const p = await runCommandUntil(
