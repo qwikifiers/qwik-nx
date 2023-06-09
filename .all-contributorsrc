@@ -75,8 +75,21 @@
         "ideas",
         "test"
       ]
+    },
+    {
+      "login": "NachoVazquez",
+      "name": "Nacho Vazquez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9338604?v=4",
+      "profile": "https://github.com/NachoVazquez",
+      "contributions": [
+        "code",
+        "ideas",
+        "test",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
-  "skipCi": true
+  "skipCi": true,
+  "commitType": "docs"
 }
