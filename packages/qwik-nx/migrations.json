@@ -228,6 +228,20 @@
           "version": "^0.31.0"
         }
       }
+    },
+    "1.0.6": {
+      "version": "1.0.6",
+      "packages": {
+        "wrangler": {
+          "version": "^3.1.0"
+        },
+        "@k11r/nx-cloudflare-wrangler": {
+          "version": "^2.4.2"
+        },
+        "@nxkit/playwright": {
+          "version": "^3.0.2"
+        }
+      }
     }
   }
 }

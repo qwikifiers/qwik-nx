@@ -18,7 +18,7 @@ export const postcssVersion = '~8.4.16';
 export const tailwindcssVersion = '~3.1.8';
 
 // nxkit packages
-export const nxKitVersion = '^3.0.0';
+export const nxKitVersion = '^3.0.2';
 
 // cloudflare-pages integration
 export const wranglerVersion = '^3.1.0';

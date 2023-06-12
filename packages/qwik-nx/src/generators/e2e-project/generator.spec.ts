@@ -53,7 +53,6 @@ describe('e2e project', () => {
   });
 
   describe('should be able to resolve directory path based on the workspace layout', () => {
-    // TODO: playwright will generate incorrect project names, e.g. for "directory: '/frontend'" it ends up with "-frontend-myapp-e2e"
     test.each`
       directory               | expectedProjectName     | projectRoot                      | framework
       ${'/frontend'}          | ${'frontend-myapp-e2e'} | ${'apps/frontend/myapp-e2e'}     | ${'cypress'}
@@ -62,6 +61,12 @@ describe('e2e project', () => {
       ${'apps/frontend'}      | ${'frontend-myapp-e2e'} | ${'apps/frontend/myapp-e2e'}     | ${'cypress'}
       ${'/packages'}          | ${'myapp-e2e'}          | ${'packages/myapp-e2e'}          | ${'cypress'}
       ${'/packages/frontend'} | ${'frontend-myapp-e2e'} | ${'packages/frontend/myapp-e2e'} | ${'cypress'}
+      ${'/frontend'}          | ${'frontend-myapp-e2e'} | ${'apps/frontend/myapp-e2e'}     | ${'playwright'}
+      ${'apps'}               | ${'myapp-e2e'}          | ${'apps/myapp-e2e'}              | ${'playwright'}
+      ${'/apps/frontend'}     | ${'frontend-myapp-e2e'} | ${'apps/frontend/myapp-e2e'}     | ${'playwright'}
+      ${'apps/frontend'}      | ${'frontend-myapp-e2e'} | ${'apps/frontend/myapp-e2e'}     | ${'playwright'}
+      ${'/packages'}          | ${'myapp-e2e'}          | ${'packages/myapp-e2e'}          | ${'playwright'}
+      ${'/packages/frontend'} | ${'frontend-myapp-e2e'} | ${'packages/frontend/myapp-e2e'} | ${'playwright'}
     `(
       'when directory is "$directory" and framework is "$framework" should generate "$expectedProjectName" with project\'s root at "$projectRoot"',
       async ({ directory, framework, expectedProjectName, projectRoot }) => {

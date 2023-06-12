@@ -32,7 +32,7 @@
     "@nx/storybook": "16.3.0",
     "@nx/vite": "16.3.0",
     "@nx/workspace": "16.3.0",
-    "@nxkit/playwright": "^3.0.0",
+    "@nxkit/playwright": "^3.0.2",
     "@swc-node/register": "^1.4.2",
     "@swc/cli": "0.1.62",
     "@swc/core": "^1.2.173",
