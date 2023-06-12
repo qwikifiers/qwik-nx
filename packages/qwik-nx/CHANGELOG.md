@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.6](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.5...qwik-nx-1.0.6) (2023-06-12)
+
+
+### Bug Fixes
+
+* bump playwright version to bring support for nested folders ([#173](https://github.com/qwikifiers/qwik-nx/issues/173)) ([20944ae](https://github.com/qwikifiers/qwik-nx/commit/20944aeb5f772b6d09467c26feeea987d44627ea))
+
+
+
 ## [1.0.5](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.4...qwik-nx-1.0.5) (2023-06-09)
 
 
