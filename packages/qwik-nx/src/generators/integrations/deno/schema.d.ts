@@ -4,6 +4,6 @@ export interface DenoIntegrationGeneratorSchema {
   serveTarget: string;
   site?: string;
   skipFormat?: boolean;
-  generateGithubAction?: boolean;
+  generateGithubHook?: boolean;
   denoProjectName?: string;
 }
