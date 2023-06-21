@@ -25,6 +25,7 @@ interface NormalizedOptions extends DenoIntegrationGeneratorSchema {
   root: string;
   offsetFromRoot: string;
   config: QwikNxProjectConfiguration;
+  denoRoot: string;
 }
 
 function validateOptions(
@@ -53,13 +54,14 @@ function normalizeOptions(
   ) as QwikNxProjectConfiguration;
   return {
     ...options,
-    deployTarget: options.deployTarget,
-    serveTarget: options.serveTarget,
     denoProjectName: options.denoProjectName,
     root: projectConfig.root,
     offsetFromRoot: offsetFromRoot(projectConfig.root),
     config: projectConfig,
     site: options.site ?? 'yoursite.dev',
+    denoRoot:
+      projectConfig.targets.build.options?.['outputPath'] ??
+      `dist/${projectConfig.root}`,
   };
 }
 
@@ -70,10 +72,7 @@ function addFiles(tree: Tree, options: NormalizedOptions): void {
     offsetFromRoot: options.offsetFromRoot,
     site: options.site,
     denoProjectName: options.denoProjectName,
-    denoRoot: `${
-      options.config.targets.build.options?.['outputPath'] ??
-      `dist/${options.config.root}`
-    }/client`,
+    denoRoot: options.denoRoot,
   };
 
   generateFiles(
@@ -115,46 +114,50 @@ function getIntermediateDependsOnTarget(
   };
 }
 
-function addBuildConfigurations(tree: Tree, options: NormalizedOptions) {
-  const { project, config } = options;
+function configureProjectTargets(tree: Tree, options: NormalizedOptions) {
+  const { project, config, denoProjectName, denoRoot } = options;
 
+  // "production" if not yet created, otherwise "deno"
   const configurationName = getIntegrationConfigurationName(
     IntegrationName.Deno,
     config
   );
 
+  // build targets
   (config.targets['build'].configurations ??= {})[configurationName] = {};
   (config.targets['build.ssr'].configurations ??= {})[configurationName] =
     getBuildSSRTargetDenoConfiguration(options);
-  config.targets['build.deno'] = getIntermediateDependsOnTarget(
+  config.targets['build-deno'] = getIntermediateDependsOnTarget(
     options,
     configurationName
   );
 
-  updateProjectConfiguration(tree, project, config);
-}
-
-function addDeployTarget(tree: Tree, options: NormalizedOptions) {
-  const { deployTarget, project, denoProjectName, config } = options;
-
-  const configurationName = getIntegrationConfigurationName(
-    IntegrationName.Deno,
-    config
-  );
-
-  config.targets[deployTarget] = {
+  // "deploy" if not yet created, otherwise "deno.deploy"
+  const deploTargetName = config.targets['deploy'] ? 'deploy.deno' : 'deploy';
+  config.targets[deploTargetName] = {
     executor: 'nx:run-commands',
     options: {
+      cwd: `${denoRoot}/client`,
       command: `deployctl deploy --project=${denoProjectName} https://deno.land/std/http/file_server.ts --dry-run`,
     },
     configurations: {
       preview: {
         command: `deployctl deploy --project=${denoProjectName} https://deno.land/std/http/file_server.ts`,
       },
-      [configurationName]: {
+      production: {
         command: `deployctl deploy --project=${denoProjectName} --prod https://deno.land/std/http/file_server.ts`,
       },
     },
+    dependsOn: ['build-deno'],
+  };
+
+  // "preview-deno"
+  config.targets['preview-deno'] = {
+    executor: 'nx:run-commands',
+    options: {
+      command: `deno run --allow-net --allow-read --allow-env ${denoRoot}/server/entry.deno.js`,
+    },
+    dependsOn: ['build-deno'],
   };
 
   updateProjectConfiguration(tree, project, config);
@@ -168,11 +171,9 @@ export async function denoIntegrationGenerator(
 
   const normalizedOptions = normalizeOptions(tree, options);
 
-  addBuildConfigurations(tree, normalizedOptions);
+  configureProjectTargets(tree, normalizedOptions);
 
   addFiles(tree, normalizedOptions);
-
-  addDeployTarget(tree, normalizedOptions);
 
   if (!normalizedOptions.skipFormat) {
     await formatFiles(tree);

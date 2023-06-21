@@ -13,16 +13,6 @@
       },
       "x-prompt": "Name of the project to add Deno integration to"
     },
-    "deployTarget": {
-      "description": "The name of the deploy target",
-      "type": "string",
-      "default": "deploy-functions"
-    },
-    "serveTarget": {
-      "description": "The name of the serve target",
-      "type": "string",
-      "default": "serve-functions"
-    },
     "site": {
       "description": "The site where the serverless function will be deployed, e.g. 'cute-frog-420.deno.dev'",
       "type": "string"

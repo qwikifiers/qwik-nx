@@ -30,4 +30,4 @@ jobs:
         with:
           project: "<%= denoProjectName %>"
           entrypoint: "https://deno.land/std/http/file_server.ts"
-          root: "<%= denoRoot %>"
+          root: "<%= denoRoot %>/client"

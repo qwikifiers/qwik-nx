@@ -18,6 +18,9 @@ const { router, notFound, staticFile } = createQwikCity({
   render,
   qwikCityPlan,
   manifest,
+  static: {
+    root: '<%= denoRoot %>/client'
+  }
 });
 
 // Allow for dynamic port
