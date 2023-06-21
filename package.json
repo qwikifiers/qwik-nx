@@ -9,7 +9,8 @@
     "local-registry": "sh ./scripts/local-registry.sh",
     "prepare": "husky install",
     "start": "nx serve",
-    "test": "nx test"
+    "test": "nx test",
+    "e2e": "nx e2e"
   },
   "private": true,
   "packageManager": "pnpm@8.4.0",
