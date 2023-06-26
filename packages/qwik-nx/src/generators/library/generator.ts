@@ -125,6 +125,7 @@ async function configureVite(tree: Tree, options: NormalizedSchema) {
   const callback = await initGenerator(tree, {
     uiFramework: 'none',
     includeLib: true,
+    testEnvironment: 'node',
   });
 
   const projectConfig = readProjectConfiguration(tree, options.projectName);
