@@ -10,7 +10,6 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import { DenoIntegrationGeneratorSchema } from './schema';
-import * as ejs from 'ejs';
 import {
   isQwikNxProject,
   QwikNxProjectConfiguration,
@@ -19,7 +18,6 @@ import {
   getIntegrationConfigurationName,
   IntegrationName,
 } from '../../../utils/integration-configuration-name';
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 
 interface NormalizedOptions extends DenoIntegrationGeneratorSchema {
   root: string;
@@ -83,16 +81,12 @@ function addFiles(tree: Tree, options: NormalizedOptions): void {
   );
 
   if (options.generateGithubHook) {
-    const fileTemplate = readFileSync(
-      `${__dirname}/.github/workflows/deploy.yml.template`,
-      'utf-8'
+    generateFiles(
+      tree,
+      joinPathFragments(__dirname, '.github'),
+      '.github',
+      templateOptions
     );
-    const deploymentFile = ejs.render(fileTemplate, templateOptions);
-    const outputPath = `.github/workflows/${options.project}`;
-    if (!existsSync(outputPath)) {
-      mkdirSync(outputPath);
-    }
-    writeFileSync(`${outputPath}/deploy.yml`, deploymentFile);
   }
 }
 

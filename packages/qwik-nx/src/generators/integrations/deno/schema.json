@@ -20,7 +20,8 @@
     "skipFormat": {
       "description": "Skip formatting files.",
       "type": "boolean",
-      "default": false
+      "default": false,
+      "x-priority": "internal"
     },
     "denoProjectName": {
       "description": "Name of the deno project, e.g. 'cute-frog-420'",

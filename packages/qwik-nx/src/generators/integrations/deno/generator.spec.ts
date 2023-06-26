@@ -145,6 +145,15 @@ describe('deno-integration generator', () => {
     });
   });
 
+  it('should generate deploy.yml file for github actions', async () => {
+    await denoIntegrationGenerator(appTree, {
+      ...options,
+      generateGithubHook: true,
+    });
+    const hasDeployYaml = appTree.exists('.github/workflows/deploy.yml');
+    expect(hasDeployYaml).toBeTruthy();
+  });
+
   describe('should throw if project configuration does not meet the expectations', () => {
     it('project is not an application', async () => {
       const config = readProjectConfiguration(appTree, projectName);

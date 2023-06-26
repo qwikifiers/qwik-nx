@@ -6,9 +6,6 @@ importers:
       '@swc/helpers':
         specifier: 0.5.1
         version: 0.5.1
-      ejs:
-        specifier: 3.1.9
-        version: 3.1.9
       tslib:
         specifier: ^2.5.0
         version: 2.5.0
@@ -70,9 +67,6 @@ importers:
       '@swc/core':
         specifier: ^1.2.173
         version: 1.3.19
-      '@types/ejs':
-        specifier: 3.1.2
-        version: 3.1.2
       '@types/fs-extra':
         specifier: 11.0.1
         version: 11.0.1
@@ -3881,13 +3875,6 @@ packages:
       }
     dev: true
 
-  /@types/ejs@3.1.2:
-    resolution:
-      {
-        integrity: sha512-ZmiaE3wglXVWBM9fyVC17aGPkLo/UgaOjEiI2FXQfyczrCefORPxIe+2dVmnmk3zkVIbizjrlQzmPGhSYGXG5g==,
-      }
-    dev: true
-
   /@types/fs-extra@11.0.1:
     resolution:
       {
@@ -4774,6 +4761,7 @@ packages:
     engines: { node: '>=8' }
     dependencies:
       color-convert: 2.0.1
+    dev: true
 
   /ansi-styles@5.2.0:
     resolution:
@@ -4907,6 +4895,7 @@ packages:
       {
         integrity: sha512-iAB+JbDEGXhyIUavoDl9WP/Jj106Kz9DEn1DPgYw5ruDn0e3Wgi3sKFm55sASdGBNOQB8F59d9qQ7deqrHA8wQ==,
       }
+    dev: true
 
   /asynckit@0.4.0:
     resolution:
@@ -5138,6 +5127,7 @@ packages:
       {
         integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==,
       }
+    dev: true
 
   /base64-js@1.5.1:
     resolution:
@@ -5253,6 +5243,7 @@ packages:
     dependencies:
       balanced-match: 1.0.2
       concat-map: 0.0.1
+    dev: true
 
   /brace-expansion@2.0.1:
     resolution:
@@ -5261,6 +5252,7 @@ packages:
       }
     dependencies:
       balanced-match: 1.0.2
+    dev: true
 
   /braces@3.0.2:
     resolution:
@@ -5513,6 +5505,7 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+    dev: true
 
   /char-regex@1.0.2:
     resolution:
@@ -5704,6 +5697,7 @@ packages:
     engines: { node: '>=7.0.0' }
     dependencies:
       color-name: 1.1.4
+    dev: true
 
   /color-name@1.1.3:
     resolution:
@@ -5717,6 +5711,7 @@ packages:
       {
         integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==,
       }
+    dev: true
 
   /colorette@2.0.19:
     resolution:
@@ -5828,6 +5823,7 @@ packages:
       {
         integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==,
       }
+    dev: true
 
   /concat-stream@2.0.0:
     resolution:
@@ -6718,6 +6714,7 @@ packages:
     hasBin: true
     dependencies:
       jake: 10.8.5
+    dev: true
 
   /electron-to-chromium@1.4.284:
     resolution:
@@ -7434,6 +7431,7 @@ packages:
       }
     dependencies:
       minimatch: 5.1.0
+    dev: true
 
   /filename-reserved-regex@3.0.0:
     resolution:
@@ -8101,6 +8099,7 @@ packages:
         integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==,
       }
     engines: { node: '>=8' }
+    dev: true
 
   /has-symbols@1.0.3:
     resolution:
@@ -8781,6 +8780,7 @@ packages:
       chalk: 4.1.2
       filelist: 1.0.4
       minimatch: 3.1.2
+    dev: true
 
   /jest-changed-files@29.4.3:
     resolution:
@@ -10169,6 +10169,7 @@ packages:
       }
     dependencies:
       brace-expansion: 1.1.11
+    dev: true
 
   /minimatch@5.1.0:
     resolution:
@@ -10178,6 +10179,7 @@ packages:
     engines: { node: '>=10' }
     dependencies:
       brace-expansion: 2.0.1
+    dev: true
 
   /minimist-options@4.1.0:
     resolution:
@@ -12537,6 +12539,7 @@ packages:
     engines: { node: '>=8' }
     dependencies:
       has-flag: 4.0.0
+    dev: true
 
   /supports-color@8.1.1:
     resolution:
