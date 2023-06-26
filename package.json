@@ -6,6 +6,7 @@
     "build": "nx build",
     "commit": "git-cz",
     "format:fix": "pretty-quick --staged",
+    "local-registry": "sh ./scripts/local-registry.sh",
     "prepare": "husky install",
     "start": "nx serve",
     "test": "nx test",
@@ -84,8 +85,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "nx": {
-    "includedScripts": []
   }
 }
