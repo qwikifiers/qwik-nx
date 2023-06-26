@@ -1,6 +1,16 @@
-import { ProjectConfiguration, Tree, joinPathFragments } from '@nx/devkit';
+import {
+  ProjectConfiguration,
+  TargetConfiguration,
+  Tree,
+  joinPathFragments,
+} from '@nx/devkit';
 
-export function isQwikNxProject(config: ProjectConfiguration): boolean {
+export type QwikNxProjectConfiguration = ProjectConfiguration & {
+  targets: Record<'build' | string, TargetConfiguration>;
+};
+export function isQwikNxProject(
+  config: ProjectConfiguration
+): config is QwikNxProjectConfiguration {
   return config.targets?.['build']?.executor === 'qwik-nx:build';
 }
 

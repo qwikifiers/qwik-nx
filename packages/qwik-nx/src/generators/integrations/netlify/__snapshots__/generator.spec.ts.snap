@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`netlify-integration generator should add required targets 1`] = `
+Array [
+  Object {
+    "path": "apps/test-project/adapters/netlify/vite.config.ts",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/public/_headers",
+    "type": "CREATE",
+  },
+  Object {
+    "path": "apps/test-project/src/entry.netlify-edge.tsx",
+    "type": "CREATE",
+  },
+]
+`;
