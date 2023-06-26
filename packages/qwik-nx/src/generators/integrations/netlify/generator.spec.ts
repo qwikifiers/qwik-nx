@@ -55,7 +55,7 @@ describe('netlify-integration generator', () => {
       dependsOn: ['build-netlify'],
     });
     expect(config.targets!['preview-netlify']).toEqual({
-      executor: 'qwik-nx:exec',
+      executor: 'nx:run-commands',
       options: {
         command: 'npx netlify dev --dir=client',
         cwd: `dist/apps/${projectName}`,

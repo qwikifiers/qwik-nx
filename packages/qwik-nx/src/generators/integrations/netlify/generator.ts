@@ -65,7 +65,9 @@ function getDeployTarget(options: NormalizedOptions): TargetConfiguration {
   return {
     executor: 'qwik-nx:exec',
     options: {
-      command: `npx netlify deploy --build --dir=client`,
+      command: `npx netlify deploy --build --dir=client ${
+        options.site ? '--site=' + options.site : ''
+      }`.trim(),
       cwd: joinPathFragments('dist', options.root),
     },
     dependsOn: ['build-netlify'],
@@ -76,7 +78,7 @@ function getNetlifyPreviewTarget(
   options: NormalizedOptions
 ): TargetConfiguration {
   return {
-    executor: 'qwik-nx:exec',
+    executor: 'nx:run-commands',
     options: {
       command: `npx netlify dev --dir=client`,
       cwd: joinPathFragments('dist', options.root),
