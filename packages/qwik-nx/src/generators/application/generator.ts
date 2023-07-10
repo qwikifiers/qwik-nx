@@ -69,6 +69,7 @@ export async function appGenerator(
     await initGenerator(tree, {
       includeLib: false,
       uiFramework: 'none',
+      testEnvironment: 'node',
     })
   );
 

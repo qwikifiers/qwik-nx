@@ -24,6 +24,9 @@ export const nxKitVersion = '^3.0.2';
 export const wranglerVersion = '^3.1.0';
 export const nxCloudflareWrangler = '^2.4.2';
 
+// netlify integraiton
+export const netlifyCliVersion = '^15.5.0';
+
 // storybook
 export const storybookFrameworkQwikVersion = '^0.2.0';
 export const typesMdx = '^2.0.3';

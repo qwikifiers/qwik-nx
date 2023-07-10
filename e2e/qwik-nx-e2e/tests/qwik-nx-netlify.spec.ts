@@ -13,27 +13,19 @@ import {
   DEFAULT_E2E_TIMEOUT,
 } from '@qwikifiers/e2e/utils';
 
-const CLOUDFLARE_PREVIEW_PORT = 4300;
+const NETLIFY_PREVIEW_PORT = 8888;
 
-describe('qwik nx cloudflare generator', () => {
-  // Setting up individual workspaces per
-  // test can cause e2e runs to take a long time.
-  // For this reason, we recommend each suite only
-  // consumes 1 workspace. The tests should each operate
-  // on a unique project in the workspace, such that they
-  // are not dependant on one another.
+describe('qwik nx netlify generator', () => {
   beforeAll(async () => {
-    await killPorts(CLOUDFLARE_PREVIEW_PORT);
+    await killPorts(NETLIFY_PREVIEW_PORT);
     ensureNxProject('qwik-nx', 'dist/packages/qwik-nx');
   }, 10000);
 
   afterAll(async () => {
-    // `nx reset` kills the daemon, and performs
-    // some work which can help clean up e2e leftovers
     await runNxCommandAsync('reset');
   });
 
-  describe('should build and serve a project with the cloudflare adapter', () => {
+  describe('should build and serve a project with the netlify adapter', () => {
     let project: string;
     beforeAll(async () => {
       project = uniq('qwik-nx');
@@ -41,14 +33,14 @@ describe('qwik nx cloudflare generator', () => {
         `generate qwik-nx:app ${project} --no-interactive`
       );
       await runNxCommandAsync(
-        `generate qwik-nx:cloudflare-pages-integration ${project} --no-interactive`
+        `generate qwik-nx:netlify-integration ${project} --no-interactive`
       );
     }, DEFAULT_E2E_TIMEOUT);
 
     it(
       'should be able to successfully build the application',
       async () => {
-        const result = await runNxCommandAsync(`build-cloudflare ${project}`);
+        const result = await runNxCommandAsync(`build-netlify ${project}`);
         expect(result.stdout).toContain(
           `Successfully ran target build for project ${project}`
         );
@@ -57,28 +49,26 @@ describe('qwik nx cloudflare generator', () => {
         ).not.toThrow();
         expect(() =>
           checkFilesExist(
-            `dist/apps/${project}/server/entry.cloudflare-pages.js`
+            `dist/apps/${project}/.netlify/edge-functions/entry.netlify-edge/entry.netlify-edge.js`
           )
         ).not.toThrow();
       },
       DEFAULT_E2E_TIMEOUT
     );
 
-    xit(
+    it(
       'should serve application in preview mode with custom port',
       async () => {
         const p = await runCommandUntil(
-          `run ${project}:preview-cloudflare --port=${CLOUDFLARE_PREVIEW_PORT}`,
+          `run ${project}:preview-netlify`,
           (output) => {
-            return (
-              output.includes('Local:') &&
-              output.includes(`:${CLOUDFLARE_PREVIEW_PORT}`)
-            );
+            console.log(output);
+            return output.includes('Server now ready on http://localhost:8888');
           }
         );
         try {
           await promisifiedTreeKill(p.pid!, 'SIGKILL');
-          await killPort(CLOUDFLARE_PREVIEW_PORT);
+          await killPort(NETLIFY_PREVIEW_PORT);
         } catch {
           // ignore
         }

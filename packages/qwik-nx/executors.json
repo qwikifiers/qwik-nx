@@ -15,6 +15,11 @@
       "implementation": "./src/executors/micro-frontends-preview-server/executor",
       "schema": "./src/executors/micro-frontends-preview-server/schema.json",
       "description": "Serve a host application along with its known remotes in a preview mode."
+    },
+    "exec": {
+      "implementation": "./src/executors/exec/executor",
+      "schema": "./src/executors/exec/schema.json",
+      "description": "Run a single command using child_process. It is a simplified version of \"nx:run-commands\" executor that allows running interactive commands."
     }
   }
 }

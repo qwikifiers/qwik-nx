@@ -18,6 +18,7 @@ import {
 } from '../../../utils/integration-configuration-name';
 import { nxCloudflareWrangler, wranglerVersion } from '../../../utils/versions';
 import { CloudflarePagesIntegrationGeneratorSchema } from './schema';
+import { isQwikNxProject } from '../../../utils/migrations';
 
 interface NormalizedOptions {
   offsetFromRoot: string;
@@ -34,11 +35,8 @@ export async function cloudflarePagesIntegrationGenerator(
       'Cannot setup cloudflare integration for the given project.'
     );
   }
-  if (config.targets?.['build']?.executor !== 'qwik-nx:build') {
-    throw new Error(
-      'Project contains invalid configuration. ' +
-        'If you encounter this error within a Qwik project, make sure you have run necessary Nx migrations for qwik-nx plugin.'
-    );
+  if (!isQwikNxProject(config)) {
+    throw new Error('Project contains invalid configuration.');
   }
 
   const configurationName = getIntegrationConfigurationName(

@@ -53,7 +53,12 @@
     "cloudflare-pages-integration": {
       "factory": "./src/generators/integrations/cloudflare-pages-integration/generator",
       "schema": "./src/generators/integrations/cloudflare-pages-integration/schema.json",
-      "description": "Qwik City Cloudflare Pages adaptor allows you to connect Qwik City to Cloudflare Pages"
+      "description": "Qwik City Cloudflare Pages adapter allows you to connect Qwik City to Cloudflare Pages"
+    },
+    "netlify-integration": {
+      "factory": "./src/generators/integrations/netlify/generator",
+      "schema": "./src/generators/integrations/netlify/schema.json",
+      "description": "Qwik City Netlify Edge adapter allows you to connect Qwik City to Netlify Edge Functions."
     },
     "host": {
       "factory": "./src/generators/host/generator",
