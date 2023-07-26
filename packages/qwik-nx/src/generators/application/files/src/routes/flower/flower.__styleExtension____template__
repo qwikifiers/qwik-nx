@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: center;
   justify-items: center;
-  --rotation: 135deg;
   --rotation: 225deg;
   --size-step: 10px;
   --odd-color-step: 5;
