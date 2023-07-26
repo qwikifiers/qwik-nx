@@ -62,7 +62,6 @@ describe('qwik nx netlify generator', () => {
         const p = await runCommandUntil(
           `run ${project}:preview-netlify`,
           (output) => {
-            console.log(output);
             return output.includes('Server now ready on http://localhost:8888');
           }
         );
