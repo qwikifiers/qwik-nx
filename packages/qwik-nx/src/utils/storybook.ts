@@ -13,14 +13,14 @@ export function withNx(
   config: UserConfig,
   qwikViteOpts?: QwikVitePluginOptions
 ): UserConfig {
-  const updated = mergeConfig(config, {
+  const updated: UserConfig = mergeConfig(config, {
     build: {
       rollupOptions: {
         external: ['@qwik-city-sw-register'],
       },
     },
   });
-  updated.plugins = updated.plugins?.map((plugin: PluginOption) => {
+  updated.plugins = updated.plugins?.flat(10).map((plugin: PluginOption) => {
     switch ((plugin as any)?.name) {
       case 'vite-plugin-qwik':
         // as of now there's no way of extending qwikVite with overridden output paths, thus have to override to completely

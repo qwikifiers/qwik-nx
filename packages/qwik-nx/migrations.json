@@ -242,6 +242,26 @@
           "version": "^3.0.2"
         }
       }
+    },
+    "1.0.8": {
+      "version": "1.0.2",
+      "packages": {
+        "@builder.io/qwik": {
+          "version": "~1.2.6"
+        },
+        "@builder.io/qwik-city": {
+          "version": "~1.2.6"
+        },
+        "eslint-plugin-qwik": {
+          "version": "~1.2.6"
+        },
+        "vite": {
+          "version": "^4.4.0"
+        },
+        "vitest": {
+          "version": "^0.32.0"
+        }
+      }
     }
   }
 }
