@@ -87,6 +87,18 @@
         "test",
         "doc"
       ]
+    },
+    {
+      "login": "faileon",
+      "name": "Tomas Ptacek",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9354213?v=4",
+      "profile": "https://github.com/faileon",
+      "contributions": [
+        "code",
+        "ideas",
+        "test",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
