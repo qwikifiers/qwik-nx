@@ -84,6 +84,11 @@
       "factory": "./src/generators/integrations/react-library/generator",
       "schema": "./src/generators/integrations/react-library/schema.json",
       "description": "Add qwikified React components as a separate library"
+    },
+    "deno-integration": {
+      "factory": "./src/generators/integrations/deno/generator",
+      "schema": "./src/generators/integrations/deno/schema.json",
+      "description": "Qwik City Deno adaptor allows you to hook up Qwik City to a Deno server"
     }
   }
 }

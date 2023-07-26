@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "DenoIntegration",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Project for the integration to be added",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Name of the project to add Deno integration to"
+    },
+    "site": {
+      "description": "The site where the serverless function will be deployed, e.g. 'cute-frog-420.deno.dev'",
+      "type": "string"
+    },
+    "skipFormat": {
+      "description": "Skip formatting files.",
+      "type": "boolean",
+      "default": false,
+      "x-priority": "internal"
+    },
+    "denoProjectName": {
+      "description": "Name of the deno project, e.g. 'cute-frog-420'",
+      "type": "string",
+      "default": "<YOUR-DENO-PROJECT-NAME>"
+    },
+    "generateGithubHook": {
+      "description": "Wether to generate a Github Actions Hook for deployment or not.",
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": ["project"]
+}
