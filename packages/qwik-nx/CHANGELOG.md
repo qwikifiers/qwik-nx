@@ -2,6 +2,21 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.8](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.7...qwik-nx-1.0.8) (2023-07-27)
+
+
+### Bug Fixes
+
+* **qwik-nx:** remove duplicate css variable ([#189](https://github.com/qwikifiers/qwik-nx/issues/189)) ([aaecb12](https://github.com/qwikifiers/qwik-nx/commit/aaecb122bea2ac22bc9394656eac724b82dfd2e0))
+
+
+### Features
+
+* **qwik-nx:** deno integration ([#181](https://github.com/qwikifiers/qwik-nx/issues/181)) ([700b9ec](https://github.com/qwikifiers/qwik-nx/commit/700b9ec85de668ef9c61dc449bd707bc85ffb04f))
+* **qwik-nx:** upgrade qwik dependencies ([#191](https://github.com/qwikifiers/qwik-nx/issues/191)) ([2ac9032](https://github.com/qwikifiers/qwik-nx/commit/2ac9032f0734acecd494f6465a857167c8406c1c))
+
+
+
 ## [1.0.7](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.6...qwik-nx-1.0.7) (2023-07-03)
 
 
