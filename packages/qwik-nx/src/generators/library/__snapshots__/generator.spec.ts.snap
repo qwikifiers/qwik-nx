@@ -229,6 +229,7 @@ Object {
       "options": Object {
         "lintFilePatterns": Array [
           "libs/mylib/**/*.{ts,tsx,js,jsx}",
+          "libs/mylib/package.json",
         ],
       },
       "outputs": Array [
