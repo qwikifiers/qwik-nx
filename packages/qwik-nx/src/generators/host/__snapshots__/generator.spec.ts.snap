@@ -54,7 +54,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myhostapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -210,7 +210,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myhostapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -366,7 +366,7 @@ Object {
       "options": Object {
         "buildTarget": "myhostapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -522,7 +522,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myhostapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -678,7 +678,7 @@ Object {
       "options": Object {
         "buildTarget": "myhostapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -834,7 +834,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myhostapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -1086,7 +1086,7 @@ exports[`host generator should run successfully 3`] = `
       \\"options\\": {
         \\"buildTarget\\": \\"myhostapp:build.client\\",
         \\"mode\\": \\"ssr\\",
-        \\"port\\": 4200
+        \\"port\\": 5173
       }
     },
     \\"serve.debug\\": {

@@ -54,7 +54,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -122,7 +122,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -190,7 +190,7 @@ Object {
       "options": Object {
         "buildTarget": "myapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -258,7 +258,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -326,7 +326,7 @@ Object {
       "options": Object {
         "buildTarget": "myapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -394,7 +394,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -494,7 +494,7 @@ exports[`qwik-nx generator should run successfully 2`] = `
       \\"options\\": {
         \\"buildTarget\\": \\"myapp:build.client\\",
         \\"mode\\": \\"ssr\\",
-        \\"port\\": 4200
+        \\"port\\": 5173
       }
     },
     \\"serve.debug\\": {

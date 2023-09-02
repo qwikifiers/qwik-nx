@@ -14,7 +14,7 @@ import {
   DEFAULT_E2E_TIMEOUT,
 } from '@qwikifiers/e2e/utils';
 
-const PORTS = [4200, 4201, 4202, 4203];
+const PORTS = [5173, 4201, 4202, 4203];
 
 describe('Micro-frontends e2e', () => {
   let project: string, remote1: string, remote2: string;
@@ -214,7 +214,7 @@ async function runHostAndRemotes(
         const localhost = `${prefix}Local:   http://localhost:${port}/`;
         return stripped.includes(ip) || stripped.includes(localhost);
       };
-      invokedHost ||= includesInvokeMessage(hostName, 4200, false);
+      invokedHost ||= includesInvokeMessage(hostName, 5173, false);
       invokedRemote1 ||= includesInvokeMessage(remote1, 4201);
       invokedRemote2 ||= includesInvokeMessage(remote2, 4202);
       invokedRemote3 ||= !!remote3 && includesInvokeMessage(remote3, 4203);
@@ -307,7 +307,7 @@ async function previewHostAndRemotes(
       builtRemote3 ||= !!remote3 && includesBuiltMessage(remote3);
 
       // serve output
-      invokedHost ||= includesInvokeMessage(hostName, 4200, false);
+      invokedHost ||= includesInvokeMessage(hostName, 5173, false);
       invokedRemote1 ||= includesInvokeMessage(remote1, 4201);
       invokedRemote2 ||= includesInvokeMessage(remote2, 4202);
       invokedRemote3 ||= !!remote3 && includesInvokeMessage(remote3, 4203);

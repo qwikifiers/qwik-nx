@@ -87,7 +87,7 @@
     "devServerPort": {
       "type": "number",
       "description": "The port for the dev server of the app.",
-      "default": 4200
+      "default": 5173
     },
     "previewServerPort": {
       "type": "number",

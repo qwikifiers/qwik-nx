@@ -88,7 +88,7 @@
     "port": {
       "type": "number",
       "description": "The port for the dev and preview servers of the app (they're the same by default in MF setup).",
-      "default": 4200
+      "default": 5173
     },
     "host": {
       "type": "string",

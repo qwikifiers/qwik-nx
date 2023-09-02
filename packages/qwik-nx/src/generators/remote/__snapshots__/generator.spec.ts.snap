@@ -54,7 +54,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myremote:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -132,7 +132,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myremote:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -210,7 +210,7 @@ Object {
       "options": Object {
         "buildTarget": "myremote:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -288,7 +288,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myremote:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -366,7 +366,7 @@ Object {
       "options": Object {
         "buildTarget": "myremote:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -444,7 +444,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myremote:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -570,7 +570,7 @@ exports[`remote generator should run successfully 2`] = `
       \\"options\\": {
         \\"buildTarget\\": \\"myremote:build.client\\",
         \\"mode\\": \\"ssr\\",
-        \\"port\\": 4200
+        \\"port\\": 5173
       }
     },
     \\"serve.debug\\": {
