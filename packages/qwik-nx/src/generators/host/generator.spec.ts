@@ -23,8 +23,8 @@ describe('host generator', () => {
 
     expect(readJson(appTree, 'apps/myhostapp/src/config/remotes.json')).toEqual(
       {
-        remote1: 'http://localhost:4201',
-        remote2: 'http://localhost:4202',
+        remote1: 'http://localhost:5174',
+        remote2: 'http://localhost:5175',
       }
     );
 

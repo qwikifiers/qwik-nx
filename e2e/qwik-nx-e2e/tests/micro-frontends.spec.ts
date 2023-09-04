@@ -14,7 +14,7 @@ import {
   DEFAULT_E2E_TIMEOUT,
 } from '@qwikifiers/e2e/utils';
 
-const PORTS = [5173, 4201, 4202, 4203];
+const PORTS = [5173, 5174, 5175, 5175];
 
 describe('Micro-frontends e2e', () => {
   let project: string, remote1: string, remote2: string;
@@ -52,8 +52,8 @@ describe('Micro-frontends e2e', () => {
       const configFilePath = `apps/${project}/src/config/remotes.json`;
       expect(() => checkFilesExist(configFilePath)).not.toThrow();
       const config = readJson(configFilePath);
-      expect(config[remote1]).toEqual('http://localhost:4201');
-      expect(config[remote2]).toEqual('http://localhost:4202');
+      expect(config[remote1]).toEqual('http://localhost:5174');
+      expect(config[remote2]).toEqual('http://localhost:5175');
     },
     DEFAULT_E2E_TIMEOUT
   );
@@ -155,7 +155,7 @@ describe('Micro-frontends e2e', () => {
     async () => {
       const remote3 = uniq('qwik-nx');
       await runNxCommandAsync(
-        `generate qwik-nx:remote ${remote3} --host=${project} --port=4203 --no-interactive`
+        `generate qwik-nx:remote ${remote3} --host=${project} --port=5175 --no-interactive`
       );
       const result = await runNxCommandAsync(`build ${remote3}`);
       expect(result.stdout).toContain(
@@ -215,9 +215,9 @@ async function runHostAndRemotes(
         return stripped.includes(ip) || stripped.includes(localhost);
       };
       invokedHost ||= includesInvokeMessage(hostName, 5173, false);
-      invokedRemote1 ||= includesInvokeMessage(remote1, 4201);
-      invokedRemote2 ||= includesInvokeMessage(remote2, 4202);
-      invokedRemote3 ||= !!remote3 && includesInvokeMessage(remote3, 4203);
+      invokedRemote1 ||= includesInvokeMessage(remote1, 5174);
+      invokedRemote2 ||= includesInvokeMessage(remote2, 5175);
+      invokedRemote3 ||= !!remote3 && includesInvokeMessage(remote3, 5175);
 
       showedAllRemotesInvokedInfo ||= stripConsoleColors(
         output.replace(/\n|\s/g, '')
@@ -308,9 +308,9 @@ async function previewHostAndRemotes(
 
       // serve output
       invokedHost ||= includesInvokeMessage(hostName, 5173, false);
-      invokedRemote1 ||= includesInvokeMessage(remote1, 4201);
-      invokedRemote2 ||= includesInvokeMessage(remote2, 4202);
-      invokedRemote3 ||= !!remote3 && includesInvokeMessage(remote3, 4203);
+      invokedRemote1 ||= includesInvokeMessage(remote1, 5174);
+      invokedRemote2 ||= includesInvokeMessage(remote2, 5175);
+      invokedRemote3 ||= !!remote3 && includesInvokeMessage(remote3, 5175);
 
       showedAllRemotesInvokedInfo ||= stripConsoleColors(
         output.replace(/\n|\s/g, '')
