@@ -46,7 +46,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-myapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -114,7 +114,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-myapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -182,7 +182,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "myapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -250,7 +250,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-myapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -318,7 +318,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "myapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -386,7 +386,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-myapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -486,7 +486,7 @@ exports[`qwik-nx generator should run successfully 2`] = `
       \\"executor\\": \\"@nx/vite:preview-server\\",
       \\"options\\": {
         \\"buildTarget\\": \\"myapp:build\\",
-        \\"port\\": 4300
+        \\"port\\": 4173
       }
     },
     \\"serve\\": {

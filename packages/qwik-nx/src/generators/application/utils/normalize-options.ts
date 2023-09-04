@@ -50,6 +50,6 @@ export function normalizeOptions(
     setupVitest: options.unitTestRunner === 'vitest',
     parsedTags,
     devServerPort: options.devServerPort ?? 5173,
-    previewServerPort: options.previewServerPort ?? 4300,
+    previewServerPort: options.previewServerPort ?? 4173,
   };
 }
