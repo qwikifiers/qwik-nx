@@ -1,0 +1,53 @@
+import { Component, EventEmitter, Input, Output, type OnInit } from '@angular/core';
+import type { QwikifiedComponentProps, WithRequiredProps } from '@qwikdev/qwik-angular';
+
+type CounterComponentInputs = 'initialCountValue' | 'heading';
+
+type CounterComponentOutputs = 'countChanged';
+
+type RequiredPropValues = 'initialCountValue';
+
+// using utility types to assemble a type object for qwikified CounterComponent
+// that has all inputs and typed output handlers of Angular CounterComponent
+type OptionalCounterComponentProps = QwikifiedComponentProps<
+  CounterComponent,
+  CounterComponentInputs,
+  CounterComponentOutputs
+>;
+
+// also marking "initialCountValue" as required and exporting the final type
+export type CounterComponentProps = WithRequiredProps<
+  OptionalCounterComponentProps,
+  RequiredPropValues
+>;
+
+@Component({
+  selector: 'app-angular-counter',
+  template: `
+    <div class="wrapper">
+      <h1>{{ heading }}</h1>
+      <p>{{ count }}</p>
+      <button (click)="handleClick()">Increment</button>
+    </div>
+  `,
+  styles: [`.wrapper { display: flex; flex-direction: column; align-items: center; }`],
+  standalone: true
+})
+export class CounterComponent implements OnInit {
+  @Input() initialCountValue: number = 0;
+  @Input() heading = 'Simple Angular Counter';
+
+  @Output() readonly countChanged = new EventEmitter<number>();
+
+  private count: number;
+
+  ngOnInit(): void {
+    this.count = this.initialCountValue;
+  }
+
+  handleClick(): void {
+    this.count++;
+    this.countChanged.emit(this.count);
+    console.log(`Count: ${this.count}`);
+  }
+}

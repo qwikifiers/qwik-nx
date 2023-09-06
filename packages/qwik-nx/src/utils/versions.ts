@@ -24,14 +24,14 @@ export const nxKitVersion = '^3.0.2';
 export const wranglerVersion = '^3.1.0';
 export const nxCloudflareWrangler = '^2.4.2';
 
-// netlify integraiton
+// netlify integration
 export const netlifyCliVersion = '^15.5.0';
 
 // storybook
 export const storybookFrameworkQwikVersion = '^0.2.0';
 export const typesMdx = '^2.0.3';
 
-// react integartion
+// react integration
 export const qwikReactVersion = '^0.5.0';
 export const reactVersion = '^18.0.0';
 export const reactDOMVersion = '^18.0.0';
@@ -41,6 +41,11 @@ export const emotionReactVersion = '^11.10.0';
 export const emotionStyledVersion = '^11.10.0';
 export const muiMaterialVersion = '^5.12.0';
 export const muiDataGridVersion = '^6.2.0';
+
+// angular integration
+export const angularVersion = '^16.0.0';
+export const vitePluginAngularVersion = '~0.2.0';
+export const qwikAngularVersion = '~0.1.0';
 
 // other
 export const eslintVersion = '~8.36.0';
