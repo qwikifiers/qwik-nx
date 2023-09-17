@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.9](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.8...qwik-nx-1.0.9) (2023-09-17)
+
+
+### Features
+
+* **qwik-nx:** preliminary implementation of angular integration ([#197](https://github.com/qwikifiers/qwik-nx/issues/197)) ([6fe9dfe](https://github.com/qwikifiers/qwik-nx/commit/6fe9dfe5c83f5730f73a417a9d85678e2fa61d4d))
+
+
+### Reverts
+
+* Revert "chore(qwik-nx): release version 1.0.9" (#198) ([81cde0c](https://github.com/qwikifiers/qwik-nx/commit/81cde0c79e625dc51f8bd1f7b0778f0d9cebd95e)), closes [#198](https://github.com/qwikifiers/qwik-nx/issues/198)
+
+
+
 ## [1.0.8](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.7...qwik-nx-1.0.8) (2023-07-27)
 
 
