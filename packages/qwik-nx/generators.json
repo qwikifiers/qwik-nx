@@ -89,6 +89,12 @@
       "factory": "./src/generators/integrations/deno/generator",
       "schema": "./src/generators/integrations/deno/schema.json",
       "description": "Qwik City Deno adaptor allows you to hook up Qwik City to a Deno server"
+    },
+    "angular-in-app": {
+      "factory": "./src/generators/integrations/angular-in-app/generator",
+      "schema": "./src/generators/integrations/angular-in-app/schema.json",
+      "description": "angular-in-app generator",
+      "hidden": true
     }
   }
 }

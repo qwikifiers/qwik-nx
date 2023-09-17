@@ -1,0 +1,8 @@
+import { qwikify$ } from '@qwikdev/qwik-angular';
+import { type CounterComponentProps, CounterComponent } from './components/counter.component';
+
+export const AngularCounterComponent = qwikify$<CounterComponentProps>(CounterComponent, {
+  eagerness: 'hover',
+});
+
+export { CounterComponentProps };

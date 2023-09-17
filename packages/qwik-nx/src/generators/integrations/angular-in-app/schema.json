@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "AngularInApp",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Name of the project to add Angular integration to",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Name of the project to add Angular integration to"
+    },
+    "installMaterialExample": {
+      "type": "boolean",
+      "description": "Add dependencies for the Angular Material and qwikified example component, that uses it",
+      "x-priority": "important",
+      "default": true,
+      "x-prompt": "Do you want to have Angular Material example installed?"
+    },
+    "skipFormat": {
+      "description": "Skip formatting files.",
+      "type": "boolean",
+      "x-priority": "internal",
+      "default": false
+    }
+  },
+  "required": ["project"]
+}
