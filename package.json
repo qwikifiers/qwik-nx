@@ -22,7 +22,7 @@
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-angular": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
-    "@jscutlery/semver": "^2.29.0",
+    "@jscutlery/semver": "^3.1.0",
     "@nx/cypress": "16.7.0",
     "@nx/devkit": "16.7.0",
     "@nx/eslint-plugin": "16.7.0",
