@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.9](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.8...qwik-nx-1.0.9) (2023-09-17)
+
+
+### Features
+
+* **qwik-nx:** preliminary implementation of angular integration ([#197](https://github.com/qwikifiers/qwik-nx/issues/197)) ([6fe9dfe](https://github.com/qwikifiers/qwik-nx/commit/6fe9dfe5c83f5730f73a417a9d85678e2fa61d4d))
+
+
+
 ## [1.0.8](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.7...qwik-nx-1.0.8) (2023-07-27)
 
 
