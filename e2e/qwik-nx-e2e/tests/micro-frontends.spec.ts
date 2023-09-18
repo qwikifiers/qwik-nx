@@ -155,7 +155,7 @@ describe('Micro-frontends e2e', () => {
     async () => {
       const remote3 = uniq('qwik-nx');
       await runNxCommandAsync(
-        `generate qwik-nx:remote ${remote3} --host=${project} --port=5175 --no-interactive`
+        `generate qwik-nx:remote ${remote3} --host=${project} --port=5176 --no-interactive`
       );
       const result = await runNxCommandAsync(`build ${remote3}`);
       expect(result.stdout).toContain(
