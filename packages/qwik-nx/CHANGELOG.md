@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.10](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.9...qwik-nx-1.0.10) (2023-09-18)
+
+
+### Bug Fixes
+
+* **qwik-nx:** update angular styles file name ([#200](https://github.com/qwikifiers/qwik-nx/issues/200)) ([d87ff2f](https://github.com/qwikifiers/qwik-nx/commit/d87ff2fa3279930bf75c73d65266c788af74aff2))
+
+
+
 ## [1.0.9](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.8...qwik-nx-1.0.9) (2023-09-17)
 
 
