@@ -217,7 +217,7 @@ async function runHostAndRemotes(
       invokedHost ||= includesInvokeMessage(hostName, 5173, false);
       invokedRemote1 ||= includesInvokeMessage(remote1, 5174);
       invokedRemote2 ||= includesInvokeMessage(remote2, 5175);
-      invokedRemote3 ||= !!remote3 && includesInvokeMessage(remote3, 5175);
+      invokedRemote3 ||= !!remote3 && includesInvokeMessage(remote3, 5176);
 
       showedAllRemotesInvokedInfo ||= stripConsoleColors(
         output.replace(/\n|\s/g, '')
