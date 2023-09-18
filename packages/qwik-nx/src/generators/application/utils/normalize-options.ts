@@ -49,7 +49,7 @@ export function normalizeOptions(
     styleExtension,
     setupVitest: options.unitTestRunner === 'vitest',
     parsedTags,
-    devServerPort: options.devServerPort ?? 4200,
-    previewServerPort: options.previewServerPort ?? 4300,
+    devServerPort: options.devServerPort ?? 5173,
+    previewServerPort: options.previewServerPort ?? 4173,
   };
 }

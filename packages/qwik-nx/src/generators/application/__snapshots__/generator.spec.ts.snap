@@ -46,7 +46,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-myapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -54,7 +54,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -114,7 +114,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-myapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -122,7 +122,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -182,7 +182,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "myapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -190,7 +190,7 @@ Object {
       "options": Object {
         "buildTarget": "myapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -250,7 +250,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-myapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -258,7 +258,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -318,7 +318,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "myapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -326,7 +326,7 @@ Object {
       "options": Object {
         "buildTarget": "myapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -386,7 +386,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-myapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -394,7 +394,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -486,7 +486,7 @@ exports[`qwik-nx generator should run successfully 2`] = `
       \\"executor\\": \\"@nx/vite:preview-server\\",
       \\"options\\": {
         \\"buildTarget\\": \\"myapp:build\\",
-        \\"port\\": 4300
+        \\"port\\": 4173
       }
     },
     \\"serve\\": {
@@ -494,7 +494,7 @@ exports[`qwik-nx generator should run successfully 2`] = `
       \\"options\\": {
         \\"buildTarget\\": \\"myapp:build.client\\",
         \\"mode\\": \\"ssr\\",
-        \\"port\\": 4200
+        \\"port\\": 5173
       }
     },
     \\"serve.debug\\": {

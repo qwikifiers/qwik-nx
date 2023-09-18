@@ -250,7 +250,7 @@ async function checkPageResponses(host: string) {
 function getHostOutput(output: string, port: number): string | undefined {
   // extracts the host url from the output message
   // the reason it's done is because it can either be in these formats:
-  // http://localhost:4200 or https://127.0.0.1:4200
+  // http://localhost:5173 or https://127.0.0.1:5173
   const regexp = new RegExp(
     `Local:(?:\\s{3})(http(?:s)?:\\/\\/(?:.+):${port})`
   );

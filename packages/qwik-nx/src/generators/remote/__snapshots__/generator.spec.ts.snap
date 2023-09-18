@@ -46,7 +46,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-myremote:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -54,7 +54,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myremote:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -124,7 +124,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-myremote:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -132,7 +132,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myremote:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -202,7 +202,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "myremote:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -210,7 +210,7 @@ Object {
       "options": Object {
         "buildTarget": "myremote:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -280,7 +280,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-myremote:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -288,7 +288,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myremote:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -358,7 +358,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "myremote:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -366,7 +366,7 @@ Object {
       "options": Object {
         "buildTarget": "myremote:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -436,7 +436,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-myremote:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -444,7 +444,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myremote:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -554,7 +554,7 @@ exports[`remote generator should run successfully 2`] = `
       \\"executor\\": \\"@nx/vite:preview-server\\",
       \\"options\\": {
         \\"buildTarget\\": \\"myremote:build\\",
-        \\"port\\": 4300
+        \\"port\\": 4173
       }
     },
     \\"test\\": {
@@ -570,7 +570,7 @@ exports[`remote generator should run successfully 2`] = `
       \\"options\\": {
         \\"buildTarget\\": \\"myremote:build.client\\",
         \\"mode\\": \\"ssr\\",
-        \\"port\\": 4200
+        \\"port\\": 5173
       }
     },
     \\"serve.debug\\": {

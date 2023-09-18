@@ -13,7 +13,7 @@ import {
   DEFAULT_E2E_TIMEOUT,
 } from '@qwikifiers/e2e/utils';
 
-const CLOUDFLARE_PREVIEW_PORT = 4300;
+const CLOUDFLARE_PREVIEW_PORT = 4173;
 
 describe('qwik nx cloudflare generator', () => {
   // Setting up individual workspaces per

@@ -46,7 +46,7 @@ Object {
       "executor": "qwik-nx:micro-frontends-preview-server",
       "options": Object {
         "buildTarget": "frontend-myhostapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -54,7 +54,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myhostapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -124,7 +124,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-remote1:build",
-        "port": 4201,
+        "port": 5174,
       },
     },
     "serve": Object {
@@ -132,7 +132,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-remote1:build.client",
         "mode": "ssr",
-        "port": 4201,
+        "port": 5174,
       },
     },
     "serve.debug": Object {
@@ -202,7 +202,7 @@ Object {
       "executor": "qwik-nx:micro-frontends-preview-server",
       "options": Object {
         "buildTarget": "frontend-myhostapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -210,7 +210,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myhostapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -280,7 +280,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-remote1:build",
-        "port": 4201,
+        "port": 5174,
       },
     },
     "serve": Object {
@@ -288,7 +288,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-remote1:build.client",
         "mode": "ssr",
-        "port": 4201,
+        "port": 5174,
       },
     },
     "serve.debug": Object {
@@ -358,7 +358,7 @@ Object {
       "executor": "qwik-nx:micro-frontends-preview-server",
       "options": Object {
         "buildTarget": "myhostapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -366,7 +366,7 @@ Object {
       "options": Object {
         "buildTarget": "myhostapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -436,7 +436,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "remote1:build",
-        "port": 4201,
+        "port": 5174,
       },
     },
     "serve": Object {
@@ -444,7 +444,7 @@ Object {
       "options": Object {
         "buildTarget": "remote1:build.client",
         "mode": "ssr",
-        "port": 4201,
+        "port": 5174,
       },
     },
     "serve.debug": Object {
@@ -514,7 +514,7 @@ Object {
       "executor": "qwik-nx:micro-frontends-preview-server",
       "options": Object {
         "buildTarget": "frontend-myhostapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -522,7 +522,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myhostapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -592,7 +592,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-remote1:build",
-        "port": 4201,
+        "port": 5174,
       },
     },
     "serve": Object {
@@ -600,7 +600,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-remote1:build.client",
         "mode": "ssr",
-        "port": 4201,
+        "port": 5174,
       },
     },
     "serve.debug": Object {
@@ -670,7 +670,7 @@ Object {
       "executor": "qwik-nx:micro-frontends-preview-server",
       "options": Object {
         "buildTarget": "myhostapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -678,7 +678,7 @@ Object {
       "options": Object {
         "buildTarget": "myhostapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -748,7 +748,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "remote1:build",
-        "port": 4201,
+        "port": 5174,
       },
     },
     "serve": Object {
@@ -756,7 +756,7 @@ Object {
       "options": Object {
         "buildTarget": "remote1:build.client",
         "mode": "ssr",
-        "port": 4201,
+        "port": 5174,
       },
     },
     "serve.debug": Object {
@@ -826,7 +826,7 @@ Object {
       "executor": "qwik-nx:micro-frontends-preview-server",
       "options": Object {
         "buildTarget": "frontend-myhostapp:build",
-        "port": 4300,
+        "port": 4173,
       },
     },
     "serve": Object {
@@ -834,7 +834,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-myhostapp:build.client",
         "mode": "ssr",
-        "port": 4200,
+        "port": 5173,
       },
     },
     "serve.debug": Object {
@@ -904,7 +904,7 @@ Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
         "buildTarget": "frontend-remote1:build",
-        "port": 4201,
+        "port": 5174,
       },
     },
     "serve": Object {
@@ -912,7 +912,7 @@ Object {
       "options": Object {
         "buildTarget": "frontend-remote1:build.client",
         "mode": "ssr",
-        "port": 4201,
+        "port": 5174,
       },
     },
     "serve.debug": Object {
@@ -1070,7 +1070,7 @@ exports[`host generator should run successfully 3`] = `
       \\"executor\\": \\"qwik-nx:micro-frontends-preview-server\\",
       \\"options\\": {
         \\"buildTarget\\": \\"myhostapp:build\\",
-        \\"port\\": 4300
+        \\"port\\": 4173
       }
     },
     \\"test\\": {
@@ -1086,7 +1086,7 @@ exports[`host generator should run successfully 3`] = `
       \\"options\\": {
         \\"buildTarget\\": \\"myhostapp:build.client\\",
         \\"mode\\": \\"ssr\\",
-        \\"port\\": 4200
+        \\"port\\": 5173
       }
     },
     \\"serve.debug\\": {
@@ -1563,7 +1563,7 @@ exports[`host generator should run successfully 7`] = `
       \\"executor\\": \\"@nx/vite:preview-server\\",
       \\"options\\": {
         \\"buildTarget\\": \\"remote1:build\\",
-        \\"port\\": 4201
+        \\"port\\": 5174
       }
     },
     \\"test\\": {
@@ -1579,7 +1579,7 @@ exports[`host generator should run successfully 7`] = `
       \\"options\\": {
         \\"buildTarget\\": \\"remote1:build.client\\",
         \\"mode\\": \\"ssr\\",
-        \\"port\\": 4201
+        \\"port\\": 5174
       }
     },
     \\"serve.debug\\": {
@@ -1727,7 +1727,7 @@ exports[`host generator should run successfully 10`] = `
       \\"executor\\": \\"@nx/vite:preview-server\\",
       \\"options\\": {
         \\"buildTarget\\": \\"remote2:build\\",
-        \\"port\\": 4202
+        \\"port\\": 5175
       }
     },
     \\"test\\": {
@@ -1743,7 +1743,7 @@ exports[`host generator should run successfully 10`] = `
       \\"options\\": {
         \\"buildTarget\\": \\"remote2:build.client\\",
         \\"mode\\": \\"ssr\\",
-        \\"port\\": 4202
+        \\"port\\": 5175
       }
     },
     \\"serve.debug\\": {
