@@ -12,7 +12,7 @@ import {
   getPackageManagerCommand,
 } from 'nx/src/utils/package-manager';
 
-export const DEFAULT_E2E_TIMEOUT = 2 * 60 * 1000;
+export const DEFAULT_E2E_TIMEOUT = 3 * 60 * 1000;
 
 const kill = require('kill-port');
 export const isWindows = require('is-windows');

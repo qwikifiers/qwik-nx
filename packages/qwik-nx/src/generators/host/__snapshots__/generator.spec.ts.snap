@@ -955,6 +955,7 @@ export default defineConfig({
       ssr: {
         outDir: '../../dist/apps/myhostapp/server',
       },
+      tsconfigFileNames: ['tsconfig.app.json'],
     }),
     tsconfigPaths({ root: '../../' }),
   ],
@@ -1450,6 +1451,7 @@ export default defineConfig({
       ssr: {
         outDir: '../../dist/apps/remote1/server',
       },
+      tsconfigFileNames: ['tsconfig.app.json'],
     }),
     tsconfigPaths({ root: '../../' }),
   ],
@@ -1614,6 +1616,7 @@ export default defineConfig({
       ssr: {
         outDir: '../../dist/apps/remote2/server',
       },
+      tsconfigFileNames: ['tsconfig.app.json'],
     }),
     tsconfigPaths({ root: '../../' }),
   ],
