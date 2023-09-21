@@ -511,6 +511,7 @@ export default defineConfig({
       ssr: {
         outDir: '../../dist/apps/myapp1/server',
       },
+      tsconfigFileNames: ['tsconfig.app.json'],
     }),
     tsconfigPaths({ root: '../../' }),
     qwikReact(),
@@ -557,6 +558,7 @@ export default defineConfig({
       ssr: {
         outDir: '../../dist/apps/myapp2/server',
       },
+      tsconfigFileNames: ['tsconfig.app.json'],
     }),
     tsconfigPaths({ root: '../../' }),
     qwikReact(),

@@ -427,6 +427,7 @@ export default defineConfig({
       ssr: {
         outDir: '../../dist/apps/myapp/server',
       },
+      tsconfigFileNames: ['tsconfig.app.json'],
     }),
     tsconfigPaths({ root: '../../' }),
   ],

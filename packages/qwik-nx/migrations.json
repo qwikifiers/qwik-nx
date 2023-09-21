@@ -23,6 +23,11 @@
       "description": "Enabled type checking can be breaking. Adding a verbose option so that it is clear how to disable it",
       "cli": "nx",
       "implementation": "./src/migrations/add-verbose-skip-type-check-option-for-the-build-executor/add-verbose-skip-type-check-option-for-the-build-executor"
+    },
+    "set-proper-tsconfig-path-for-qwik-vite-plugin": {
+      "version": "1.0.11",
+      "description": "set-proper-tsconfig-path-for-qwik-vite-plugin",
+      "implementation": "./src/migrations/set-proper-tsconfig-path-for-qwik-vite-plugin/set-proper-tsconfig-path-for-qwik-vite-plugin"
     }
   },
   "packageJsonUpdates": {
@@ -260,6 +265,20 @@
         },
         "vitest": {
           "version": "^0.32.0"
+        }
+      }
+    },
+    "1.0.11": {
+      "version": "1.0.11",
+      "packages": {
+        "@builder.io/qwik": {
+          "version": "~1.2.12"
+        },
+        "@builder.io/qwik-city": {
+          "version": "~1.2.12"
+        },
+        "eslint-plugin-qwik": {
+          "version": "~1.2.12"
         }
       }
     }

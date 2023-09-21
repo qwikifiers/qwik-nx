@@ -92,7 +92,16 @@ describe('qwik-nx-vite plugin', () => {
   jest
     .spyOn(fileUtils, 'readWorkspaceConfig')
     .mockReturnValue(getWorkspaceConfig());
-  jest.spyOn(fs, 'readFileSync').mockReturnValue(getTsConfigString());
+  const originalReadFileSync = jest.requireActual('fs').readFileSync;
+  jest.spyOn(fs, 'readFileSync').mockImplementation((fileName, ...args) => {
+    if (
+      typeof fileName === 'string' &&
+      fileName.endsWith('tsconfig.base.json')
+    ) {
+      return getTsConfigString();
+    }
+    return originalReadFileSync(fileName, ...args);
+  });
   jest
     .spyOn(getProjectDependenciesModule, 'getProjectDependencies')
     .mockReturnValue(
