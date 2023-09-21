@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.11](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.10...qwik-nx-1.0.11) (2023-09-21)
+
+
+### Bug Fixes
+
+* **qwik-nx:** handle eslint checks in dev mode ([#202](https://github.com/qwikifiers/qwik-nx/issues/202)) ([ef60711](https://github.com/qwikifiers/qwik-nx/commit/ef60711a8da5021f9f171e38fe87f8c426f5cf85))
+
+
+
 ## [1.0.10](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.9...qwik-nx-1.0.10) (2023-09-18)
 
 
