@@ -99,6 +99,15 @@
         "test",
         "doc"
       ]
+    },
+    {
+      "login": "NiklasPor",
+      "name": "Niklas",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13211347?v=4",
+      "profile": "https://github.com/NiklasPor",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
