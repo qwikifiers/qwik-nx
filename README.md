@@ -139,6 +139,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/NachoVazquez"><img src="https://avatars.githubusercontent.com/u/9338604?v=4?s=100" width="100px;" alt="Nacho Vazquez"/><br /><sub><b>Nacho Vazquez</b></sub></a><br /><a href="https://github.com/qwikifiers/qwik-nx/commits?author=NachoVazquez" title="Code">💻</a> <a href="#ideas-NachoVazquez" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/qwikifiers/qwik-nx/commits?author=NachoVazquez" title="Tests">⚠️</a> <a href="https://github.com/qwikifiers/qwik-nx/commits?author=NachoVazquez" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/faileon"><img src="https://avatars.githubusercontent.com/u/9354213?v=4?s=100" width="100px;" alt="Tomas Ptacek"/><br /><sub><b>Tomas Ptacek</b></sub></a><br /><a href="https://github.com/qwikifiers/qwik-nx/commits?author=faileon" title="Code">💻</a> <a href="#ideas-faileon" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/qwikifiers/qwik-nx/commits?author=faileon" title="Tests">⚠️</a> <a href="https://github.com/qwikifiers/qwik-nx/commits?author=faileon" title="Documentation">📖</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/NiklasPor"><img src="https://avatars.githubusercontent.com/u/13211347?v=4?s=100" width="100px;" alt="Niklas"/><br /><sub><b>Niklas</b></sub></a><br /><a href="https://github.com/qwikifiers/qwik-nx/commits?author=NiklasPor" title="Code">💻</a></td>
+    </tr>
   </tbody>
 </table>
 
