@@ -1,3 +1,5 @@
+import { ProjectNameAndRootFormat } from '@nx/devkit/src/generators/project-name-and-root-utils';
+
 export interface RemoteGeneratorSchema {
   name: string;
   tags?: string;
@@ -11,4 +13,5 @@ export interface RemoteGeneratorSchema {
   e2eTestRunner?: 'playwright' | 'cypress' | 'none';
   port?: number;
   host?: string;
+  projectNameAndRootFormat?: ProjectNameAndRootFormat;
 }

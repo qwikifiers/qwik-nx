@@ -1,35 +1,23 @@
-import {
-  extractLayoutDirectory,
-  getWorkspaceLayout,
-  names,
-  normalizePath,
-  offsetFromRoot,
-  Tree,
-} from '@nx/devkit';
+import { offsetFromRoot, Tree } from '@nx/devkit';
 import { getRelativePathToRootTsConfig } from '@nx/js';
 import { NormalizedSchema, QwikAppGeneratorSchema } from '../schema';
+import { determineProjectNameAndRootOptions } from '@nx/devkit/src/generators/project-name-and-root-utils';
 
-function normalizeDirectory(options: QwikAppGeneratorSchema) {
-  const { projectDirectory } = extractLayoutDirectory(options.directory ?? '');
-  return projectDirectory
-    ? `${names(projectDirectory).fileName}/${names(options.name).fileName}`
-    : names(options.name).fileName;
-}
-
-function normalizeProjectName(options: QwikAppGeneratorSchema) {
-  return normalizeDirectory(options).replace(new RegExp('/', 'g'), '-');
-}
-
-export function normalizeOptions(
+export async function normalizeOptions(
   host: Tree,
   options: QwikAppGeneratorSchema
-): NormalizedSchema {
-  const appDirectory = normalizeDirectory(options);
-  const appProjectName = normalizeProjectName(options);
-
-  const { layoutDirectory } = extractLayoutDirectory(options.directory ?? '');
-  const appsDir = layoutDirectory ?? getWorkspaceLayout(host).appsDir;
-  const projectRoot = normalizePath(`${appsDir}/${appDirectory}`);
+): Promise<NormalizedSchema> {
+  const {
+    projectName: appProjectName,
+    projectRoot: appProjectRoot,
+    projectNameAndRootFormat,
+  } = await determineProjectNameAndRootOptions(host, {
+    name: options.name,
+    projectType: 'application',
+    callingGenerator: 'qwik-nx:application',
+    directory: options.directory,
+    projectNameAndRootFormat: options.projectNameAndRootFormat,
+  });
 
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
@@ -43,13 +31,14 @@ export function normalizeOptions(
   return {
     ...options,
     projectName: appProjectName,
-    projectRoot,
-    offsetFromRoot: offsetFromRoot(projectRoot),
-    rootTsConfigPath: getRelativePathToRootTsConfig(host, projectRoot),
+    projectRoot: appProjectRoot,
+    offsetFromRoot: offsetFromRoot(appProjectRoot),
+    rootTsConfigPath: getRelativePathToRootTsConfig(host, appProjectRoot),
     styleExtension,
     setupVitest: options.unitTestRunner === 'vitest',
     parsedTags,
     devServerPort: options.devServerPort ?? 5173,
     previewServerPort: options.previewServerPort ?? 4173,
+    projectNameAndRootFormat,
   };
 }

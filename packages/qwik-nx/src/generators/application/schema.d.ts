@@ -1,4 +1,5 @@
 import { Linter } from '@nx/linter';
+import type { ProjectNameAndRootFormat } from '@nx/devkit/src/generators/project-name-and-root-utils';
 
 export interface QwikAppGeneratorSchema {
   name: string;
@@ -13,7 +14,7 @@ export interface QwikAppGeneratorSchema {
   e2eTestRunner?: 'playwright' | 'cypress' | 'none';
   devServerPort?: number;
   previewServerPort?: number;
-  // router: 'qwik-city' | 'none'; // TODO: add setup w/o qwik-city
+  projectNameAndRootFormat?: ProjectNameAndRootFormat;
 }
 
 export interface NormalizedSchema extends QwikAppGeneratorSchema {
@@ -26,4 +27,5 @@ export interface NormalizedSchema extends QwikAppGeneratorSchema {
   setupVitest: boolean;
   parsedTags: string[];
   styleExtension: Exclude<QwikAppGeneratorSchema['style'], 'none'> | null;
+  projectNameAndRootFormat: ProjectNameAndRootFormat;
 }

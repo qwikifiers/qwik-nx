@@ -45,11 +45,11 @@ describe('qwik nx netlify generator', () => {
           `Successfully ran target build for project ${project}`
         );
         expect(() =>
-          checkFilesExist(`dist/apps/${project}/client/q-manifest.json`)
+          checkFilesExist(`dist/${project}/client/q-manifest.json`)
         ).not.toThrow();
         expect(() =>
           checkFilesExist(
-            `dist/apps/${project}/.netlify/edge-functions/entry.netlify-edge/entry.netlify-edge.js`
+            `dist/${project}/.netlify/edge-functions/entry.netlify-edge/entry.netlify-edge.js`
           )
         ).not.toThrow();
       },

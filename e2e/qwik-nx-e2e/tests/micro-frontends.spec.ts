@@ -40,16 +40,10 @@ describe('Micro-frontends e2e', () => {
   it(
     'should create host and remote applications',
     async () => {
-      expect(() =>
-        checkFilesExist(`apps/${project}/vite.config.ts`)
-      ).not.toThrow();
-      expect(() =>
-        checkFilesExist(`apps/${remote1}/vite.config.ts`)
-      ).not.toThrow();
-      expect(() =>
-        checkFilesExist(`apps/${remote2}/vite.config.ts`)
-      ).not.toThrow();
-      const configFilePath = `apps/${project}/src/config/remotes.json`;
+      expect(() => checkFilesExist(`${project}/vite.config.ts`)).not.toThrow();
+      expect(() => checkFilesExist(`${remote1}/vite.config.ts`)).not.toThrow();
+      expect(() => checkFilesExist(`${remote2}/vite.config.ts`)).not.toThrow();
+      const configFilePath = `${project}/src/config/remotes.json`;
       expect(() => checkFilesExist(configFilePath)).not.toThrow();
       const config = readJson(configFilePath);
       expect(config[remote1]).toEqual('http://localhost:5174');
@@ -67,10 +61,10 @@ describe('Micro-frontends e2e', () => {
           `Successfully ran target build for project ${name}`
         );
         expect(() =>
-          checkFilesExist(`dist/apps/${name}/client/q-manifest.json`)
+          checkFilesExist(`dist/${name}/client/q-manifest.json`)
         ).not.toThrow();
         expect(() =>
-          checkFilesExist(`dist/apps/${name}/server/entry.preview.mjs`)
+          checkFilesExist(`dist/${name}/server/entry.preview.mjs`)
         ).not.toThrow();
       };
       await checkProject(project);
@@ -162,7 +156,7 @@ describe('Micro-frontends e2e', () => {
         `Successfully ran target build for project ${remote3}`
       );
       expect(() =>
-        checkFilesExist(`dist/apps/${remote3}/server/entry.preview.mjs`)
+        checkFilesExist(`dist/${remote3}/server/entry.preview.mjs`)
       ).not.toThrow();
 
       const runResult = await runHostAndRemotes(
@@ -281,7 +275,7 @@ async function previewHostAndRemotes(
       const includesBuiltMessage = (remote: string) => {
         // checking for the presence of ssr build output message to determine whether project has been built
         return stripConsoleColors(output).includes(
-          `${remote.toUpperCase()} ../../dist/apps/${remote}/server/entry.preview.mjs`
+          `${remote.toUpperCase()} ../dist/${remote}/server/entry.preview.mjs`
         );
       };
 
@@ -300,7 +294,7 @@ async function previewHostAndRemotes(
 
       // build output
       builtHost ||= stripConsoleColors(output).includes(
-        `../../dist/apps/${hostName}/server/entry.preview.mjs`
+        `../dist/${hostName}/server/entry.preview.mjs`
       );
       builtRemote1 ||= includesBuiltMessage(remote1);
       builtRemote2 ||= includesBuiltMessage(remote2);
@@ -339,8 +333,8 @@ async function previewHostAndRemotes(
 
   const hasBuildOutputs = (projectName: string): boolean => {
     try {
-      checkFilesExist(`dist/apps/${projectName}/client/q-manifest.json`);
-      checkFilesExist(`dist/apps/${projectName}/server/entry.preview.mjs`);
+      checkFilesExist(`dist/${projectName}/client/q-manifest.json`);
+      checkFilesExist(`dist/${projectName}/server/entry.preview.mjs`);
       return true;
     } catch {
       return false;

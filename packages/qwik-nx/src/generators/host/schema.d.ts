@@ -1,3 +1,4 @@
+import { ProjectNameAndRootFormat } from '@nx/devkit/src/generators/project-name-and-root-utils';
 import { Linter } from '@nx/linter';
 
 export interface HostGeneratorSchema {
@@ -13,4 +14,5 @@ export interface HostGeneratorSchema {
   e2eTestRunner?: 'playwright' | 'cypress' | 'none';
   port?: number;
   remotes?: string[];
+  projectNameAndRootFormat?: ProjectNameAndRootFormat;
 }

@@ -43,7 +43,7 @@ describe('qwikNxVite plugin e2e', () => {
         );
         await addAdditionalStories(appProject);
       }, DEFAULT_E2E_TIMEOUT);
-      checkStorybookIsBuiltAndServed(appProject, 'apps');
+      checkStorybookIsBuiltAndServed(appProject);
     });
     describe('Applying storybook for existing library', () => {
       beforeAll(async () => {
@@ -55,7 +55,7 @@ describe('qwikNxVite plugin e2e', () => {
         );
         await addAdditionalStories(libProject);
       }, DEFAULT_E2E_TIMEOUT);
-      checkStorybookIsBuiltAndServed(libProject, 'libs');
+      checkStorybookIsBuiltAndServed(libProject);
     });
 
     describe('Generating a new library with storybook configuration', () => {
@@ -65,7 +65,7 @@ describe('qwikNxVite plugin e2e', () => {
         );
         await addAdditionalStories(secondLibProject);
       }, DEFAULT_E2E_TIMEOUT);
-      checkStorybookIsBuiltAndServed(secondLibProject, 'libs');
+      checkStorybookIsBuiltAndServed(secondLibProject);
     });
   });
 });
@@ -79,10 +79,7 @@ async function addAdditionalStories(projectName: string): Promise<void> {
   );
 }
 
-function checkStorybookIsBuiltAndServed(
-  projectName: string,
-  type: 'apps' | 'libs'
-) {
+function checkStorybookIsBuiltAndServed(projectName: string) {
   it(
     `should be able to build storybook for the "${projectName}"`,
     async () => {
@@ -115,7 +112,7 @@ function checkStorybookIsBuiltAndServed(
         }
       );
 
-      const mdxPattern = normalize(`${type}/${projectName}/**/*.stories.mdx`);
+      const mdxPattern = normalize(`${projectName}/**/*.stories.mdx`);
 
       // it is expected that projects won't have stories by default and storybook should recognize it.
       expect(resultOutput).toContain(

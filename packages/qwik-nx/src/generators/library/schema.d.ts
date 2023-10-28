@@ -13,6 +13,7 @@ export interface LibraryGeneratorSchema {
   buildable?: boolean;
   storybookConfiguration?: boolean;
   generateComponent?: boolean;
+  projectNameAndRootFormat?: ProjectNameAndRootFormat;
 }
 
 type NormalizedRequiredPropsNames =
@@ -21,6 +22,7 @@ type NormalizedRequiredPropsNames =
   | 'linter'
   | 'storybookConfiguration'
   | 'generateComponent'
+  | 'projectNameAndRootFormat'
   | 'buildable';
 type NormalizedRequiredProps = Required<
   Pick<LibraryGeneratorSchema, NormalizedRequiredPropsNames>
@@ -33,7 +35,6 @@ export type NormalizedSchema = Omit<
   NormalizedRequiredProps & {
     projectName: string;
     projectRoot: string;
-    projectDirectory: string;
     parsedTags: string[];
     offsetFromRoot: string;
     setupVitest: boolean;
