@@ -22,15 +22,14 @@ interface NormalizedSchema extends ReactLibraryGeneratorSchema {
   targetApps: string[];
   projectName: string;
   projectRoot: string;
-  projectDirectory: string;
   parsedTags: string[];
 }
 
-function normalizeOptions(
+async function normalizeOptions(
   tree: Tree,
   options: ReactLibraryGeneratorSchema
-): NormalizedSchema {
-  const normalizedLibraryOptions = libraryNormalizeOptions(tree, {
+): Promise<NormalizedSchema> {
+  const normalizedLibraryOptions = await libraryNormalizeOptions(tree, {
     ...options,
     style: 'none',
   });
@@ -89,7 +88,7 @@ export async function reactLibraryGenerator(
   tree: Tree,
   schema: ReactLibraryGeneratorSchema
 ) {
-  const normalizedOptions = normalizeOptions(tree, schema);
+  const normalizedOptions = await normalizeOptions(tree, schema);
   const tasks: GeneratorCallback[] = [];
 
   const installTask = await libraryGenerator(tree, {

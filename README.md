@@ -87,6 +87,7 @@ This plugin supports Nx migrations and provides necessary version and code updat
 
 | qwik-nx version    | Nx version |
 | ------------------ | ---------- |
+| ^1.1.0             | ^16.8.0    |
 | ^1.0.0             | ^16.0.0    |
 | ^0.16.0            | ^16.0.0    |
 | >= 0.12.0 < 0.16.0 | ^15.8.0    |

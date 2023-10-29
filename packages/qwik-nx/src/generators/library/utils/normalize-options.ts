@@ -1,31 +1,21 @@
-import {
-  extractLayoutDirectory,
-  getWorkspaceLayout,
-  joinPathFragments,
-  names,
-  offsetFromRoot,
-  Tree,
-} from '@nx/devkit';
+import { offsetFromRoot, Tree } from '@nx/devkit';
 import { Linter } from '@nx/linter';
 import { LibraryGeneratorSchema, NormalizedSchema } from '../schema';
+import { determineProjectNameAndRootOptions } from '@nx/devkit/src/generators/project-name-and-root-utils';
 
-export function normalizeOptions(
+export async function normalizeOptions(
   tree: Tree,
   schema: LibraryGeneratorSchema
-): NormalizedSchema {
-  const extracted = extractLayoutDirectory(schema.directory ?? '');
+): Promise<NormalizedSchema> {
+  const { projectName, projectRoot, projectNameAndRootFormat } =
+    await determineProjectNameAndRootOptions(tree, {
+      name: schema.name,
+      projectType: 'library',
+      callingGenerator: 'qwik-nx:library',
+      directory: schema.directory,
+      projectNameAndRootFormat: schema.projectNameAndRootFormat,
+    });
 
-  const name = names(schema.name).fileName;
-
-  const fullProjectDirectory = extracted.projectDirectory
-    ? `${names(extracted.projectDirectory).fileName}/${name}`
-    : name;
-  const projectName = fullProjectDirectory.replace(new RegExp('/', 'g'), '-');
-
-  const { libsDir: defaultLibsDir } = getWorkspaceLayout(tree);
-  const libsDir = extracted.layoutDirectory ?? defaultLibsDir;
-
-  const projectRoot = joinPathFragments(libsDir, fullProjectDirectory);
   const parsedTags = schema.tags
     ? schema.tags.split(',').map((s) => s.trim())
     : [];
@@ -44,8 +34,8 @@ export function normalizeOptions(
     ...withDefaultValues,
     projectName,
     projectRoot,
-    projectDirectory: fullProjectDirectory,
     parsedTags,
+    projectNameAndRootFormat,
     setupVitest: withDefaultValues.unitTestRunner === 'vitest',
     offsetFromRoot: offsetFromRoot(projectRoot),
   };

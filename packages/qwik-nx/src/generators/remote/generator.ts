@@ -34,7 +34,7 @@ export async function remoteGenerator(
   const initTask = await appGenerator(tree, appGeneratorSchema);
   tasks.push(initTask);
 
-  const normalizedSchema = normalizeOptions(tree, appGeneratorSchema);
+  const normalizedSchema = await normalizeOptions(tree, appGeneratorSchema);
 
   updateFiles(tree, normalizedSchema);
 

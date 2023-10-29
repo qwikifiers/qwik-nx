@@ -60,7 +60,7 @@ export async function hostGenerator(tree: Tree, options: HostGeneratorSchema) {
   addMicroFrontendBetaWarning();
   const tasks: GeneratorCallback[] = [];
 
-  const normalizedSchema = normalizeOptions(tree, {
+  const normalizedSchema = await normalizeOptions(tree, {
     ...options,
     devServerPort: options.port,
     previewServerPort: options.port,

@@ -56,7 +56,7 @@ describe('qwikNxVite plugin e2e', () => {
       // move header component into the library
 
       // update import in layout.tsx
-      const layoutFilePath = `apps/${project}/src/routes/layout.tsx`;
+      const layoutFilePath = `${project}/src/routes/layout.tsx`;
       let layoutFile = readFile(layoutFilePath);
       layoutFile = layoutFile.replace(
         `import Header from '../components/header/header';`,
@@ -65,8 +65,8 @@ describe('qwikNxVite plugin e2e', () => {
       updateFile(layoutFilePath, layoutFile);
 
       // move header component files
-      const headerFolderOldPath = `apps/${project}/src/components/header`;
-      const headerFolderNewPath = `libs/${headerLibName}/src/lib`;
+      const headerFolderOldPath = `${project}/src/components/header`;
+      const headerFolderNewPath = `${headerLibName}/src/lib`;
       removeFile(`${headerFolderNewPath}/${headerLibName}.tsx`);
       removeFile(`${headerFolderNewPath}/${headerLibName}.css`);
       renameFile(
@@ -78,7 +78,7 @@ describe('qwikNxVite plugin e2e', () => {
         `${headerFolderNewPath}/header.css`
       );
       updateFile(
-        `libs/${headerLibName}/src/index.ts`,
+        `${headerLibName}/src/index.ts`,
         `export * from './lib/header';`
       );
 
@@ -95,17 +95,14 @@ describe('qwikNxVite plugin e2e', () => {
       updateFile(`${headerFolderNewPath}/header.tsx`, headerTsx);
 
       // move icon component file
-      const qwikIconFolderNewPath = `libs/${iconLibName}/src/lib`;
+      const qwikIconFolderNewPath = `${iconLibName}/src/lib`;
       removeFile(`${qwikIconFolderNewPath}/${iconLibName}.tsx`);
       removeFile(`${qwikIconFolderNewPath}/${iconLibName}.css`);
       renameFile(
-        `apps/${project}/src/components/icons/qwik.tsx`,
+        `${project}/src/components/icons/qwik.tsx`,
         `${qwikIconFolderNewPath}/qwik.tsx`
       );
-      updateFile(
-        `libs/${iconLibName}/src/index.ts`,
-        `export * from './lib/qwik';`
-      );
+      updateFile(`${iconLibName}/src/index.ts`, `export * from './lib/qwik';`);
     }, DEFAULT_E2E_TIMEOUT);
 
     it(
@@ -116,10 +113,10 @@ describe('qwikNxVite plugin e2e', () => {
           `Successfully ran target build for project ${project}`
         );
         expect(() =>
-          checkFilesExist(`dist/apps/${project}/client/q-manifest.json`)
+          checkFilesExist(`dist/${project}/client/q-manifest.json`)
         ).not.toThrow();
         expect(() =>
-          checkFilesExist(`dist/apps/${project}/server/entry.preview.mjs`)
+          checkFilesExist(`dist/${project}/server/entry.preview.mjs`)
         ).not.toThrow();
       },
       DEFAULT_E2E_TIMEOUT

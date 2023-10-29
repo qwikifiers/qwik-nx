@@ -53,12 +53,10 @@ describe('qwik nx cloudflare generator', () => {
           `Successfully ran target build for project ${project}`
         );
         expect(() =>
-          checkFilesExist(`dist/apps/${project}/client/q-manifest.json`)
+          checkFilesExist(`dist/${project}/client/q-manifest.json`)
         ).not.toThrow();
         expect(() =>
-          checkFilesExist(
-            `dist/apps/${project}/server/entry.cloudflare-pages.js`
-          )
+          checkFilesExist(`dist/${project}/server/entry.cloudflare-pages.js`)
         ).not.toThrow();
       },
       DEFAULT_E2E_TIMEOUT

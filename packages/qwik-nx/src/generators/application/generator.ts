@@ -40,7 +40,7 @@ export async function appGenerator(
   tree: Tree,
   options: QwikAppGeneratorSchema
 ) {
-  const normalizedOptions = normalizeOptions(tree, options);
+  const normalizedOptions = await normalizeOptions(tree, options);
   const tasks: GeneratorCallback[] = [];
 
   const targets: Record<string, TargetConfiguration> =

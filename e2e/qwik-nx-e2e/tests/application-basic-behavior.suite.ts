@@ -19,6 +19,9 @@ import {
 import { names } from '@nx/devkit';
 
 export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
+  const isPreset = generator === 'preset';
+  const appPathPrefix = isPreset ? 'apps/' : '';
+  const libPathPrefix = isPreset ? 'libs/' : '';
   const devServerPort = 4212;
   const previewServerPort = 4232;
   describe(`Basic behavior with ${generator} generator`, () => {
@@ -36,12 +39,11 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
     beforeAll(async () => {
       project = uniq('qwik-nx');
       libProject = uniq('qwik-nx');
-      rootRoutePath = `apps/${project}/src/routes/index.tsx`;
-      libComponentPath = `libs/${libProject}/src/lib/${libProject}.tsx`;
+      rootRoutePath = `${appPathPrefix}${project}/src/routes/index.tsx`;
+      libComponentPath = `${libPathPrefix}${libProject}/src/lib/${libProject}.tsx`;
       libComponentName = names(libProject).className;
 
-      const projectNameParam =
-        generator === 'preset' ? `--qwikAppName=${project}` : project;
+      const projectNameParam = isPreset ? `--qwikAppName=${project}` : project;
 
       await runNxCommandAsync(
         `generate qwik-nx:${generator} ${projectNameParam} --no-interactive`
@@ -91,10 +93,14 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
           `Successfully ran target build for project ${project}`
         );
         expect(() =>
-          checkFilesExist(`dist/apps/${project}/client/q-manifest.json`)
+          checkFilesExist(
+            `dist/${appPathPrefix}${project}/client/q-manifest.json`
+          )
         ).not.toThrow();
         expect(() =>
-          checkFilesExist(`dist/apps/${project}/server/entry.preview.mjs`)
+          checkFilesExist(
+            `dist/${appPathPrefix}${project}/server/entry.preview.mjs`
+          )
         ).not.toThrow();
       },
       DEFAULT_E2E_TIMEOUT
@@ -141,8 +147,16 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
             .replace(/-p .+/, '-p REPLACED_PATH/tsconfig.app.json');
         }
 
-        expect(replaceDynamicContent(result.stderr)).toMatchSnapshot('stderr');
-        expect(replaceDynamicContent(result.stdout)).toMatchSnapshot('stdout');
+        const stdout = replaceDynamicContent(stripConsoleColors(result.stdout));
+        expect(stdout).toContain(
+          `PROJECT_NAME/src/routes/index.tsx:8:15 - error TS2322: Type 'string' is not assignable to type 'number'.`
+        );
+        expect(stdout).toContain(
+          `LIB_PROJECT_NAME/src/lib/LIB_PROJECT_NAME.tsx:7:22 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.`
+        );
+        expect(stdout).toContain(
+          `Running target build for project PROJECT_NAME failed`
+        );
       },
       DEFAULT_E2E_TIMEOUT
     );

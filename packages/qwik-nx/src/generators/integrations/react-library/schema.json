@@ -19,6 +19,11 @@
       "type": "string",
       "description": "A directory where the lib is placed."
     },
+    "projectNameAndRootFormat": {
+      "description": "Whether to generate the project name and root directory as provided (`as-provided`) or generate them composing their values and taking the configured layout into account (`derived`).",
+      "type": "string",
+      "enum": ["as-provided", "derived"]
+    },
     "installMUIExample": {
       "type": "boolean",
       "description": "Add dependencies for Material UI and qwikified example component, that uses it",
