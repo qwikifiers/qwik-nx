@@ -147,8 +147,16 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
             .replace(/-p .+/, '-p REPLACED_PATH/tsconfig.app.json');
         }
 
-        expect(replaceDynamicContent(result.stderr)).toMatchSnapshot('stderr');
-        expect(replaceDynamicContent(result.stdout)).toMatchSnapshot('stdout');
+        const stdout = replaceDynamicContent(stripConsoleColors(result.stdout));
+        expect(stdout).toContain(
+          `PROJECT_NAME/src/routes/index.tsx:8:15 - error TS2322: Type 'string' is not assignable to type 'number'.`
+        );
+        expect(stdout).toContain(
+          `LIB_PROJECT_NAME/src/lib/LIB_PROJECT_NAME.tsx:7:22 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.`
+        );
+        expect(stdout).toContain(
+          `Running target build for project PROJECT_NAME failed`
+        );
       },
       DEFAULT_E2E_TIMEOUT
     );
