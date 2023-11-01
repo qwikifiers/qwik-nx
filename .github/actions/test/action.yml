@@ -6,9 +6,9 @@ runs:
   using: composite
 
   steps:
-    # - name: Commitlint
-    # shell: bash
-    # run: npx --no-install commitlint --from=last-release
+    - name: Commitlint
+      if: runner.os != 'Windows'
+      uses: wagoid/commitlint-github-action@v5
 
     - name: Lint
       shell: bash
