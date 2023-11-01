@@ -10,7 +10,8 @@
     "prepare": "husky install",
     "start": "nx serve",
     "test": "nx test",
-    "e2e": "nx e2e"
+    "e2e": "nx e2e",
+    "commitlint": "commitlint --edit"
   },
   "private": true,
   "packageManager": "pnpm@8.4.0",
