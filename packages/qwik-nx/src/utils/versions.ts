@@ -17,9 +17,6 @@ export const autoprefixerVersion = '~10.4.11';
 export const postcssVersion = '~8.4.16';
 export const tailwindcssVersion = '~3.1.8';
 
-// nxkit packages
-export const nxKitVersion = '^3.0.2';
-
 // cloudflare-pages integration
 export const wranglerVersion = '^3.1.0';
 export const nxCloudflareWrangler = '^2.4.2';

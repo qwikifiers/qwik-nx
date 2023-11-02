@@ -2,8 +2,6 @@ export { appGenerator } from './application/generator';
 export type { QwikAppGeneratorSchema } from './application/schema';
 export { componentGenerator } from './component/generator';
 export type { ComponentGeneratorSchema } from './component/schema';
-export { addE2eProject } from './e2e-project/generator';
-export type { E2eProjectGeneratorSchema } from './e2e-project/schema';
 export { qwikInitGenerator } from './init/init';
 export type { InitGeneratorSchema } from './init/schema';
 export { cloudflarePagesIntegrationGenerator } from './integrations/cloudflare-pages-integration/generator';

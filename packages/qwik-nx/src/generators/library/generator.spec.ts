@@ -28,6 +28,19 @@ describe('library generator', () => {
     expect(getFormattedListChanges(appTree)).toMatchSnapshot();
   });
 
+  it('should generate component when "generateComponent" is set to true', async () => {
+    await generator(appTree, {
+      ...options,
+      generateComponent: true,
+      directory: 'some/nested/lib',
+    });
+    const config = readProjectConfiguration(appTree, 'some-nested-lib-mylib');
+    expect(config.root).toBe('libs/some/nested/lib/mylib');
+    expect(
+      appTree.exists('libs/some/nested/lib/mylib/src/lib/mylib.tsx')
+    ).toBeTruthy();
+  });
+
   it('should generate build configs for buildable libraries', async () => {
     await generator(appTree, { ...options, buildable: true });
     const config = readProjectConfiguration(appTree, 'mylib');

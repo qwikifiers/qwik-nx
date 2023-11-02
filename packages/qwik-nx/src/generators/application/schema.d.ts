@@ -28,4 +28,6 @@ export interface NormalizedSchema extends QwikAppGeneratorSchema {
   parsedTags: string[];
   styleExtension: Exclude<QwikAppGeneratorSchema['style'], 'none'> | null;
   projectNameAndRootFormat: ProjectNameAndRootFormat;
+  e2eProjectName: string;
+  e2eProjectRoot: string;
 }
