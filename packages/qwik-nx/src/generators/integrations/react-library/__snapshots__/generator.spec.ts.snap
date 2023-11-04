@@ -10,7 +10,7 @@ Object {
   "tags": Array [],
   "targets": Object {
     "lint": Object {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": Object {
         "lintFilePatterns": Array [
           "libs/shared/mylib/**/*.{ts,tsx,js,jsx}",
@@ -27,7 +27,7 @@ Object {
         "reportsDirectory": "../../../coverage/libs/shared/mylib",
       },
       "outputs": Array [
-        "../../..//coverage/libs/shared/mylib",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -44,7 +44,7 @@ Object {
   "tags": Array [],
   "targets": Object {
     "lint": Object {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": Object {
         "lintFilePatterns": Array [
           "packages/mylib/**/*.{ts,tsx,js,jsx}",
@@ -61,7 +61,7 @@ Object {
         "reportsDirectory": "../../coverage/packages/mylib",
       },
       "outputs": Array [
-        "../..//coverage/packages/mylib",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -78,7 +78,7 @@ Object {
   "tags": Array [],
   "targets": Object {
     "lint": Object {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": Object {
         "lintFilePatterns": Array [
           "packages/shared/mylib/**/*.{ts,tsx,js,jsx}",
@@ -95,7 +95,7 @@ Object {
         "reportsDirectory": "../../../coverage/packages/shared/mylib",
       },
       "outputs": Array [
-        "../../..//coverage/packages/shared/mylib",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -112,7 +112,7 @@ Object {
   "tags": Array [],
   "targets": Object {
     "lint": Object {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": Object {
         "lintFilePatterns": Array [
           "libs/shared/mylib/**/*.{ts,tsx,js,jsx}",
@@ -129,7 +129,7 @@ Object {
         "reportsDirectory": "../../../coverage/libs/shared/mylib",
       },
       "outputs": Array [
-        "../../..//coverage/libs/shared/mylib",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -146,7 +146,7 @@ Object {
   "tags": Array [],
   "targets": Object {
     "lint": Object {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": Object {
         "lintFilePatterns": Array [
           "libs/mylib/**/*.{ts,tsx,js,jsx}",
@@ -163,7 +163,7 @@ Object {
         "reportsDirectory": "../../coverage/libs/mylib",
       },
       "outputs": Array [
-        "../..//coverage/libs/mylib",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -180,7 +180,7 @@ Object {
   "tags": Array [],
   "targets": Object {
     "lint": Object {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": Object {
         "lintFilePatterns": Array [
           "libs/shared/mylib/**/*.{ts,tsx,js,jsx}",
@@ -197,7 +197,7 @@ Object {
         "reportsDirectory": "../../../coverage/libs/shared/mylib",
       },
       "outputs": Array [
-        "../../..//coverage/libs/shared/mylib",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -214,7 +214,7 @@ Object {
   "tags": Array [],
   "targets": Object {
     "lint": Object {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": Object {
         "lintFilePatterns": Array [
           "libs/mylib/**/*.{ts,tsx,js,jsx}",
@@ -231,7 +231,7 @@ Object {
         "reportsDirectory": "../../coverage/libs/mylib",
       },
       "outputs": Array [
-        "../..//coverage/libs/mylib",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -358,7 +358,7 @@ Object {
   "tags": Array [],
   "targets": Object {
     "lint": Object {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": Object {
         "lintFilePatterns": Array [
           "libs/mylib/**/*.{ts,tsx,js,jsx}",
@@ -375,7 +375,7 @@ Object {
         "reportsDirectory": "../../coverage/libs/mylib",
       },
       "outputs": Array [
-        "../..//coverage/libs/mylib",
+        "{options.reportsDirectory}",
       ],
     },
   },

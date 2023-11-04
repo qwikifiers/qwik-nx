@@ -71,7 +71,7 @@ Object {
         "reportsDirectory": "../../../coverage/apps/frontend/myhostapp",
       },
       "outputs": Array [
-        "../../../coverage/apps/frontend/myhostapp",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -149,7 +149,7 @@ Object {
         "reportsDirectory": "../../../coverage/apps/frontend/remote1",
       },
       "outputs": Array [
-        "../../../coverage/apps/frontend/remote1",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -227,7 +227,7 @@ Object {
         "reportsDirectory": "../../../coverage/apps/frontend/myhostapp",
       },
       "outputs": Array [
-        "../../../coverage/apps/frontend/myhostapp",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -305,7 +305,7 @@ Object {
         "reportsDirectory": "../../../coverage/apps/frontend/remote1",
       },
       "outputs": Array [
-        "../../../coverage/apps/frontend/remote1",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -383,7 +383,7 @@ Object {
         "reportsDirectory": "../../coverage/packages/myhostapp",
       },
       "outputs": Array [
-        "../../coverage/packages/myhostapp",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -461,7 +461,7 @@ Object {
         "reportsDirectory": "../../coverage/packages/remote1",
       },
       "outputs": Array [
-        "../../coverage/packages/remote1",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -539,7 +539,7 @@ Object {
         "reportsDirectory": "../../../coverage/packages/frontend/myhostapp",
       },
       "outputs": Array [
-        "../../../coverage/packages/frontend/myhostapp",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -617,7 +617,7 @@ Object {
         "reportsDirectory": "../../../coverage/packages/frontend/remote1",
       },
       "outputs": Array [
-        "../../../coverage/packages/frontend/remote1",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -695,7 +695,7 @@ Object {
         "reportsDirectory": "../../coverage/apps/myhostapp",
       },
       "outputs": Array [
-        "../../coverage/apps/myhostapp",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -773,7 +773,7 @@ Object {
         "reportsDirectory": "../../coverage/apps/remote1",
       },
       "outputs": Array [
-        "../../coverage/apps/remote1",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -851,7 +851,7 @@ Object {
         "reportsDirectory": "../../../coverage/apps/frontend/myhostapp",
       },
       "outputs": Array [
-        "../../../coverage/apps/frontend/myhostapp",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -929,7 +929,7 @@ Object {
         "reportsDirectory": "../../../coverage/apps/frontend/remote1",
       },
       "outputs": Array [
-        "../../../coverage/apps/frontend/remote1",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -1076,7 +1076,7 @@ exports[`host generator should run successfully 3`] = `
     },
     \\"test\\": {
       \\"executor\\": \\"@nx/vite:test\\",
-      \\"outputs\\": [\\"../../coverage/apps/myhostapp\\"],
+      \\"outputs\\": [\\"{options.reportsDirectory}\\"],
       \\"options\\": {
         \\"passWithNoTests\\": true,
         \\"reportsDirectory\\": \\"../../coverage/apps/myhostapp\\"
@@ -1570,7 +1570,7 @@ exports[`host generator should run successfully 7`] = `
     },
     \\"test\\": {
       \\"executor\\": \\"@nx/vite:test\\",
-      \\"outputs\\": [\\"../../coverage/apps/remote1\\"],
+      \\"outputs\\": [\\"{options.reportsDirectory}\\"],
       \\"options\\": {
         \\"passWithNoTests\\": true,
         \\"reportsDirectory\\": \\"../../coverage/apps/remote1\\"
@@ -1735,7 +1735,7 @@ exports[`host generator should run successfully 10`] = `
     },
     \\"test\\": {
       \\"executor\\": \\"@nx/vite:test\\",
-      \\"outputs\\": [\\"../../coverage/apps/remote2\\"],
+      \\"outputs\\": [\\"{options.reportsDirectory}\\"],
       \\"options\\": {
         \\"passWithNoTests\\": true,
         \\"reportsDirectory\\": \\"../../coverage/apps/remote2\\"
