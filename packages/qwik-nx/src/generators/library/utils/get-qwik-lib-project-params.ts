@@ -39,7 +39,7 @@ function getTestTarget(
 ): TargetConfiguration {
   return {
     executor: '@nx/vite:test',
-    outputs: [`${params.offsetFromRoot}/coverage/${params.projectRoot}`],
+    outputs: ['{options.reportsDirectory}'],
     options: {
       passWithNoTests: true,
       reportsDirectory: `${params.offsetFromRoot}coverage/${params.projectRoot}`,

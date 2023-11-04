@@ -49,7 +49,7 @@
     "chalk": "^4.1.0",
     "commitizen": "^4.2.5",
     "commitlint": "^17.3.0",
-    "create-nx-workspace": "16.0.0",
+    "create-nx-workspace": "17.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "enquirer": "2.3.6",
     "eslint": "8.46.0",
