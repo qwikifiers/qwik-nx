@@ -26,8 +26,8 @@ devDependencies:
     specifier: ^17.3.0
     version: 17.3.0
   '@jscutlery/semver':
-    specifier: ^3.1.0
-    version: 3.1.0(@nx/devkit@17.0.3)
+    specifier: ^4.0.0
+    version: 4.0.0(@nx/devkit@17.0.3)
   '@nx/cypress':
     specifier: 17.0.3
     version: 17.0.3(@swc-node/register@1.6.8)(@swc/core@1.3.95)(@types/node@16.11.7)(eslint@8.46.0)(nx@17.0.3)(typescript@4.9.5)(verdaccio@5.21.1)
@@ -2532,7 +2532,7 @@ packages:
     dependencies:
       '@jest/types': 29.6.3
       '@types/node': 16.11.7
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-message-util: 29.7.0
       jest-util: 29.7.0
       slash: 3.0.0
@@ -2749,7 +2749,7 @@ packages:
       '@jest/types': 29.6.3
       '@jridgewell/trace-mapping': 0.3.20
       babel-plugin-istanbul: 6.1.1
-      chalk: 4.1.0
+      chalk: 4.1.2
       convert-source-map: 2.0.0
       fast-json-stable-stringify: 2.1.0
       graceful-fs: 4.2.11
@@ -2834,21 +2834,20 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@jscutlery/semver@3.1.0(@nx/devkit@17.0.3):
+  /@jscutlery/semver@4.0.0(@nx/devkit@17.0.3):
     resolution:
       {
-        integrity: sha512-x/v+6HN0/UpQW8L3sIlvRodBY/pGJ3AjtNpKmMkR4RmnTuuRo+OMAiIS4/EJ2pzXhmn9YqNm8rYzIIqiWt62IA==,
+        integrity: sha512-ePISUjqHYp4ywOX7hEtkYj3F1zFhnARBtpuTacioXEgVArKEWrSuJmm9ISnQUyh+qBjxgtQcU6GHSolDbKfZDg==,
       }
-    engines: { node: '>=12.0.0' }
     peerDependencies:
-      '@nx/devkit': ^16.0.0
+      '@nx/devkit': ^17.0.0
     dependencies:
       '@nx/devkit': 17.0.3(nx@17.0.3)
       chalk: 4.1.2
       conventional-changelog: 4.0.0
       conventional-recommended-bump: 7.0.1
       detect-indent: 6.1.0
-      inquirer: 8.2.5
+      inquirer: 8.2.6
       rxjs: 7.8.1
     dev: true
 
@@ -6429,7 +6428,7 @@ packages:
     hasBin: true
     dependencies:
       '@jest/types': 29.6.3
-      chalk: 4.1.0
+      chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-config: 29.7.0(@types/node@16.11.7)(ts-node@10.9.1)
@@ -8679,10 +8678,10 @@ packages:
       wrap-ansi: 7.0.0
     dev: true
 
-  /inquirer@8.2.5:
+  /inquirer@8.2.6:
     resolution:
       {
-        integrity: sha512-QAgPDQMEgrDssk1XiwwHoOGYF9BAbUcc1+j+FhEvaOt8/cKRqyLn0U5qA6F74fGhTMGxf92pOvPBeh29jQJDTQ==,
+        integrity: sha512-M1WuAmb7pn9zdFRtQYk26ZBoY043Sse0wVDdk4Bppr+JOXyQYybdtvK+l9wUibhtjdjvtoiNy8tk+EgsYIUqKg==,
       }
     engines: { node: '>=12.0.0' }
     dependencies:
@@ -8700,7 +8699,7 @@ packages:
       string-width: 4.2.3
       strip-ansi: 6.0.1
       through: 2.3.8
-      wrap-ansi: 7.0.0
+      wrap-ansi: 6.2.0
     dev: true
 
   /ip-regex@4.3.0:
@@ -9286,7 +9285,7 @@ packages:
       }
     engines: { node: ^14.15.0 || ^16.10.0 || >=18.0.0 }
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-diff: 29.7.0
       jest-get-type: 29.6.3
       pretty-format: 29.7.0
@@ -9302,7 +9301,7 @@ packages:
       '@babel/code-frame': 7.22.13
       '@jest/types': 29.6.3
       '@types/stack-utils': 2.0.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       graceful-fs: 4.2.11
       micromatch: 4.0.5
       pretty-format: 29.7.0
@@ -9389,7 +9388,7 @@ packages:
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
       '@types/node': 16.11.7
-      chalk: 4.1.0
+      chalk: 4.1.2
       emittery: 0.13.1
       graceful-fs: 4.2.11
       jest-docblock: 29.7.0
@@ -9423,7 +9422,7 @@ packages:
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
       '@types/node': 16.11.7
-      chalk: 4.1.0
+      chalk: 4.1.2
       cjs-module-lexer: 1.2.3
       collect-v8-coverage: 1.0.2
       glob: 7.2.3
@@ -9457,7 +9456,7 @@ packages:
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
       babel-preset-current-node-syntax: 1.0.1(@babel/core@7.23.2)
-      chalk: 4.1.0
+      chalk: 4.1.2
       expect: 29.7.0
       graceful-fs: 4.2.11
       jest-diff: 29.7.0
@@ -9496,7 +9495,7 @@ packages:
     dependencies:
       '@jest/types': 29.6.3
       camelcase: 6.3.0
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-get-type: 29.6.3
       leven: 3.1.0
       pretty-format: 29.7.0
@@ -9513,7 +9512,7 @@ packages:
       '@jest/types': 29.6.3
       '@types/node': 16.11.7
       ansi-escapes: 4.3.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       emittery: 0.13.1
       jest-util: 29.7.0
       string-length: 4.0.2
@@ -10093,7 +10092,7 @@ packages:
       }
     engines: { node: '>=10' }
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       is-unicode-supported: 0.1.0
     dev: true
 
@@ -10942,7 +10941,7 @@ packages:
     engines: { node: '>=10' }
     dependencies:
       bl: 4.1.0
-      chalk: 4.1.0
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.9.1
       is-interactive: 1.0.0
