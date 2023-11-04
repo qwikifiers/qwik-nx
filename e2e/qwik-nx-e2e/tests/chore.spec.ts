@@ -24,7 +24,7 @@ describe('misc checks', () => {
       expect(packageJson.dependencies).toEqual({
         '@nx/devkit': '^16.0.0',
         '@nx/js': '^16.0.0',
-        '@nx/linter': '^16.0.0',
+        '@nx/eslint': '^16.0.0',
         '@nx/vite': '^16.0.0',
       });
     },

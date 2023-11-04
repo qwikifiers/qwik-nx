@@ -8,7 +8,7 @@ import {
 import { denoIntegrationGenerator } from './generator';
 import applicationGenerator from './../../application/generator';
 import { DenoIntegrationGeneratorSchema } from './schema';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 
 describe('deno-integration generator', () => {
   let appTree: Tree;

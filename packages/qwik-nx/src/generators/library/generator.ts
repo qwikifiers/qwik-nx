@@ -9,7 +9,7 @@ import {
   updateProjectConfiguration,
   runTasksInSerial,
 } from '@nx/devkit';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 import {
   getRelativePathToRootTsConfig,
   initGenerator as jsInitGenerator,

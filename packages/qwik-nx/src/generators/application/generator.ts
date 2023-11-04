@@ -9,7 +9,7 @@ import {
   Tree,
   runTasksInSerial,
 } from '@nx/devkit';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 import { initGenerator } from '@nx/vite';
 import { initGenerator as jsInitGenerator } from '@nx/js';
 import { addCommonQwikDependencies } from '../../utils/add-common-qwik-dependencies';

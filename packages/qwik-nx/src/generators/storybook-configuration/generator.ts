@@ -10,7 +10,7 @@ import {
   readProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 import * as path from 'path';
 import {
   ensureMdxTypeInTsConfig,

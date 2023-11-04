@@ -10,7 +10,6 @@
       "options": {
         "outputPath": "dist/packages/qwik-nx",
         "main": "packages/qwik-nx/src/index.ts",
-        "updateBuildableProjectDepsInPackageJson": false,
         "tsConfig": "packages/qwik-nx/tsconfig.lib.json",
         "assets": [
           "README.md",
@@ -48,7 +47,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [

@@ -1,5 +1,5 @@
 import { ProjectNameAndRootFormat } from '@nx/devkit/src/generators/project-name-and-root-utils';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 
 export interface HostGeneratorSchema {
   name: string;
