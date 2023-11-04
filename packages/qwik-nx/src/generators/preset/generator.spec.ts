@@ -14,7 +14,7 @@ describe('preset generator', () => {
     style: 'css',
     linter: Linter.None,
     skipFormat: true,
-    e2eTestRunner: 'playwright',
+    e2eTestRunner: 'none',
     unitTestRunner: 'none',
     strict: false,
   };

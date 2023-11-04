@@ -20,7 +20,7 @@ import { SetupTailwindOptions } from './../setup-tailwind/schema.d';
 import { NormalizedSchema, QwikAppGeneratorSchema } from './schema';
 import { getQwikApplicationProjectTargets } from './utils/get-qwik-application-project-params';
 import { normalizeOptions } from './utils/normalize-options';
-import { addE2eProject } from '../e2e-project/generator';
+import { addE2eProject } from './utils/add-e2e';
 
 function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
@@ -89,12 +89,7 @@ export async function appGenerator(
     normalizedOptions.e2eTestRunner &&
     normalizedOptions.e2eTestRunner !== 'none'
   ) {
-    const e2eProjectTask = await addE2eProject(tree, {
-      project: normalizedOptions.projectName,
-      directory: normalizedOptions.directory,
-      e2eTestRunner: normalizedOptions.e2eTestRunner,
-      skipFormat: true,
-    });
+    const e2eProjectTask = await addE2eProject(tree, normalizedOptions);
     tasks.push(e2eProjectTask);
   }
 

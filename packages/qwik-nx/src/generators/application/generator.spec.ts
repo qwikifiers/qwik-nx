@@ -60,7 +60,7 @@ describe('qwik-nx generator', () => {
       });
       const config = readProjectConfiguration(appTree, 'myapp-e2e');
       expect(config).toBeDefined();
-      expect(config.targets?.e2e.executor).toEqual('@nxkit/playwright:test');
+      expect(config.targets?.e2e.executor).toEqual('@nx/playwright:playwright');
       expect(
         appTree.exists('apps/myapp-e2e/playwright.config.ts')
       ).toBeTruthy();

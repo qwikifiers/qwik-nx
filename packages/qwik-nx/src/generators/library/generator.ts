@@ -70,14 +70,15 @@ async function addLibrary(
     includeBabelRc: false,
     buildable: false,
     bundler: 'none',
+    projectNameAndRootFormat: options.projectNameAndRootFormat,
   });
   tasks.push(libGeneratorTask);
 
-  tree.delete(`${options.projectRoot}/src/lib/${options.name}.ts`);
+  tree.delete(`${options.projectRoot}/src/lib/${options.projectName}.ts`);
 
   const templateOptions = {
     ...options,
-    ...names(options.name),
+    ...names(options.projectName),
     strict: !!options.strict,
     rootTsConfigPath: getRelativePathToRootTsConfig(tree, options.projectRoot),
   };

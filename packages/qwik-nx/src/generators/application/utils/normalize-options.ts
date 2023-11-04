@@ -26,6 +26,10 @@ export async function normalizeOptions(
   options.strict = options.strict ?? true;
   options.unitTestRunner = options.unitTestRunner ?? 'vitest';
 
+  const rootProject = appProjectRoot === '.';
+  const e2eProjectName = rootProject ? 'e2e' : `${appProjectName}-e2e`;
+  const e2eProjectRoot = rootProject ? 'e2e' : `${appProjectRoot}-e2e`;
+
   const styleExtension = options.style !== 'none' ? options.style : null;
 
   return {
@@ -40,5 +44,7 @@ export async function normalizeOptions(
     devServerPort: options.devServerPort ?? 5173,
     previewServerPort: options.previewServerPort ?? 4173,
     projectNameAndRootFormat,
+    e2eProjectName,
+    e2eProjectRoot,
   };
 }
