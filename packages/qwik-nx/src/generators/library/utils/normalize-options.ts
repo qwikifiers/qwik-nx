@@ -1,5 +1,5 @@
 import { offsetFromRoot, Tree } from '@nx/devkit';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 import { LibraryGeneratorSchema, NormalizedSchema } from '../schema';
 import { determineProjectNameAndRootOptions } from '@nx/devkit/src/generators/project-name-and-root-utils';
 

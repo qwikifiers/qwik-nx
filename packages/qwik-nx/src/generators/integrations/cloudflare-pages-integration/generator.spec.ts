@@ -9,7 +9,7 @@ import {
 import { cloudflarePagesIntegrationGenerator } from './generator';
 import applicationGenerator from './../../application/generator';
 import { CloudflarePagesIntegrationGeneratorSchema } from './schema';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 
 describe('cloudflare-pages-integration generator', () => {
   let appTree: Tree;

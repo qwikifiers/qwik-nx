@@ -8,7 +8,7 @@ import {
 } from '@nx/devkit';
 import { getInstalledNxVersion } from '../../../utils/get-installed-nx-version';
 import { NormalizedSchema } from '../schema';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 
 export async function addE2eProject(
   tree: Tree,

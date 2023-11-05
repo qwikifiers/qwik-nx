@@ -5,7 +5,7 @@
   "projectType": "library",
   "targets": {
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": ["packages/add-nx-to-qwik/**/*.ts"]
       }
@@ -26,7 +26,6 @@
         "tsConfig": "packages/add-nx-to-qwik/tsconfig.lib.json",
         "packageJson": "packages/add-nx-to-qwik/package.json",
         "main": "packages/add-nx-to-qwik/src/index.ts",
-        "updateBuildableProjectDepsInPackageJson": false,
         "assets": [
           "packages/add-nx-to-qwik/*.md",
           {

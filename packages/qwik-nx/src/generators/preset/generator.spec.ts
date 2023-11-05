@@ -3,7 +3,7 @@ import { Tree, readProjectConfiguration } from '@nx/devkit';
 
 import generator from './generator';
 import { QwikWorkspacePresetGeneratorSchema } from './schema';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 
 describe('preset generator', () => {
   let appTree: Tree;

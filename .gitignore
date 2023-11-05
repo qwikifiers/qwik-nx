@@ -40,3 +40,7 @@ Thumbs.db
 
 # Local Netlify folder
 .netlify
+
+# Nx
+.nx/cache
+migrations.json

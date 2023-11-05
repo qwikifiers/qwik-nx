@@ -1,7 +1,7 @@
 // qwik packages
-export const qwikVersion = '~1.2.12';
-export const qwikCityVersion = '~1.2.12';
-export const qwikEslintPluginVersion = '~1.2.12';
+export const qwikVersion = '~1.2.17';
+export const qwikCityVersion = '~1.2.17';
+export const qwikEslintPluginVersion = '~1.2.17';
 
 // css preprocessors
 export const sassVersion = '~1.56.1';

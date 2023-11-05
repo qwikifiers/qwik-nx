@@ -71,7 +71,7 @@ Object {
         "reportsDirectory": "../../../coverage/apps/frontend/myremote",
       },
       "outputs": Array [
-        "../../../coverage/apps/frontend/myremote",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -149,7 +149,7 @@ Object {
         "reportsDirectory": "../../../coverage/apps/frontend/myremote",
       },
       "outputs": Array [
-        "../../../coverage/apps/frontend/myremote",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -227,7 +227,7 @@ Object {
         "reportsDirectory": "../../coverage/packages/myremote",
       },
       "outputs": Array [
-        "../../coverage/packages/myremote",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -305,7 +305,7 @@ Object {
         "reportsDirectory": "../../../coverage/packages/frontend/myremote",
       },
       "outputs": Array [
-        "../../../coverage/packages/frontend/myremote",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -383,7 +383,7 @@ Object {
         "reportsDirectory": "../../coverage/apps/myremote",
       },
       "outputs": Array [
-        "../../coverage/apps/myremote",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -461,7 +461,7 @@ Object {
         "reportsDirectory": "../../../coverage/apps/frontend/myremote",
       },
       "outputs": Array [
-        "../../../coverage/apps/frontend/myremote",
+        "{options.reportsDirectory}",
       ],
     },
   },
@@ -560,7 +560,7 @@ exports[`remote generator should run successfully 2`] = `
     },
     \\"test\\": {
       \\"executor\\": \\"@nx/vite:test\\",
-      \\"outputs\\": [\\"../../coverage/apps/myremote\\"],
+      \\"outputs\\": [\\"{options.reportsDirectory}\\"],
       \\"options\\": {
         \\"passWithNoTests\\": true,
         \\"reportsDirectory\\": \\"../../coverage/apps/myremote\\"

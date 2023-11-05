@@ -102,7 +102,7 @@ function getSampleProjectJson() {
           },
         },
         lint: {
-          executor: '@nx/linter:eslint',
+          executor: '@nx/eslint:eslint',
           outputs: ['{options.outputFile}'],
           options: {
             lintFilePatterns: ['apps/myapp/**/*.{ts,tsx,js,jsx}'],
@@ -189,7 +189,7 @@ function getSampleProjectJson() {
           },
         },
         lint: {
-          executor: '@nx/linter:eslint',
+          executor: '@nx/eslint:eslint',
           outputs: ['{options.outputFile}'],
           options: {
             lintFilePatterns: ['apps/myapp/**/*.{ts,tsx,js,jsx}'],
@@ -261,7 +261,7 @@ function getSampleProjectJson() {
           },
         },
         lint: {
-          executor: '@nx/linter:eslint',
+          executor: '@nx/eslint:eslint',
           outputs: ['{options.outputFile}'],
           options: {
             lintFilePatterns: ['apps/myapp/**/*.{ts,tsx,js,jsx}'],
@@ -364,7 +364,7 @@ function getSampleProjectJson() {
           },
         },
         lint: {
-          executor: '@nx/linter:eslint',
+          executor: '@nx/eslint:eslint',
           outputs: ['{options.outputFile}'],
           options: {
             lintFilePatterns: ['apps/myapp/**/*.{ts,tsx,js,jsx}'],

@@ -4,7 +4,7 @@ import { Tree, readProjectConfiguration } from '@nx/devkit';
 import { storybookConfigurationGenerator } from './generator';
 import { StorybookConfigurationGeneratorSchema } from './schema';
 import appGenerator from '../application/generator';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 import { libraryGenerator } from '../library/generator';
 // import { getFormattedListChanges } from '../../utils/testing-generators';
 

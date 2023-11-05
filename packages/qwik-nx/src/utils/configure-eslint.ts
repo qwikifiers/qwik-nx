@@ -5,7 +5,7 @@ import {
   readProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { lintProjectGenerator, Linter } from '@nx/linter';
+import { lintProjectGenerator, Linter } from '@nx/eslint';
 import { qwikEslintPluginVersion } from './versions';
 
 export function configureEslint(

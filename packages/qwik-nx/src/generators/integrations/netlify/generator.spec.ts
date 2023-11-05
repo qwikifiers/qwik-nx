@@ -9,7 +9,7 @@ import {
 import { netlifyIntegrationGenerator } from './generator';
 import applicationGenerator from './../../application/generator';
 import { NetlifyIntegrationGeneratorSchema } from './schema';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 import { getFormattedListChanges } from './../../../utils/testing-generators';
 
 describe('netlify-integration generator', () => {

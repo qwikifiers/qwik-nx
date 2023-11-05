@@ -3,7 +3,7 @@ import { Tree, joinPathFragments, readProjectConfiguration } from '@nx/devkit';
 
 import generator from './generator';
 import { QwikAppGeneratorSchema } from './schema';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 import { getFormattedListChanges } from './../../utils/testing-generators';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
