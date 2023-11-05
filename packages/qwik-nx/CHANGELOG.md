@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.1.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.1.0...qwik-nx-1.1.1) (2023-11-05)
+
+
+### Features
+
+* **qwik-nx:** use nx e2e generators directly ([#210](https://github.com/qwikifiers/qwik-nx/issues/210)) ([887ca75](https://github.com/qwikifiers/qwik-nx/commit/887ca75e291e138eb6d5a31c7b1d28c1b4241463))
+
+
+### BREAKING CHANGES
+
+* **qwik-nx:** `qwik-nx/e2e-project` has been removed in favour of direct usage of nx generators
+
+
+
 # [1.1.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-1.0.11...qwik-nx-1.1.0) (2023-10-29)
 
 
