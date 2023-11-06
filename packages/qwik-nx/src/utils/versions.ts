@@ -9,7 +9,7 @@ export const lessVersion = '~4.1.3';
 export const stylusVersion = '~0.59.0';
 
 export const undiciVersion = '^5.22.0';
-export const viteVersion = '~4.4.0';
+export const viteVersion = '~4.4.11';
 export const viteTsconfigPathsVersion = '~4.2.0';
 export const vitestVersion = '^0.32.0';
 
