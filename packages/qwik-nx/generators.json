@@ -88,8 +88,7 @@
     "angular-in-app": {
       "factory": "./src/generators/integrations/angular-in-app/generator",
       "schema": "./src/generators/integrations/angular-in-app/schema.json",
-      "description": "angular-in-app generator",
-      "hidden": true
+      "description": "angular-in-app generator"
     }
   }
 }

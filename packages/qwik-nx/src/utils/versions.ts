@@ -40,9 +40,9 @@ export const muiMaterialVersion = '^5.12.0';
 export const muiDataGridVersion = '^6.2.0';
 
 // angular integration
-export const angularVersion = '^16.0.0';
+export const angularVersion = '^17.0.0';
 export const vitePluginAngularVersion = '~0.2.0';
-export const qwikAngularVersion = '~0.1.0';
+export const qwikAngularVersion = '~0.2.0';
 
 // other
 export const eslintVersion = '~8.36.0';
