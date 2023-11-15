@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [2.0.2](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-2.0.1...qwik-nx-2.0.2) (2023-11-15)
+
+
+### Features
+
+* **qwik-nx:** bump angular versions ([#215](https://github.com/qwikifiers/qwik-nx/issues/215)) ([6b6bdb8](https://github.com/qwikifiers/qwik-nx/commit/6b6bdb8b31853022e313db919032652973070756))
+
+
+
 ## [2.0.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-2.0.0...qwik-nx-2.0.1) (2023-11-06)
 
 
