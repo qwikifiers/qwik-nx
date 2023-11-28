@@ -79,6 +79,12 @@ nx generate qwik-nx:setup-tailwind
 nx generate qwik-nx:deno-integration
 ```
 
+### Setting up Storybook
+
+```
+nx generate qwik-nx:storybook-configuration
+```
+
 ## Migrations
 
 This plugin supports Nx migrations and provides necessary version and code updates for Qwik. So instead of bumping plugin version manually in package.json it's recommended to run `nx migrate qwik-nx` command, that includes bumping the version of the qwik-nx plugin, related dependencies and running code migrations.
