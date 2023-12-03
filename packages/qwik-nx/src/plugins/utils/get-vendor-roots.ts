@@ -76,7 +76,7 @@ export async function getVendorRoots(
 
   if (options?.debug) {
     log(
-      'Projects after excluding those not in tsconfig.base.json:',
+      'Final projects list after excluding those not in tsconfig.base.json:',
       projects.map((p) => p.name)
     );
   }

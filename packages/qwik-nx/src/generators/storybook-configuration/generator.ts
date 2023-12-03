@@ -31,7 +31,7 @@ import {
 function addFiles(
   tree: Tree,
   options: StorybookConfigurationGeneratorSchema,
-  { root }: ProjectConfiguration
+  { root, projectType }: ProjectConfiguration
 ) {
   tree.delete(path.join(root, '.storybook/main.js'));
 
@@ -41,6 +41,7 @@ function addFiles(
     offsetFromRoot: offsetFromRoot(root),
     projectRoot: root,
     configExtension: options.tsConfiguration ? 'ts' : 'js',
+    isLib: projectType === 'library',
   };
   generateFiles(tree, path.join(__dirname, 'files'), root, templateOptions);
 
