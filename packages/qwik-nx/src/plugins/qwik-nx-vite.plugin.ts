@@ -4,6 +4,7 @@ import {
   QwikVitePluginStub,
 } from './models/qwik-nx-vite';
 import { getVendorRoots } from './utils/get-vendor-roots';
+import { output } from '@nx/devkit';
 
 /**
  * `qwikNxVite` plugin serves as an integration step between Qwik and Nx.
@@ -21,18 +22,28 @@ export function qwikNxVite(options?: QwikNxVitePluginOptions): Plugin {
     enforce: 'pre',
 
     async configResolved(config) {
-      const qwikPlugin = config.plugins.find(
+      const qwikPlugins = config.plugins.filter(
         (p) => p.name === 'vite-plugin-qwik'
-      ) as QwikVitePluginStub;
-      if (!qwikPlugin) {
+      ) as QwikVitePluginStub[];
+      if (!qwikPlugins.length) {
         throw new Error('Missing vite-plugin-qwik');
       }
 
-      const pluginOptions = qwikPlugin.api.getOptions();
+      if (qwikPlugins.length > 1) {
+        output.warn({
+          title:
+            'Multiple instances of "vite-plugin-qwik" found. Check your vite.config!',
+        });
+      }
 
-      const vendorRoots = await getVendorRoots(options, pluginOptions);
+      for (const qwikPlugin of qwikPlugins) {
+        // it's not expected to have the plugin duplicated, but handling it as an edge case
+        const pluginOptions = qwikPlugin.api.getOptions();
 
-      pluginOptions.vendorRoots.push(...vendorRoots);
+        const vendorRoots = await getVendorRoots(options, pluginOptions);
+
+        pluginOptions.vendorRoots.push(...vendorRoots);
+      }
     },
   };
 
