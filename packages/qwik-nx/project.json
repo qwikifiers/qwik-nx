@@ -77,7 +77,11 @@
         "noVerify": true,
         "push": false,
         "releaseAs": "patch",
-        "postTargets": ["qwik-nx:publish", "qwik-nx:push-to-github"]
+        "postTargets": [
+          "qwik-nx:build",
+          "qwik-nx:publish",
+          "qwik-nx:push-to-github"
+        ]
       },
       "configurations": {
         "patch": {},
@@ -88,14 +92,19 @@
           "releaseAs": "major"
         },
         "previous": {
-          "postTargets": ["qwik-nx:publish:previous", "qwik-nx:push-to-github"]
+          "postTargets": [
+            "qwik-nx:build",
+            "qwik-nx:publish:previous",
+            "qwik-nx:push-to-github"
+          ]
         }
       }
     },
     "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
-        "access": "public"
+        "access": "public",
+        "distFolderPath": "dist/packages/qwik-nx"
       },
       "configurations": {
         "local": {
@@ -104,7 +113,8 @@
         "previous": {
           "tag": "previous"
         }
-      }
+      },
+      "dependsOn": ["build"]
     },
     "push-to-github": {
       "executor": "@jscutlery/semver:github",

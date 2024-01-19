@@ -73,6 +73,7 @@
         "push": false,
         "releaseAs": "patch",
         "postTargets": [
+          "create-qwik-nx:build",
           "create-qwik-nx:publish",
           "create-qwik-nx:push-to-github"
         ]
@@ -81,13 +82,15 @@
     "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
-        "access": "public"
+        "access": "public",
+        "distFolderPath": "dist/packages/create-qwik-nx"
       },
       "configurations": {
         "local": {
           "registry": "http://localhost:4873"
         }
-      }
+      },
+      "dependsOn": ["build"]
     },
     "push-to-github": {
       "executor": "@jscutlery/semver:github",

@@ -63,7 +63,7 @@
     "jest-environment-jsdom": "29.4.3",
     "jsonc-eslint-parser": "^2.1.0",
     "kill-port": "2.0.1",
-    "ngx-deploy-npm": "^6.0.0",
+    "ngx-deploy-npm": "8.0.0",
     "nx": "17.0.3",
     "prettier": "^2.8.0",
     "pretty-quick": "^3.1.3",
