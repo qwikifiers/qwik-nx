@@ -4,13 +4,14 @@ import { Tree, joinPathFragments, readProjectConfiguration } from '@nx/devkit';
 import generator from './generator';
 import { QwikAppGeneratorSchema } from './schema';
 import { Linter } from '@nx/eslint';
-import { getFormattedListChanges } from './../../utils/testing-generators';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const devkit = require('@nx/devkit');
-const getInstalledNxVersionModule = require('../../utils/get-installed-nx-version');
+import {
+  getFormattedListChanges,
+  mockEnsurePackage,
+} from './../../utils/testing-generators';
 
 describe('qwik-nx generator', () => {
+  mockEnsurePackage();
+
   let appTree: Tree;
   const defaultOptions: QwikAppGeneratorSchema = {
     name: 'myapp',
@@ -21,11 +22,6 @@ describe('qwik-nx generator', () => {
     strict: false,
     e2eTestRunner: 'none',
   };
-
-  jest.spyOn(devkit, 'ensurePackage').mockReturnValue(Promise.resolve());
-  jest
-    .spyOn(getInstalledNxVersionModule, 'getInstalledNxVersion')
-    .mockReturnValue('15.6.0');
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });

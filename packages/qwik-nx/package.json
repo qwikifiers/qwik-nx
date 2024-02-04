@@ -21,11 +21,11 @@
   },
   "generators": "./generators.json",
   "executors": "./executors.json",
-  "dependencies": {
-    "@nx/devkit": ">=17.0.0 <17.2.0",
-    "@nx/js": ">=17.0.0 <17.2.0",
-    "@nx/vite": ">=17.0.0 <17.2.0",
-    "@nx/eslint": ">=17.0.0 <17.2.0"
+  "peerDependencies": {
+    "@nx/devkit": "^17.0.0",
+    "@nx/js": "^17.0.0",
+    "@nx/vite": "^17.0.0",
+    "@nx/eslint": "^17.0.0"
   },
   "nx-migrations": {
     "migrations": "./migrations.json"

@@ -30,6 +30,7 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
     let rootRoutePath: string;
     let libComponentName: string;
     let libComponentPath: string;
+    let appComponentSpecFilePath: string;
 
     beforeAll(async () => {
       await killPorts(devServerPort, previewServerPort);
@@ -40,6 +41,7 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
       project = uniq('qwik-nx');
       libProject = uniq('qwik-nx');
       rootRoutePath = `${appPathPrefix}${project}/src/routes/index.tsx`;
+      appComponentSpecFilePath = `${appPathPrefix}${project}/src/components/my-test-component/my-test-component.spec.tsx`;
       libComponentPath = `${libPathPrefix}${libProject}/src/lib/${libProject}.tsx`;
       libComponentName = names(libProject).className;
 
@@ -168,8 +170,24 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
         expect(result.stdout).toContain(
           `Successfully ran target test for project ${project}`
         );
-        expect(stripConsoleColors(result.stdout)).toContain(
-          `Test Files  1 passed`
+      },
+      DEFAULT_E2E_TIMEOUT
+    );
+
+    it(
+      'unit tests should fail (when we want it)',
+      async () => {
+        updateFile(appComponentSpecFilePath, (content) => {
+          return content.replace(
+            `toContain('MyTestComponent works!')`,
+            `toContain('Not existing string')`
+          );
+        });
+        const result = await runNxCommandAsync(`test ${project}`, {
+          silenceError: true,
+        });
+        expect(result.stdout).toContain(
+          `Running target test for project ${project} failed`
         );
       },
       DEFAULT_E2E_TIMEOUT
