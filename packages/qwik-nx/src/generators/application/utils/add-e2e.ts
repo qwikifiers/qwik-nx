@@ -4,9 +4,9 @@ import {
   GeneratorCallback,
   getPackageManagerCommand,
   joinPathFragments,
+  NX_VERSION,
   Tree,
 } from '@nx/devkit';
-import { getInstalledNxVersion } from '../../../utils/get-installed-nx-version';
 import { NormalizedSchema } from '../schema';
 import { Linter } from '@nx/eslint';
 
@@ -26,7 +26,7 @@ export async function addE2eProject(
 }
 
 async function addCypress(tree: Tree, options: NormalizedSchema) {
-  ensurePackage('@nx/cypress', getInstalledNxVersion(tree));
+  ensurePackage('@nx/cypress', NX_VERSION);
   const { configurationGenerator } = await import('@nx/cypress');
 
   addProjectConfiguration(tree, options.e2eProjectName, {
@@ -47,7 +47,7 @@ async function addCypress(tree: Tree, options: NormalizedSchema) {
 }
 
 async function addPlaywright(tree: Tree, options: NormalizedSchema) {
-  ensurePackage('@nx/playwright', getInstalledNxVersion(tree));
+  ensurePackage('@nx/playwright', NX_VERSION);
   const { configurationGenerator: playwrightConfigurationGenerator } =
     await import('@nx/playwright');
 

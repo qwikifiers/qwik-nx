@@ -6,21 +6,14 @@ import { StorybookConfigurationGeneratorSchema } from './schema';
 import appGenerator from '../application/generator';
 import { Linter } from '@nx/eslint';
 import { libraryGenerator } from '../library/generator';
-// import { getFormattedListChanges } from '../../utils/testing-generators';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const devkit = require('@nx/devkit');
-const getInstalledNxVersionModule = require('../../utils/get-installed-nx-version');
+import { mockEnsurePackage } from '../../utils/testing-generators';
 
 describe('storybook-configuration generator', () => {
+  mockEnsurePackage();
+
   let appTree: Tree;
   const projectName = 'test-project';
   const options: StorybookConfigurationGeneratorSchema = { name: projectName };
-
-  jest.spyOn(devkit, 'ensurePackage').mockReturnValue(Promise.resolve());
-  jest
-    .spyOn(getInstalledNxVersionModule, 'getInstalledNxVersion')
-    .mockReturnValue('15.6.0');
 
   beforeEach(async () => {
     appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });

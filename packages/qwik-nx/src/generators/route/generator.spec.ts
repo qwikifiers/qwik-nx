@@ -3,8 +3,11 @@ import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { routeGenerator } from './generator';
 import { RouteGeneratorSchema } from './schema';
 import appGenerator from '../application/generator';
+import { mockEnsurePackage } from '../../utils/testing-generators';
 
 describe('route generator', () => {
+  mockEnsurePackage();
+
   async function setup() {
     const appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
     await appGenerator(appTree, { name: 'testApp' });
