@@ -11,8 +11,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/add-nx-to-qwik"],
       "options": {
-        "jestConfig": "packages/add-nx-to-qwik/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/add-nx-to-qwik/jest.config.ts"
       }
     },
     "build-base": {
