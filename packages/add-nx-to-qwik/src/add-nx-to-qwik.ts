@@ -202,7 +202,7 @@ function createNxJsonFile(
   repoRoot: string,
   targetDefaults: string[],
   cacheableOperations: string[],
-  scriptOutputs: { [name: string]: string }
+  scriptOutputs: Record<string, string>
 ) {
   const nxJsonPath = joinPathFragments(repoRoot, 'nx.json');
   let nxJson = {} as any;

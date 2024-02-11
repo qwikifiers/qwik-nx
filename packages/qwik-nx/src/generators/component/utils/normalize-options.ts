@@ -7,12 +7,15 @@ import {
 import { normalizePath } from 'vite';
 import { ComponentGeneratorSchema, NormalizedSchema } from '../schema';
 
-type GenerationPaths = {
+interface GenerationPaths {
   directory: string;
   name: string;
-};
+}
 
-type NameInfo = { name: string; path: string };
+interface NameInfo {
+  name: string;
+  path: string;
+}
 
 function parseNameWithPath(rawName: string): NameInfo {
   const parsedName = normalizePath(rawName).split('/');

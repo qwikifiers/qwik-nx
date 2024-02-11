@@ -66,11 +66,16 @@ export async function appGeneratorInternal(
 
   addFiles(tree, normalizedOptions);
 
+  // TODO: keeping them for compatibility with nx <17.3.0
+  const deprecatedOptions = {
+    includeLib: false,
+    uiFramework: 'none',
+    testEnvironment: 'node',
+  };
   tasks.push(
     await initGenerator(tree, {
-      includeLib: false,
-      uiFramework: 'none',
-      testEnvironment: 'node',
+      ...deprecatedOptions,
+      keepExistingVersions: true,
     })
   );
 
