@@ -48,16 +48,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "packages/qwik-nx/**/*.ts",
-          "packages/qwik-nx/generators.json",
-          "packages/qwik-nx/executors.json",
-          "packages/qwik-nx/package.json",
-          "packages/qwik-nx/migrations.json"
-        ]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
