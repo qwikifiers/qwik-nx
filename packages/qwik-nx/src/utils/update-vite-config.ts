@@ -22,9 +22,9 @@ export interface EnsureImport {
 
 export interface ViteConfigUpdates {
   imports?: EnsureImport[];
-  viteConfig?: { [key: string]: string };
+  viteConfig?: Record<string, string>;
   vitePlugins?: string[];
-  qwikViteConfig?: { [key: string]: string };
+  qwikViteConfig?: Record<string, string>;
 }
 
 type TypeScript = typeof tsLib;
@@ -523,7 +523,7 @@ function createPluginCall(ts: TypeScript, vitePlugin: string) {
 function updateQwikCityPlugin(
   ts: TypeScript,
   callExp: CallExpression,
-  qwikViteConfig: { [key: string]: string }
+  qwikViteConfig: Record<string, string>
 ) {
   const args = callExp.arguments.slice();
 
@@ -545,7 +545,7 @@ function updateQwikCityPlugin(
 function updateObjectLiteralExpression(
   ts: TypeScript,
   obj: ObjectLiteralExpression,
-  updateObj: { [propName: string]: string }
+  updateObj: Record<string, string>
 ) {
   for (const [propName, value] of Object.entries(updateObj)) {
     if (typeof value === 'string') {

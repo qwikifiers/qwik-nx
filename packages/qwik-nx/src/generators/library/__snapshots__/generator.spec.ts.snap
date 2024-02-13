@@ -16,9 +16,6 @@ Object {
           "libs/shared/mylib/**/*.{ts,tsx,js,jsx}",
         ],
       },
-      "outputs": Array [
-        "{options.outputFile}",
-      ],
     },
     "test": Object {
       "executor": "@nx/vite:test",
@@ -50,9 +47,6 @@ Object {
           "packages/mylib/**/*.{ts,tsx,js,jsx}",
         ],
       },
-      "outputs": Array [
-        "{options.outputFile}",
-      ],
     },
     "test": Object {
       "executor": "@nx/vite:test",
@@ -84,9 +78,6 @@ Object {
           "packages/shared/mylib/**/*.{ts,tsx,js,jsx}",
         ],
       },
-      "outputs": Array [
-        "{options.outputFile}",
-      ],
     },
     "test": Object {
       "executor": "@nx/vite:test",
@@ -118,9 +109,6 @@ Object {
           "libs/shared/mylib/**/*.{ts,tsx,js,jsx}",
         ],
       },
-      "outputs": Array [
-        "{options.outputFile}",
-      ],
     },
     "test": Object {
       "executor": "@nx/vite:test",
@@ -152,9 +140,6 @@ Object {
           "libs/mylib/**/*.{ts,tsx,js,jsx}",
         ],
       },
-      "outputs": Array [
-        "{options.outputFile}",
-      ],
     },
     "test": Object {
       "executor": "@nx/vite:test",
@@ -186,9 +171,6 @@ Object {
           "libs/shared/mylib/**/*.{ts,tsx,js,jsx}",
         ],
       },
-      "outputs": Array [
-        "{options.outputFile}",
-      ],
     },
     "test": Object {
       "executor": "@nx/vite:test",
@@ -229,12 +211,9 @@ Object {
       "options": Object {
         "lintFilePatterns": Array [
           "libs/mylib/**/*.{ts,tsx,js,jsx}",
-          "libs/mylib/package.json",
+          "{projectRoot}/package.json",
         ],
       },
-      "outputs": Array [
-        "{options.outputFile}",
-      ],
     },
     "test": Object {
       "executor": "@nx/vite:test",
@@ -413,9 +392,6 @@ Object {
           "libs/mylib/**/*.{ts,tsx,js,jsx}",
         ],
       },
-      "outputs": Array [
-        "{options.outputFile}",
-      ],
     },
   },
 }
@@ -514,9 +490,6 @@ Object {
           "libs/mylib/**/*.{ts,tsx,js,jsx}",
         ],
       },
-      "outputs": Array [
-        "{options.outputFile}",
-      ],
     },
     "test": Object {
       "executor": "@nx/vite:test",

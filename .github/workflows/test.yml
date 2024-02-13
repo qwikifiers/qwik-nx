@@ -11,7 +11,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node_version: [16]
         os: [ubuntu-latest, windows-latest]
 
     steps:
@@ -24,7 +23,7 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
         with:
-          node_version: ${{ matrix.node_version }}
+          node_version: 18
 
       - name: Test
         uses: ./.github/actions/test

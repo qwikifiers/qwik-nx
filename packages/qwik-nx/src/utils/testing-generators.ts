@@ -1,3 +1,4 @@
+/// <reference types="jest" />
 import { Tree } from '@nx/devkit';
 
 interface FormattedChange {
@@ -19,4 +20,16 @@ export function getFormattedListChanges(
     );
   }
   return formatted;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const devkit = require('@nx/devkit');
+export function mockEnsurePackage() {
+  jest.spyOn(devkit, 'ensurePackage').mockImplementation((...args: any[]) => {
+    try {
+      return require(args[0]);
+    } catch {
+      return null;
+    }
+  });
 }

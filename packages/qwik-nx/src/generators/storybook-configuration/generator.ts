@@ -5,6 +5,7 @@ import {
   generateFiles,
   GeneratorCallback,
   names,
+  NX_VERSION,
   offsetFromRoot,
   ProjectConfiguration,
   readProjectConfiguration,
@@ -16,7 +17,6 @@ import {
   ensureMdxTypeInTsConfig,
   ensureRootTsxExists,
 } from '../../utils/ensure-file-utils';
-import { getInstalledNxVersion } from '../../utils/get-installed-nx-version';
 import {
   storybookFrameworkQwikVersion,
   reactDOMVersion,
@@ -78,9 +78,8 @@ export async function storybookConfigurationGenerator(
   const projectConfig = readProjectConfiguration(tree, options.name);
 
   const normalizedOptions = normalizeOptions(options, projectConfig);
-  const nxVersion = getInstalledNxVersion(tree);
 
-  ensurePackage('@nx/storybook', nxVersion);
+  ensurePackage('@nx/storybook', NX_VERSION);
   const { configurationGenerator } = await import('@nx/storybook');
 
   const { oldFormat } = await getStorybookVersion();
@@ -97,6 +96,7 @@ export async function storybookConfigurationGenerator(
     tsConfiguration: normalizedOptions.tsConfiguration,
     storybook7Configuration: true,
     configureCypress: false,
+    project: projectConfig.name!,
   });
 
   addFiles(tree, normalizedOptions, projectConfig);

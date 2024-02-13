@@ -49,17 +49,6 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": [
-          "packages/create-qwik-nx/**/*.ts",
-          "packages/create-qwik-nx/**/*.spec.ts",
-          "packages/create-qwik-nx/**/*_spec.ts",
-          "packages/create-qwik-nx/**/*.spec.tsx",
-          "packages/create-qwik-nx/**/*.spec.js",
-          "packages/create-qwik-nx/**/*.spec.jsx",
-          "packages/create-qwik-nx/**/*.d.ts"
-        ]
-      },
       "outputs": ["{options.outputFile}"]
     },
     "version": {

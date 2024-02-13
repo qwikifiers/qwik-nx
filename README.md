@@ -91,18 +91,18 @@ This plugin supports Nx migrations and provides necessary version and code updat
 
 ## qwik-nx & Nx Compatibility Chart
 
-| qwik-nx version    | Nx version           |
-| ------------------ | -------------------- |
-| ~2.0.0             | ~17.0.0 \|\| ~17.1.0 |
-| ^1.1.0             | ^16.8.0              |
-| ^1.0.0             | ^16.0.0              |
-| ^0.16.0            | ^16.0.0              |
-| >= 0.12.0 < 0.16.0 | ^15.8.0              |
-| ~0.10.0, ~0.11.0   | ~15.7.2              |
-| >= 0.6.0 < 0.10.0  | ~15.6.0              |
-| ~0.5.0             | ~15.5.0              |
-| ~0.4.0             | ~15.4.0              |
-| <=0.4.0            | ^15.0.0              |
+| qwik-nx version    | Nx version       |
+| ------------------ | ---------------- |
+| ^2.0.0             | ^17.0.0, ^18.0.0 |
+| ^1.1.0             | ^16.8.0          |
+| ^1.0.0             | ^16.0.0          |
+| ^0.16.0            | ^16.0.0          |
+| >= 0.12.0 < 0.16.0 | ^15.8.0          |
+| ~0.10.0, ~0.11.0   | ~15.7.2          |
+| >= 0.6.0 < 0.10.0  | ~15.6.0          |
+| ~0.5.0             | ~15.5.0          |
+| ~0.4.0             | ~15.4.0          |
+| <=0.4.0            | ^15.0.0          |
 
 We will provide support for Nx 15 with critical bug fixes and minor features for a while. If you're using nx@15.8 or higher, you can stick to qwik-nx@0.15.
 

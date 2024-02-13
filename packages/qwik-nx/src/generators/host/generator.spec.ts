@@ -3,9 +3,14 @@ import { Tree, readProjectConfiguration, readJson } from '@nx/devkit';
 
 import generator from './generator';
 import { HostGeneratorSchema } from './schema';
-import { getFormattedListChanges } from '../../utils/testing-generators';
+import {
+  getFormattedListChanges,
+  mockEnsurePackage,
+} from '../../utils/testing-generators';
 
 describe('host generator', () => {
+  mockEnsurePackage();
+
   let appTree: Tree;
   const options: HostGeneratorSchema = {
     name: 'myhostapp',

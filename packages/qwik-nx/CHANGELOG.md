@@ -2,6 +2,17 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [2.1.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-2.0.2...qwik-nx-2.1.0) (2024-02-11)
+
+
+### Bug Fixes
+
+* **qwik-nx:** lock nx minor version ([#221](https://github.com/qwikifiers/qwik-nx/issues/221)) ([b97d16c](https://github.com/qwikifiers/qwik-nx/commit/b97d16c6297fe5b72d24da9dd61bb0de8a94a1f8))
+* **qwik-nx:** resolve nx versions manually ([#223](https://github.com/qwikifiers/qwik-nx/issues/223)) ([5029a0e](https://github.com/qwikifiers/qwik-nx/commit/5029a0ecafab74ef769e50c72cb9c29a4fc18be5))
+* **qwik-nx:** storybook plugin should not add [@qwik-city-sw-register](https://github.com/qwik-city-sw-register) to rollupOptions.external ([#218](https://github.com/qwikifiers/qwik-nx/issues/218)) ([87dcc5b](https://github.com/qwikifiers/qwik-nx/commit/87dcc5bce0fa80e1d77bdf49cf47bcb8094077fd))
+
+
+
 ## [2.0.2](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-2.0.1...qwik-nx-2.0.2) (2023-11-15)
 
 
