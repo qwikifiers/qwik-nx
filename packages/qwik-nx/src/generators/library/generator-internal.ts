@@ -123,10 +123,15 @@ async function addLibrary(
 }
 
 async function configureVite(tree: Tree, options: NormalizedSchema) {
-  const callback = await initGenerator(tree, {
+  // TODO: keeping them for compatibility with nx <17.3.0
+  const deprecatedOptions = {
+    includeLib: false,
     uiFramework: 'none',
-    includeLib: true,
     testEnvironment: 'node',
+  };
+  const callback = await initGenerator(tree, {
+    ...deprecatedOptions,
+    keepExistingVersions: true,
   });
 
   const projectConfig = readProjectConfiguration(tree, options.projectName);

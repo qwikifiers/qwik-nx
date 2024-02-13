@@ -96,6 +96,7 @@ export async function storybookConfigurationGenerator(
     tsConfiguration: normalizedOptions.tsConfiguration,
     storybook7Configuration: true,
     configureCypress: false,
+    project: projectConfig.name!,
   });
 
   addFiles(tree, normalizedOptions, projectConfig);
