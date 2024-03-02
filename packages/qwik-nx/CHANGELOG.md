@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [2.2.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-2.2.0...qwik-nx-2.2.1) (2024-03-02)
+
+
+### Bug Fixes
+
+* **qwik-nx:** use globs util to generate tailwind paths ([#229](https://github.com/qwikifiers/qwik-nx/issues/229)) ([20cc4fa](https://github.com/qwikifiers/qwik-nx/commit/20cc4faad75dc916ae10c7da637097059df31614)), closes [#171](https://github.com/qwikifiers/qwik-nx/issues/171)
+
+
+
 # [2.2.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-2.1.0...qwik-nx-2.2.0) (2024-02-13)
 
 
