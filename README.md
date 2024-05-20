@@ -164,11 +164,10 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 ## Related Links
 
-- [qwik-nx Discord](https://discord.gg/g6CYVAcDxf)
+- [qwik-nx (and Qwik) Discord](https://qwik.dev/chat)
 - [Qwik Docs](https://qwik.builder.io/)
 - [nx](https://nx.dev/)
-- [Qwik Discord](https://qwik.builder.io/chat)
-- [Qwik GitHub](https://github.com/BuilderIO/qwik)
+- [Qwik GitHub](https://github.com/QwikDev/qwik)
 - [@QwikDev](https://twitter.com/QwikDev)
 
 ## License
