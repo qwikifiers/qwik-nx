@@ -8,7 +8,7 @@
 <h1 align='center'>Qwik Nx Plugin</h1>
 
 <div align='center'>
-  The <a href='https://nx.dev/'>nx</a> plugin for <a href='https://qwik.builder.io/'>Qwik</a>
+  The <a href='https://nx.dev/'>nx</a> plugin for <a href='https://qwik.dev/'>Qwik</a>
   <br><br>
 
   <a href='https://img.shields.io/npm/v/qwik-nx?label=npm%20version'>
@@ -165,7 +165,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 ## Related Links
 
 - [qwik-nx (and Qwik) Discord](https://qwik.dev/chat)
-- [Qwik Docs](https://qwik.builder.io/)
+- [Qwik Docs](https://qwik.dev/)
 - [nx](https://nx.dev/)
 - [Qwik GitHub](https://github.com/QwikDev/qwik)
 - [@QwikDev](https://twitter.com/QwikDev)
