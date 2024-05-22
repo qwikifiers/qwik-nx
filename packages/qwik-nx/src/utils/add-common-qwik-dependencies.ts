@@ -37,7 +37,7 @@ export function addCommonQwikDependencies(tree: Tree): GeneratorCallback {
 
   const unsupportedPackageVersions = new Map<string, string>([
     // https://github.com/vitejs/vite/issues/15870
-    ['vite', '<5.1.0'],
+    ['vite', '<5.1.0 || >=5.2.0'],
   ]);
   let hasChanges = false;
   for (const [dep, versionRange] of unsupportedPackageVersions.entries()) {
