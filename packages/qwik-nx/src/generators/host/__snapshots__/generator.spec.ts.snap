@@ -1036,6 +1036,7 @@ exports[`host generator should run successfully 3`] = `
   \\"$schema\\": \\"../../node_modules/nx/schemas/project-schema.json\\",
   \\"projectType\\": \\"application\\",
   \\"sourceRoot\\": \\"apps/myhostapp/src\\",
+  \\"tags\\": [],
   \\"targets\\": {
     \\"build\\": {
       \\"executor\\": \\"qwik-nx:build\\",
@@ -1097,8 +1098,7 @@ exports[`host generator should run successfully 3`] = `
         \\"cwd\\": \\"apps/myhostapp\\"
       }
     }
-  },
-  \\"tags\\": []
+  }
 }
 "
 `;
