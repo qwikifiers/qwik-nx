@@ -8,11 +8,11 @@ import {
 import { lintProjectGenerator, Linter } from '@nx/eslint';
 import { qwikEslintPluginVersion } from './versions';
 
-export function configureEslint(
+export async function configureEslint(
   tree: Tree,
   project: string,
   skipLibsEslintConfig = false
-): GeneratorCallback {
+): Promise<GeneratorCallback> {
   const cfg = readProjectConfiguration(tree, project);
 
   const existingLibEslintConfigPath = joinPathFragments(
@@ -26,7 +26,7 @@ export function configureEslint(
     existingLibEslintConfig = tree.read(existingLibEslintConfigPath);
   }
 
-  lintProjectGenerator(tree, {
+  await lintProjectGenerator(tree, {
     project: project,
     linter: Linter.EsLint,
     skipFormat: true,

@@ -80,7 +80,9 @@ export async function appGeneratorInternal(
   );
 
   if (normalizedOptions.linter === Linter.EsLint) {
-    tasks.push(configureEslint(tree, normalizedOptions.projectName, true));
+    tasks.push(
+      await configureEslint(tree, normalizedOptions.projectName, true)
+    );
   }
 
   if (normalizedOptions.styleExtension) {

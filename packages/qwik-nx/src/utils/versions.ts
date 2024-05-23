@@ -1,7 +1,7 @@
 // qwik packages
-export const qwikVersion = '~1.4.4';
-export const qwikCityVersion = '~1.4.4';
-export const qwikEslintPluginVersion = '~1.4.4';
+export const qwikVersion = '~1.5.5';
+export const qwikCityVersion = '~1.5.5';
+export const qwikEslintPluginVersion = '~1.5.5';
 
 // css preprocessors
 export const sassVersion = '~1.56.1';
@@ -9,7 +9,7 @@ export const lessVersion = '~4.1.3';
 export const stylusVersion = '~0.59.0';
 
 export const undiciVersion = '^5.22.0';
-export const viteVersion = '~5.0.0';
+export const viteVersion = '~5.2.0';
 export const viteTsconfigPathsVersion = '~4.2.0';
 export const vitestVersion = '^1.0.0';
 
@@ -45,11 +45,6 @@ export const vitePluginAngularVersion = '~0.2.0';
 export const qwikAngularVersion = '~0.2.0';
 
 // other
-export const eslintVersion = '~8.36.0';
-export const tsEslintVersion = '~5.43.0';
-export const prettierVersion = '~2.8.7';
-export const typescriptVersion = '~5.0.2';
 export const nodeFetchVersion = '~3.3.0';
 export const typesNodeVersion = '^18.16.1';
-export const typesEslint = '~8.37.0';
 export const tsMorphVersion = '^17.0.0';

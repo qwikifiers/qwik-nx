@@ -42,7 +42,7 @@ export async function libraryGeneratorInternal(
   tasks.push(await configureVite(tree, options));
 
   if (options.linter === Linter.EsLint) {
-    tasks.push(configureEslint(tree, options.projectName, true));
+    tasks.push(await configureEslint(tree, options.projectName, true));
   }
 
   tasks.push(addCommonQwikDependencies(tree));
