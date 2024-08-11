@@ -19,7 +19,7 @@
     "pnpm": "^9.7.0"
   },
   "devDependencies": {
-    "@builder.io/qwik": "~1.4.5",
+    "@builder.io/qwik": "~1.8.0",
     "@commitlint/cli": "^17.8.1",
     "@commitlint/config-angular": "^17.8.1",
     "@commitlint/config-conventional": "^17.8.1",
