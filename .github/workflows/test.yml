@@ -25,3 +25,18 @@ jobs:
 
       - name: Test
         uses: ./.github/actions/test
+
+  continuous-release:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup
+        uses: ./.github/actions/setup
+        with:
+          node_version: 20
+      - run: pnpx nx run qwik-nx:build
+      - run: pnpx pkg-pr-new publish --pnpm ./dist/packages/qwik-nx
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GITHUB_TOKEN is provided automatically in any repository
+
