@@ -35,8 +35,8 @@ jobs:
         uses: ./.github/actions/setup
         with:
           node_version: 20
-      - run: nx run qwik-nx:build
-      - run: pnpm dlx pkg-pr-new publish --pnpm ./dist/packages/qwik-nx
+      - run: pnpx nx run qwik-nx:build
+      - run: pnpx pkg-pr-new publish --pnpm ./dist/packages/qwik-nx
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GITHUB_TOKEN is provided automatically in any repository
 
