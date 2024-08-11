@@ -14,9 +14,9 @@
     "commitlint": "commitlint --edit"
   },
   "private": true,
-  "packageManager": "pnpm@8.4.0",
+  "packageManager": "pnpm@9.7.0",
   "engines": {
-    "pnpm": "^8.0.0"
+    "pnpm": "^9.7.0"
   },
   "devDependencies": {
     "@builder.io/qwik": "~1.4.5",
