@@ -40,9 +40,10 @@ export function qwikNxVite(options?: QwikNxVitePluginOptions): Plugin {
         // it's not expected to have the plugin duplicated, but handling it as an edge case
         const pluginOptions = qwikPlugin.api.getOptions();
 
-        const vendorRoots = await getVendorRoots(options, pluginOptions);
-
-        pluginOptions.vendorRoots.push(...vendorRoots);
+        if (pluginOptions.vendorRoots) {
+          const vendorRoots = await getVendorRoots(options, pluginOptions);
+          pluginOptions.vendorRoots.push(...vendorRoots);
+        }
       }
     },
   };
