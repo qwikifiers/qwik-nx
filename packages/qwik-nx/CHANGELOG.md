@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [2.3.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-2.3.0...qwik-nx-2.3.1) (2024-09-10)
+
+
+### Bug Fixes
+
+* **qwik-nx:** handle absence of vendor roots ([#238](https://github.com/qwikifiers/qwik-nx/issues/238)) ([2b6a68f](https://github.com/qwikifiers/qwik-nx/commit/2b6a68f9afd2b04feba56c0531bb66c76dd36a63))
+
+
+
 # [2.3.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-2.2.1...qwik-nx-2.3.0) (2024-05-23)
 
 
