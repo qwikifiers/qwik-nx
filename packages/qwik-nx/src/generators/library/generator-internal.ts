@@ -70,7 +70,6 @@ async function addLibrary(
     includeBabelRc: false,
     buildable: false,
     bundler: 'none',
-    projectNameAndRootFormat: options.projectNameAndRootFormat,
   });
   tasks.push(libGeneratorTask);
 

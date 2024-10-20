@@ -5,10 +5,9 @@ export default async function (
   tree: Tree,
   options: QwikWorkspacePresetGeneratorSchema
 ) {
-  options.directory = 'apps';
   options.name = options.qwikAppName ?? options.name;
   options.style = options.qwikAppStyle ?? options.style;
   return await import('../application/generator').then(({ appGenerator }) =>
-    appGenerator(tree, { ...options, projectNameAndRootFormat: 'derived' })
+    appGenerator(tree, { ...options, directory: 'apps' })
   );
 }

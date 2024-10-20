@@ -1,8 +1,8 @@
 import { Linter } from '@nx/eslint';
 
 export interface LibraryGeneratorSchema {
-  name: string;
-  directory?: string;
+  name?: string;
+  directory: string;
   skipFormat?: boolean;
   style?: 'css' | 'scss' | 'styl' | 'less' | 'none';
   tags?: string;
@@ -13,16 +13,15 @@ export interface LibraryGeneratorSchema {
   buildable?: boolean;
   storybookConfiguration?: boolean;
   generateComponent?: boolean;
-  projectNameAndRootFormat?: ProjectNameAndRootFormat;
 }
 
 type NormalizedRequiredPropsNames =
+  | 'name'
   | 'style'
   | 'unitTestRunner'
   | 'linter'
   | 'storybookConfiguration'
   | 'generateComponent'
-  | 'projectNameAndRootFormat'
   | 'buildable';
 type NormalizedRequiredProps = Required<
   Pick<LibraryGeneratorSchema, NormalizedRequiredPropsNames>
