@@ -2,9 +2,9 @@ import type { Linter } from '@nx/eslint';
 import type { ProjectNameAndRootFormat } from '@nx/devkit/src/generators/project-name-and-root-utils';
 
 export interface QwikAppGeneratorSchema {
-  name: string;
+  directory: string;
+  name?: string;
   tags?: string;
-  directory?: string;
   style?: 'css' | 'scss' | 'styl' | 'less' | 'none';
   linter?: Linter;
   skipFormat?: boolean;
@@ -14,10 +14,10 @@ export interface QwikAppGeneratorSchema {
   e2eTestRunner?: 'playwright' | 'cypress' | 'none';
   devServerPort?: number;
   previewServerPort?: number;
-  projectNameAndRootFormat?: ProjectNameAndRootFormat;
 }
 
 export interface NormalizedSchema extends QwikAppGeneratorSchema {
+  name: string;
   devServerPort: number;
   previewServerPort: number;
   projectName: string;
@@ -27,7 +27,6 @@ export interface NormalizedSchema extends QwikAppGeneratorSchema {
   setupVitest: boolean;
   parsedTags: string[];
   styleExtension: Exclude<QwikAppGeneratorSchema['style'], 'none'> | null;
-  projectNameAndRootFormat: ProjectNameAndRootFormat;
   e2eProjectName: string;
   e2eProjectRoot: string;
 }

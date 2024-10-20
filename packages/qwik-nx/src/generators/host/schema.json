@@ -7,22 +7,20 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
-      "x-prompt": "What name would you like to use?"
+      "description": "The name of the application.",
+      "pattern": "^[a-zA-Z][^:]*$",
+      "x-priority": "important"
+    },
+    "directory": {
+      "type": "string",
+      "description": "A directory where the project is placed",
+      "$default": { "$source": "argv", "index": 0 },
+      "x-prompt": "Which directory do you want to create the application in?"
     },
     "tags": {
       "type": "string",
       "description": "Add tags to the project (used for linting)",
       "alias": "t"
-    },
-    "directory": {
-      "type": "string",
-      "description": "A directory where the project is placed",
-      "x-priority": "important"
     },
     "projectNameAndRootFormat": {
       "description": "Whether to generate the project name and root directory as provided (`as-provided`) or generate them composing their values and taking the configured layout into account (`derived`).",
@@ -102,5 +100,5 @@
       "x-priority": "important"
     }
   },
-  "required": ["name"]
+  "required": ["directory"]
 }
