@@ -6,12 +6,9 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
-      "x-prompt": "What name would you like to use?"
+      "description": "The name of the application.",
+      "pattern": "^[a-zA-Z][^:]*$",
+      "x-priority": "important"
     },
     "tags": {
       "type": "string",
@@ -20,7 +17,9 @@
     },
     "directory": {
       "type": "string",
-      "description": "A directory where the project is placed"
+      "description": "A directory where the project is placed",
+      "$default": { "$source": "argv", "index": 0 },
+      "x-prompt": "Which directory do you want to create the application in?"
     },
     "style": {
       "description": "The file extension to be used for style files.",
@@ -50,11 +49,6 @@
         ],
         "default": "css"
       }
-    },
-    "projectNameAndRootFormat": {
-      "description": "Whether to generate the project name and root directory as provided (`as-provided`) or generate them composing their values and taking the configured layout into account (`derived`).",
-      "type": "string",
-      "enum": ["as-provided", "derived"]
     },
     "linter": {
       "description": "The tool to use for running lint checks.",
@@ -100,5 +94,5 @@
       "default": 4173
     }
   },
-  "required": ["name"]
+  "required": ["directory"]
 }

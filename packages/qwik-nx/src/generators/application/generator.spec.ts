@@ -14,7 +14,7 @@ describe('qwik-nx generator', () => {
 
   let appTree: Tree;
   const defaultOptions: QwikAppGeneratorSchema = {
-    name: 'myapp',
+    directory: 'myapp',
     style: 'css',
     linter: Linter.None,
     skipFormat: false,
