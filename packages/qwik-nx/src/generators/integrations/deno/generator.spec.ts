@@ -22,7 +22,7 @@ describe('deno-integration generator', () => {
     appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
 
     await applicationGenerator(appTree, {
-      name: projectName,
+      directory: `apps/${projectName}`,
       e2eTestRunner: 'none',
       linter: Linter.None,
       skipFormat: false,

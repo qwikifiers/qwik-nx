@@ -25,7 +25,7 @@ describe('netlify-integration generator', () => {
     appTree.write('.gitignore', '');
 
     await applicationGenerator(appTree, {
-      name: projectName,
+      directory: `apps/${projectName}`,
       e2eTestRunner: 'none',
       linter: Linter.None,
       skipFormat: false,

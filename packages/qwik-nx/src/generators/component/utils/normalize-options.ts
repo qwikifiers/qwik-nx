@@ -2,9 +2,9 @@ import {
   Tree,
   getProjects,
   joinPathFragments,
+  normalizePath,
   readProjectConfiguration,
 } from '@nx/devkit';
-import { normalizePath } from 'vite';
 import { ComponentGeneratorSchema, NormalizedSchema } from '../schema';
 
 interface GenerationPaths {

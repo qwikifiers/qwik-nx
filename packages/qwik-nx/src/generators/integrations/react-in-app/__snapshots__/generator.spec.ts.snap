@@ -50,6 +50,10 @@ export default defineConfig({
 exports[`integrations/react-in-app generator should generate demo component without MUI dependencies 2`] = `
 Array [
   Object {
+    "path": ".gitignore",
+    "type": "CREATE",
+  },
+  Object {
     "path": ".prettierignore",
     "type": "CREATE",
   },
@@ -241,6 +245,10 @@ export default defineConfig({
 
 exports[`integrations/react-in-app generator should run successfully 2`] = `
 Array [
+  Object {
+    "path": ".gitignore",
+    "type": "CREATE",
+  },
   Object {
     "path": ".prettierignore",
     "type": "CREATE",

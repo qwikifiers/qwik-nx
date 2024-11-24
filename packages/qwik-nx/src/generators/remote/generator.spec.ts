@@ -13,7 +13,7 @@ import { getFormattedListChanges } from '../../utils/testing-generators';
 
 describe('remote generator', () => {
   let appTree: Tree;
-  const options: RemoteGeneratorSchema = { name: 'myremote' };
+  const options: RemoteGeneratorSchema = { directory: 'apps/myremote' };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
@@ -33,7 +33,7 @@ describe('remote generator', () => {
   });
 
   it('should update host config', async () => {
-    await hostGenerator(appTree, { name: 'myhost' });
+    await hostGenerator(appTree, { directory: 'apps/myhost' });
 
     expect(readJson(appTree, 'apps/myhost/src/config/remotes.json')).toEqual(
       {}
@@ -48,13 +48,9 @@ describe('remote generator', () => {
 
   describe('should be able to resolve directory path based on the workspace layout', () => {
     test.each`
-      directory               | expectedProjectName    | projectRoot
-      ${'/frontend'}          | ${'frontend-myremote'} | ${'apps/frontend/myremote'}
-      ${'apps'}               | ${'myremote'}          | ${'apps/myremote'}
-      ${'/apps/frontend'}     | ${'frontend-myremote'} | ${'apps/frontend/myremote'}
-      ${'apps/frontend'}      | ${'frontend-myremote'} | ${'apps/frontend/myremote'}
-      ${'/packages'}          | ${'myremote'}          | ${'packages/myremote'}
-      ${'/packages/frontend'} | ${'frontend-myremote'} | ${'packages/frontend/myremote'}
+      directory                       | expectedProjectName | projectRoot
+      ${'apps/frontend/myremote'}     | ${'myremote'}       | ${'apps/frontend/myremote'}
+      ${'packages/frontend/myremote'} | ${'myremote'}       | ${'packages/frontend/myremote'}
     `(
       'when directory is "$directory" should generate "$expectedProjectName" with project\'s root at "$projectRoot"',
       async ({ directory, expectedProjectName, projectRoot }) => {

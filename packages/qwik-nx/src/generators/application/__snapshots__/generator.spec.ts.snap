@@ -1,148 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`qwik-nx generator should be able to resolve directory path based on the workspace layout when directory is "/apps/frontend" should generate "frontend-myapp" with project's root at "apps/frontend/myapp": "/apps/frontend" 1`] = `
+exports[`qwik-nx generator should be able to resolve directory path based on the workspace layout when directory is "apps/frontend/myapp" should generate "myapp" with project's root at "apps/frontend/myapp": "apps/frontend/myapp" 1`] = `
 Object {
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "name": "frontend-myapp",
-  "projectType": "application",
-  "root": "apps/frontend/myapp",
-  "sourceRoot": "apps/frontend/myapp/src",
-  "tags": Array [],
-  "targets": Object {
-    "build": Object {
-      "configurations": Object {
-        "preview": Object {},
-      },
-      "executor": "qwik-nx:build",
-      "options": Object {
-        "outputPath": "dist/apps/frontend/myapp",
-        "runSequence": Array [
-          "frontend-myapp:build.client",
-          "frontend-myapp:build.ssr",
-        ],
-      },
-    },
-    "build.client": Object {
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "configFile": "apps/frontend/myapp/vite.config.ts",
-        "outputPath": "dist/apps/frontend/myapp",
-      },
-    },
-    "build.ssr": Object {
-      "configurations": Object {
-        "preview": Object {
-          "mode": "production",
-          "ssr": "src/entry.preview.tsx",
-        },
-      },
-      "defaultConfiguration": "preview",
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "outputPath": "dist/apps/frontend/myapp",
-      },
-    },
-    "preview": Object {
-      "executor": "@nx/vite:preview-server",
-      "options": Object {
-        "buildTarget": "frontend-myapp:build",
-        "port": 4173,
-      },
-    },
-    "serve": Object {
-      "executor": "@nx/vite:dev-server",
-      "options": Object {
-        "buildTarget": "frontend-myapp:build.client",
-        "mode": "ssr",
-        "port": 5173,
-      },
-    },
-    "serve.debug": Object {
-      "executor": "nx:run-commands",
-      "options": Object {
-        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/frontend/myapp",
-      },
-    },
-  },
-}
-`;
-
-exports[`qwik-nx generator should be able to resolve directory path based on the workspace layout when directory is "/frontend" should generate "frontend-myapp" with project's root at "apps/frontend/myapp": "/frontend" 1`] = `
-Object {
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "name": "frontend-myapp",
-  "projectType": "application",
-  "root": "apps/frontend/myapp",
-  "sourceRoot": "apps/frontend/myapp/src",
-  "tags": Array [],
-  "targets": Object {
-    "build": Object {
-      "configurations": Object {
-        "preview": Object {},
-      },
-      "executor": "qwik-nx:build",
-      "options": Object {
-        "outputPath": "dist/apps/frontend/myapp",
-        "runSequence": Array [
-          "frontend-myapp:build.client",
-          "frontend-myapp:build.ssr",
-        ],
-      },
-    },
-    "build.client": Object {
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "configFile": "apps/frontend/myapp/vite.config.ts",
-        "outputPath": "dist/apps/frontend/myapp",
-      },
-    },
-    "build.ssr": Object {
-      "configurations": Object {
-        "preview": Object {
-          "mode": "production",
-          "ssr": "src/entry.preview.tsx",
-        },
-      },
-      "defaultConfiguration": "preview",
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "outputPath": "dist/apps/frontend/myapp",
-      },
-    },
-    "preview": Object {
-      "executor": "@nx/vite:preview-server",
-      "options": Object {
-        "buildTarget": "frontend-myapp:build",
-        "port": 4173,
-      },
-    },
-    "serve": Object {
-      "executor": "@nx/vite:dev-server",
-      "options": Object {
-        "buildTarget": "frontend-myapp:build.client",
-        "mode": "ssr",
-        "port": 5173,
-      },
-    },
-    "serve.debug": Object {
-      "executor": "nx:run-commands",
-      "options": Object {
-        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/frontend/myapp",
-      },
-    },
-  },
-}
-`;
-
-exports[`qwik-nx generator should be able to resolve directory path based on the workspace layout when directory is "/packages" should generate "myapp" with project's root at "packages/myapp": "/packages" 1`] = `
-Object {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "myapp",
   "projectType": "application",
-  "root": "packages/myapp",
-  "sourceRoot": "packages/myapp/src",
+  "root": "apps/frontend/myapp",
+  "sourceRoot": "apps/frontend/myapp/src",
   "tags": Array [],
   "targets": Object {
     "build": Object {
@@ -151,7 +15,7 @@ Object {
       },
       "executor": "qwik-nx:build",
       "options": Object {
-        "outputPath": "dist/packages/myapp",
+        "outputPath": "dist/apps/frontend/myapp",
         "runSequence": Array [
           "myapp:build.client",
           "myapp:build.ssr",
@@ -161,8 +25,8 @@ Object {
     "build.client": Object {
       "executor": "@nx/vite:build",
       "options": Object {
-        "configFile": "packages/myapp/vite.config.ts",
-        "outputPath": "dist/packages/myapp",
+        "configFile": "apps/frontend/myapp/vite.config.ts",
+        "outputPath": "dist/apps/frontend/myapp",
       },
     },
     "build.ssr": Object {
@@ -175,7 +39,7 @@ Object {
       "defaultConfiguration": "preview",
       "executor": "@nx/vite:build",
       "options": Object {
-        "outputPath": "dist/packages/myapp",
+        "outputPath": "dist/apps/frontend/myapp",
       },
     },
     "preview": Object {
@@ -196,18 +60,86 @@ Object {
     "serve.debug": Object {
       "executor": "nx:run-commands",
       "options": Object {
-        "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "packages/myapp",
+        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "apps/frontend/myapp",
       },
     },
   },
 }
 `;
 
-exports[`qwik-nx generator should be able to resolve directory path based on the workspace layout when directory is "/packages/frontend" should generate "frontend-myapp" with project's root at "packages/frontend/myapp": "/packages/frontend" 1`] = `
+exports[`qwik-nx generator should be able to resolve directory path based on the workspace layout when directory is "libs/frontend/myapp" should generate "myapp" with project's root at "libs/frontend/myapp": "libs/frontend/myapp" 1`] = `
 Object {
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "name": "frontend-myapp",
+  "name": "myapp",
+  "projectType": "application",
+  "root": "libs/frontend/myapp",
+  "sourceRoot": "libs/frontend/myapp/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "preview": Object {},
+      },
+      "executor": "qwik-nx:build",
+      "options": Object {
+        "outputPath": "dist/libs/frontend/myapp",
+        "runSequence": Array [
+          "myapp:build.client",
+          "myapp:build.ssr",
+        ],
+      },
+    },
+    "build.client": Object {
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "configFile": "libs/frontend/myapp/vite.config.ts",
+        "outputPath": "dist/libs/frontend/myapp",
+      },
+    },
+    "build.ssr": Object {
+      "configurations": Object {
+        "preview": Object {
+          "mode": "production",
+          "ssr": "src/entry.preview.tsx",
+        },
+      },
+      "defaultConfiguration": "preview",
+      "executor": "@nx/vite:build",
+      "options": Object {
+        "outputPath": "dist/libs/frontend/myapp",
+      },
+    },
+    "preview": Object {
+      "executor": "@nx/vite:preview-server",
+      "options": Object {
+        "buildTarget": "myapp:build",
+        "port": 4173,
+      },
+    },
+    "serve": Object {
+      "executor": "@nx/vite:dev-server",
+      "options": Object {
+        "buildTarget": "myapp:build.client",
+        "mode": "ssr",
+        "port": 5173,
+      },
+    },
+    "serve.debug": Object {
+      "executor": "nx:run-commands",
+      "options": Object {
+        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "libs/frontend/myapp",
+      },
+    },
+  },
+}
+`;
+
+exports[`qwik-nx generator should be able to resolve directory path based on the workspace layout when directory is "packages/frontend/myapp" should generate "myapp" with project's root at "packages/frontend/myapp": "packages/frontend/myapp" 1`] = `
+Object {
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "myapp",
   "projectType": "application",
   "root": "packages/frontend/myapp",
   "sourceRoot": "packages/frontend/myapp/src",
@@ -221,8 +153,8 @@ Object {
       "options": Object {
         "outputPath": "dist/packages/frontend/myapp",
         "runSequence": Array [
-          "frontend-myapp:build.client",
-          "frontend-myapp:build.ssr",
+          "myapp:build.client",
+          "myapp:build.ssr",
         ],
       },
     },
@@ -249,74 +181,6 @@ Object {
     "preview": Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
-        "buildTarget": "frontend-myapp:build",
-        "port": 4173,
-      },
-    },
-    "serve": Object {
-      "executor": "@nx/vite:dev-server",
-      "options": Object {
-        "buildTarget": "frontend-myapp:build.client",
-        "mode": "ssr",
-        "port": 5173,
-      },
-    },
-    "serve.debug": Object {
-      "executor": "nx:run-commands",
-      "options": Object {
-        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "packages/frontend/myapp",
-      },
-    },
-  },
-}
-`;
-
-exports[`qwik-nx generator should be able to resolve directory path based on the workspace layout when directory is "apps" should generate "myapp" with project's root at "apps/myapp": "apps" 1`] = `
-Object {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "name": "myapp",
-  "projectType": "application",
-  "root": "apps/myapp",
-  "sourceRoot": "apps/myapp/src",
-  "tags": Array [],
-  "targets": Object {
-    "build": Object {
-      "configurations": Object {
-        "preview": Object {},
-      },
-      "executor": "qwik-nx:build",
-      "options": Object {
-        "outputPath": "dist/apps/myapp",
-        "runSequence": Array [
-          "myapp:build.client",
-          "myapp:build.ssr",
-        ],
-      },
-    },
-    "build.client": Object {
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "configFile": "apps/myapp/vite.config.ts",
-        "outputPath": "dist/apps/myapp",
-      },
-    },
-    "build.ssr": Object {
-      "configurations": Object {
-        "preview": Object {
-          "mode": "production",
-          "ssr": "src/entry.preview.tsx",
-        },
-      },
-      "defaultConfiguration": "preview",
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "outputPath": "dist/apps/myapp",
-      },
-    },
-    "preview": Object {
-      "executor": "@nx/vite:preview-server",
-      "options": Object {
         "buildTarget": "myapp:build",
         "port": 4173,
       },
@@ -332,76 +196,8 @@ Object {
     "serve.debug": Object {
       "executor": "nx:run-commands",
       "options": Object {
-        "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/myapp",
-      },
-    },
-  },
-}
-`;
-
-exports[`qwik-nx generator should be able to resolve directory path based on the workspace layout when directory is "apps/frontend" should generate "frontend-myapp" with project's root at "apps/frontend/myapp": "apps/frontend" 1`] = `
-Object {
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "name": "frontend-myapp",
-  "projectType": "application",
-  "root": "apps/frontend/myapp",
-  "sourceRoot": "apps/frontend/myapp/src",
-  "tags": Array [],
-  "targets": Object {
-    "build": Object {
-      "configurations": Object {
-        "preview": Object {},
-      },
-      "executor": "qwik-nx:build",
-      "options": Object {
-        "outputPath": "dist/apps/frontend/myapp",
-        "runSequence": Array [
-          "frontend-myapp:build.client",
-          "frontend-myapp:build.ssr",
-        ],
-      },
-    },
-    "build.client": Object {
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "configFile": "apps/frontend/myapp/vite.config.ts",
-        "outputPath": "dist/apps/frontend/myapp",
-      },
-    },
-    "build.ssr": Object {
-      "configurations": Object {
-        "preview": Object {
-          "mode": "production",
-          "ssr": "src/entry.preview.tsx",
-        },
-      },
-      "defaultConfiguration": "preview",
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "outputPath": "dist/apps/frontend/myapp",
-      },
-    },
-    "preview": Object {
-      "executor": "@nx/vite:preview-server",
-      "options": Object {
-        "buildTarget": "frontend-myapp:build",
-        "port": 4173,
-      },
-    },
-    "serve": Object {
-      "executor": "@nx/vite:dev-server",
-      "options": Object {
-        "buildTarget": "frontend-myapp:build.client",
-        "mode": "ssr",
-        "port": 5173,
-      },
-    },
-    "serve.debug": Object {
-      "executor": "nx:run-commands",
-      "options": Object {
         "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/frontend/myapp",
+        "cwd": "packages/frontend/myapp",
       },
     },
   },
@@ -513,6 +309,10 @@ exports[`qwik-nx generator should run successfully 2`] = `
 
 exports[`qwik-nx generator should run successfully 3`] = `
 Array [
+  Object {
+    "path": ".gitignore",
+    "type": "CREATE",
+  },
   Object {
     "path": ".prettierignore",
     "type": "CREATE",

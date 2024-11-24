@@ -10,7 +10,7 @@ describe('route generator', () => {
 
   async function setup() {
     const appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
-    await appGenerator(appTree, { name: 'testApp' });
+    await appGenerator(appTree, { directory: 'apps/test-app' });
 
     const routeOptions: RouteGeneratorSchema = {
       name: 'fake-route',

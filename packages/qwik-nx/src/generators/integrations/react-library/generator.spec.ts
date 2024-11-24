@@ -8,7 +8,7 @@ import appGenerator from '../../application/generator';
 
 describe('integrations/react-library generator', () => {
   let appTree: Tree;
-  const options: ReactLibraryGeneratorSchema = { name: 'mylib' };
+  const options: ReactLibraryGeneratorSchema = { directory: 'libs/mylib' };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
@@ -78,8 +78,8 @@ describe('integrations/react-library generator', () => {
   });
 
   it('should update app config if provided', async () => {
-    await appGenerator(appTree, { name: 'myapp1' });
-    await appGenerator(appTree, { name: 'myapp2' });
+    await appGenerator(appTree, { directory: 'apps/myapp1' });
+    await appGenerator(appTree, { directory: 'apps/myapp2' });
     await reactLibraryGenerator(appTree, {
       ...options,
       targetApps: 'myapp1, myapp2',
@@ -95,13 +95,9 @@ describe('integrations/react-library generator', () => {
 
   describe('should be able to resolve directory path based on the workspace layout', () => {
     test.each`
-      directory             | expectedProjectName | projectRoot
-      ${'/shared'}          | ${'shared-mylib'}   | ${'libs/shared/mylib'}
-      ${'libs'}             | ${'mylib'}          | ${'libs/mylib'}
-      ${'/libs/shared'}     | ${'shared-mylib'}   | ${'libs/shared/mylib'}
-      ${'libs/shared'}      | ${'shared-mylib'}   | ${'libs/shared/mylib'}
-      ${'/packages'}        | ${'mylib'}          | ${'packages/mylib'}
-      ${'/packages/shared'} | ${'shared-mylib'}   | ${'packages/shared/mylib'}
+      directory                  | expectedProjectName | projectRoot
+      ${'libs/shared/mylib'}     | ${'mylib'}          | ${'libs/shared/mylib'}
+      ${'packages/shared/mylib'} | ${'mylib'}          | ${'packages/shared/mylib'}
     `(
       'when directory is "$directory" should generate "$expectedProjectName" with project\'s root at "$projectRoot"',
       async ({ directory, expectedProjectName, projectRoot }) => {

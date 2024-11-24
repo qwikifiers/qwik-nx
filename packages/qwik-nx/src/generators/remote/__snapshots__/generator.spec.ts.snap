@@ -1,168 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`remote generator should be able to resolve directory path based on the workspace layout when directory is "/apps/frontend" should generate "frontend-myremote" with project's root at "apps/frontend/myremote": "/apps/frontend" 1`] = `
+exports[`remote generator should be able to resolve directory path based on the workspace layout when directory is "apps/frontend/myremote" should generate "myremote" with project's root at "apps/frontend/myremote": "apps/frontend/myremote" 1`] = `
 Object {
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "name": "frontend-myremote",
-  "projectType": "application",
-  "root": "apps/frontend/myremote",
-  "sourceRoot": "apps/frontend/myremote/src",
-  "tags": Array [],
-  "targets": Object {
-    "build": Object {
-      "configurations": Object {
-        "preview": Object {},
-      },
-      "executor": "qwik-nx:build",
-      "options": Object {
-        "outputPath": "dist/apps/frontend/myremote",
-        "runSequence": Array [
-          "frontend-myremote:build.client",
-          "frontend-myremote:build.ssr",
-        ],
-      },
-    },
-    "build.client": Object {
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "configFile": "apps/frontend/myremote/vite.config.ts",
-        "outputPath": "dist/apps/frontend/myremote",
-      },
-    },
-    "build.ssr": Object {
-      "configurations": Object {
-        "preview": Object {
-          "mode": "production",
-          "ssr": "src/entry.preview.tsx",
-        },
-      },
-      "defaultConfiguration": "preview",
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "outputPath": "dist/apps/frontend/myremote",
-      },
-    },
-    "preview": Object {
-      "executor": "@nx/vite:preview-server",
-      "options": Object {
-        "buildTarget": "frontend-myremote:build",
-        "port": 4173,
-      },
-    },
-    "serve": Object {
-      "executor": "@nx/vite:dev-server",
-      "options": Object {
-        "buildTarget": "frontend-myremote:build.client",
-        "mode": "ssr",
-        "port": 5173,
-      },
-    },
-    "serve.debug": Object {
-      "executor": "nx:run-commands",
-      "options": Object {
-        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/frontend/myremote",
-      },
-    },
-    "test": Object {
-      "executor": "@nx/vite:test",
-      "options": Object {
-        "passWithNoTests": true,
-        "reportsDirectory": "../../../coverage/apps/frontend/myremote",
-      },
-      "outputs": Array [
-        "{options.reportsDirectory}",
-      ],
-    },
-  },
-}
-`;
-
-exports[`remote generator should be able to resolve directory path based on the workspace layout when directory is "/frontend" should generate "frontend-myremote" with project's root at "apps/frontend/myremote": "/frontend" 1`] = `
-Object {
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "name": "frontend-myremote",
-  "projectType": "application",
-  "root": "apps/frontend/myremote",
-  "sourceRoot": "apps/frontend/myremote/src",
-  "tags": Array [],
-  "targets": Object {
-    "build": Object {
-      "configurations": Object {
-        "preview": Object {},
-      },
-      "executor": "qwik-nx:build",
-      "options": Object {
-        "outputPath": "dist/apps/frontend/myremote",
-        "runSequence": Array [
-          "frontend-myremote:build.client",
-          "frontend-myremote:build.ssr",
-        ],
-      },
-    },
-    "build.client": Object {
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "configFile": "apps/frontend/myremote/vite.config.ts",
-        "outputPath": "dist/apps/frontend/myremote",
-      },
-    },
-    "build.ssr": Object {
-      "configurations": Object {
-        "preview": Object {
-          "mode": "production",
-          "ssr": "src/entry.preview.tsx",
-        },
-      },
-      "defaultConfiguration": "preview",
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "outputPath": "dist/apps/frontend/myremote",
-      },
-    },
-    "preview": Object {
-      "executor": "@nx/vite:preview-server",
-      "options": Object {
-        "buildTarget": "frontend-myremote:build",
-        "port": 4173,
-      },
-    },
-    "serve": Object {
-      "executor": "@nx/vite:dev-server",
-      "options": Object {
-        "buildTarget": "frontend-myremote:build.client",
-        "mode": "ssr",
-        "port": 5173,
-      },
-    },
-    "serve.debug": Object {
-      "executor": "nx:run-commands",
-      "options": Object {
-        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/frontend/myremote",
-      },
-    },
-    "test": Object {
-      "executor": "@nx/vite:test",
-      "options": Object {
-        "passWithNoTests": true,
-        "reportsDirectory": "../../../coverage/apps/frontend/myremote",
-      },
-      "outputs": Array [
-        "{options.reportsDirectory}",
-      ],
-    },
-  },
-}
-`;
-
-exports[`remote generator should be able to resolve directory path based on the workspace layout when directory is "/packages" should generate "myremote" with project's root at "packages/myremote": "/packages" 1`] = `
-Object {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "myremote",
   "projectType": "application",
-  "root": "packages/myremote",
-  "sourceRoot": "packages/myremote/src",
+  "root": "apps/frontend/myremote",
+  "sourceRoot": "apps/frontend/myremote/src",
   "tags": Array [],
   "targets": Object {
     "build": Object {
@@ -171,7 +15,7 @@ Object {
       },
       "executor": "qwik-nx:build",
       "options": Object {
-        "outputPath": "dist/packages/myremote",
+        "outputPath": "dist/apps/frontend/myremote",
         "runSequence": Array [
           "myremote:build.client",
           "myremote:build.ssr",
@@ -181,8 +25,8 @@ Object {
     "build.client": Object {
       "executor": "@nx/vite:build",
       "options": Object {
-        "configFile": "packages/myremote/vite.config.ts",
-        "outputPath": "dist/packages/myremote",
+        "configFile": "apps/frontend/myremote/vite.config.ts",
+        "outputPath": "dist/apps/frontend/myremote",
       },
     },
     "build.ssr": Object {
@@ -195,7 +39,7 @@ Object {
       "defaultConfiguration": "preview",
       "executor": "@nx/vite:build",
       "options": Object {
-        "outputPath": "dist/packages/myremote",
+        "outputPath": "dist/apps/frontend/myremote",
       },
     },
     "preview": Object {
@@ -216,15 +60,15 @@ Object {
     "serve.debug": Object {
       "executor": "nx:run-commands",
       "options": Object {
-        "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "packages/myremote",
+        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "apps/frontend/myremote",
       },
     },
     "test": Object {
       "executor": "@nx/vite:test",
       "options": Object {
         "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/packages/myremote",
+        "reportsDirectory": "../../../coverage/apps/frontend/myremote",
       },
       "outputs": Array [
         "{options.reportsDirectory}",
@@ -234,10 +78,10 @@ Object {
 }
 `;
 
-exports[`remote generator should be able to resolve directory path based on the workspace layout when directory is "/packages/frontend" should generate "frontend-myremote" with project's root at "packages/frontend/myremote": "/packages/frontend" 1`] = `
+exports[`remote generator should be able to resolve directory path based on the workspace layout when directory is "packages/frontend/myremote" should generate "myremote" with project's root at "packages/frontend/myremote": "packages/frontend/myremote" 1`] = `
 Object {
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "name": "frontend-myremote",
+  "name": "myremote",
   "projectType": "application",
   "root": "packages/frontend/myremote",
   "sourceRoot": "packages/frontend/myremote/src",
@@ -251,8 +95,8 @@ Object {
       "options": Object {
         "outputPath": "dist/packages/frontend/myremote",
         "runSequence": Array [
-          "frontend-myremote:build.client",
-          "frontend-myremote:build.ssr",
+          "myremote:build.client",
+          "myremote:build.ssr",
         ],
       },
     },
@@ -279,14 +123,14 @@ Object {
     "preview": Object {
       "executor": "@nx/vite:preview-server",
       "options": Object {
-        "buildTarget": "frontend-myremote:build",
+        "buildTarget": "myremote:build",
         "port": 4173,
       },
     },
     "serve": Object {
       "executor": "@nx/vite:dev-server",
       "options": Object {
-        "buildTarget": "frontend-myremote:build.client",
+        "buildTarget": "myremote:build.client",
         "mode": "ssr",
         "port": 5173,
       },
@@ -303,162 +147,6 @@ Object {
       "options": Object {
         "passWithNoTests": true,
         "reportsDirectory": "../../../coverage/packages/frontend/myremote",
-      },
-      "outputs": Array [
-        "{options.reportsDirectory}",
-      ],
-    },
-  },
-}
-`;
-
-exports[`remote generator should be able to resolve directory path based on the workspace layout when directory is "apps" should generate "myremote" with project's root at "apps/myremote": "apps" 1`] = `
-Object {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "name": "myremote",
-  "projectType": "application",
-  "root": "apps/myremote",
-  "sourceRoot": "apps/myremote/src",
-  "tags": Array [],
-  "targets": Object {
-    "build": Object {
-      "configurations": Object {
-        "preview": Object {},
-      },
-      "executor": "qwik-nx:build",
-      "options": Object {
-        "outputPath": "dist/apps/myremote",
-        "runSequence": Array [
-          "myremote:build.client",
-          "myremote:build.ssr",
-        ],
-      },
-    },
-    "build.client": Object {
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "configFile": "apps/myremote/vite.config.ts",
-        "outputPath": "dist/apps/myremote",
-      },
-    },
-    "build.ssr": Object {
-      "configurations": Object {
-        "preview": Object {
-          "mode": "production",
-          "ssr": "src/entry.preview.tsx",
-        },
-      },
-      "defaultConfiguration": "preview",
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "outputPath": "dist/apps/myremote",
-      },
-    },
-    "preview": Object {
-      "executor": "@nx/vite:preview-server",
-      "options": Object {
-        "buildTarget": "myremote:build",
-        "port": 4173,
-      },
-    },
-    "serve": Object {
-      "executor": "@nx/vite:dev-server",
-      "options": Object {
-        "buildTarget": "myremote:build.client",
-        "mode": "ssr",
-        "port": 5173,
-      },
-    },
-    "serve.debug": Object {
-      "executor": "nx:run-commands",
-      "options": Object {
-        "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/myremote",
-      },
-    },
-    "test": Object {
-      "executor": "@nx/vite:test",
-      "options": Object {
-        "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/apps/myremote",
-      },
-      "outputs": Array [
-        "{options.reportsDirectory}",
-      ],
-    },
-  },
-}
-`;
-
-exports[`remote generator should be able to resolve directory path based on the workspace layout when directory is "apps/frontend" should generate "frontend-myremote" with project's root at "apps/frontend/myremote": "apps/frontend" 1`] = `
-Object {
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "name": "frontend-myremote",
-  "projectType": "application",
-  "root": "apps/frontend/myremote",
-  "sourceRoot": "apps/frontend/myremote/src",
-  "tags": Array [],
-  "targets": Object {
-    "build": Object {
-      "configurations": Object {
-        "preview": Object {},
-      },
-      "executor": "qwik-nx:build",
-      "options": Object {
-        "outputPath": "dist/apps/frontend/myremote",
-        "runSequence": Array [
-          "frontend-myremote:build.client",
-          "frontend-myremote:build.ssr",
-        ],
-      },
-    },
-    "build.client": Object {
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "configFile": "apps/frontend/myremote/vite.config.ts",
-        "outputPath": "dist/apps/frontend/myremote",
-      },
-    },
-    "build.ssr": Object {
-      "configurations": Object {
-        "preview": Object {
-          "mode": "production",
-          "ssr": "src/entry.preview.tsx",
-        },
-      },
-      "defaultConfiguration": "preview",
-      "executor": "@nx/vite:build",
-      "options": Object {
-        "outputPath": "dist/apps/frontend/myremote",
-      },
-    },
-    "preview": Object {
-      "executor": "@nx/vite:preview-server",
-      "options": Object {
-        "buildTarget": "frontend-myremote:build",
-        "port": 4173,
-      },
-    },
-    "serve": Object {
-      "executor": "@nx/vite:dev-server",
-      "options": Object {
-        "buildTarget": "frontend-myremote:build.client",
-        "mode": "ssr",
-        "port": 5173,
-      },
-    },
-    "serve.debug": Object {
-      "executor": "nx:run-commands",
-      "options": Object {
-        "command": "node --inspect-brk ../../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/frontend/myremote",
-      },
-    },
-    "test": Object {
-      "executor": "@nx/vite:test",
-      "options": Object {
-        "passWithNoTests": true,
-        "reportsDirectory": "../../../coverage/apps/frontend/myremote",
       },
       "outputs": Array [
         "{options.reportsDirectory}",
@@ -589,6 +277,10 @@ exports[`remote generator should run successfully 2`] = `
 
 exports[`remote generator should run successfully 3`] = `
 Array [
+  Object {
+    "path": ".gitignore",
+    "type": "CREATE",
+  },
   Object {
     "path": ".prettierignore",
     "type": "CREATE",
