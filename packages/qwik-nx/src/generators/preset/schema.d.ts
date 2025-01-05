@@ -2,10 +2,9 @@ import { Linter } from '@nx/eslint';
 
 export interface QwikWorkspacePresetGeneratorSchema
   extends QwikAppGeneratorSchema {
-  name: string;
   qwikAppName: string;
   tags?: string;
-  directory?: string;
+  directory: string;
 
   style: 'css' | 'scss' | 'styl' | 'less' | 'none';
   qwikAppStyle: 'css' | 'scss' | 'styl' | 'less' | 'none';

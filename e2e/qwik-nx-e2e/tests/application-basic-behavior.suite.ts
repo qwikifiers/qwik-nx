@@ -21,7 +21,7 @@ import { names } from '@nx/devkit';
 export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
   const isPreset = generator === 'preset';
   const appPathPrefix = isPreset ? 'apps/' : '';
-  const libPathPrefix = isPreset ? 'libs/' : '';
+  const libPathPrefix = '';
   const devServerPort = 4212;
   const previewServerPort = 4232;
   describe(`Basic behavior with ${generator} generator`, () => {
@@ -77,7 +77,7 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
       'should create qwik-nx',
       async () => {
         const result = await runNxCommandAsync(`build ${project}`);
-        expect(result.stdout).toContain(
+        expect(stripConsoleColors(result.stdout)).toContain(
           `Running type check for the "${project}"..`
         );
         expect(
@@ -91,7 +91,7 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
             .join('')
             .replace(/\n|\s/g, '')
         );
-        expect(result.stdout).toContain(
+        expect(stripConsoleColors(result.stdout)).toContain(
           `Successfully ran target build for project ${project}`
         );
         expect(() =>
@@ -167,7 +167,7 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
       'unit tests should pass in the created app',
       async () => {
         const result = await runNxCommandAsync(`test ${project}`);
-        expect(result.stdout).toContain(
+        expect(stripConsoleColors(result.stdout)).toContain(
           `Successfully ran target test for project ${project}`
         );
       },
@@ -186,7 +186,7 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
         const result = await runNxCommandAsync(`test ${project}`, {
           silenceError: true,
         });
-        expect(result.stdout).toContain(
+        expect(stripConsoleColors(result.stdout)).toContain(
           `Running target test for project ${project} failed`
         );
       },
@@ -211,7 +211,7 @@ export function testApplicationBasicBehavior(generator: 'app' | 'preset') {
             .join('')
             .replace(/\n|\s/g, '')
         );
-        expect(result.stdout).toContain(
+        expect(stripConsoleColors(result.stdout)).toContain(
           `Successfully ran target build for project ${project}`
         );
       },

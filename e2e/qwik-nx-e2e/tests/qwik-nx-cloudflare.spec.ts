@@ -11,6 +11,7 @@ import {
   killPort,
   killPorts,
   DEFAULT_E2E_TIMEOUT,
+  stripConsoleColors,
 } from '@qwikifiers/e2e/utils';
 
 const CLOUDFLARE_PREVIEW_PORT = 4173;
@@ -49,7 +50,7 @@ describe('qwik nx cloudflare generator', () => {
       'should be able to successfully build the application',
       async () => {
         const result = await runNxCommandAsync(`build-cloudflare ${project}`);
-        expect(result.stdout).toContain(
+        expect(stripConsoleColors(result.stdout)).toContain(
           `Successfully ran target build for project ${project}`
         );
         expect(() =>

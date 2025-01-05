@@ -15,6 +15,7 @@ import {
   removeFile,
   killPorts,
   DEFAULT_E2E_TIMEOUT,
+  stripConsoleColors,
 } from '@qwikifiers/e2e/utils';
 
 describe('qwikNxVite plugin e2e', () => {
@@ -109,7 +110,7 @@ describe('qwikNxVite plugin e2e', () => {
       'should be able to successfully build the application',
       async () => {
         const result = await runNxCommandAsync(`build ${project}`);
-        expect(result.stdout).toContain(
+        expect(stripConsoleColors(result.stdout)).toContain(
           `Successfully ran target build for project ${project}`
         );
         expect(() =>

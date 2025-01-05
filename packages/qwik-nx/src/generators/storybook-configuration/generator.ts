@@ -9,6 +9,7 @@ import {
   offsetFromRoot,
   ProjectConfiguration,
   readProjectConfiguration,
+  runTasksInSerial,
   Tree,
 } from '@nx/devkit';
 import { Linter } from '@nx/eslint';
@@ -84,7 +85,8 @@ export async function storybookConfigurationGenerator(
 
   const { oldFormat } = await getStorybookVersion();
 
-  await configurationGenerator(tree, {
+  const tasks: GeneratorCallback[] = [];
+  const addStorybookCallback = await configurationGenerator(tree, {
     storybook7UiFramework: '@storybook/html-webpack5',
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -98,11 +100,14 @@ export async function storybookConfigurationGenerator(
     configureCypress: false,
     project: projectConfig.name!,
   });
+  tasks.push(addStorybookCallback);
 
   addFiles(tree, normalizedOptions, projectConfig);
   await formatFiles(tree);
 
-  return addStorybookDependencies(tree);
+  const addStorybookDependenciesCallback = await addStorybookDependencies(tree);
+  tasks.push(addStorybookDependenciesCallback);
+  return runTasksInSerial(...tasks);
 }
 
 async function addStorybookDependencies(

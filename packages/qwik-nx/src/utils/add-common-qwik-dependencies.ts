@@ -19,7 +19,6 @@ import {
 } from './versions';
 
 export function addCommonQwikDependencies(tree: Tree): GeneratorCallback {
-  const { satisfies } = ensurePackage<typeof import('semver')>('semver', '*');
   // TODO: refactor to use "addDependenciesToPackageJson" with "keepExistingVersions" once we support nx 17.3 or higher
 
   const devDependencies = {
@@ -34,27 +33,6 @@ export function addCommonQwikDependencies(tree: Tree): GeneratorCallback {
     undici: undiciVersion,
   };
   const currentPackageJson = readJson(tree, 'package.json');
-
-  const unsupportedPackageVersions = new Map<string, string>([
-    // https://github.com/vitejs/vite/issues/15870
-    ['vite', '<5.1.0 || >=5.2.0'],
-  ]);
-  let hasChanges = false;
-  for (const [dep, versionRange] of unsupportedPackageVersions.entries()) {
-    const existingVersion =
-      currentPackageJson.dependencies[dep] ??
-      currentPackageJson.devDependencies[dep];
-    if (existingVersion && !satisfies(existingVersion, versionRange)) {
-      hasChanges = true;
-      // remove the dependency if it is set with incompatible version
-      // we'll install our version instead
-      delete currentPackageJson.dependencies[dep];
-      delete currentPackageJson.devDependencies[dep];
-    }
-  }
-  if (hasChanges) {
-    writeJson(tree, 'package.json', currentPackageJson);
-  }
 
   return addDependenciesToPackageJson(
     tree,
