@@ -1,17 +1,23 @@
 {
-  "generators": {},
+  "generators": {
+    "add-root-property-to-vite-config": {
+      "version": "3.0.0",
+      "description": "Migration for v3.0.0",
+      "implementation": "./src/migrations/add-root-property-to-vite-config"
+    }
+  },
   "packageJsonUpdates": {
     "3.0.0": {
-      "version": "2.3.0",
+      "version": "3.0.0",
       "packages": {
         "@builder.io/qwik": {
-          "version": "~1.10.0"
+          "version": "~1.12.0"
         },
         "@builder.io/qwik-city": {
-          "version": "~1.10.0"
+          "version": "~1.12.0"
         },
         "eslint-plugin-qwik": {
-          "version": "~1.10.0"
+          "version": "~1.12.0"
         },
         "vite": {
           "version": "~5.3.5"
