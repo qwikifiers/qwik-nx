@@ -1,19 +1,9 @@
 import { Linter } from '@nx/eslint';
 
-export interface QwikWorkspacePresetGeneratorSchema
-  extends QwikAppGeneratorSchema {
+export interface QwikWorkspacePresetGeneratorSchema {
   qwikAppName: string;
-  tags?: string;
-  directory: string;
-
-  style: 'css' | 'scss' | 'styl' | 'less' | 'none';
-  qwikAppStyle: 'css' | 'scss' | 'styl' | 'less' | 'none';
-  linter: Linter;
-  skipFormat: boolean;
-  tailwind?: boolean;
-  unitTestRunner: 'vitest' | 'none';
-  strict: boolean;
-  e2eTestRunner: 'playwright' | 'cypress' | 'none';
-  devServerPort?: number;
-  previewServerPort?: number;
+  qwikAppStyle?: 'css' | 'scss' | 'styl' | 'less' | 'none';
+  linter?: Linter;
+  unitTestRunner?: 'vitest' | 'none';
+  e2eTestRunner?: 'playwright' | 'cypress' | 'none';
 }

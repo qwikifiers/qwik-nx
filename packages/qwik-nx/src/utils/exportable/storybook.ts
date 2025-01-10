@@ -1,46 +1,13 @@
-import { PluginOption, UserConfig, mergeConfig } from 'vite';
-import {
-  type QwikVitePluginOptions,
-  qwikVite,
-} from '@builder.io/qwik/optimizer';
+import { output } from '@nx/devkit';
+import type { UserConfig } from 'vite';
 
 /**
- * Updates config for the storybook
- * @param config vite configuration to be updated for storybook
- * @param qwikViteOpts options for the `qwikVite` plugin that is being overridden in this utility
+ * @deprecated this util is no longer used and will be removed in qwik-nx@4
  */
-export function withNx(
-  config: UserConfig,
-  excludeQwikCitySwRegister = false,
-  qwikViteOpts?: QwikVitePluginOptions
-): UserConfig {
-  const updated: UserConfig = excludeQwikCitySwRegister
-    ? mergeConfig(config, {
-        build: {
-          rollupOptions: {
-            external: ['@qwik-city-sw-register'],
-          },
-        },
-      })
-    : { ...config };
-  return {
-    ...updated,
-    plugins: config.plugins?.flat(10).map((plugin: PluginOption) => {
-      switch ((plugin as any)?.name) {
-        case 'vite-plugin-qwik':
-          // as of now there's no way of extending qwikVite with overridden output paths, thus have to override to completely
-          return qwikVite(qwikViteOpts);
-
-        case 'vite-plugin-qwik-city':
-          // logic below has been copied from "storybook-framework-qwik" plugin
-          // it doesn't work out of the box for Nx applications because base config is not included by storybook if it's not in the root cwd
-          // Qwik-city plugin may be used in apps, but it has mdx stuff that conflicts with Storybook mdx
-          // we'll try to only remove the transform code (where the mdx stuff is), and keep everything else.
-          return { ...plugin, transform: () => null } as PluginOption;
-
-        default:
-          return plugin;
-      }
-    }),
-  };
+export function withNx(config: UserConfig, ...unused: any[]): UserConfig {
+  output.warn({
+    title: '"withNx" storybook util has been deprecated',
+    bodyLines: ['It will be removed in qwik-nx@4'],
+  });
+  return config;
 }

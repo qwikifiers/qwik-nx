@@ -112,12 +112,9 @@ import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import { join } from 'path';
 
-import { qwikNxVite } from 'qwik-nx/plugins';
-
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/libs/mylib',
   plugins: [
-    qwikNxVite(),
     qwikVite(),
     tsconfigPaths({ root: '../../' }),
     dts({
@@ -394,11 +391,9 @@ exports[`library generator should run successfully 2`] = `
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vite';
 
-import { qwikNxVite } from 'qwik-nx/plugins';
-
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/libs/mylib',
-  plugins: [qwikNxVite(), qwikVite(), tsconfigPaths({ root: '../../' })],
+  plugins: [qwikVite(), tsconfigPaths({ root: '../../' })],
 
   test: {
     globals: true,

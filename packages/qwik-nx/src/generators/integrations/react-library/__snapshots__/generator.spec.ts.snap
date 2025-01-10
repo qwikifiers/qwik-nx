@@ -97,16 +97,10 @@ exports[`integrations/react-library generator should generate demo component wit
 "import { qwikVite } from '@builder.io/qwik/optimizer';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vite';
-import { qwikNxVite } from 'qwik-nx/plugins';
 import { qwikReact } from '@builder.io/qwik-react/vite';
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/libs/mylib',
-  plugins: [
-    qwikNxVite(),
-    qwikVite(),
-    tsconfigPaths({ root: '../../' }),
-    qwikReact(),
-  ],
+  plugins: [qwikVite(), tsconfigPaths({ root: '../../' }), qwikReact()],
   test: {
     globals: true,
     cache: {
@@ -242,16 +236,10 @@ exports[`integrations/react-library generator should run successfully 2`] = `
 "import { qwikVite } from '@builder.io/qwik/optimizer';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vite';
-import { qwikNxVite } from 'qwik-nx/plugins';
 import { qwikReact } from '@builder.io/qwik-react/vite';
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/libs/mylib',
-  plugins: [
-    qwikNxVite(),
-    qwikVite(),
-    tsconfigPaths({ root: '../../' }),
-    qwikReact(),
-  ],
+  plugins: [qwikVite(), tsconfigPaths({ root: '../../' }), qwikReact()],
   test: {
     globals: true,
     cache: {
@@ -357,12 +345,11 @@ exports[`integrations/react-library generator should update app config if provid
 import { qwikCity } from '@builder.io/qwik-city/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { qwikNxVite } from 'qwik-nx/plugins';
 import { qwikReact } from '@builder.io/qwik-react/vite';
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/myapp1',
+  root: 'apps/myapp1',
   plugins: [
-    qwikNxVite(),
     qwikCity(),
     qwikVite({
       client: {
@@ -404,12 +391,11 @@ exports[`integrations/react-library generator should update app config if provid
 import { qwikCity } from '@builder.io/qwik-city/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { qwikNxVite } from 'qwik-nx/plugins';
 import { qwikReact } from '@builder.io/qwik-react/vite';
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/myapp2',
+  root: 'apps/myapp2',
   plugins: [
-    qwikNxVite(),
     qwikCity(),
     qwikVite({
       client: {

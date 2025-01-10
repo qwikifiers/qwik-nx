@@ -209,12 +209,11 @@ exports[`qwik-nx generator should run successfully 1`] = `
 import { qwikCity } from '@builder.io/qwik-city/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { qwikNxVite } from 'qwik-nx/plugins';
 
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/myapp',
+  root: 'apps/myapp',
   plugins: [
-    qwikNxVite(),
     qwikCity(),
     qwikVite({
       client: {

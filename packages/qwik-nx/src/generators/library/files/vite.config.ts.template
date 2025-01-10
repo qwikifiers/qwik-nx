@@ -4,12 +4,10 @@ import { defineConfig } from 'vite';
 <% if(buildable) { %>import dts from 'vite-plugin-dts';
 import { join } from 'path';
 <% } %>
-import { qwikNxVite } from 'qwik-nx/plugins';
 
 export default defineConfig({
   cacheDir: '<%= offsetFromRoot %>node_modules/.vite/<%= projectRoot %>',
   plugins: [
-    qwikNxVite(),
     qwikVite(), 
     tsconfigPaths({ root: '<%= offsetFromRoot %>' }),
     <% if(buildable) { %>  dts({

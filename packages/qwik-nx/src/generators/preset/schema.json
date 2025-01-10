@@ -9,11 +9,6 @@
       "description": "",
       "x-prompt": "App Name"
     },
-    "tags": {
-      "type": "string",
-      "description": "Add tags to the project (used for linting)",
-      "alias": "t"
-    },
     "qwikAppStyle": {
       "description": "The file extension to be used for style files.",
       "type": "string",
@@ -55,31 +50,11 @@
       "description": "Test runner to use for unit tests.",
       "default": "vitest"
     },
-    "strict": {
-      "type": "boolean",
-      "description": "Creates an application with strict mode and strict type checking.",
-      "default": true
-    },
-    "tailwind": {
-      "description": "Setup Tailwind",
-      "type": "boolean",
-      "default": false
-    },
     "e2eTestRunner": {
       "type": "string",
       "enum": ["playwright", "cypress", "none"],
       "description": "Test runner to use for end to end (E2E) tests.",
       "default": "none"
-    },
-    "devServerPort": {
-      "type": "number",
-      "description": "The port for the dev server of the app.",
-      "default": 5173
-    },
-    "previewServerPort": {
-      "type": "number",
-      "description": "The port for the preview server of the app.",
-      "default": 4173
     }
   },
   "required": ["qwikAppName"]

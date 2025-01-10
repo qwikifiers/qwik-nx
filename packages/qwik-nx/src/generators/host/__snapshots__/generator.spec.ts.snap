@@ -317,12 +317,11 @@ exports[`host generator should run successfully 1`] = `
 import { qwikCity } from '@builder.io/qwik-city/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { qwikNxVite } from 'qwik-nx/plugins';
 
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/myhostapp',
+  root: 'apps/myhostapp',
   plugins: [
-    qwikNxVite(),
     qwikCity(),
     qwikVite({
       client: {
@@ -817,12 +816,11 @@ exports[`host generator should run successfully 5`] = `
 import { qwikCity } from '@builder.io/qwik-city/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { qwikNxVite } from 'qwik-nx/plugins';
 
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/remote1',
+  root: 'apps/remote1',
   plugins: [
-    qwikNxVite(),
     qwikCity(),
     qwikVite({
       client: {
@@ -982,12 +980,11 @@ exports[`host generator should run successfully 8`] = `
 import { qwikCity } from '@builder.io/qwik-city/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { qwikNxVite } from 'qwik-nx/plugins';
 
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/remote2',
+  root: 'apps/remote2',
   plugins: [
-    qwikNxVite(),
     qwikCity(),
     qwikVite({
       client: {

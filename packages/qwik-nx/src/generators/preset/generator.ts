@@ -5,13 +5,20 @@ export default async function (
   tree: Tree,
   options: QwikWorkspacePresetGeneratorSchema
 ) {
+  const appGeneratorOptions = {
+    directory: options.qwikAppName,
+    style: options.qwikAppStyle,
+    linter: options.linter,
+    unitTestRunner: options.unitTestRunner,
+    e2eTestRunner: options.e2eTestRunner,
+  };
   if (options.qwikAppName.split('/').length === 1) {
-    options.directory = joinPathFragments('apps', options.qwikAppName);
-  } else {
-    options.directory = options.qwikAppName;
+    appGeneratorOptions.directory = joinPathFragments(
+      'apps',
+      options.qwikAppName
+    );
   }
-  options.style = options.qwikAppStyle ?? options.style;
   return await import('../application/generator').then(({ appGenerator }) =>
-    appGenerator(tree, options)
+    appGenerator(tree, appGeneratorOptions)
   );
 }
