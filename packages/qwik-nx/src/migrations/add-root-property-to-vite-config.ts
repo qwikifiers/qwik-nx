@@ -7,7 +7,7 @@ import { updateViteConfig } from '../utils/update-vite-config';
 export default function update(host: Tree) {
   const projects = getProjects(host);
 
-  projects.forEach((config, name) => {
+  projects.forEach((config) => {
     if (isQwikNxProject(config)) {
       const viteConfigPath = normalizeViteConfigFilePathWithTree(
         host,

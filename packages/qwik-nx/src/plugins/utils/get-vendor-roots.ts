@@ -16,8 +16,9 @@ export async function getVendorRoots(
   qwikOptions: QwikVitePluginOptionsStub
 ): Promise<string[]> {
   const log = (...str: unknown[]) => {
-    (options?.debug || qwikOptions.debug) &&
+    if (options?.debug || qwikOptions.debug) {
       console.debug(`[QWIK-NX-VITE PLUGIN:]`, ...str);
+    }
   };
 
   const workspaceConfig = readWorkspaceConfig({ format: 'nx' });

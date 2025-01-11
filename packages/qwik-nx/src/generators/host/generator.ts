@@ -12,7 +12,7 @@ import { HostGeneratorSchema } from './schema';
 import { appGenerator } from './../application/generator';
 import remoteGenerator from '../remote/generator';
 import { normalizeOptions } from '../application/utils/normalize-options';
-import { basename, dirname, join } from 'path';
+import { dirname, join } from 'path';
 import { addMicroFrontendBetaWarning } from '../../utils/mf-beta-warning';
 import { NormalizedSchema } from '../application/schema';
 

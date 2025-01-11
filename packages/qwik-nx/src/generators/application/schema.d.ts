@@ -1,5 +1,4 @@
 import type { Linter } from '@nx/eslint';
-import type { ProjectNameAndRootFormat } from '@nx/devkit/src/generators/project-name-and-root-utils';
 
 export interface QwikAppGeneratorSchema {
   directory: string;

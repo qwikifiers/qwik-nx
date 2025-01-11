@@ -1,10 +1,8 @@
 import {
   addDependenciesToPackageJson,
-  ensurePackage,
   GeneratorCallback,
   readJson,
   Tree,
-  writeJson,
 } from '@nx/devkit';
 import {
   nodeFetchVersion,
