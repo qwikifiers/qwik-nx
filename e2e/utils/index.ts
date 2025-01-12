@@ -10,6 +10,7 @@ import * as treeKill from 'tree-kill';
 import {
   detectPackageManager,
   getPackageManagerCommand,
+  PackageManager,
 } from 'nx/src/utils/package-manager';
 
 export const DEFAULT_E2E_TIMEOUT = 3 * 60 * 1000;
@@ -26,7 +27,7 @@ function getAdditionalPackageManagerCommands(): {
   createWorkspace: string;
   runNx: string;
 } {
-  const pm = detectPackageManager();
+  const pm = detectPackageManager() as Exclude<PackageManager, 'bun'>;
   const [npmMajorVersion] = execSync(`npm -v`).toString().split('.');
   const publishedVersion = execSync('npm view nx version');
   switch (pm) {

@@ -8,15 +8,11 @@ import { Linter } from '@nx/eslint';
 describe('preset generator', () => {
   let appTree: Tree;
   const options: QwikWorkspacePresetGeneratorSchema = {
-    name: 'test',
     qwikAppName: 'test',
     qwikAppStyle: 'css',
-    style: 'css',
     linter: Linter.None,
-    skipFormat: true,
     e2eTestRunner: 'none',
     unitTestRunner: 'none',
-    strict: false,
   };
 
   beforeEach(() => {

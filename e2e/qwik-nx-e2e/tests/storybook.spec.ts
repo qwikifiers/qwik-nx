@@ -11,6 +11,7 @@ import {
   killPort,
   killPorts,
   DEFAULT_E2E_TIMEOUT,
+  stripConsoleColors,
 } from '@qwikifiers/e2e/utils';
 import { normalize } from 'path';
 
@@ -43,12 +44,13 @@ describe('qwikNxVite plugin e2e', () => {
         );
         await addAdditionalStories(appProject);
       }, DEFAULT_E2E_TIMEOUT);
+
       checkStorybookIsBuiltAndServed(appProject);
     });
     describe('Applying storybook for existing library', () => {
       beforeAll(async () => {
         await runNxCommandAsync(
-          `generate qwik-nx:library ${libProject} --no-interactive`
+          `generate qwik-nx:library --directory=${libProject} --no-interactive`
         );
         await runNxCommandAsync(
           `generate qwik-nx:storybook-configuration ${libProject} --no-interactive`
@@ -61,7 +63,7 @@ describe('qwikNxVite plugin e2e', () => {
     describe('Generating a new library with storybook configuration', () => {
       beforeAll(async () => {
         await runNxCommandAsync(
-          `generate qwik-nx:library ${secondLibProject} --storybookConfiguration=true --no-interactive`
+          `generate qwik-nx:library --directory=${secondLibProject} --storybookConfiguration=true --no-interactive`
         );
         await addAdditionalStories(secondLibProject);
       }, DEFAULT_E2E_TIMEOUT);
@@ -84,7 +86,7 @@ function checkStorybookIsBuiltAndServed(projectName: string) {
     `should be able to build storybook for the "${projectName}"`,
     async () => {
       const result = await runNxCommandAsync(`build-storybook ${projectName}`);
-      expect(result.stdout).toContain(
+      expect(stripConsoleColors(result.stdout)).toContain(
         `Successfully ran target build-storybook for project ${projectName}`
       );
       expect(() =>
@@ -105,7 +107,7 @@ function checkStorybookIsBuiltAndServed(projectName: string) {
             output.includes('Local:') &&
             output.includes(`:${STORYBOOK_PORT}`)
           ) {
-            resultOutput = output;
+            resultOutput = stripConsoleColors(output);
             return true;
           }
           return false;

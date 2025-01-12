@@ -5,12 +5,11 @@ exports[`integrations/react-in-app generator should generate demo component with
 import { qwikCity } from '@builder.io/qwik-city/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { qwikNxVite } from 'qwik-nx/plugins';
 import { qwikReact } from '@builder.io/qwik-react/vite';
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/myapp',
+  root: 'apps/myapp',
   plugins: [
-    qwikNxVite(),
     qwikCity(),
     qwikVite({
       client: {
@@ -49,6 +48,10 @@ export default defineConfig({
 
 exports[`integrations/react-in-app generator should generate demo component without MUI dependencies 2`] = `
 Array [
+  Object {
+    "path": ".gitignore",
+    "type": "CREATE",
+  },
   Object {
     "path": ".prettierignore",
     "type": "CREATE",
@@ -197,12 +200,11 @@ exports[`integrations/react-in-app generator should run successfully 1`] = `
 import { qwikCity } from '@builder.io/qwik-city/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { qwikNxVite } from 'qwik-nx/plugins';
 import { qwikReact } from '@builder.io/qwik-react/vite';
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/myapp',
+  root: 'apps/myapp',
   plugins: [
-    qwikNxVite(),
     qwikCity(),
     qwikVite({
       client: {
@@ -241,6 +243,10 @@ export default defineConfig({
 
 exports[`integrations/react-in-app generator should run successfully 2`] = `
 Array [
+  Object {
+    "path": ".gitignore",
+    "type": "CREATE",
+  },
   Object {
     "path": ".prettierignore",
     "type": "CREATE",

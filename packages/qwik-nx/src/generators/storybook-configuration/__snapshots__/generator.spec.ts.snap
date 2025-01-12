@@ -2,14 +2,13 @@
 
 exports[`storybook-configuration generator should add required targets 1`] = `
 "import { UserConfig } from 'vite';
-import { withNx } from 'qwik-nx/storybook';
 
 const config = {
   stories: ['../**/*.stories.mdx', '../**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-essentials'],
   framework: { name: 'storybook-framework-qwik' },
   async viteFinal(config: UserConfig) {
-    return withNx(config);
+    return config;
   },
 };
 

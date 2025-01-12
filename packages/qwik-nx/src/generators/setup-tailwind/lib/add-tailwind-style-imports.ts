@@ -24,11 +24,12 @@ export function addTailwindStyleImports(
 
   if (stylesPath) {
     const content = tree.read(stylesPath)?.toString();
-    content &&
+    if (content) {
       tree.write(
         stylesPath,
         `@tailwind components;\n@tailwind base;\n@tailwind utilities;\n${content}`
       );
+    }
   } else {
     logger.warn(
       stripIndents`

@@ -14,7 +14,7 @@ describe('qwik-nx generator', () => {
 
   let appTree: Tree;
   const defaultOptions: QwikAppGeneratorSchema = {
-    name: 'myapp',
+    directory: 'apps/myapp',
     style: 'css',
     linter: Linter.None,
     skipFormat: false,
@@ -76,13 +76,10 @@ describe('qwik-nx generator', () => {
 
   describe('should be able to resolve directory path based on the workspace layout', () => {
     test.each`
-      directory               | expectedProjectName | projectRoot
-      ${'/frontend'}          | ${'frontend-myapp'} | ${'apps/frontend/myapp'}
-      ${'apps'}               | ${'myapp'}          | ${'apps/myapp'}
-      ${'/apps/frontend'}     | ${'frontend-myapp'} | ${'apps/frontend/myapp'}
-      ${'apps/frontend'}      | ${'frontend-myapp'} | ${'apps/frontend/myapp'}
-      ${'/packages'}          | ${'myapp'}          | ${'packages/myapp'}
-      ${'/packages/frontend'} | ${'frontend-myapp'} | ${'packages/frontend/myapp'}
+      directory                    | expectedProjectName | projectRoot
+      ${'apps/frontend/myapp'}     | ${'myapp'}          | ${'apps/frontend/myapp'}
+      ${'packages/frontend/myapp'} | ${'myapp'}          | ${'packages/frontend/myapp'}
+      ${'libs/frontend/myapp'}     | ${'myapp'}          | ${'libs/frontend/myapp'}
     `(
       'when directory is "$directory" should generate "$expectedProjectName" with project\'s root at "$projectRoot"',
       async ({ directory, expectedProjectName, projectRoot }) => {

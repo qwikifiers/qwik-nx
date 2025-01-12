@@ -57,7 +57,7 @@ describe('Micro-frontends e2e', () => {
     async () => {
       const checkProject = async (name: string) => {
         const result = await runNxCommandAsync(`build ${name}`);
-        expect(result.stdout).toContain(
+        expect(stripConsoleColors(result.stdout)).toContain(
           `Successfully ran target build for project ${name}`
         );
         expect(() =>
@@ -152,7 +152,7 @@ describe('Micro-frontends e2e', () => {
         `generate qwik-nx:remote ${remote3} --host=${project} --port=5176 --no-interactive`
       );
       const result = await runNxCommandAsync(`build ${remote3}`);
-      expect(result.stdout).toContain(
+      expect(stripConsoleColors(result.stdout)).toContain(
         `Successfully ran target build for project ${remote3}`
       );
       expect(() =>

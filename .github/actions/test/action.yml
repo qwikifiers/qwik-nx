@@ -20,7 +20,7 @@ runs:
 
     - name: Test
       shell: bash
-      run: npx nx affected --target=test --base=${{ env.NX_BASE }} --head=HEAD
+      run: npx nx affected --target=test --base=${{ env.NX_BASE }} --head=HEAD ${{ runner.os == 'Windows' && '--maxWorkers=1' }}
 
     - name: E2E Tests
       # TODO: temporary disabled e2e on windows

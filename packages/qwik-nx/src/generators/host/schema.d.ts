@@ -2,9 +2,9 @@ import { ProjectNameAndRootFormat } from '@nx/devkit/src/generators/project-name
 import { Linter } from '@nx/eslint';
 
 export interface HostGeneratorSchema {
-  name: string;
+  name?: string;
   tags?: string;
-  directory?: string;
+  directory: string;
   style?: 'css' | 'scss' | 'styl' | 'less' | 'none';
   linter?: Linter;
   skipFormat?: boolean;

@@ -30,7 +30,7 @@
         "@typescript-eslint/no-non-null-assertion": "off",
         "unused-imports/no-unused-imports": "error",
         "no-duplicate-imports": "error",
-        "unused-imports/no-unused-vars": "error",
+        "@typescript-eslint/no-unused-vars": "error",
         "@typescript-eslint/naming-convention": [
           "error",
           {
@@ -41,13 +41,16 @@
             "selector": "enumMember",
             "format": ["PascalCase"]
           }
-        ]
+        ],
+        "no-extra-semi": "error"
       }
     },
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
-      "rules": {}
+      "rules": {
+        "no-extra-semi": "error"
+      }
     },
     {
       "files": [

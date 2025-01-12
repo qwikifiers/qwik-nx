@@ -11,6 +11,7 @@ import {
   killPort,
   killPorts,
   DEFAULT_E2E_TIMEOUT,
+  stripConsoleColors,
 } from '@qwikifiers/e2e/utils';
 
 const NETLIFY_PREVIEW_PORT = 8888;
@@ -41,7 +42,7 @@ describe('qwik nx netlify generator', () => {
       'should be able to successfully build the application',
       async () => {
         const result = await runNxCommandAsync(`build-netlify ${project}`);
-        expect(result.stdout).toContain(
+        expect(stripConsoleColors(result.stdout)).toContain(
           `Successfully ran target build for project ${project}`
         );
         expect(() =>

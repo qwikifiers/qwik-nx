@@ -18,6 +18,7 @@ import {
 } from '../../../utils/react/init';
 
 interface NormalizedSchema extends ReactLibraryGeneratorSchema {
+  name: string;
   installMUIExample: boolean;
   targetApps: string[];
   projectName: string;

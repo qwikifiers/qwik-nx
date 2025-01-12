@@ -13,8 +13,14 @@ describe('component generator', () => {
   beforeEach(async () => {
     appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
 
-    await libraryGenerator(appTree, { name: projectName, skipFormat: true });
-    await appGenerator(appTree, { name: appProjectName, skipFormat: true });
+    await libraryGenerator(appTree, {
+      skipFormat: true,
+      directory: 'libs/' + projectName,
+    });
+    await appGenerator(appTree, {
+      skipFormat: true,
+      directory: 'apps/' + appProjectName,
+    });
   });
 
   it('should throw if directory is outside of the provided lib project', async () => {

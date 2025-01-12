@@ -8,11 +8,7 @@
     "name": {
       "type": "string",
       "description": "",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
-      "x-prompt": "What name would you like to use?"
+      "x-priority": "important"
     },
     "tags": {
       "type": "string",
@@ -21,12 +17,12 @@
     },
     "directory": {
       "type": "string",
-      "description": "A directory where the project is placed"
-    },
-    "projectNameAndRootFormat": {
-      "description": "Whether to generate the project name and root directory as provided (`as-provided`) or generate them composing their values and taking the configured layout into account (`derived`).",
-      "type": "string",
-      "enum": ["as-provided", "derived"]
+      "description": "A directory where the project is placed",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Which directory do you want to create the library in?"
     },
     "style": {
       "description": "The file extension to be used for style files.",
@@ -102,5 +98,5 @@
       "x-dropdown": "project"
     }
   },
-  "required": ["name"]
+  "required": ["directory"]
 }

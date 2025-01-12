@@ -7,7 +7,7 @@ import { getFormattedListChanges } from '../../utils/testing-generators';
 
 describe('library generator', () => {
   let appTree: Tree;
-  const options: LibraryGeneratorSchema = { name: 'mylib' };
+  const options: LibraryGeneratorSchema = { directory: 'libs/mylib' };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
@@ -32,9 +32,9 @@ describe('library generator', () => {
     await generator(appTree, {
       ...options,
       generateComponent: true,
-      directory: 'some/nested/lib',
+      directory: 'libs/some/nested/lib/mylib',
     });
-    const config = readProjectConfiguration(appTree, 'some-nested-lib-mylib');
+    const config = readProjectConfiguration(appTree, 'mylib');
     expect(config.root).toBe('libs/some/nested/lib/mylib');
     expect(
       appTree.exists('libs/some/nested/lib/mylib/src/lib/mylib.tsx')
@@ -73,13 +73,9 @@ describe('library generator', () => {
 
   describe('should be able to resolve directory path based on the workspace layout', () => {
     test.each`
-      directory             | expectedProjectName | projectRoot
-      ${'/shared'}          | ${'shared-mylib'}   | ${'libs/shared/mylib'}
-      ${'libs'}             | ${'mylib'}          | ${'libs/mylib'}
-      ${'/libs/shared'}     | ${'shared-mylib'}   | ${'libs/shared/mylib'}
-      ${'libs/shared'}      | ${'shared-mylib'}   | ${'libs/shared/mylib'}
-      ${'/packages'}        | ${'mylib'}          | ${'packages/mylib'}
-      ${'/packages/shared'} | ${'shared-mylib'}   | ${'packages/shared/mylib'}
+      directory                  | expectedProjectName | projectRoot
+      ${'libs/shared/mylib'}     | ${'mylib'}          | ${'libs/shared/mylib'}
+      ${'packages/shared/mylib'} | ${'mylib'}          | ${'packages/shared/mylib'}
     `(
       'when directory is "$directory" should generate "$expectedProjectName" with project\'s root at "$projectRoot"',
       async ({ directory, expectedProjectName, projectRoot }) => {

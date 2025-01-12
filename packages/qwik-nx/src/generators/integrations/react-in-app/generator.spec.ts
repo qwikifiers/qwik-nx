@@ -12,7 +12,7 @@ describe('integrations/react-in-app generator', () => {
 
   beforeEach(async () => {
     appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
-    await appGenerator(appTree, { name: 'myapp' });
+    await appGenerator(appTree, { directory: `apps/myapp` });
   });
 
   it('should run successfully', async () => {

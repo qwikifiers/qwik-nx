@@ -19,7 +19,7 @@ describe('storybook-configuration generator', () => {
     appTree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
 
     await appGenerator(appTree, {
-      name: projectName,
+      directory: `apps/${projectName}`,
       e2eTestRunner: 'none',
       linter: Linter.None,
       skipFormat: false,
@@ -73,7 +73,7 @@ describe('storybook-configuration generator', () => {
 
     beforeEach(async () => {
       await libraryGenerator(appTree, {
-        name: libProjectName,
+        directory: `libs/${libProjectName}`,
         linter: Linter.None,
         skipFormat: true,
         strict: true,

@@ -1,5 +1,4 @@
 import { UserConfig } from 'vite';
-import { withNx } from 'qwik-nx/storybook';
 
 const config = {
   stories: [
@@ -9,7 +8,7 @@ const config = {
   addons: ['@storybook/addon-essentials'],
   framework: { name: 'storybook-framework-qwik', },
   async viteFinal(config: UserConfig) {
-    return withNx(config<% if(isLib) { %>, true <% } %>);
+    return config
   },
 };
 
