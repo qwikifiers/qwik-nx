@@ -3,14 +3,14 @@ import { Linter } from '@nx/eslint';
 import { LibraryGeneratorSchema, NormalizedSchema } from '../schema';
 import {
   determineProjectNameAndRootOptions,
-  ensureProjectName,
+  ensureRootProjectName,
 } from '@nx/devkit/src/generators/project-name-and-root-utils';
 
 export async function normalizeOptions(
   tree: Tree,
   schema: LibraryGeneratorSchema
 ): Promise<NormalizedSchema> {
-  await ensureProjectName(tree, schema, 'library');
+  await ensureRootProjectName(schema, 'library');
 
   const { projectName, projectRoot } = await determineProjectNameAndRootOptions(
     tree,
