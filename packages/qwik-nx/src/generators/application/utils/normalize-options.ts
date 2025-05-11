@@ -34,7 +34,7 @@ export async function normalizeOptions(
 
   return {
     ...options,
-    name: options.name!, // defined by "ensureProjectName"
+    name: options.name ?? appProjectName,
     projectName: appProjectName,
     projectRoot: appProjectRoot,
     offsetFromRoot: offsetFromRoot(appProjectRoot),

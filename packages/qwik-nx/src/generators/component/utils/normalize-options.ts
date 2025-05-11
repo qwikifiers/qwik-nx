@@ -35,7 +35,7 @@ function normalizeNameAndPaths(
   );
 
   const projectSourceRoot = sourceRoot ?? joinPathFragments(root, 'src');
-  const componentName = options.name || 'component';
+  const componentName = options.name;
   const { name, path: namePath } = parseNameWithPath(componentName);
 
   const path =

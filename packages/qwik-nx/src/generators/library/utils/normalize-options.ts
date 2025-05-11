@@ -37,7 +37,7 @@ export async function normalizeOptions(
 
   return {
     ...withDefaultValues,
-    name: schema.name!, // defined by the "ensureProjectName"
+    name: schema.name ?? projectName,
     projectName,
     projectRoot,
     parsedTags,
