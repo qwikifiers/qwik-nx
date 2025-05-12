@@ -23,10 +23,10 @@ describe('misc checks', () => {
       expect(packageJson.dependencies).toBeUndefined();
       expect(packageJson.devDependencies).toBeUndefined();
       expect(packageJson.peerDependencies).toEqual({
-        '@nx/devkit': '^20.0.0',
-        '@nx/js': '^20.0.0',
-        '@nx/eslint': '^20.0.0',
-        '@nx/vite': '^20.0.0',
+        '@nx/devkit': '^20.7.0',
+        '@nx/js': '^20.7.0',
+        '@nx/eslint': '^20.7.0',
+        '@nx/vite': '^20.7.0',
       });
     },
     DEFAULT_E2E_TIMEOUT

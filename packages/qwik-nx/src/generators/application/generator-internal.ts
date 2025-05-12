@@ -25,7 +25,7 @@ import { addE2eProject } from './utils/add-e2e';
 function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
     ...options,
-    ...names(options.name),
+    ...names(options.name || options.projectName),
     template: '',
   };
   generateFiles(

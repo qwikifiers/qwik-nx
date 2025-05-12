@@ -3,14 +3,14 @@ import { getRelativePathToRootTsConfig } from '@nx/js';
 import { NormalizedSchema, QwikAppGeneratorSchema } from '../schema';
 import {
   determineProjectNameAndRootOptions,
-  ensureProjectName,
+  ensureRootProjectName,
 } from '@nx/devkit/src/generators/project-name-and-root-utils';
 
 export async function normalizeOptions(
   host: Tree,
   options: QwikAppGeneratorSchema
 ): Promise<NormalizedSchema> {
-  await ensureProjectName(host, options, 'application');
+  await ensureRootProjectName(options, 'application');
 
   const { projectName: appProjectName, projectRoot: appProjectRoot } =
     await determineProjectNameAndRootOptions(host, {
@@ -34,7 +34,7 @@ export async function normalizeOptions(
 
   return {
     ...options,
-    name: options.name!, // defined by "ensureProjectName"
+    name: options.name ?? appProjectName,
     projectName: appProjectName,
     projectRoot: appProjectRoot,
     offsetFromRoot: offsetFromRoot(appProjectRoot),
