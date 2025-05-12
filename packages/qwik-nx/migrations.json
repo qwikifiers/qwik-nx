@@ -27,5 +27,25 @@
         }
       }
     }
+  },
+  "3.1.0": {
+    "version": "3.1.0",
+    "packages": {
+      "@builder.io/qwik": {
+        "version": "~1.13.0"
+      },
+      "@builder.io/qwik-city": {
+        "version": "~1.13.0"
+      },
+      "eslint-plugin-qwik": {
+        "version": "~1.13.0"
+      },
+      "vite": {
+        "version": "~5.3.5"
+      },
+      "vite-tsconfig-paths": {
+        "version": "~4.2.1"
+      }
+    }
   }
 }
