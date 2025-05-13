@@ -1,16 +1,67 @@
-import { workspaceRoot } from '@nx/devkit';
+import {
+  ProjectGraph,
+  ProjectsConfigurations,
+  workspaceRoot,
+} from '@nx/devkit';
 import { join } from 'path';
 import { qwikNxVite } from './qwik-nx-vite.plugin';
 import { QwikNxVitePluginOptions } from './models/qwik-nx-vite';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const fileUtils = require('nx/src/project-graph/file-utils');
+const nxDevkit = require('@nx/devkit');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const getProjectDependenciesModule = require('./utils/get-project-dependencies');
 
-function getWorkspaceConfig() {
+function getProjectsGraph(): Partial<ProjectGraph> {
+  return {
+    nodes: {
+      'tmp-test-app-a': {
+        name: 'tmp-test-app-a',
+        type: 'app',
+        data: {
+          root: 'apps/test-app-a',
+          sourceRoot: 'apps/test-app-a/src',
+          projectType: 'application',
+          tags: ['tag1', 'tag2'],
+        },
+      },
+      'tmp-test-lib-a': {
+        name: 'tmp-test-lib-a',
+        type: 'lib',
+        data: {
+          root: 'libs/test-lib-a',
+          sourceRoot: 'libs/test-lib-a/src',
+          projectType: 'library',
+          tags: ['tag2'],
+        },
+      },
+      'tmp-test-lib-b': {
+        name: 'tmp-test-lib-b',
+        type: 'lib',
+        data: {
+          root: 'libs/test-lib-b',
+          sourceRoot: 'libs/test-lib-b/src',
+          projectType: 'library',
+          tags: ['tag2', 'tag3'],
+        },
+      },
+      'tmp-test-lib-c-nested-1': {
+        name: 'tmp-test-lib-c-nested-1',
+        type: 'lib',
+        data: {
+          root: 'libs/test-lib-c/nested',
+          sourceRoot: 'libs/test-lib-c/nested-1/src',
+          projectType: 'library',
+          tags: ['tag4'],
+        },
+      },
+    },
+  };
+}
+
+function getWorkspaceConfig(): Partial<ProjectsConfigurations> {
   return {
     projects: {
       'tmp-test-app-a': {
@@ -18,7 +69,6 @@ function getWorkspaceConfig() {
         name: 'tmp-test-app-a',
         projectType: 'application',
         sourceRoot: 'apps/test-app-a/src',
-        prefix: 'tmp',
         tags: ['tag1', 'tag2'],
       },
       'tmp-test-lib-a': {
@@ -26,7 +76,6 @@ function getWorkspaceConfig() {
         name: 'tmp-test-lib-a',
         projectType: 'library',
         sourceRoot: 'libs/test-lib-a/src',
-        prefix: 'tmp',
         tags: ['tag2'],
       },
       'tmp-test-lib-b': {
@@ -34,7 +83,6 @@ function getWorkspaceConfig() {
         name: 'tmp-test-lib-b',
         projectType: 'library',
         sourceRoot: 'libs/test-lib-b/src',
-        prefix: 'tmp',
         tags: ['tag2', 'tag3'],
       },
       'tmp-test-lib-c-nested-1': {
@@ -42,7 +90,6 @@ function getWorkspaceConfig() {
         name: 'tmp-test-lib-c-nested-1',
         projectType: 'library',
         sourceRoot: 'libs/test-lib-c/nested-1/src',
-        prefix: 'tmp',
         tags: ['tag4'],
       },
       'tmp-test-lib-c-nested-2': {
@@ -50,7 +97,6 @@ function getWorkspaceConfig() {
         name: 'tmp-test-lib-c-nested-2',
         projectType: 'library',
         sourceRoot: 'libs/test-lib-c/nested-2/src',
-        prefix: 'tmp',
         tags: ['tag1', 'tag2', 'tag3'],
       },
       'tmp-other-test-lib-a': {
@@ -58,7 +104,6 @@ function getWorkspaceConfig() {
         name: 'tmp-other-test-lib-a',
         projectType: 'library',
         sourceRoot: 'libs/other/test-lib-a/src',
-        prefix: 'tmp',
         tags: [],
       },
       // it will be excluded because it is not set in our mock tsconfig.json
@@ -67,7 +112,6 @@ function getWorkspaceConfig() {
         name: 'tmp-always-excluded',
         projectType: 'library',
         sourceRoot: 'libs/always/excluded/src',
-        prefix: 'tmp',
         tags: [],
       },
     },
@@ -90,8 +134,11 @@ function getTsConfigString() {
 
 describe('qwik-nx-vite plugin', () => {
   jest
-    .spyOn(fileUtils, 'readWorkspaceConfig')
+    .spyOn(nxDevkit, 'readProjectsConfigurationFromProjectGraph')
     .mockReturnValue(getWorkspaceConfig());
+  jest
+    .spyOn(nxDevkit, 'readCachedProjectGraph')
+    .mockReturnValue(getProjectsGraph());
   const originalReadFileSync = jest.requireActual('fs').readFileSync;
   jest.spyOn(fs, 'readFileSync').mockImplementation((fileName, ...args) => {
     if (
@@ -105,7 +152,7 @@ describe('qwik-nx-vite plugin', () => {
   jest
     .spyOn(getProjectDependenciesModule, 'getProjectDependencies')
     .mockReturnValue(
-      Promise.resolve(new Set(Object.keys(getWorkspaceConfig().projects)))
+      Promise.resolve(new Set(Object.keys(getWorkspaceConfig().projects!)))
     );
 
   /**
