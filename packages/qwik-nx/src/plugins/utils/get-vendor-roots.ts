@@ -1,11 +1,14 @@
-import { readWorkspaceConfig } from 'nx/src/project-graph/file-utils';
 import {
   QwikNxVitePluginOptions,
   QwikVitePluginOptionsStub,
 } from '../models/qwik-nx-vite';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { workspaceRoot } from '@nx/devkit';
+import {
+  readCachedProjectGraph,
+  readProjectsConfigurationFromProjectGraph,
+  workspaceRoot,
+} from '@nx/devkit';
 import { getCurrentProjectName } from './current-project-name';
 import { filterProjects } from './filter-projects';
 import { getProjectDependencies } from './get-project-dependencies';
@@ -20,8 +23,9 @@ export async function getVendorRoots(
       console.debug(`[QWIK-NX-VITE PLUGIN:]`, ...str);
     }
   };
-
-  const workspaceConfig = readWorkspaceConfig({ format: 'nx' });
+  const projectGraph = readCachedProjectGraph();
+  const projectsConfiguration =
+    readProjectsConfigurationFromProjectGraph(projectGraph);
 
   const baseTsConfig = JSON.parse(
     readFileSync(join(workspaceRoot, 'tsconfig.base.json')).toString()
@@ -30,11 +34,11 @@ export async function getVendorRoots(
     baseTsConfig.compilerOptions.paths
   ).flat();
 
-  let projects = Object.values(workspaceConfig.projects);
+  let projects = Object.values(projectsConfiguration.projects);
 
   if (
     options?.currentProjectName &&
-    !workspaceConfig.projects[options.currentProjectName]
+    !projectsConfiguration.projects[options.currentProjectName]
   ) {
     throw new Error(
       `Could not find project with name "${options.currentProjectName}"`
@@ -43,7 +47,7 @@ export async function getVendorRoots(
 
   const currentProjectName =
     options?.currentProjectName ??
-    getCurrentProjectName(workspaceConfig, qwikOptions.rootDir);
+    getCurrentProjectName(projectGraph, qwikOptions.rootDir);
 
   projects = projects.filter((p) => p.name !== currentProjectName);
 
