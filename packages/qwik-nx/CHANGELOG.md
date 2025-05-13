@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.1.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-3.1.0...qwik-nx-3.1.1) (2025-05-13)
+
+
+### Bug Fixes
+
+* **qwik-nx:** drop deprecated `readWorkspaceConfig` in favor of `readCachedProjectGraph` ([#248](https://github.com/qwikifiers/qwik-nx/issues/248)) ([ff6d445](https://github.com/qwikifiers/qwik-nx/commit/ff6d44582bed52cc61bdaf1d1d1f56770a0e778e))
+
+
+
 # [3.1.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-3.0.0...qwik-nx-3.1.0) (2025-05-12)
 
 
