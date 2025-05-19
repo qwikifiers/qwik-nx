@@ -44,6 +44,5 @@
     "libsDir": "packages"
   },
   "nxCloudAccessToken": "MmI5MzJhMDctNGYwMi00OTI1LWJiZjUtNWIwNTQ4NmY2ZjhjfHJlYWQtd3JpdGU=",
-  "useInferencePlugins": false,
-  "useLegacyCache": true
+  "useInferencePlugins": false
 }
