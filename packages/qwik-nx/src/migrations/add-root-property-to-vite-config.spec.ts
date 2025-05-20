@@ -28,12 +28,10 @@ const getViteConfigSample = (
 ) => `import { qwikVite } from '@builder.io/qwik/optimizer';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { qwikNxVite } from 'qwik-nx/plugins';
 
 export default defineConfig({
   ${includeRootProp ? '\nroot: "apps/myapp"' : ''}
   plugins: [
-    qwikNxVite(),
     qwikVite({
       client: {
         outDir: '../../dist/apps/myapp/client',
