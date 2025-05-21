@@ -4,11 +4,9 @@ exports[`add-root-property-to-vite-config migration should add/update the "root"
 "import { qwikVite } from \\"@builder.io/qwik/optimizer\\";
 import { defineConfig } from \\"vite\\";
 import tsconfigPaths from \\"vite-tsconfig-paths\\";
-import { qwikNxVite } from \\"qwik-nx/plugins\\";
 export default defineConfig({
     root: apps / myapp,
     plugins: [
-        qwikNxVite(),
         qwikVite({
             client: {
                 outDir: \\"../../dist/apps/myapp/client\\",
