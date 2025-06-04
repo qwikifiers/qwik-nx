@@ -8,7 +8,7 @@ import { join } from 'path';
 export default defineConfig({
   cacheDir: '<%= offsetFromRoot %>node_modules/.vite/<%= projectRoot %>',
   plugins: [
-    qwikVite(), 
+    qwikVite(),
     tsconfigPaths({ root: '<%= offsetFromRoot %>' }),
     <% if(buildable) { %>  dts({
       tsConfigFilePath: join(__dirname, 'tsconfig.lib.json'),
@@ -42,6 +42,7 @@ export default defineConfig({
     },
     environment: 'node',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    reporters: ['default'],
     coverage: {
       reportsDirectory: '<%= offsetFromRoot %>coverage/<%= projectRoot %>'
     }

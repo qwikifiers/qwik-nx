@@ -7,7 +7,7 @@ export default defineConfig({
   cacheDir: '<%= offsetFromRoot %>node_modules/.vite/<%= projectRoot %>',
   root: '<%= projectRoot %>',
   plugins: [
-    qwikCity(), 
+    qwikCity(),
     qwikVite({
 			client: {
 				outDir: '<%= offsetFromRoot %>dist/<%= projectRoot %>/client',
@@ -36,7 +36,8 @@ export default defineConfig({
       dir: '<%= offsetFromRoot %>node_modules/.vitest',
     },
     environment: 'node',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}']
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    reporters: ['default']
   }
   <% } %>
 });
