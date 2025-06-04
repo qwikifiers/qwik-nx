@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.2.1](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-3.2.0...qwik-nx-3.2.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* **qwik-nx:** add default reporter for vitest config ([#254](https://github.com/qwikifiers/qwik-nx/issues/254)) ([e69b0e0](https://github.com/qwikifiers/qwik-nx/commit/e69b0e0937c10ee0ec87152f7e7eed0a52485c16))
+
+
+
 # [3.2.0](https://github.com/qwikifiers/qwik-nx/compare/qwik-nx-3.1.1...qwik-nx-3.2.0) (2025-05-21)
 
 
